@@ -1,0 +1,161 @@
+
+$nyuteal: #008996;
+$nyu-purple: #57068c;
+$nyugray1: #4a4f55;
+$nyugray2: #939a90;
+$lightgray: #cdc4e1;
+
+// ==========================================================================
+// Base theme
+// ========================================================================== */
+$selection-color-bg: #00e9ff54;
+$selection-color-text: #000000;
+$focus-color: #00e9ff54;
+
+@import "partials/sanitize";
+@import "./mixins/all";
+@import "partials/focus-states";
+// ==========================================================================
+// Deque
+// ========================================================================== */
+
+@import "./deque-select-style";
+
+// ==========================================================================
+// Google Material Design Styles for layout grid
+// ========================================================================== */
+$mdc-layout-grid-columns: (
+  desktop: 12,
+  tablet: 12,
+  phone: 6
+);
+$mdc-layout-grid-breakpoints: (
+  desktop: 840px,
+  tablet: 600px,
+  phone: 0
+);
+$mdc-layout-grid-default-gutter: (
+  desktop: 24px,
+  tablet: 16px,
+  phone: 16px
+);
+
+@import "google-material-design/mdc-layout-grid";
+
+// ==========================================================================
+// Begin DLTS styles
+// ========================================================================== */
+
+$primary-color: $nyu-purple;
+$primary-color-muted: $lightgray;
+
+$textcolora: #040404;
+$textcolorb: rgba(26, 28, 29, .65);
+$linkcolora: #0c186e;
+$visitedlinkcolora: #3c7aae;
+$linkcolor: #010101;
+$visitedlinkcolor: $textcolora;
+$linkhovercolor: $primary-color;
+
+$section-title-color: #e00022;
+$breakpoint: 600px;
+$viewportpadding-mobile: 22px;
+$viewportpadding-tablet: 30px;
+$viewportpadding-desktop: 50px;
+
+$background-color-main: #ffffff;
+$background-color-navbar: #ffffff;
+$font-family-general: Arial, sans-serif;
+$font-family-headers: "vistasansnarot-reg", Verdana, sans-serif;
+$font-family-headers-bold: "vistasansnarot-med", Verdana, sans-serif;
+$font-family-body: 'Raleway', Verdana, sans-serif;
+
+$skipnav-background: #ffffff;
+$skipnav-border: $primary-color;
+
+$callout-text-color: #ffffff;
+
+@mixin body-text {
+  font-size: .9rem;
+  line-height: 1.5;
+
+}
+
+@import "partials/aboutpages";
+@import "partials/deque-select-theming";
+@import "partials/fonts";
+@import "partials/accessibility";
+@import "partials/typography";
+@import "partials/tags";
+@import "partials/series";
+@import "partials/social";
+@import "partials/navbar";
+@import "partials/homepage-only";
+@import "partials/connectedyouthbanner";
+@import "partials/book-meta";
+@import "partials/nav-links";
+@import "partials/readingpage";
+@import "partials/searchpage";
+
+body {
+  background-color: $background-color-main;
+  font-size: 16px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 15px;
+}
+
+.hold-all {
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 $viewportpadding-mobile;
+  @include mdc-layout-grid-media-query_("desktop") {
+    padding: 0 $viewportpadding-desktop;
+  }
+  @include mdc-layout-grid-media-query_("tablet") {
+    padding: 0 $viewportpadding-tablet;
+  }
+}
+
+.page-header {
+  border-bottom: 2px solid $lightgray;
+  padding: 20px 0;
+  position: relative;
+
+}
+
+.page-footer {
+  border-top: 2px solid $lightgray;
+  padding: 35px 0;
+}
+
+.contain-main,
+.page-footer,
+.page-header {
+  max-width: 1400px;
+  margin: 0;
+
+}
+
+.contain-main,
+.page-footer {
+  background-color: $background-color-main;
+}
+
+main {
+  padding: $viewportpadding-mobile 0;
+  @include body-text;
+}
+
+@media only screen and (min-width: $breakpoint) {
+  main {
+    padding: $viewportpadding-desktop 0 100px;
+  }
+}
+
+header li,
+header nav {
+  display: inline-block;
+}

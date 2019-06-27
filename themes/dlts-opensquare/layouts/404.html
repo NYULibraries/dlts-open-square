@@ -1,0 +1,10 @@
+{{ partial "header.html" . }}
+	<main id="main-content">
+		<h1 class="page-title">404: Page not found</h1>
+		{{ $paginator := .Paginate (where .Site.Pages "Type" "books") }}
+		{{ range $paginator.Pages }}
+			{{ partial "summary.html" . }}
+		{{ end }}
+		{{ partial "pagination.html" . }}
+	</main>
+{{ partial "footer.html" . }}

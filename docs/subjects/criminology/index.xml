@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Criminology on Open Square</title>
+    <link>http://opensquare.nyupress.org/subjects/criminology/</link>
+    <description>Recent content in Criminology on Open Square</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jan 1996 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://opensquare.nyupress.org/subjects/criminology/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bird-Self Accumulated</title>
+      <link>http://opensquare.nyupress.org/books/9780814742297/</link>
+      <pubDate>Mon, 01 Jan 1996 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814742297/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Romantic Outlaws, Beloved Prisons</title>
+      <link>http://opensquare.nyupress.org/books/9780814718803/</link>
+      <pubDate>Mon, 01 Jan 1996 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814718803/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Busting the Mob</title>
+      <link>http://opensquare.nyupress.org/books/9780814742303/</link>
+      <pubDate>Sat, 01 Jan 1994 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814742303/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labor Studies on Open Square</title>
+    <link>http://opensquare.nyupress.org/subjects/labor-studies/</link>
+    <description>Recent content in Labor Studies on Open Square</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Jan 1993 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://opensquare.nyupress.org/subjects/labor-studies/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Can Unions Survive?</title>
+      <link>http://opensquare.nyupress.org/books/9780814715123/</link>
+      <pubDate>Fri, 01 Jan 1993 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814715123/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Out of Work</title>
+      <link>http://opensquare.nyupress.org/books/9780814787922/</link>
+      <pubDate>Fri, 01 Jan 1993 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814787922/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

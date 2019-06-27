@@ -1,0 +1,159 @@
+/*
+ * Emigre web font kit 6hRsSuxHzHkJrdB5qwqgbg==
+ * 
+ * These fonts are not shareware. 
+ * Use of these fonts requires the purchase 
+ * of a license from Emigre, www.emigre.com  
+ * Please contact sales@emigre.com
+ *
+ * To purchase a license to use this font go to:
+ * http://www.emigre.com/
+ *
+ * © 2019 Emigre, Inc
+ */
+
+
+
+
+@font-face {
+    font-family: 'vistasansnarot-light';
+    src: url('vistasansnarot-light-webfont.eot');
+    src: url('vistasansnarot-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-light-webfont.woff2') format('woff2'),
+         url('vistasansnarot-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-lightital';
+    src: url('vistasansnarot-lightital-webfont.eot');
+    src: url('vistasansnarot-lightital-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-lightital-webfont.woff2') format('woff2'),
+         url('vistasansnarot-lightital-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-reg';
+    src: url('vistasansnarot-reg-webfont.eot');
+    src: url('vistasansnarot-reg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-reg-webfont.woff2') format('woff2'),
+         url('vistasansnarot-reg-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-regital';
+    src: url('vistasansnarot-regital-webfont.eot');
+    src: url('vistasansnarot-regital-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-regital-webfont.woff2') format('woff2'),
+         url('vistasansnarot-regital-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-bold';
+    src: url('vistasansnarot-bold-webfont.eot');
+    src: url('vistasansnarot-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-bold-webfont.woff2') format('woff2'),
+         url('vistasansnarot-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-boldital';
+    src: url('vistasansnarot-boldital-webfont.eot');
+    src: url('vistasansnarot-boldital-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-boldital-webfont.woff2') format('woff2'),
+         url('vistasansnarot-boldital-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-book';
+    src: url('vistasansnarot-book-webfont.eot');
+    src: url('vistasansnarot-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-book-webfont.woff2') format('woff2'),
+         url('vistasansnarot-book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-bookital';
+    src: url('vistasansnarot-bookital-webfont.eot');
+    src: url('vistasansnarot-bookital-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-bookital-webfont.woff2') format('woff2'),
+         url('vistasansnarot-bookital-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-med';
+    src: url('vistasansnarot-med-webfont.eot');
+    src: url('vistasansnarot-med-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-med-webfont.woff2') format('woff2'),
+         url('vistasansnarot-med-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-medital';
+    src: url('vistasansnarot-medital-webfont.eot');
+    src: url('vistasansnarot-medital-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-medital-webfont.woff2') format('woff2'),
+         url('vistasansnarot-medital-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-black';
+    src: url('vistasansnarot-black-webfont.eot');
+    src: url('vistasansnarot-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-black-webfont.woff2') format('woff2'),
+         url('vistasansnarot-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'vistasansnarot-blackital';
+    src: url('vistasansnarot-blackital-webfont.eot');
+    src: url('vistasansnarot-blackital-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vistasansnarot-blackital-webfont.woff2') format('woff2'),
+         url('vistasansnarot-blackital-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

@@ -1,0 +1,124 @@
+{{ partial "header.html" . }}
+<main id="main-content">
+    <h1 class="page-title sr-only">NYU Press Open Square: Knowledge without Boundaries</h1>
+    <section class="home-section top-row">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-8 mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-6-phone">
+                    {{ range where .Pages ".Params.featured_on_homepage" "!=" nil }}
+                    <article class="mdc-layout-grid__inner featured-book">
+                        <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
+                            {{ if .Params.thumbhref }}
+                            <div class="thumbhold" role="presentation" aria-hidden="true"><a aria-hidden="true" tabindex="-1" href="{{ .Permalink  }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt=""></a></div>
+                            {{ end }}
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-9-tablet mdc-layout-grid__cell--span-4-phone featured-series-items-hold">
+                            <div class="meta">
+                                <h2 class="section-title">FEATURED BOOK</h2>
+                                <div class="book-title-group"><a href="{{ .Permalink }}">
+                                        <h3 class="book-title">{{ .Title }}</h3>
+                                        {{ with .Params.subtitle }}
+                                        <div class="book-subtitle">{{ . }}</div>{{ end }}
+                                    </a></div>
+                                <div class="author">{{ .Params.author }}</div>
+                                {{ if .Params.series }}
+                                <div class="tags"><span>Series:</span>
+                                    <ul>{{ range .Params.series }}
+                                        <li><a href="{{ "/series/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+                                        {{ end }}
+                                    </ul>
+                                </div>
+                                {{ end }}
+                                <div class="description">{{ .Params.description | safeHTML | truncate 650 }}</div>
+                            </div>
+                            <div class="vista-callout"><a href="{{ .Permalink }}" aria-label="Read more about {{ .Title }}">Read more about this book</a></div>
+                        </div>
+                    </article>
+                    {{ end }}
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-6-phone">
+                    <div class="box2 ">
+                        <section class="intro-copy">
+                            <p>{{ .Site.Params.introcopy }}</p>
+                        </section>
+                        <section class="browse-categories">
+                            <h2 class="section-title">Browse Subjects</h2>
+                            <ul>
+                            {{- range .Site.Taxonomies.subjects -}}
+                                <li><a href="{{ .Page.Permalink | relURL }}" title="{{ .Page.Title }}: View {{ .Count }} books">{{ .Page.Title }}</a></li>{{ end }}</ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="home-section featured-series-section">
+        <h2 class="section-title">Featured Series</h2>
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">{{ range first 3 (where .Pages ".Params.series" "intersect" .Site.Params.featured_series )}}
+                {{ if .Params.thumbhref }}
+                <div class="mdc-layout-grid__cell--span-2">
+                    <div class="thumbhold" role="presentation" data-pubdate="{{ .Date }}"><a href="{{ .Permalink }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a></div>
+                </div> {{ end }}
+                {{ end }}
+                <div class="mdc-layout-grid__cell--span-6 featured-series-items-hold">
+                    <div>
+                        <h3 class="series-title"><a href="{{.Site.Params.featured_series_path }}">{{.Site.Params.featured_series_full_name | safeHTML }}</a></h3>
+                        <div class="description">{{.Site.Params.featured_series_homepage_blurb | safeHTML }}</div>
+                    </div>
+                    <div class="vista-callout"><a href="{{.Site.Params.featured_series_path }}" aria-label="Browse books in featured series: {{.Site.Params.featured_series_full_name | safeHTML }}">View all books in this series</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="home-section featured-items-section">
+        <h2 class="section-title">Featured titles</h2>
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                {{ range first 6 (where .Pages ".Params.isfeatureditem" "!=" nil).ByDate.Reverse }}
+                <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">{{ if .Params.thumbhref }}
+                    <div class="thumbhold" role="presentation" data-pubdate="{{ .Date }}"><a href="{{ .Permalink }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a></div>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        <div class="vista-callout"><a href="/books" aria-label="Browse all Open Square books">View all books</a></div>
+    </section>
+    <section class="home-section ">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="sister-links-section mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-6-phone">
+                    <h2 class="section-title">EXPLORE OTHER SITES FROM NYU PRESS</h2>
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-6-phone link-item">
+                                <h3>{{ .Site.Params.link_title_1 }}</h3>
+                                <div class="link-desc">{{ .Site.Params.link1_description }} </div>
+                                <div class="link-link">
+                                    <a target="_blank" href="{{ .Site.Params.link1_link}}">{{ .Site.Params.link1_link}}</a>&nbsp;{{- partial "svgs/external-links.svg" (dict "fill" "#040404" "width" 14 "height" 14 ) -}}</div>
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-6-phone  link-item">
+                                <h3>{{ .Site.Params.link_title_2 }}</h3>
+                                <div class="link-desc">{{ .Site.Params.link2_description }} </div>
+                                <div class="link-link">
+                                    <a target="_blank" href="{{ .Site.Params.link2_link}}">{{ .Site.Params.link2_link}}</a>&nbsp;{{- partial "svgs/external-links.svg" (dict "fill" "#040404" "width" 14 "height" 14 ) -}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-6-phone">
+                    <section class="home-section social-media-section">
+                        <h2 class="section-title">Connect with NYU Press</h2>
+                        <div class="read-blog"><a href="https://www.fromthesquare.org/" target="_blank">{{- partial "svgs/nyup-arch.svg" (dict "fill" "#444444" "width" 30 "height" 40) -}} <span>Read our <em>From the Square</em> blog</span></a></div>
+                        <div class="email-list"><a href="https://signup.e2ma.net/signup/1860081/1806065/" target="_blank">{{- partial "svgs/email-icon.svg" (dict "fill" "#444444" "width" 30 "height" 30) -}} <span>Sign up for the Open Square eNewsletter</span></a></div>
+                        <div><a href="https://www.facebook.com/nyupress/" target="_blank">{{- partial "svgs/facebook-square.svg" (dict "fill" "#444444" "width" 30 "height" 30) -}} <span>Like us on Facebook</span></a></div>
+                        <div><a href="https://twitter.com/nyupress" target="_blank">{{- partial "svgs/twitter-square.svg" (dict "fill" "#444444" "width" 30 "height" 30) -}} <span>Follow us on Twitter</span></a></div>
+                        <div><a href="https://www.instagram.com/nyupress/" target="_blank">{{- partial "svgs/instagram.svg" (dict "fill" "#444444" "width" 30 "height" 30) -}} <span>Follow us on Instagram</span></a></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{{ partial "footer.html" . }}

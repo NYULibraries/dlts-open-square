@@ -1,0 +1,80 @@
+<div class="dqpl-field-wrap">
+    {{- $pageurl := .Permalink -}}
+    {{ $.Scratch.Set "currentTitle" "All Books" -}}
+    {{ $.Scratch.Set "currentSlug" "all" -}}
+    {{range ($.Site.GetPage "taxonomyTerm" "subjects").Pages -}}
+        {{ $thisurl := .Permalink -}}
+        {{- if eq $pageurl $thisurl -}}
+            {{ $.Scratch.Set "currentTitle" .Title -}}
+            {{ $.Scratch.Set "currentSlug" (.Title | urlize) -}}
+        {{- end -}}
+    {{- end -}}
+    {{range ($.Site.GetPage "taxonomyTerm" "series").Pages -}}
+    {{- $thisurl := .Permalink -}}
+    {{- if eq $pageurl $thisurl }}
+    {{ $.Scratch.Set "currentTitle" .Title -}}
+    {{ $.Scratch.Set "currentSlug" (.Title | urlize) -}}
+    {{- end -}}
+    {{ end }}
+    <div class="dqpl-select">
+        <div class="info-label">Browsing</div>
+        <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
+            <div role="textbox" class="dqpl-pseudo-value"><span class="current-subject-title">{{ $.Scratch.Get "currentTitle" }}</span> {{- partial "svgs/arrow.svg" (dict "fill" "#444444") -}}</div>
+        </div>
+        <div class="dqpl-listbox" role="listbox" id="subject-list">
+            <ul>
+                <li class="dqpl-option" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}>All Books</li>
+            </ul>
+            <div class="item-section-title">Series</div>
+            <ul>
+                <li class="dqpl-option" role="option" data-value="connected-youth-and-digital-futures" {{ if eq ($.Scratch.Get "currentSlug") "connected-youth-and-digital-futures" }} id="default" {{ end -}}>Connected Youth and Digital Futures</li>
+            </ul>
+            <div class="item-section-title">Subjects</div>
+            <ul>{{- range .Site.Taxonomies.subjects.Alphabetical }}
+                <li class="dqpl-option" role="option" data-value="{{ .Page.Title | urlize }}" {{ if eq ($.Scratch.Get "currentTitle") .Page.Title }} id="default" {{ end -}}>{{ .Page.Title }}</li>
+                {{- end }}
+                <li class="empty-item">&nbsp;</li>
+                <li class="empty-item">&nbsp;</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+  // https://codepen.io/schne324/pen/XyRvMx?editors=1111
+  // https://unpkg.com/deque-pattern-library@3.0.1/dist/js/pattern-library.js
+  // https://github.com/dequelabs/pattern-library/issues/83
+  document.addEventListener("DOMContentLoaded", function(event) {
+
+    Array.from(document.querySelectorAll('.dqpl-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          // setting timeout here to let dqpl handle the events first and change the value
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              if (newValue == "all") {
+                window.location.href = {{.Site.BaseURL}} + "/books/";
+              } else if (newValue == "connected-youth-and-digital-futures") {
+                window.location.href = {{.Site.BaseURL}} + "/series/" + newValue;
+              } else {
+                window.location.href = {{.Site.BaseURL}} + "/subjects/" + newValue;
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>

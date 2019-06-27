@@ -1,0 +1,82 @@
+.series-banner {
+  background-color: $nyu-purple;
+  display: flex;
+  align-items: flex-end;
+
+  > div {
+    padding: 1rem;
+
+    a {
+      display: block;
+    }
+  }
+
+  .series-banner-image {
+    flex: 1 1 auto;
+
+    svg {
+      max-width: 500px;
+      min-width: 250px;
+      // Bug fix for IE
+      max-height: 2rem;
+    }
+
+  }
+  @include mdc-layout-grid-media-query_("desktop") {
+    .sponsorlogo1 {
+      flex: 0 0 155px;
+    }
+
+    .sponsorlogo2 {
+      flex: 0 0 125px;
+    }
+  }
+  @include mdc-layout-grid-media-query_("tablet") {
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
+
+    .series-banner-image {
+      width: 100%;
+      padding-top: 0;
+    }
+
+    .sponsorlogo1 {
+      padding-bottom: 0;
+    }
+
+    .sponsorlogo1 {
+      flex: 0 0 135px;
+      padding-right: 10px;
+    }
+
+    .sponsorlogo2 {
+      flex: 0 0 110px;
+    }
+  }
+  @include mdc-layout-grid-media-query_("phone") {
+
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100vw;
+    margin-left: -$viewportpadding-mobile;
+
+    > div {
+      padding: $viewportpadding-mobile;
+    }
+
+    .series-banner-image {
+      width: 100%;
+      padding-bottom: 0;
+
+    }
+
+    .sponsorlogo1 {
+      flex: 0 0 160px;
+    }
+
+    .sponsorlogo2 {
+      flex: 0 0 140px;
+    }
+  }
+
+}

@@ -1,0 +1,56 @@
+{{ $list := .Data.Pages -}}
+{{ $length := (len $list) -}}
+{
+    "version" : "https://jsonfeed.org/version/1",
+    "title" : "{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} {{ i18n "string_on" }} {{ end }}{{ .Site.Title }}{{ end }}",
+    "description": "{{ i18n "string_recent_content" }} {{ if ne  .Title  .Site.Title }}{{ with .Title }}{{ i18n "string_in" }} {{ . }} {{ end }}{{ end }}{{ i18n "string_on" }} {{ .Site.Title }}",
+    "home_page_url" : "{{ .Site.BaseURL }}",
+    {{ with .OutputFormats.Get "JSON" -}}
+    "feed_url" : "{{ .Permalink }}",
+    {{ end -}}
+  
+    {{ with .Site.Author.name -}}
+    "author" : {
+        "name" : "{{ . }}"{{ with $.Site.Author.url }},
+        "url": "{{ . }}"{{ end }}{{ with $.Site.Author.avatar }},
+        "avatar": "{{ . | absURL }}"{{ end }}
+    },
+    {{ end -}}
+    "items" : [
+    {{ range $index, $element := $list -}}
+    {
+        "title" : {{ .Title | jsonify }},
+        {{ with .Params.subtitle -}}
+        "subtitle" : {{ . | jsonify }},
+        {{ end -}}
+        "date_published" : "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+        "date_modified" : "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+        "url" : "{{ .Permalink }}",
+        {{ with .Params.isbn -}}
+        "isbn" : "{{ . }}",
+        {{ end -}}
+        {{ with .Params.publication_year -}}
+        "publication_year" : "{{ . }}",
+        {{ end -}}
+         {{ with .Params.thumbnail_of_book_cover -}}
+        "thumbnail_of_book_cover" : "{{ . }}",
+        {{ end -}}
+        {{ with .Params.publisher -}}
+        "publisher" : {{ . | jsonify }},
+        {{ end -}}
+        {{ with .Params.description -}}
+        "description" : {{ . | jsonify }},
+        {{ end -}}
+        {{ with .Params.number_of_pages -}}"number_of_pages" : "{{.}}",
+        {{ end -}}
+        {{ with .Params.author -}}
+        "author" : {
+          "name" : "{{ . }}"
+        },        
+        {{ end -}}
+        "tags" : {{ .Params.tags | jsonify}},
+        "content_html" : {{ .Content | jsonify }}
+    }{{ if ne (add $index 1) $length }},{{ end }}
+    {{ end -}}
+    ]
+}

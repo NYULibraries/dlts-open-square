@@ -1,0 +1,25 @@
+<article class="book-summary">
+  {{ if .Params.thumbhref }}
+  <div class="thumb" role="presentation"><a aria-hidden="true" href="{{ .Permalink }}" tabindex="-1"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt=""></a></div>{{ end }}
+  <div class="meta">
+    <div class="book-title-group"><a href="{{ .Permalink }}">
+        <div class="book-title">{{ .Title }}</div>
+        {{ with .Params.subtitle }}
+        <div class="book-subtitle">{{ . }}</div>{{ end }}
+      </a></div>
+    <div class="author">{{ .Params.author }}</div>
+    <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
+    {{ if .Params.series }}
+    <div class="tags"><span>Series:</span>
+      <ul>{{ range .Params.series }}
+        <li><a href="{{ "/series/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+    <div class="tags"><span class="label">Subjects:</span>
+      {{- range .Params.subjects }}
+      <span class="tag"><a href="{{ "/subjects/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></span>{{- end -}}
+    </div>
+  </div>
+</article>

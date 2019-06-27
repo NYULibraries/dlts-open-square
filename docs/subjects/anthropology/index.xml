@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anthropology on Open Square</title>
+    <link>http://opensquare.nyupress.org/subjects/anthropology/</link>
+    <description>Recent content in Anthropology on Open Square</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Jan 1997 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://opensquare.nyupress.org/subjects/anthropology/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Japanese Lessons</title>
+      <link>http://opensquare.nyupress.org/books/9780814712917/</link>
+      <pubDate>Wed, 01 Jan 1997 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814712917/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>American Cool</title>
+      <link>http://opensquare.nyupress.org/books/9780814779965/</link>
+      <pubDate>Fri, 01 Apr 1994 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814779965/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Dilemma of Context</title>
+      <link>http://opensquare.nyupress.org/books/9780814779163/</link>
+      <pubDate>Sun, 01 Jan 1989 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814779163/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

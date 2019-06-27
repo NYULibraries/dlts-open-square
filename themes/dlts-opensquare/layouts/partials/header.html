@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+
+  <head>
+    {{ partial "head-html.html" . -}}
+  </head>
+
+  <body class="{{- if .IsHome -}}ishome {{ end -}}{{if .IsNode}}isnode {{end -}}{{if .IsPage}}ispage {{end}}{{ with .Type }}{{ . }} {{ end }}{{ with .Kind }}{{ . }} {{ end }}">
+    <div class="hold-all">
+      <header class="page-header">
+        <div id="skipnav"><a href="#main-content">Skip navigation</a></div>
+        <div class="top-hold mdc-layout-grid">
+          <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-10-tablet mdc-layout-grid__cell--span-5-phone">
+              <div class="osq-logo"><a href="/"><img src="/images/opensquare_logo.svg" alt="{{ .Site.Title }}:{{.Site.Params.tagline}}"></a></div>
+            </div>
+            <div class="nyup-logo  mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-1-phone"><a href="https://nyupress.org" target="_blank"><img src="/images/NYUPLogo.png" alt="NYU Press"></a></div>
+          </div>
+        </div>
+        <div class="navhold">
+          <div class="inner">
+            {{ partial "nav-links-main.html" . }}
+          </div>
+        </div>
+      </header>
+      <div class="contain-main">

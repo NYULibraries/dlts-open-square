@@ -1,0 +1,145 @@
+.dqpl-select {
+  position: relative;
+
+  [role="menuitemcheckbox"],
+  [role="menuitemradio"],
+  [role="textbox"],
+  [role="combobox"],
+  [role="listbox"],
+  [role="spinbutton"],
+  input,
+  select,
+  textarea {
+    border: 1px solid #cccccc;
+    margin-bottom: 4px;
+  }
+}
+
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.dqpl-select [role="textbox"] {
+  border: 0;
+}
+
+.dqpl-select [role="textbox"]:hover {
+  border: 0;
+}
+
+.dqpl-select .dqpl-combobox {
+  padding: 4px 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #666666;
+  width: 250px;
+  height: 29px;
+  display: inline-block;
+  position: relative;
+  line-height: 1.4;
+}
+
+.dqpl-select .dqpl-combobox::after {
+  font-family: 'FontAwesome';
+  content: '\f0d7';
+  position: absolute;
+  right: 8px;
+  top: 2.5px;
+  font-size: 15px;
+  color: #666666;
+  font-weight: 400;
+}
+
+.dqpl-select .dqpl-combobox[aria-disabled="true"],
+.dqpl-select .dqpl-combobox[disabled] {
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+}
+
+.dqpl-select .dqpl-listbox {
+  display: none;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background-color: #ffffff;
+  width: 250px;
+  position: absolute;
+  list-style-type: none;
+  z-index: 6;
+  max-height: 200px;
+  top: 28px;
+}
+
+.dqpl-select .dqpl-listbox.dqpl-listbox-show {
+  display: block;
+}
+
+.dqpl-select .dqpl-listbox .dqpl-option {
+  font-size: 15px;
+  font-weight: 400;
+  padding: 2px 24px;
+  top: 28px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active,
+.dqpl-select .dqpl-listbox .dqpl-option:hover {
+  background-color: rgba(60, 122, 174, .1);
+}
+
+.dqpl-select .dqpl-listbox .dqpl-option[aria-disabled="true"] {
+  color: #cccccc;
+}
+
+.dqpl-select .dqpl-listbox .dqpl-option[aria-disabled="true"]:hover {
+  background-color: transparent;
+}
+
+.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'],
+.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active {
+  background-color: #3c7aae;
+  color: #ffffff;
+}
+
+.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true']::before,
+.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active::before {
+  font-family: 'FontAwesome';
+  content: '\f00c';
+  position: absolute;
+  left: 5px;
+  color: #000000;
+}

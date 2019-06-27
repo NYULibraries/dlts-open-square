@@ -1,0 +1,855 @@
+/*
+ * Custom Skin for NYU Press Open Access Books site
+ */
+/* line 1, ../sass/partials/_libraryitem.scss */
+.library-items {
+  margin-top: 10px;
+  /*    @include flexbox((display: flexbox, flex-flow: row wrap, flex-pack: justify), $version: 2); */
+  display: -ms-flexbox;
+  -ms-flex-flow: row wrap;
+  -ms-flex-pack: justify;
+  /* @include flexbox((display: flex, flex-direction: row, flex-wrap: wrap)); */
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  -webkit-justify-content: space-between;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  /***** */
+}
+
+/* line 10, ../sass/partials/_libraryitem.scss */
+.library-item {
+  height: auto;
+  -ms-flex: 1 1 451px;
+  -webkit-flex: 1 1 451px;
+  flex: 1 1 451px;
+  vertical-align: top;
+  float: none;
+  clear: both;
+  padding: 0;
+}
+/* line 20, ../sass/partials/_libraryitem.scss */
+.library-item .book-title, .library-item .author {
+  white-space: normal;
+}
+/* line 23, ../sass/partials/_libraryitem.scss */
+.library-item .item-link {
+  display: block;
+}
+/* line 30, ../sass/partials/_libraryitem.scss */
+.library-item .img_hold {
+  vertical-align: top;
+  width: 30%;
+  padding: 0px 15px 10px 0;
+  float: left;
+  max-width: 175px;
+}
+/* line 38, ../sass/partials/_libraryitem.scss */
+.library-item .book-info {
+  margin: 0px;
+  /*  max-height: 290px;*/
+  height: auto;
+  position: static;
+  vertical-align: top;
+  padding: 0 20px 20px 0;
+  float: none;
+  width: auto;
+  overflow: hidden;
+}
+/* line 50, ../sass/partials/_libraryitem.scss */
+.library-item img {
+  margin: 0px;
+  position: static;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+/* line 58, ../sass/partials/_libraryitem.scss */
+.library-item .buttons {
+  width: auto;
+  padding-top: 10px;
+  margin-top: 0;
+  text-align: right;
+}
+/* line 66, ../sass/partials/_libraryitem.scss */
+.library-item .book-title {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  padding-bottom: 5px;
+}
+/* line 72, ../sass/partials/_libraryitem.scss */
+.library-item .book-subtitle {
+  font-size: 1.3rem;
+  display: block;
+}
+/* line 77, ../sass/partials/_libraryitem.scss */
+.library-item a.details {
+  margin-right: 30px;
+  margin-top: 0;
+}
+/* line 81, ../sass/partials/_libraryitem.scss */
+.library-item .buttons a.btn {
+  display: inline-block;
+}
+/* line 84, ../sass/partials/_libraryitem.scss */
+.library-item .author {
+  margin-top: 0px;
+  padding: 0px 0 15px;
+  line-height: 1.25;
+  /* #6FA64D*/
+}
+/* line 92, ../sass/partials/_libraryitem.scss */
+.library-item .description {
+  font: normal 14px/1.4 Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+/* line 1, ../sass/partials/_header.scss */
+.navbar-inner {
+  height: auto;
+  max-width: 950px;
+  margin: 0 auto;
+  background-color: #57068c;
+  padding: 20px 35px 0;
+}
+@media screen and (max-width: 700px) {
+  /* line 1, ../sass/partials/_header.scss */
+  .navbar-inner {
+    padding: 20px 20px 0;
+  }
+}
+
+/* line 13, ../sass/partials/_header.scss */
+.navbar {
+  position: relative;
+  border: none;
+  border-radius: 0px;
+  margin-bottom: 20px;
+  margin-bottom: 0px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  background-color: #4e057e;
+}
+/* line 24, ../sass/partials/_header.scss */
+.navbar .logos {
+  display: flex;
+  display: -ms-flexbox;
+  justify-content: space-between;
+  -ms-flex-pack: justify;
+  border-bottom: 2px solid #410569;
+  padding-bottom: 15px;
+}
+/* line 32, ../sass/partials/_header.scss */
+.navbar .logos h2 {
+  overflow: hidden;
+  margin: 0;
+}
+/* line 36, ../sass/partials/_header.scss */
+.navbar .logos h2 a {
+  display: block;
+  text-indent: -3000px;
+  background-image: url("/connectedyouth-assets/nyucent.svg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  height: 80px;
+}
+/* line 46, ../sass/partials/_header.scss */
+.navbar .logos #logo-rep-clrn {
+  flex: 0 0 17%;
+  -ms-flex: 0 0 17%;
+}
+/* line 49, ../sass/partials/_header.scss */
+.navbar .logos #logo-rep-clrn a {
+  background-image: url("/connectedyouth-assets/CL_logo_white.png");
+}
+/* line 54, ../sass/partials/_header.scss */
+.navbar .logos #logo-rep-mac {
+  flex: 0 0 17%;
+  -ms-flex: 0 0 17%;
+}
+/* line 57, ../sass/partials/_header.scss */
+.navbar .logos #logo-rep-mac a {
+  background-image: url("/connectedyouth-assets/mac2.svg");
+  margin-left: 30%;
+  background-position: top right;
+}
+/* line 64, ../sass/partials/_header.scss */
+.navbar .logos #logo-rep-nyup {
+  flex: 0 0 29%;
+  -ms-flex: 0 0 29%;
+}
+/* line 67, ../sass/partials/_header.scss */
+.navbar .logos #logo-rep-nyup a {
+  background-image: url("/connectedyouth-assets/nyucent.svg");
+}
+/* line 73, ../sass/partials/_header.scss */
+.navbar .title-hold {
+  width: 100%;
+  border-top: 1px solid #7938a3;
+  padding: 35px 0;
+}
+/* line 80, ../sass/partials/_header.scss */
+.navbar #site-title a {
+  display: block;
+  height: 20px;
+  overflow: hidden;
+  text-indent: -3000px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 0px 0px;
+  background-image: url("/connectedyouth-assets/cylogo2.svg");
+  font-size: 10px;
+}
+/* line 93, ../sass/partials/_header.scss */
+.navbar .container {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+@media screen and (max-width: 800px) {
+  /* line 104, ../sass/partials/_header.scss */
+  .navbar .logos h2 a {
+    height: 70px;
+  }
+}
+@media screen and (max-width: 700px) {
+  /* line 110, ../sass/partials/_header.scss */
+  .navbar .logos h2 a {
+    height: 60px;
+  }
+
+  /* line 115, ../sass/partials/_header.scss */
+  #logo-rep-nyup a {
+    background-image: url("/connectedyouth-assets/nyup_m.svg");
+  }
+}
+@media screen and (max-width: 600px) {
+  /* line 122, ../sass/partials/_header.scss */
+  .navbar .logos h2 a {
+    height: 50px;
+  }
+}
+@media screen and (max-width: 500px) {
+  /* line 129, ../sass/partials/_header.scss */
+  .navbar #site-title a {
+    height: 40px;
+    background-image: url("/connectedyouth-assets/cylogo_vertical.svg");
+  }
+  /* line 134, ../sass/partials/_header.scss */
+  .navbar .title-hold {
+    vertical-align: middle;
+  }
+  /* line 138, ../sass/partials/_header.scss */
+  .navbar .logos {
+    flex-wrap: wrap;
+    padding-bottom: 0;
+  }
+  /* line 144, ../sass/partials/_header.scss */
+  .navbar .logos h2 {
+    flex: 0 0 35%;
+  }
+  /* line 148, ../sass/partials/_header.scss */
+  .navbar .logos h2 a {
+    height: 50px;
+  }
+  /* line 152, ../sass/partials/_header.scss */
+  .navbar .logos h2#logo-rep-nyup {
+    flex: 0 0 40%;
+  }
+  /* line 160, ../sass/partials/_header.scss */
+  .navbar .logos h2#logo-rep-nyup a {
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 45px;
+    background-image: url("/connectedyouth-assets/nyup_m.svg");
+  }
+}
+@media screen and (max-width: 700px) {
+  /* line 179, ../sass/partials/_header.scss */
+  .navbar .reader .icon-full-screen {
+    display: none;
+  }
+  /* line 183, ../sass/partials/_header.scss */
+  .navbar #site-title a {
+    background-position: 0px center;
+  }
+}
+/* line 1, ../sass/partials/_searchbox.scss */
+a#s-btn {
+  width: 30px;
+  height: auto;
+  padding-top: 10px;
+}
+
+/* line 7, ../sass/partials/_searchbox.scss */
+a#s-btn img {
+  width: 100%;
+  height: auto;
+}
+
+/*  End Navigation */
+/*  Search */
+/*  ------------------------------------------------------------------------- */
+/* line 18, ../sass/partials/_searchbox.scss */
+.searchform label {
+  right: -999em;
+  position: absolute;
+}
+
+/* line 23, ../sass/partials/_searchbox.scss */
+.searchform {
+  margin: 0;
+  /* Gotham  Screen Smart Light = font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B';  */
+  font: normal 300 12px / 1 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B', Helvetica, Arial, sans-serif;
+}
+
+
+
+/* line 44, ../sass/partials/_searchbox.scss */
+input.searchbox:focus {
+  outline: 0;
+  background-color: white;
+  color: #333;
+  /*   border-color: #57068c;*/
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.375) inset;
+  outline: 0 none;
+  border: 1px solid #aaa;
+  /*border-top: none;*/
+  /*  /*border-top: 1px solid #666;*/
+  /*border-bottom: 1px solid #DDD;*/
+  /*  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.49), 0 -1px 1px #333333, 0 1px 0 #222222;*/
+  /* box-shadow: inset 0 0 10px 1px rgba(0,0,0,.30);*/
+}
+
+/* line 1, ../sass/partials/_detailitem.scss */
+.detail-item {
+  /*  */
+  height: auto;
+  max-width: 900px;
+}
+/* line 5, ../sass/partials/_detailitem.scss */
+.detail-item .book-title {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  padding-bottom: 5px;
+}
+/* line 10, ../sass/partials/_detailitem.scss */
+.detail-item .book-subtitle {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  display: block;
+}
+/* line 15, ../sass/partials/_detailitem.scss */
+.detail-item .img-hold {
+  float: left;
+  margin-right: 2%;
+  width: 18%;
+  max-width: 160px;
+  height: auto;
+}
+/* line 22, ../sass/partials/_detailitem.scss */
+.detail-item .img-hold img {
+  width: 100%;
+  height: auto;
+}
+/* line 26, ../sass/partials/_detailitem.scss */
+.detail-item .infolabel {
+  color: #555;
+}
+/* line 31, ../sass/partials/_detailitem.scss */
+.detail-item .buttons {
+  text-align: right;
+  margin-top: 30px;
+}
+/* line 37, ../sass/partials/_detailitem.scss */
+.detail-item .book-info > * {
+  margin-left: 20%;
+}
+/* line 40, ../sass/partials/_detailitem.scss */
+.detail-item .book-info .social {
+  float: left;
+  margin: 28px 33px 0 20%;
+  min-height: 60px;
+}
+/* line 46, ../sass/partials/_detailitem.scss */
+.detail-item .rights-info {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  font-size: .9rem;
+  max-width: 70rem;
+  clear: left;
+}
+/* line 53, ../sass/partials/_detailitem.scss */
+.detail-item .rights-info img {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+/* line 58, ../sass/partials/_detailitem.scss */
+.detail-item .sharelabel {
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  color: #555;
+  font-family: Helvetica, Arial, sans-serif;
+}
+/* line 64, ../sass/partials/_detailitem.scss */
+.detail-item .item-link {
+  float: right;
+  margin: 20px;
+}
+/* line 68, ../sass/partials/_detailitem.scss */
+.detail-item #description {
+  margin-top: 20px;
+}
+/* line 71, ../sass/partials/_detailitem.scss */
+.detail-item p#book-description {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 1, ../sass/partials/_footer.scss */
+footer#pagefooter {
+  width: 100%;
+  background-color: #57068c;
+}
+/* line 5, ../sass/partials/_footer.scss */
+footer#pagefooter ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 10, ../sass/partials/_footer.scss */
+footer#pagefooter li {
+  display: inline-block;
+  padding: 0 5px 0 0;
+  color: white;
+}
+/* line 16, ../sass/partials/_footer.scss */
+footer#pagefooter li + li:before {
+  content: "|";
+  color: #999;
+}
+/* line 21, ../sass/partials/_footer.scss */
+footer#pagefooter li > span {
+  padding: 0 0 0 10px;
+  display: inline-block;
+}
+/* line 26, ../sass/partials/_footer.scss */
+footer#pagefooter li.social > span > span {
+  padding: auto;
+  width: 16px;
+}
+/* line 31, ../sass/partials/_footer.scss */
+footer#pagefooter li, footer#pagefooter li a:link, footer#pagefooter li a:visited {
+  color: #efefef;
+  font-size: 13px;
+  /* Gotham  Light = 'Gotham 3r', 'Gotham A', 'Gotham B' */
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-weight: 300;
+}
+/* line 41, ../sass/partials/_footer.scss */
+footer#pagefooter li a:hover {
+  color: white;
+}
+
+/* line 54, ../sass/partials/_footer.scss */
+.footer-inner {
+  padding: 5px 0 7px 0;
+  color: white;
+  text-align: center;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+/* Sticky footer styles  http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
+-------------------------------------------------- */
+/* line 67, ../sass/partials/_footer.scss */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* line 74, ../sass/partials/_footer.scss */
+body.page {
+  /* Margin bottom by footer height */
+}
+
+/* line 79, ../sass/partials/_footer.scss */
+body.page footer#pagefooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+  /* line 87, ../sass/partials/_footer.scss */
+  footer#pagefooter li a:link,
+  footer#pagefooter li a:visited {
+    margin-bottom: 1rem;
+    margin: 0px;
+  }
+
+  /* line 93, ../sass/partials/_footer.scss */
+  footer#pagefooter li#dlts-link a:link,
+  footer#pagefooter li#dlts-link a:visited {
+    padding-left: 0;
+  }
+
+  /* line 99, ../sass/partials/_footer.scss */
+  .footer-inner {
+    padding: 2px 0 5px;
+  }
+
+  /* line 103, ../sass/partials/_footer.scss */
+  body.page {
+    /* Margin bottom by footer height */
+    margin-bottom: 50px;
+  }
+}
+/* line 1, ../sass/partials/_bookpage.scss */
+body.book {
+  background-color: white;
+}
+
+/* line 6, ../sass/partials/_bookpage.scss */
+.book iframe {
+  width: 100%;
+  border: none;
+}
+/* line 12, ../sass/partials/_bookpage.scss */
+.book .navbar .navbar-inner {
+  max-width: none;
+  padding: 0 35px;
+}
+@media screen and (max-width: 700px) {
+  /* line 12, ../sass/partials/_bookpage.scss */
+  .book .navbar .navbar-inner {
+    padding: 0 20px;
+  }
+}
+/* line 21, ../sass/partials/_bookpage.scss */
+.book .navbar header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* line 26, ../sass/partials/_bookpage.scss */
+.book .navbar header .title-hold {
+  padding: 0;
+  max-width: 500px;
+  flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  order: 1;
+  border-top: none;
+}
+/* line 35, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos {
+  flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  max-width: 400px;
+  order: 2;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+@media screen and (min-width: 801px) {
+  /* line 35, ../sass/partials/_bookpage.scss */
+  .book .navbar header .logos {
+    flex: 0 0 45%;
+    -ms-flex: 0 0 45%;
+  }
+}
+/* line 48, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2 {
+  flex: 0 0 33.3%;
+  -ms-flex: 0 0 33.3%;
+  font-size: 10px;
+}
+/* line 54, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2 a {
+  height: 50px;
+}
+/* line 58, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2#logo-rep-clrn {
+  flex: 0 0 26%;
+}
+/* line 61, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2#logo-rep-clrn a {
+  background-position: left center;
+}
+/* line 66, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2#logo-rep-nyup {
+  flex: 0 0 30%;
+}
+/* line 69, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2#logo-rep-nyup a {
+  background-position: center center;
+  background-image: url("/connectedyouth-assets/nyup_m.svg");
+}
+/* line 75, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2#logo-rep-mac {
+  flex: 0 0 16%;
+}
+/* line 78, ../sass/partials/_bookpage.scss */
+.book .navbar header .logos h2#logo-rep-mac a {
+  background-position: right center;
+  margin-left: 0;
+}
+@media screen and (max-width: 1100px) {
+  /* line 88, ../sass/partials/_bookpage.scss */
+  .book .navbar header {
+    padding-top: 10px;
+    padding: 0;
+  }
+  /* line 92, ../sass/partials/_bookpage.scss */
+  .book .navbar header .title-hold {
+    width: 30%;
+  }
+  /* line 96, ../sass/partials/_bookpage.scss */
+  .book .navbar header #site-title a {
+    background-image: url("/connectedyouth-assets/cylogo_vertical.svg");
+    height: 30px;
+  }
+}
+@media screen and (min-width: 801px) {
+  /* line 105, ../sass/partials/_bookpage.scss */
+  .book .navbar header .title-hold {
+    width: 50%;
+  }
+}
+
+/* line 113, ../sass/partials/_bookpage.scss */
+.book-item .cover-image {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 1, ../sass/partials/_hiding_YUI_items.scss */
+.pure-paginator, .pure-g.container.more-books {
+  display: none;
+}
+
+/* line 25, ../sass/dlts.scss */
+html {
+  font-size: 100%;
+}
+
+/* line 28, ../sass/dlts.scss */
+body {
+  padding: 0;
+  min-width: 300px;
+  font-size: 15px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+@media screen and (min-width: 950px) {
+  /* line 28, ../sass/dlts.scss */
+  body {
+    background-color: #ececec;
+  }
+}
+
+/* line 39, ../sass/dlts.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+/* line 50, ../sass/dlts.scss */
+a:link,
+a:visited {
+  color: #57068c;
+}
+
+/* line 68, ../sass/dlts.scss */
+a.btn {
+  color: #333;
+}
+
+/* line 72, ../sass/dlts.scss */
+#aboutlink {
+  padding-right: 25px;
+  height: 28px;
+  display: block;
+  background: url(../images/oa_logo_sprite.png) no-repeat right top;
+  vertical-align: bottom;
+  padding-top: 14px;
+}
+
+/* line 81, ../sass/dlts.scss */
+#aboutlink:hover {
+  background: url(../images/oa_logo_sprite.png) no-repeat right bottom;
+}
+
+/* overriding bootstrap */
+/* line 87, ../sass/dlts.scss */
+.breadcrumb {
+  background-color: #ffffff;
+  border-radius: 0px;
+  list-style: none outside none;
+  margin: 0 auto;
+  padding: 8px 20px 6px;
+  border-bottom: 1px solid #dedede;
+  max-width: 950px;
+}
+@media screen and (min-width: 701px) {
+  /* line 87, ../sass/dlts.scss */
+  .breadcrumb {
+    padding: 8px 35px 6px;
+  }
+}
+
+/* line 102, ../sass/dlts.scss */
+.sorter {
+  text-align: right;
+}
+/* line 105, ../sass/dlts.scss */
+.sorter span {
+  font-weight: bold;
+}
+/* line 109, ../sass/dlts.scss */
+.sorter a {
+  color: #333;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+/* line 119, ../sass/dlts.scss */
+.home .data-container h2.page-title {
+  font-size: 17px;
+  margin: 30px 0 20px;
+  padding-top: 20px;
+}
+/* line 125, ../sass/dlts.scss */
+.home .data-container .intro {
+  /* Gotham  Screen Smart Light = font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B';  */
+  /* font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B';*/
+  font-weight: 300;
+  font-style: normal;
+  max-width: 900px;
+}
+/* line 133, ../sass/dlts.scss */
+.home .data-container .show-books {
+  max-width: 900px;
+  min-height: 400px;
+}
+/* line 138, ../sass/dlts.scss */
+.home .data-container p:first-child {
+  font-size: 1.1rem;
+}
+
+/* line 144, ../sass/dlts.scss */
+.about .main p {
+  max-width: 900px;
+}
+
+/* line 148, ../sass/dlts.scss */
+.data-container {
+  max-width: 950px;
+  margin: 0 auto;
+  width: auto;
+  position: static;
+  background-color: white;
+  padding: 35px 20px  40px;
+}
+/* line 156, ../sass/dlts.scss */
+.data-container.no-breadcrumb {
+  padding-top: 70px;
+}
+@media screen and (min-width: 701px) {
+  /* line 148, ../sass/dlts.scss */
+  .data-container {
+    padding: 35px 35px 70px;
+  }
+}
+/* line 164, ../sass/dlts.scss */
+.data-container h2.page-title {
+  padding: 0px 0;
+  text-transform: uppercase;
+  color: #333;
+  margin: 0 0 10px;
+  font-size: 19px;
+  line-height: 1.4;
+  /* Gotham  Screen Smart Light = font-family: 'Gotham SSm 3r', 'Gotham SSm A', 'Gotham SSm B';  */
+  font-family: "Gotham SSm 3r", "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-weight: 300;
+  clear: both;
+  float: none;
+}
+/* line 179, ../sass/dlts.scss */
+.data-container h2.page-title a:link, .data-container h2.page-title a:visited {
+  color: #888888;
+}
+
+/* line 185, ../sass/dlts.scss */
+a.info-icon {
+  display: none;
+}
+
+/* line 189, ../sass/dlts.scss */
+.buttons .btn-default {
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+}
+
+/* line 194, ../sass/dlts.scss */
+.buttons .btn-default:hover {
+  background-color: #57068c;
+  color: #fff;
+  /* text-shadow: 0px 0 3px black;*/
+  border-color: #57068c;
+  /* box-shadow: inset 0px 0px 20px rgba(255, 255, 255, 0.3);*/
+}
+
+/* line 204, ../sass/dlts.scss */
+.no-cover-nyup {
+  background-color: #61777D;
+}
+
+
+/* line 219, ../sass/dlts.scss */
+.more-books a {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  /* line 224, ../sass/dlts.scss */
+  footer#pagefooter li#dlts-link:before {
+    content: "";
+  }
+}
+@media screen and (max-width: 700px) {
+  /* line 230, ../sass/dlts.scss */
+  .library-items {
+    margin: 1rem 0px 0px;
+  }
+
+  /* line 234, ../sass/dlts.scss */
+  h2.page-title {
+    margin: 0px;
+  }
+
+
+  /* line 284, ../sass/dlts.scss */
+  .buttons {
+    margin: 2em 0 0;
+  }
+
+  /* line 288, ../sass/dlts.scss */
+  .buttons a {
+    margin: .5em 0;
+  }
+}

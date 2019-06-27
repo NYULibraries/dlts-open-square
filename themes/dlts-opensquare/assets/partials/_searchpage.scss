@@ -1,0 +1,11 @@
+.ispage.pages .hold-all,
+.search-page .hold-all {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  .contain-main {
+    flex: 1 1 auto;
+  }
+}

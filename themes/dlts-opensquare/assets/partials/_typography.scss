@@ -1,0 +1,61 @@
+#main-content {
+  font-family: $font-family-body;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+a:link {
+  color: $linkcolor;
+}
+
+a:visited {
+  color: $visitedlinkcolor;
+}
+
+a:active,
+a:focus,
+a:hover,
+a:link,
+a:visited {
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $linkhovercolor;
+}
+
+.page-title {
+  margin-bottom: .8rem;
+}
+
+.contain-main {
+  color: $textcolora;
+}
+
+.item-count {
+  color: $nyugray2;
+  font-size: .9em;
+}

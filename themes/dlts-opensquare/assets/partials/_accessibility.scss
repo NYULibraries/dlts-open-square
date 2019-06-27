@@ -1,0 +1,46 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#skipnav a {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  width: 1px;
+  white-space: nowrap;
+  outline: none;
+  background-color: $skipnav-background;
+  font-family: $font-family-headers;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+
+  &:focus {
+    clip: auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 10px 0;
+    background: $skipnav-background;
+    border: 2px solid $skipnav-border;
+    border-left: 0;
+    border-right: 0;
+    text-align: center;
+    font-weight: bold;
+    color: $primary-color;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" type="image/png" href="{{ .Site.Params.faviconrelurl }}">
+{{ if eq .Section "books"}}
+<title>{{ .Title }}: {{ .Site.Params.shorttitle }}: NYU Press</title>
+{{ else }}
+<title>{{ .Title }}: NYU Press</title>
+{{ end }}
+{{ with .Params.description }}
+<meta name="description" content="{{ . }}">{{- end }}
+{{- $options := (dict "targetPath" "/css/style.css" "outputStyle" .Site.Params.sassOutputFormat "enableSourceMap" .Site.Params.enableSourceMap "includePaths" (slice "themes/dlts-books/assets")) -}}
+{{- $style := resources.Get "style.scss" | resources.ToCSS  $options }}
+<link rel="stylesheet" href="{{ $style.Permalink | relURL }}">
+<script src="/js/pattern-library-3.0.1.min.js"></script>
+{{ partial "opengraph_meta.html" . -}}
+
+{{ hugo.Generator }}
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,500" rel="stylesheet">
+{{ partial "google-analytics.html" . }}

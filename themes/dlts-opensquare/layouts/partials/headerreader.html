@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+
+  <head>
+    {{ partial "head-html.html" . -}}
+  </head>
+
+  <body class="readingpage">
+    <div class="hold-all-readingpage">
+      <div id="skipnav"><a href="#main-content">Skip navigation</a></div>
+      <header class="page-header">
+        <div class="top-hold">
+          <div class="osq-logo site-title"><a href="{{ .Site.BaseURL }}"><img src="/images/opensquare_logo.svg" alt="{{ .Site.Title }}:{{.Site.Params.tagline}}"></a></div>
+          <div class="nyup-logo"><a href="https://nyupress.org"><img class="img-fluid" src="/images/NYUPLogo.png" alt="NYU Press"></a></div>
+        </div>
+      </header>

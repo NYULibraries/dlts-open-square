@@ -1,0 +1,12 @@
+{{ if .IsPage -}}
+<meta property="og:description" content="{{ .Description | default (replaceRE "\n" " " .Summary) }}">
+{{ else -}}
+<meta property="og:description" content="{{ $.Param "description" }}">
+{{ end -}}
+<meta property="og:site_name" content="{{ .Site.Title }}: NYU Press">
+<meta property="og:title" content="{{ .Title }}: {{ .Params.subtitle }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ if ( eq .Type "books") -}}<meta property="og:type" content="Book">
+{{- end }}
+{{ $thumbURL := .Site.Params.thumbhrefurl  }}
+{{- with $.Param "thumbhref" }}<meta property="og:image" content="{{ $thumbURL }}{{ . | relURL }}">{{ end }}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Literature on Open Square</title>
+    <link>http://opensquare.nyupress.org/subjects/literature/</link>
+    <description>Recent content in Literature on Open Square</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Jan 1997 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://opensquare.nyupress.org/subjects/literature/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Essential Agus</title>
+      <link>http://opensquare.nyupress.org/books/9780814746929/</link>
+      <pubDate>Wed, 01 Jan 1997 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814746929/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bird-Self Accumulated</title>
+      <link>http://opensquare.nyupress.org/books/9780814742297/</link>
+      <pubDate>Mon, 01 Jan 1996 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814742297/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Adventures of the Mind</title>
+      <link>http://opensquare.nyupress.org/books/9780814711774/</link>
+      <pubDate>Wed, 01 Jan 1992 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814711774/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Indentations and Other Stories</title>
+      <link>http://opensquare.nyupress.org/books/9780814779170/</link>
+      <pubDate>Tue, 01 Jan 1991 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814779170/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lover</title>
+      <link>http://opensquare.nyupress.org/books/9780814735053/</link>
+      <pubDate>Thu, 01 Jan 1976 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814735053/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,5 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 fill="{{ .fill }}" width="{{ .width }}" height="{{ .height }}"  viewBox="0 0 40 27.4" style="enable-background:new 0 0 40 27.4;" xml:space="preserve">
+<path d="M0,25.2l11.7-12.4L0,1.4V25.2z M26.2,14.9L20,21l-6.1-6L2.2,27.4h35.6L26.2,14.9z M2.8,0L20,16.9L37.1,0
+	C37.1,0,2.8,0,2.8,0z M28.4,12.8L40,25.2V1.4L28.4,12.8z"/>
+</svg>

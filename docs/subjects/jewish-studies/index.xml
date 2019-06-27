@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jewish Studies on Open Square</title>
+    <link>http://opensquare.nyupress.org/subjects/jewish-studies/</link>
+    <description>Recent content in Jewish Studies on Open Square</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Jan 1998 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://opensquare.nyupress.org/subjects/jewish-studies/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blacks in the Jewish Mind</title>
+      <link>http://opensquare.nyupress.org/books/9780814726815/</link>
+      <pubDate>Thu, 01 Jan 1998 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814726815/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Essential Agus</title>
+      <link>http://opensquare.nyupress.org/books/9780814746929/</link>
+      <pubDate>Wed, 01 Jan 1997 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814746929/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Americanization of the Jews</title>
+      <link>http://opensquare.nyupress.org/books/9780814780015/</link>
+      <pubDate>Sun, 01 Jan 1995 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814780015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Christianity and the Holocaust of Hungarian Jewry</title>
+      <link>http://opensquare.nyupress.org/books/9780814735206/</link>
+      <pubDate>Fri, 01 Jan 1993 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814735206/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nachman Krochmal</title>
+      <link>http://opensquare.nyupress.org/books/9780814735084/</link>
+      <pubDate>Tue, 01 Jan 1991 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814735084/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gershom Scholem and the Mystical Dimension of Jewish History</title>
+      <link>http://opensquare.nyupress.org/books/9780814718124/</link>
+      <pubDate>Thu, 01 Jan 1987 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814718124/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

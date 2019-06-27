@@ -1,0 +1,6 @@
+baseURL = "http://opensquare-local.nyupress.org"
+[params]
+	sassOutputFormat = "expanded"
+	enableSourceMap = "true"
+	pathtoreader = "http://opensquare-local.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
+	connectedyouthurl = "http://localhost/connectedyouth"

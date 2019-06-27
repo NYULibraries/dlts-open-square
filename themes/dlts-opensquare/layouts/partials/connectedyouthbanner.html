@@ -1,0 +1,17 @@
+{{- if .Params.series -}}
+{{- range .Params.series -}}
+{{- if eq . "Connected Youth and Digital Futures" -}}
+<aside class="series-banner">
+    <div class="series-banner-image">
+        {{- partial "svgs/connectedyouth-logo.svg" -}}
+    </div>
+    <div class="sponsorlogo sponsorlogo1">
+        <a href="https://clalliance.org/" target="_blank" ><img alt="Logo: Connected Learning Alliance" class="img-fluid" src="/images/connectedlearning_logo.png"></a>
+    </div>
+    <div class="sponsorlogo sponsorlogo2">
+        <a href="https://www.macfound.org/" target="_blank"><img alt="Logo: MacArthur Foundation" class="img-fluid" src="/images/macarthur_logo.svg"></a>
+    </div>
+</aside>
+{{- end -}}
+{{- end -}}
+{{- end -}}

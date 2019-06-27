@@ -1,0 +1,75 @@
+.nav-links {
+  text-align: center;
+  font-family: $font-family-headers-bold;
+
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+}
+
+.navhold {
+  background-color: $background-color-navbar;
+  margin-top: 1rem;
+
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.osq-logo {
+  max-width: 450px;
+
+  a {
+
+    display: block;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.nyup-logo {
+  a {
+    display: inline-block;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+@include mdc-layout-grid-media-query_(desktop) {
+  body {
+    .navhold {
+      margin-top: 24px;
+    }
+
+    .page-header {
+
+      padding: 24px 0 20px;
+      position: relative;
+    }
+
+    .osq-logo {
+      img {
+        width: auto;
+        height: 75px;
+      }
+    }
+
+    .nyup-logo {
+      text-align: right;
+
+      img {
+        width: auto;
+        height: 75px;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{{ partial "header.html" . }}
+<main id="main-content">
+  <h1 class="page-title sr-only">All Books</h1>
+  {{ partial "combobox.html" . }}
+  {{ .Content }}
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      {{ range .Pages }}
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
+        {{ partial "summary.html" . }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</main>
+{{ partial "footer.html" . }}

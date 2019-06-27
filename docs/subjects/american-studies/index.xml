@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>American Studies on Open Square</title>
+    <link>http://opensquare.nyupress.org/subjects/american-studies/</link>
+    <description>Recent content in American Studies on Open Square</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Jan 1997 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://opensquare.nyupress.org/subjects/american-studies/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>To Be An American</title>
+      <link>http://opensquare.nyupress.org/books/9780814735237/</link>
+      <pubDate>Wed, 01 Jan 1997 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814735237/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>High Hopes</title>
+      <link>http://opensquare.nyupress.org/books/9780814774632/</link>
+      <pubDate>Mon, 01 Jan 1996 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814774632/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deconstruction Is/In America</title>
+      <link>http://opensquare.nyupress.org/books/9780814735190/</link>
+      <pubDate>Sun, 01 Jan 1995 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814735190/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Americanization of the Jews</title>
+      <link>http://opensquare.nyupress.org/books/9780814780015/</link>
+      <pubDate>Sun, 01 Jan 1995 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814780015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>American Cool</title>
+      <link>http://opensquare.nyupress.org/books/9780814779965/</link>
+      <pubDate>Fri, 01 Apr 1994 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/books/9780814779965/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

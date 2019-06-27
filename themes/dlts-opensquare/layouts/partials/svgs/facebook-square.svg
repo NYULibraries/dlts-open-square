@@ -1,0 +1,5 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve" fill="{{ .fill }}"  width="{{ .width }}" height="{{ .height }}">
+<path d="M40,4.3v31.4c0,2.4-1.9,4.3-4.3,4.3h-7.6V24.2h5.4l0.8-6.1h-6.2v-3.9c0-1.7,0.5-3,3-3h3.2V5.9c-0.5-0.1-2.5-0.2-4.6-0.2
+	c-4.6,0-7.8,2.8-7.8,8v4.4h-5.5v6.1h5.4V40H4.3C1.9,40,0,38.1,0,35.7V4.3C0,1.9,1.9,0,4.3,0h31.4C38.1,0,40,1.9,40,4.3z"/>
+</svg>

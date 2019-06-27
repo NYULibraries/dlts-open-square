@@ -1,0 +1,14 @@
+$focus-color: #ffa500 !default;
+
+[tabindex="0"]:focus,
+input:focus,
+button:focus,
+a:focus {
+    box-shadow: 0 0 0 5px $focus-color;
+    outline: 3px;
+    z-index: 100;
+}
+
+a {
+    transition: all .3s;
+}

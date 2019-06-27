@@ -1,0 +1,26 @@
+.tags {
+  a {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  span {
+    display: inline-block;
+  }
+
+  span.tag:not(:last-child)::after {
+    content: ",\00a0";
+  }
+
+  li,
+  ul {
+    display: inline-block;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  li:not(:last-child)::after {
+    content: ",\00a0";
+  }
+}
