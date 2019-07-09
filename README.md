@@ -8,6 +8,7 @@ It is comprised of static HTML pages used for the home page, subject pages, book
 This repo holds the content, configurations, and theme for the static pages.
 It uses Hugo (https://gohugo.io/), the world’s fastest framework for building websites.
 
+
 ## Installation
 
 Install JQ (if you need to refresh data source)
@@ -25,3 +26,14 @@ For hot reload: use the hugo server command, with the -b (baseurl) option, for e
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
   * hugo -e local
   * hugo -e stage
+
+
+
+## Associated Repositories
+
+The Vue.js / Solr search application: https://github.com/NYULibraries/dlts-open-square-search-application
+
+The builder for the reader: https://github.com/NYULibraries/dlts-readium-js-viewer
+
+The plugin for the reader (automatically installed by the builder above): https://github.com/NYULibraries/dlts-rjs-plugin-open-square
+  
