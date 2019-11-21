@@ -3,12 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://opensquare.nyupress.org/books/9781479852758/</loc>
-    <lastmod>2019-01-01T00:00:00-05:00</lastmod>
+    <loc>http://opensquare.nyupress.org/subjects/american-studies/</loc>
+    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/books/9781479892464/</loc>
+    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://opensquare.nyupress.org/books/</loc>
+    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/subjects/media-studies/</loc>
+    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/</loc>
+    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/subjects/</loc>
+    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/books/9781479852758/</loc>
     <lastmod>2019-01-01T00:00:00-05:00</lastmod>
   </url>
   
@@ -28,27 +53,12 @@
   </url>
   
   <url>
-    <loc>http://opensquare.nyupress.org/subjects/media-studies/</loc>
-    <lastmod>2019-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://opensquare.nyupress.org/books/9781479804948/</loc>
     <lastmod>2019-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
-    <loc>http://opensquare.nyupress.org/</loc>
-    <lastmod>2019-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://opensquare.nyupress.org/series/</loc>
-    <lastmod>2019-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://opensquare.nyupress.org/subjects/</loc>
     <lastmod>2019-01-01T00:00:00-05:00</lastmod>
   </url>
   
@@ -170,11 +180,6 @@
   <url>
     <loc>http://opensquare.nyupress.org/books/9780814735336/</loc>
     <lastmod>1998-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://opensquare.nyupress.org/subjects/american-studies/</loc>
-    <lastmod>1997-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
