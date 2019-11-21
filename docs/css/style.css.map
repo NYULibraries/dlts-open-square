@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.css",
-	"sourceRoot": "/Users/henze/projects/opensquare/opensquare-nyudlts",
+	"sourceRoot": "/Users/henze/projects/opensquare/dlts-open-square",
 	"sources": [
 		"themes/dlts-opensquare/assets/style.scss",
 		"themes/dlts-opensquare/assets/partials/_sanitize.scss",

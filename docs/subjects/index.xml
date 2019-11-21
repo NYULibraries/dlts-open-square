@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Subjects on Open Square</title>
@@ -93,20 +93,20 @@
     </item>
     
     <item>
-      <title>LGBT Studies</title>
-      <link>http://opensquare.nyupress.org/subjects/lgbt-studies/</link>
-      <pubDate>Thu, 01 Jan 1998 00:00:00 -0500</pubDate>
-      
-      <guid>http://opensquare.nyupress.org/subjects/lgbt-studies/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Law</title>
       <link>http://opensquare.nyupress.org/subjects/law/</link>
       <pubDate>Thu, 01 Jan 1998 00:00:00 -0500</pubDate>
       
       <guid>http://opensquare.nyupress.org/subjects/law/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LGBT Studies</title>
+      <link>http://opensquare.nyupress.org/subjects/lgbt-studies/</link>
+      <pubDate>Thu, 01 Jan 1998 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/subjects/lgbt-studies/</guid>
       <description></description>
     </item>
     
