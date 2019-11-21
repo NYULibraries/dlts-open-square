@@ -5,7 +5,7 @@
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-8 mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-6-phone">
-                    {{ range where .Pages ".Params.featured_on_homepage" "!=" nil }}
+                    {{ range where .Site.Pages ".Params.featured_on_homepage" "!=" nil }}
                     <article class="mdc-layout-grid__inner featured-book">
                         <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
                             {{ if .Params.thumbhref }}
@@ -55,7 +55,7 @@
     <section class="home-section featured-series-section">
         <h2 class="section-title">Featured Series</h2>
         <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">{{ range first 3 (where .Pages ".Params.series" "intersect" .Site.Params.featured_series )}}
+            <div class="mdc-layout-grid__inner">{{ range first 3 (where .Site.Pages ".Params.series" "intersect" .Site.Params.featured_series )}}
                 {{ if .Params.thumbhref }}
                 <div class="mdc-layout-grid__cell--span-2">
                     <div class="thumbhold" role="presentation" data-pubdate="{{ .Date }}"><a href="{{ .Permalink }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a></div>
@@ -75,7 +75,7 @@
         <h2 class="section-title">Featured titles</h2>
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-                {{ range first 6 (where .Pages ".Params.isfeatureditem" "!=" nil).ByDate.Reverse }}
+                {{ range first 6 (where .Site.Pages ".Params.isfeatureditem" "!=" nil).ByDate.Reverse }}
                 <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">{{ if .Params.thumbhref }}
                     <div class="thumbhold" role="presentation" data-pubdate="{{ .Date }}"><a href="{{ .Permalink }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a></div>
                     {{ end }}
