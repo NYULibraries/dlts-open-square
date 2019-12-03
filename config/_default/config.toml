@@ -8,6 +8,9 @@ preserveTaxonomyNames = true
 
 publishDir = "docs"
 
+[markup.goldmark.renderer]
+  unsafe = true
+      
 [params]
   shorttitle = "Open Square"
   tagline = "Knowledge without Boundaries"
