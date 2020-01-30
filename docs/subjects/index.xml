@@ -6,15 +6,24 @@
     <description>Recent content in Subjects on Open Square</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Nov 2019 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://opensquare.nyupress.org/subjects/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>African American Studies</title>
+      <link>http://opensquare.nyupress.org/subjects/african-american-studies/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://opensquare.nyupress.org/subjects/african-american-studies/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>American Studies</title>
       <link>http://opensquare.nyupress.org/subjects/american-studies/</link>
-      <pubDate>Wed, 20 Nov 2019 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 -0500</pubDate>
       
       <guid>http://opensquare.nyupress.org/subjects/american-studies/</guid>
       <description></description>
@@ -23,7 +32,7 @@
     <item>
       <title>Media Studies</title>
       <link>http://opensquare.nyupress.org/subjects/media-studies/</link>
-      <pubDate>Wed, 20 Nov 2019 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 -0500</pubDate>
       
       <guid>http://opensquare.nyupress.org/subjects/media-studies/</guid>
       <description></description>
@@ -44,15 +53,6 @@
       <pubDate>Tue, 01 Jan 2019 00:00:00 -0500</pubDate>
       
       <guid>http://opensquare.nyupress.org/subjects/education/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>African American Studies</title>
-      <link>http://opensquare.nyupress.org/subjects/african-american-studies/</link>
-      <pubDate>Mon, 01 Jan 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://opensquare.nyupress.org/subjects/african-american-studies/</guid>
       <description></description>
     </item>
     

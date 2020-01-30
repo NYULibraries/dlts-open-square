@@ -3,32 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://opensquare.nyupress.org/subjects/american-studies/</loc>
-    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+    <loc>http://opensquare.nyupress.org/subjects/african-american-studies/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
-    <loc>http://opensquare.nyupress.org/books/9781479892464/</loc>
-    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+    <loc>http://opensquare.nyupress.org/subjects/american-studies/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://opensquare.nyupress.org/books/</loc>
-    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/books/9781479820375/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://opensquare.nyupress.org/subjects/media-studies/</loc>
-    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://opensquare.nyupress.org/</loc>
-    <lastmod>2019-11-20T00:00:00-05:00</lastmod>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://opensquare.nyupress.org/subjects/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/books/9781479892464/</loc>
     <lastmod>2019-11-20T00:00:00-05:00</lastmod>
   </url>
   
@@ -60,11 +70,6 @@
   <url>
     <loc>http://opensquare.nyupress.org/series/</loc>
     <lastmod>2019-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://opensquare.nyupress.org/subjects/african-american-studies/</loc>
-    <lastmod>2018-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
