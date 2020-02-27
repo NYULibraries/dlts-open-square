@@ -1,6 +1,6 @@
 {{ partial "header.html" . }}
 <main id="main-content">
-    <h1 class="page-title sr-only">{{.Data.Singular | title }}: {{ .Data.Term  }}</h1>
+    <h1 class="page-title sr-only">{{.Data.Singular | title }}: {{ .Page.Title  }}</h1>
     {{ partial "combobox.html" . }}
     <aside class="series-banner">
         <div class="series-banner-image">

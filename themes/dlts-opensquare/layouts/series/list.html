@@ -8,7 +8,7 @@
 		{{ $nameu := .Name | urlize }}
 		{{ $count := .Count }}
 		{{ with $.Site.GetPage (printf "/%s/%s" $type $nameu) }}
-		<li><a href="{{ .Permalink }}">{{ $name }}</a> <span class="item-count">({{ $count }})</span></li>
+		<li><a href="{{ .Permalink }}">{{ .Name }}</a> <span class="item-count">({{ $count }})</span></li>
 		{{ end }}
 		{{ end }}
 	</ul>
