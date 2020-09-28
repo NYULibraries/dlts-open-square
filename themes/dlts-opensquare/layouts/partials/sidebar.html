@@ -4,7 +4,7 @@
             <ul>
                 <li><a href="/opensquare-nyudlts/books">All books</a></li>
                 {{- $pageurl := .URL -}}
-                {{range ($.Site.GetPage "taxonomyTerm" "subjects").Pages }}
+                {{range ($.Site.GetPage "taxonomy" "subjects").Pages }}
                 {{- $thisurl := .URL -}}
                 {{ if eq $pageurl $thisurl }}
                 <li class="active"><span>{{ .Title }}</span></li>

@@ -2,14 +2,14 @@
     {{- $pageurl := .Permalink -}}
     {{ $.Scratch.Set "currentTitle" "All Books" -}}
     {{ $.Scratch.Set "currentSlug" "all" -}}
-    {{range ($.Site.GetPage "taxonomyTerm" "subjects").Pages -}}
+    {{range ($.Site.GetPage "taxonomy" "subjects").Pages -}}
         {{ $thisurl := .Permalink -}}
         {{- if eq $pageurl $thisurl -}}
             {{ $.Scratch.Set "currentTitle" .Title -}}
             {{ $.Scratch.Set "currentSlug" (.Title | urlize) -}}
         {{- end -}}
     {{- end -}}
-    {{range ($.Site.GetPage "taxonomyTerm" "series").Pages -}}
+    {{range ($.Site.GetPage "taxonomy" "series").Pages -}}
     {{- $thisurl := .Permalink -}}
     {{- if eq $pageurl $thisurl }}
     {{ $.Scratch.Set "currentTitle" .Title -}}

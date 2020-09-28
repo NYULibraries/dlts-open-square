@@ -2,7 +2,7 @@
     <select aria-label = "Browse Subjects" onChange="window.location.href=this.value">
         <option value="/opensquare-nyudlts/books">All books</a></option>
         {{- $pageurl := .URL -}}
-        {{range ($.Site.GetPage "taxonomyTerm" "subjects").Pages }}
+        {{range ($.Site.GetPage "taxonomy" "subjects").Pages }}
         {{- $thisurl := .URL -}}
         {{ if eq $pageurl $thisurl }}
         <option class="active" selected="selected">{{ .Title }}</option>

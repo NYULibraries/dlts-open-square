@@ -5,7 +5,7 @@
     {{ partial "head-html.html" . -}}
   </head>
 
-  <body class="{{- if .IsHome -}}ishome {{ end -}}{{if .IsNode}}isnode {{end -}}{{if .IsPage}}ispage {{end}}{{ with .Type }}{{ . }} {{ end }}{{ with .Kind }}{{ . }} {{ end }}">
+  <body class="{{- if .IsHome -}}ishome {{ end -}}{{if .IsNode}}isnode {{end -}}{{if .IsPage}}ispage {{end}}{{ with .Type }}{{ . }} {{ end }}{{ with .Kind }}{{ . }}{{ end }}">
     <div class="hold-all">
       <header class="page-header">
         <div id="skipnav"><a href="#main-content">Skip navigation</a></div>
