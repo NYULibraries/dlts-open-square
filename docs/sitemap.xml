@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://opensquare.nyupress.org/books/9781479835737/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://opensquare.nyupress.org/subjects/african-american-studies/</loc>
     <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
@@ -23,12 +28,27 @@
   </url>
   
   <url>
+    <loc>http://opensquare.nyupress.org/subjects/history/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/subjects/lgbt-studies/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://opensquare.nyupress.org/subjects/media-studies/</loc>
     <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://opensquare.nyupress.org/</loc>
+    <lastmod>2020-01-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://opensquare.nyupress.org/subjects/sociology/</loc>
     <lastmod>2020-01-01T00:00:00-05:00</lastmod>
   </url>
   
@@ -88,11 +108,6 @@
   </url>
   
   <url>
-    <loc>http://opensquare.nyupress.org/subjects/sociology/</loc>
-    <lastmod>2016-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://opensquare.nyupress.org/books/9781479824243/</loc>
     <lastmod>2016-01-01T00:00:00-05:00</lastmod>
   </url>
@@ -133,11 +148,6 @@
   </url>
   
   <url>
-    <loc>http://opensquare.nyupress.org/subjects/history/</loc>
-    <lastmod>1998-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://opensquare.nyupress.org/books/9780814780978/</loc>
     <lastmod>1998-01-01T00:00:00-05:00</lastmod>
   </url>
@@ -149,11 +159,6 @@
   
   <url>
     <loc>http://opensquare.nyupress.org/subjects/law/</loc>
-    <lastmod>1998-01-01T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://opensquare.nyupress.org/subjects/lgbt-studies/</loc>
     <lastmod>1998-01-01T00:00:00-05:00</lastmod>
   </url>
   
