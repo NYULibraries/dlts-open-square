@@ -1,6 +1,7 @@
+{{- $stringisbn := string .Params.isbn  }}
+{{- $imagename := .Site.Params.image_server_params_small | printf "%s%s" $stringisbn  }}
+{{- $imagepath := path.Join .Site.Params.image_server $imagename   -}}
+
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
-  <a aria-hidden="true" tabindex="-1" href="{{ .Permalink  }}">
-    {{- $imagename := ( printf "%s.jpg?auto=format&w=200" (string .Params.isbn ) ) -}}
-    {{- $imagepath := path.Join "https://ingram-nyu.imgix.net/covers/" $imagename   -}} 
-    <img class="img-fluid" src="{{ $imagepath | safeURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a>
+  <a aria-hidden="true" tabindex="-1" href="{{ .Permalink  }}"><img class="img-fluid" src="{{ $imagepath | safeURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a>
 </div>
