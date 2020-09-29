@@ -1,0 +1,3 @@
+{{- $imagename := ( printf "%s.jpg?auto=format&w=295" (string .Params.isbn ) ) -}}
+{{- $imagepath := path.Join "https://ingram-nyu.imgix.net/covers/" $imagename   -}} 
+<img class="img-fluid" role="presentation" alt="" src="{{ $imagepath | safeURL }}">

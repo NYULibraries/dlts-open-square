@@ -1,6 +1,5 @@
 <article class="book-summary">
-  {{ if .Params.thumbhref }}
-  <div class="thumb" role="presentation"><a aria-hidden="true" href="{{ .Permalink }}" tabindex="-1"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt=""></a></div>{{ end }}
+  {{ partial "image-thumbnail" . }}
   <div class="meta">
     <div class="book-title-group"><a href="{{ .Permalink }}">
         <div class="book-title">{{ .Title }}</div>
