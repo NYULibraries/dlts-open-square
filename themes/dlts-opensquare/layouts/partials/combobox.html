@@ -19,7 +19,7 @@
     <div class="dqpl-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value"><span class="current-subject-title">{{ $.Scratch.Get "currentTitle" }}</span> {{- partial "svgs/arrow.svg" (dict "fill" "#444444") -}}</div>
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">{{ $.Scratch.Get "currentTitle" }}</span> {{- partial "svgs/arrow.svg" (dict "fill" "#444444") -}}</div>
         </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
