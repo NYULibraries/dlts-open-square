@@ -1,0 +1,6 @@
+<div class="thumbhold" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
+  <a aria-hidden="true" tabindex="-1" href="{{ .Permalink  }}">
+    {{- $imagename := ( printf "%s.jpg?auto=format&w=295" (string .Params.isbn ) ) -}}
+    {{- $imagepath := path.Join "https://ingram-nyu.imgix.net/covers/" $imagename   -}} 
+    <img class="img-fluid" src="{{ $imagepath | safeURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a>
+</div>

@@ -8,9 +8,7 @@
                     {{ range where .Site.Pages ".Params.featured_on_homepage" "!=" nil }}
                     <article class="mdc-layout-grid__inner featured-book">
                         <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
-                            {{ if .Params.thumbhref }}
-                            <div class="thumbhold" role="presentation" aria-hidden="true"><a aria-hidden="true" tabindex="-1" href="{{ .Permalink  }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt=""></a></div>
-                            {{ end }}
+                          {{ partial "image-thumbnail" . }}
                         </div>
                         <div class="mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-9-tablet mdc-layout-grid__cell--span-4-phone featured-series-items-hold">
                             <div class="meta">
@@ -55,12 +53,12 @@
     <section class="home-section featured-series-section">
         <h2 class="section-title">Featured Series</h2>
         <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">{{ range first 3 (where .Site.Pages ".Params.series" "intersect" .Site.Params.featured_series )}}
-                {{ if .Params.thumbhref }}
-                <div class="mdc-layout-grid__cell--span-2">
-                    <div class="thumbhold" role="presentation" data-pubdate="{{ .Date }}"><a href="{{ .Permalink }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a></div>
-                </div> {{ end }}
-                {{ end }}
+            <div class="mdc-layout-grid__inner">
+              {{ range first 3 (where .Site.Pages ".Params.series" "intersect" .Site.Params.featured_series )}}
+              <div class="mdc-layout-grid__cell--span-2">
+                {{ partial "image-thumbnail" . }}
+              </div> 
+              {{ end }}
                 <div class="mdc-layout-grid__cell--span-6 featured-series-items-hold">
                     <div>
                         <h3 class="series-title"><a href="{{.Site.Params.featured_series_path }}">{{.Site.Params.featured_series_full_name | safeHTML }}</a></h3>
@@ -76,9 +74,8 @@
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 {{ range first 6 (where .Site.Pages ".Params.isfeatureditem" "!=" nil).ByDate.Reverse }}
-                <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">{{ if .Params.thumbhref }}
-                    <div class="thumbhold" role="presentation" data-pubdate="{{ .Date }}"><a href="{{ .Permalink }}"><img class="img-fluid" src="{{ .Site.Params.thumbhrefurl }}{{ .Params.thumbhref | relURL }}" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"></a></div>
-                    {{ end }}
+                <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">
+                  {{ partial "image-thumbnail" . }}
                 </div>
                 {{ end }}
             </div>
