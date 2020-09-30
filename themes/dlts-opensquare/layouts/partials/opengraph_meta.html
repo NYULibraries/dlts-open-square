@@ -1,4 +1,5 @@
 {{ if .IsPage -}}
+
 <meta property="og:description" content="{{ .Description | default (replaceRE "\n" " " .Summary) }}">
 {{ else -}}
 <meta property="og:description" content="{{ $.Param "description" }}">
@@ -7,6 +8,10 @@
 <meta property="og:title" content="{{ .Title }}: {{ .Params.subtitle }}">
 <meta property="og:url" content="{{ .Permalink }}">
 {{ if ( eq .Type "books") -}}<meta property="og:type" content="Book">
-{{- end }}
-{{ $thumbURL := .Site.Params.thumbhrefurl  }}
-{{- with $.Param "thumbhref" }}<meta property="og:image" content="{{ $thumbURL }}{{ . | relURL }}">{{ end }}
+{{- end -}}
+{{ if .Params.isbn }}
+{{- $stringisbn := string .Params.isbn  -}}
+{{- $imagepath := ".jpg?auto=format&fit=fill&fill=blur&h=880&w=600" | printf "%s%s" $stringisbn | printf  "%s%s" .Site.Params.image_server }}
+<meta property="og:image" content="{{ $imagepath }}" />
+<meta property="og:image:width" content="600" />
+<meta property="og:image:height" content="880" />{{- end }}

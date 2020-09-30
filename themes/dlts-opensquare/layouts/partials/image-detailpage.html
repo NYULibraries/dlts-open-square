@@ -1,6 +1,5 @@
 {{- $stringisbn := string .Params.isbn  }}
-{{- $imagename := ".jpg" | printf "%s%s" $stringisbn  }}
-{{- $imagepath := path.Join .Site.Params.image_server $imagename   -}}
+{{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  }}
 
 <picture>
   <source media="(min-width: 720px)"

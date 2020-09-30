@@ -1,6 +1,5 @@
-{{- $stringisbn := string .Params.isbn  }}
-{{- $imagename := ".jpg" | printf "%s%s" $stringisbn  }}
-{{- $imagepath := path.Join .Site.Params.image_server $imagename   -}}
+{{- $stringisbn := string .Params.isbn  -}}
+{{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  -}}
 
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
   <a aria-hidden="true" tabindex="-1" href="{{ .Permalink  }}">
