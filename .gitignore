@@ -2,3 +2,4 @@ resources/_gen/*
 
 docs/fonts/*
 themes/dlts-opensquare/static/fonts/*
+deploy.sh
