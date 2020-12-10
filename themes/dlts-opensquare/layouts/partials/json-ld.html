@@ -1,0 +1,35 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "{{ .Title }}{{- with .Params.subtitle }}: {{ . }}{{ end }}",
+    "url": "{{ .Permalink | safeURL }}",
+    "workExample": {
+      "@type": "Book",
+      "bookFormat": "https://schema.org/EBook",
+      "abridged": "https://schema.org/False",
+      "isbn": "{{ .Params.isbn }}",
+      "datePublished": "{{ dateFormat "2006-01-02" .Date }}",
+      "potentialAction": {
+        "@type": "ReadAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ .Permalink }}read.html",
+          "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/AndroidPlatform", "http://schema.org/IOSPlatform", "http://schema.org/MobileWebPlatform"]
+        },
+        "expectsAcceptanceOf": [{
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }]
+      }
+    },
+    "provider": {
+      "name":"Open Square: New York University Press",
+      "url":"https://nyupress.org/"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "{{ .Params.author }}"
+    }
+  }
