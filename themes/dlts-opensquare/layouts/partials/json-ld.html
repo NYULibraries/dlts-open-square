@@ -9,6 +9,12 @@
       "abridged": "https://schema.org/False",
       "isbn": "{{ .Params.isbn }}",
       "datePublished": "{{ dateFormat "2006-01-02" .Date }}",
+      {{- $stringisbn := string .Params.isbn  }}
+      {{- if .Params.isbnforphoto  -}}
+      {{- $stringisbn = string .Params.isbnforphoto  -}}
+      {{- end  -}}
+      {{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  }}
+      "thumbnailUrl": "{{-  $imagepath }}",
       "potentialAction": {
         "@type": "ReadAction",
         "target": {
