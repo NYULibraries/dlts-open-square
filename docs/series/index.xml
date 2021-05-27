@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Open Square</title>
-    <link>http://opensquare-stage.nyupress.org/series/</link>
+    <link>http://opensquare.nyupress.org/series/</link>
     <description>Recent content in Series on Open Square</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://opensquare-stage.nyupress.org/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://opensquare.nyupress.org/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Connected Youth and Digital Futures</title>
-      <link>http://opensquare-stage.nyupress.org/series/connected-youth-and-digital-futures/</link>
+      <link>http://opensquare.nyupress.org/series/connected-youth-and-digital-futures/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://opensquare-stage.nyupress.org/series/connected-youth-and-digital-futures/</guid>
+      <guid>http://opensquare.nyupress.org/series/connected-youth-and-digital-futures/</guid>
       <description>This series explores young people’s day-to-day lives and futures. The volumes consider changes at the intersection of civil and political reform, transformations in employment and education, and the growing presence of digital technologies in all aspects of social, cultural and political life. The John D. and Catherine T. MacArthur Foundation’s Digital Media and Learning (DML) Initiative has supported two research networks that have helped launch this series: the Youth and Participatory Politics Research Network and the Connected Learning Research Network.</description>
     </item>
     
