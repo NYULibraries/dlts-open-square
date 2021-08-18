@@ -5,7 +5,7 @@
 {{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  -}}
 
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
-  <a aria-hidden="true" tabindex="-1" href="{{ .Permalink  }}">
+  <a aria-hidden="true" tabindex="-1" href="{{ .RelPermalink  }}">
 <picture>
   <source media="(min-width: 720px)"
     srcset="{{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x, {{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x, {{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">

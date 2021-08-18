@@ -7,7 +7,7 @@
 		{{ $name := .Name }}
 		{{ $count := .Count }}
 		{{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
-		<li><a href="{{ .Permalink }}">{{ $name }}</a> <span class="item-count">({{ $count }})</span></li>
+		<li><a href="{{ .RelPermalink }}">{{ $name }}</a> <span class="item-count">({{ $count }})</span></li>
 		{{ end }}
 		{{ end }}
 	</ul>

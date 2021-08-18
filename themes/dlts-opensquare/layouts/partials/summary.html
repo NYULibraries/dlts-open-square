@@ -1,7 +1,7 @@
 <article class="book-summary">
   {{ partial "image-thumbnail" . }}
   <div class="meta">
-    <div class="book-title-group"><a href="{{ .Permalink }}">
+    <div class="book-title-group"><a href="{{ .RelPermalink }}">
         <div class="book-title">{{ .Title }}</div>
         {{ with .Params.subtitle }}
         <div class="book-subtitle">{{ . }}</div>{{ end }}

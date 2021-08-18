@@ -9,7 +9,7 @@
                 {{ if eq $pageurl $thisurl }}
                 <li class="active"><span>{{ .Title }}</span></li>
                 {{- else -}}
-                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
                 {{ end -}}
                 {{ end }}
             </ul>
