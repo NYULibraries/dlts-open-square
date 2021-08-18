@@ -1,7 +1,6 @@
-baseURL = "http://opensquare-dev.nyupress.org"
+baseURL = "https://opensquare-dev.nyupress.org"
 [params]
 	sassOutputFormat = "expanded"
 	enableSourceMap = "true"
-	pathtoreader = "http://opensquare-dev.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
-	connectedyouthurl = "http://connectedyouth-dev.nyupress.org"
-    thumbhrefurl = "http://opensquare-dev.nyupress.org/open-square-reader"
+	pathtoreader = "https://opensquare-dev.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
+	connectedyouthurl = "https://connectedyouth-dev.nyupress.org"

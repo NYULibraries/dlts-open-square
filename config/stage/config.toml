@@ -1,10 +1,9 @@
 ## config file for stage environment
 
-baseURL = "http://opensquare-stage.nyupress.org"
+baseURL = "https://opensquare-stage.nyupress.org"
 
 [params]
 	sassOutputFormat = "compressed"
 	enableSourceMap = "false"
-	pathtoreader = "http://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
-	connectedyouthurl = "http://connectedyouth-stage.nyupress.org"
-    thumbhrefurl = "http://opensquare-stage.nyupress.org/open-square-reader"
+	pathtoreader = "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
+	connectedyouthurl = "https://connectedyouth-stage.nyupress.org"

@@ -1,11 +1,10 @@
 ## production environment
 
-baseURL = "http://opensquare.nyupress.org"
+baseURL = "https://opensquare.nyupress.org"
 googleAnalytics = "UA-51495518-1"
 [params]
 	sassOutputFormat = "compressed"
 	enableSourceMap = "false"
-	pathtoreader = "http://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
-  thumbhrefurl = "http://opensquare.nyupress.org/open-square-reader"
-	connectedyouthurl = "http://connectedyouth.nyupress.org"
+	pathtoreader = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
+	connectedyouthurl = "httpsx://connectedyouth.nyupress.org"
   googleanalyticsconnectedyouth = "UA-51495518-3"
