@@ -20,6 +20,11 @@ Install Hugo
 
 ## Build
 
+Clone the JSON found here:  https://github.com/NYULibraries/dlts-epub-metadata
+
+And run a script to transform the JSON to .md files
+sh ./processSupaduJson.sh ../../dlts-epub-metadata
+
 For hot reload: use the hugo server command, with the -b (baseurl) option, for example,
   * hugo server -b "https://opensquare.local"
 
