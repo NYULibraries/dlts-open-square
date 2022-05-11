@@ -25,7 +25,9 @@ For hot reload: use the hugo server command, with the -b (baseurl) option, for e
 
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
   * hugo -e local
+  * hugo -e dev
   * hugo -e stage
+  * hugo -e production
 
 
 
