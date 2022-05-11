@@ -20,13 +20,12 @@ Install Hugo
 
 ## Build
 
-Clone the JSON found here:  https://github.com/NYULibraries/dlts-epub-metadata
+If refreshing the content:
 
-And run a script to transform the JSON to .md files
+* Clone the JSON found here:  https://github.com/NYULibraries/dlts-epub-metadata
+
+* Run a script to transform that JSON to .md files
 sh ./processSupaduJson.sh ../../dlts-epub-metadata
-
-For hot reload: use the hugo server command, with the -b (baseurl) option, for example,
-  * hugo server -b "https://opensquare.local"
 
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
   * hugo -e local
@@ -34,6 +33,8 @@ To build: use the hugo command, with the -e (environment) option, and one of the
   * hugo -e stage
   * hugo -e production
 
+For hot reload: use the hugo server command, with the -b (baseurl) option, for example,
+  * hugo server -b "https://opensquare.local"
 
 
 ## Associated Repositories
