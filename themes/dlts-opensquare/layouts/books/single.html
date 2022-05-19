@@ -26,7 +26,10 @@
             </ul>
           </div>{{ end -}}
           <div class="tags"><span class="label">Subjects:</span>
-            {{ range .Params.subjects }}<span class="tag"><a href="{{ "/subjects/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></span>{{- end -}}
+            {{ range .Params.subjects -}}
+            <span class="tag"><a href="{{ "/subjects/" | relLangURL }}{{ . | urlize }}">
+              {{- with site.GetPage ( . | urlize)   -}}{{- .Title -}}{{- end -}}
+            </a></span>{{- end -}}
           </div>
           <div class="isbn"><span>ISBN:</span> {{ .Params.isbn }}</div>
           <div class="citation_link"><span>Cite:</span> {{with .Params.citation_link }}{{ . }}{{ end }}</div>
