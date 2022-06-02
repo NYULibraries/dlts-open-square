@@ -11,14 +11,17 @@
     {{ if .Params.series }}
     <div class="tags"><span>Series:</span>
       <ul>{{ range .Params.series }}
-        <li><a href="{{ "/series/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+        <li><a href="{{ "/series/"  }}{{ . | urlize }}">{{ . }}</a> </li>
         {{ end }}
       </ul>
     </div>
     {{ end }}
     <div class="tags"><span class="label">Subjects:</span>
-      {{- range .Params.subjects }}
-      <span class="tag"><a href="{{ "/subjects/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></span>{{- end -}}
+      {{- range .Params.subjects -}}
+        {{ with site.GetPage ( . | urlize) }}
+      <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
+        {{- end -}}
+      {{- end -}}
     </div>
   </div>
 </article>
