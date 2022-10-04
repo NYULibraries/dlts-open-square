@@ -42,6 +42,8 @@ publishDir = "docs"
   home = ["HTML"]
   section = ["HTML"]
   page = ["HTML", "read"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
 
 [outputFormats]
   [outputFormats.read]
