@@ -28,10 +28,10 @@ If refreshing the content:
 sh ./processSupaduJson.sh ../../dlts-epub-metadata
 
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
-  * hugo -e local
-  * hugo -e dev
-  * hugo -e stage
-  * hugo -e production
+  * hugo --cleanDestinationDir -e local
+  * hugo --cleanDestinationDir -e dev
+  * hugo --cleanDestinationDir -e stage
+  * hugo --enableGitInfo --cleanDestinationDir -e production
 
 For hot reload: use the hugo server command, with the -b (baseurl) option, for example,
   * hugo server -b "https://opensquare.local"
