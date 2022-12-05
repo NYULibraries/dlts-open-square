@@ -8,6 +8,9 @@
           {{ partial "image-detailpage" . }}
           <div class="link-callout">Read Online {{ partial "oa_icon.html" . }}</div>
         </a>
+        {{ if .Params.isDownloadable }}
+        {{ partial "download-buttons" . }}
+        {{ end }}
       </div>
       <div class="meta-group mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-9-tablet mdc-layout-grid__cell--span-6-phone">
         <header>
