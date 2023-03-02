@@ -67,8 +67,8 @@
 }
 
 .dqpl-select .dqpl-combobox::after {
-  font-family: 'FontAwesome';
-  content: '\f0d7';
+  font-family: "FontAwesome";
+  content: "\f0d7";
   position: absolute;
   right: 8px;
   top: 2.5px;
@@ -118,7 +118,7 @@
 
 .dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active,
 .dqpl-select .dqpl-listbox .dqpl-option:hover {
-  background-color: rgba(60, 122, 174, .1);
+  background-color: rgba(60, 122, 174, 0.1);
 }
 
 .dqpl-select .dqpl-listbox .dqpl-option[aria-disabled="true"] {
@@ -129,17 +129,23 @@
   background-color: transparent;
 }
 
-.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'],
-.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active {
+.dqpl-select .dqpl-listbox .dqpl-option[aria-selected="true"],
+.dqpl-select
+  .dqpl-listbox
+  .dqpl-option[aria-selected="true"].dqpl-option-active {
   background-color: #3c7aae;
   color: #ffffff;
 }
 
-.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true']::before,
-.dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active::before {
-  font-family: 'FontAwesome';
-  content: '\f00c';
+.dqpl-select .dqpl-listbox .dqpl-option[aria-selected="true"]::before,
+.dqpl-select
+  .dqpl-listbox
+  .dqpl-option[aria-selected="true"].dqpl-option-active::before {
+  font-family: "FontAwesome";
+  content: "\f00c";
   position: absolute;
   left: 5px;
   color: #000000;
 }
+
+

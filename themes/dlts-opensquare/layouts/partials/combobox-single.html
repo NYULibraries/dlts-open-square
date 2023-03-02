@@ -1,0 +1,13 @@
+<div class="thumb-link">
+    <div class="dqpl-select" style="position:relative">
+        <div class="dqpl-combobox" id="combobox-single" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse Download Formats" aria-required="true" aria-activedescendant="default">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Downloadable formats">Download {{- partial "svgs/download-arrow.svg" (dict "fill" "#444444") -}}</div>
+        </div>
+        <div class="dqpl-listbox" role="listbox" id="subject-list" style="position:absolute; top:100%; width:100%; left:0">
+            <ul id="combobox-list-ul">
+                <li class="dqpl-option" id="combobox-list-option" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}><a href="https://mc.dlib.nyu.edu/files/nyupress/pdfs/{{.Params.isbn}}.pdf" download>PDF</a></li>
+                <li class="dqpl-option" id="combobox-list-option-two" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}><a href="https://mc.dlib.nyu.edu/files/nyupress/epubs/{{.Params.isbn}}.epub" download>EPUB</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
