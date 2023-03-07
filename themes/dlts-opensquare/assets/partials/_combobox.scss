@@ -3,13 +3,13 @@
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
-  border-top: 3px solid #cdc4e1;
+  border-top: 1px solid #cdc4e1;
   font-family: "vistasansnarot-reg", Verdana, sans-serif;
   color: #57068c;
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 0px;
-  a{
+  a {
     text-decoration: none;
     color: #57068c;
   }
@@ -30,9 +30,9 @@
   content: "";
   display: block;
   width: 100%;
-  padding: 10px 0;
   text-align: center;
-  border-top: 3px solid #cdc4e1;
+  border-top: 1.5px solid #cdc4e1;
+  padding: 0;
   a {
     text-decoration: none;
     color: #57068c;
@@ -41,15 +41,26 @@
     font-weight: bold;
     font-size: 1.2rem;
     width: 100%;
+    padding: 10px 0;
     display: block;
+  }
+  &:hover {
+    color: $callout-text-color;
+    background-color: $primary-color;
+    text-decoration: none;
+    transition: none;
+    a {
+      color: #ffffff;
+      transition: none;
+    }
   }
 }
 #combobox-list-option-two {
   display: block;
   width: 100%;
-  padding: 10px 0;
   text-align: center;
-  border-top: 3px solid #cdc4e1;
+  border-top: 1.5px solid #cdc4e1;
+  padding: 0;
   a {
     text-decoration: none;
     color: #57068c;
@@ -58,24 +69,18 @@
     font-weight: bold;
     font-size: 1.2rem;
     width: 100%;
+    padding: 10px 0;
     display: block;
   }
-}
-#combobox-list-option-three {
-  display: block;
-  width: 100%;
-  padding: 10px 0;
-  text-align: center;
-  border-top: 3px solid #cdc4e1;
-  a {
+  &:hover {
+    color: $callout-text-color;
+    background-color: $primary-color;
     text-decoration: none;
-    color: #57068c;
-    text-transform: uppercase;
-    font-family: "vistasansnarot-reg", Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 1.2rem;
-    width: 100%;
-    display: block;
+    transition: none;
+    a {
+      color: #ffffff;
+      transition: none;
+    }
   }
 }
 .socialmedia-container {
@@ -85,8 +90,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: .35rem;
-    margin: 0 .15rem .25rem;
+    padding: 0.35rem;
+    margin: 0 0.15rem 0.25rem;
     .visually-hidden {
       position: absolute;
       clip: rect(1px, 1px, 1px, 1px);

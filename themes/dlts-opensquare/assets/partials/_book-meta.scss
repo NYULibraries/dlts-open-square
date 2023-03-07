@@ -78,9 +78,8 @@
     background-color: #56068c10;
   }
 
-  .download-container {
-    height: inherit;
-    width: inherit;
+  div.thumb-link{
+    margin-top: 1rem
   }
 
   .thumb-link {
@@ -98,6 +97,7 @@
         background-color: $primary-color;
         text-decoration: none;
       }
+      
 
       .lockicon {
         g {
@@ -111,7 +111,7 @@
     padding: 10px;
     text-align: center;
     text-transform: uppercase;
-    border-top: 3px solid $primary-color-muted;
+    border-top: 1px solid $primary-color-muted;
     font-family: $font-family-headers;
     color: $primary-color;
     font-weight: bold;
