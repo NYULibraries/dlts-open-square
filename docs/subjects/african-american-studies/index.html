@@ -76,32 +76,33 @@ gtag('config', 'UA-51495518-1',
             </ul>
             <div class="item-section-title">Series</div>
             <ul>
-                <li class="dqpl-option" role="option" data-value="connected-youth-and-digital-futures" >Connected Youth and Digital Futures</li>
+                <li class="dqpl-option" role="option" data-value="/series/connected-youth-and-digital-futures/" >Connected Youth and Digital Futures</li>
+                <li class="dqpl-option" role="option" data-value="/series/jews-in-the-soviet-union/" >Jews in the Soviet Union</li>
             </ul>
             <div class="item-section-title">Subjects</div>
             <ul>
-                <li class="dqpl-option" role="option" data-value="african-american-studies"  id="default" >African American Studies</li>
-                <li class="dqpl-option" role="option" data-value="american-studies" >American Studies</li>
-                <li class="dqpl-option" role="option" data-value="anthropology" >Anthropology</li>
-                <li class="dqpl-option" role="option" data-value="asian-american-studies" >Asian American Studies</li>
-                <li class="dqpl-option" role="option" data-value="criminology" >Criminology</li>
-                <li class="dqpl-option" role="option" data-value="disability-studies" >Disability Studies</li>
-                <li class="dqpl-option" role="option" data-value="education" >Education</li>
-                <li class="dqpl-option" role="option" data-value="environmental-studies" >Environmental Studies</li>
-                <li class="dqpl-option" role="option" data-value="health-medicine" >Health &amp; Medicine</li>
-                <li class="dqpl-option" role="option" data-value="history" >History</li>
-                <li class="dqpl-option" role="option" data-value="jewish-studies" >Jewish Studies</li>
-                <li class="dqpl-option" role="option" data-value="latino-a-studies" >Latino/a Studies</li>
-                <li class="dqpl-option" role="option" data-value="law" >Law</li>
-                <li class="dqpl-option" role="option" data-value="lgbtq-sexuality" >LGBTQ &amp; Sexuality</li>
-                <li class="dqpl-option" role="option" data-value="literature-literary-studies" >Literature &amp; Literary Studies</li>
-                <li class="dqpl-option" role="option" data-value="media-technology" >Media &amp; Technology</li>
-                <li class="dqpl-option" role="option" data-value="new-york-city-regional-interest" >New York City &amp; Regional Interest</li>
-                <li class="dqpl-option" role="option" data-value="politics" >Politics</li>
-                <li class="dqpl-option" role="option" data-value="psychology" >Psychology</li>
-                <li class="dqpl-option" role="option" data-value="religion" >Religion</li>
-                <li class="dqpl-option" role="option" data-value="sociology" >Sociology</li>
-                <li class="dqpl-option" role="option" data-value="womens-gender-studies" >Women&#39;s &amp; Gender Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/african-american-studies/"  id="default" >African American Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/american-studies/" >American Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/anthropology/" >Anthropology</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/asian-american-studies/" >Asian American Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/criminology/" >Criminology</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/disability-studies/" >Disability Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/education/" >Education</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/environmental-studies/" >Environmental Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/health-medicine/" >Health &amp; Medicine</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/history/" >History</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/jewish-studies/" >Jewish Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/latino-a-studies/" >Latino/a Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/law/" >Law</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/lgbtq-sexuality/" >LGBTQ &amp; Sexuality</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/literature-literary-studies/" >Literature &amp; Literary Studies</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/media-technology/" >Media &amp; Technology</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/new-york-city-regional-interest/" >New York City &amp; Regional Interest</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/politics/" >Politics</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/psychology/" >Psychology</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/religion/" >Religion</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/sociology/" >Sociology</li>
+                <li class="dqpl-option" role="option" data-value="/subjects/womens-gender-studies/" >Women&#39;s &amp; Gender Studies</li>
                 <li class="empty-item">&nbsp;</li>
                 <li class="empty-item">&nbsp;</li>
             </ul>
@@ -127,10 +128,8 @@ gtag('config', 'UA-51495518-1',
               cachedValue = newValue;
               if (newValue == "all") {
                 window.location.href = "https://opensquare.nyupress.org" + "/books/";
-              } else if (newValue == "connected-youth-and-digital-futures") {
-                window.location.href = "https://opensquare.nyupress.org" + "/series/" + newValue;
               } else {
-                window.location.href = "https://opensquare.nyupress.org" + "/subjects/" + newValue;
+                window.location.href = "https://opensquare.nyupress.org" + newValue;
               }
             }
           });
