@@ -6,15 +6,15 @@
         {{ $thisurl := .Permalink -}}
         {{- if eq $pageurl $thisurl -}}
             {{ $.Scratch.Set "currentTitle" .Title -}}
-            {{ $.Scratch.Set "currentSlug" ( path.Base .Page.RelPermalink ) -}}
+            {{ $.Scratch.Set "currentSlug" .Page.RelPermalink -}}
         {{- end -}}
     {{- end -}}
     {{range ($.Site.GetPage "taxonomy" "series").Pages -}}
-    {{- $thisurl := .Permalink -}}
-    {{- if eq $pageurl $thisurl }}
-    {{ $.Scratch.Set "currentTitle" .Title -}}
-    {{ $.Scratch.Set "currentSlug" ( path.Base .Page.RelPermalink ) -}}
-    {{- end -}}
+        {{- $thisurl := .Permalink -}}
+        {{- if eq $pageurl $thisurl }}
+          {{ $.Scratch.Set "currentTitle" .Title -}}
+          {{ $.Scratch.Set "currentSlug" .Page.RelPermalink -}}
+        {{- end -}}
     {{ end }}
     <div class="dqpl-select">
         <div class="info-label">Browsing</div>
@@ -27,11 +27,13 @@
             </ul>
             <div class="item-section-title">Series</div>
             <ul>
-                <li class="dqpl-option" role="option" data-value="connected-youth-and-digital-futures" {{ if eq ($.Scratch.Get "currentSlug") "connected-youth-and-digital-futures" }} id="default" {{ end -}}>Connected Youth and Digital Futures</li>
+              {{- range .Site.Taxonomies.series.Alphabetical }}
+                <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentSlug") .Page.RelPermalink }} id="default" {{ end -}}>{{ .Page.Title  }}</li>
+                {{- end }}
             </ul>
             <div class="item-section-title">Subjects</div>
             <ul>{{- range .Site.Taxonomies.subjects.Alphabetical }}
-                <li class="dqpl-option" role="option" data-value="{{ path.Base .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentTitle") .Page.Title }} id="default" {{ end -}}>{{ .Page.Title }}</li>
+                <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentTitle") .Page.Title }} id="default" {{ end -}}>{{ .Page.Title }}</li>
                 {{- end }}
                 <li class="empty-item">&nbsp;</li>
                 <li class="empty-item">&nbsp;</li>
@@ -58,10 +60,8 @@
               cachedValue = newValue;
               if (newValue == "all") {
                 window.location.href = {{.Site.BaseURL}} + "/books/";
-              } else if (newValue == "connected-youth-and-digital-futures") {
-                window.location.href = {{.Site.BaseURL}} + "/series/" + newValue;
               } else {
-                window.location.href = {{.Site.BaseURL}} + "/subjects/" + newValue;
+                window.location.href = {{.Site.BaseURL}} + newValue;
               }
             }
           });
