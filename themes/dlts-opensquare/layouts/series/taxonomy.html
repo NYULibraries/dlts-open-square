@@ -2,17 +2,6 @@
 <main id="main-content">
     <h1 class="page-title sr-only">{{.Data.Singular | title }}: {{ .Page.Title  }}</h1>
     {{ partial "combobox.html" . }}
-    <aside class="series-banner">
-        <div class="series-banner-image">
-            {{- partial "svgs/connectedyouth-logo.svg" -}}
-        </div>
-        <div class="sponsorlogo sponsorlogo1">
-            <a href="https://clalliance.org/" target="_blank"><img alt="Logo: Connected Learning Alliance" class="img-fluid" src="/images/connectedlearning_logo.png"></a>
-        </div>
-        <div class="sponsorlogo sponsorlogo2">
-            <a href="https://www.macfound.org/" target="_blank"><img alt="Logo: MacArthur Foundation" class="img-fluid" src="/images/macarthur_logo.svg"></a>
-        </div>
-    </aside>
     <div class="series-content-hold">
         <div class="series-content">
             {{ .Content }} </div>
