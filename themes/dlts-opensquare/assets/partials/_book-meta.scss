@@ -162,6 +162,12 @@
 .rights-info {
   font-size: 0.8rem;
   line-height: 1.7;
+  
+  .openaccess-container {
+    height: inherit;
+    width: inherit;
+    margin: 2.15rem 0 2rem;
+  }
 
   img {
     vertical-align: text-top;
