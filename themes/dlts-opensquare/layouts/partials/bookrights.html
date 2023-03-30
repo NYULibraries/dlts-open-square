@@ -1,5 +1,15 @@
 <div class="rights-info">
-<a rel="license" class="cc-icon" href="{{ .Params.license_link }}">
-  <img alt="Creative Commons License" style="border-width:0;" src="{{ .Params.license_icon }}" /></a>&nbsp;
-  This work is licensed under a <a rel="license" href="{{ .Params.license_link }}">{{ .Params.license }}</a>  <span class="license-abbreviation">({{ .Params.license_abbreviation }}).</span>
+  <div class="openaccess-container">
+    {{partial "oa_icon.html" .}} Open Access
+  </div>
+  <a rel="license" class="cc-icon" href="{{ .Params.license_link }}">
+    <img
+      alt="Creative Commons License"
+      style="border-width: 0"
+      src="{{ .Params.license_icon }}" /></a
+  >&nbsp; This work is licensed under a
+  <a rel="license" href="{{ .Params.license_link }}">{{ .Params.license }}</a>
+  <span class="license-abbreviation"
+    >({{ .Params.license_abbreviation }}).</span
+  >
 </div>
