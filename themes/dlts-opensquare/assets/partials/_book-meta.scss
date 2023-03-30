@@ -18,23 +18,22 @@
 .book-subtitle,
 .book-title {
   font-weight: 500;
-
 }
 
 .meta {
-  font-size: .9rem;
+  font-size: 0.9rem;
 
   .author {
     text-transform: uppercase;
-    margin: .2rem 0;
+    margin: 0.2rem 0;
   }
 
   .tags {
-    margin: .2rem 0;
+    margin: 0.2rem 0;
   }
 
   .description {
-    margin-top: .4rem;
+    margin-top: 0.4rem;
     @include body-text;
   }
 }
@@ -52,11 +51,11 @@
   }
 
   header {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   .description {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 }
 
@@ -78,11 +77,16 @@
     font-size: 1.2rem;
   }
 
+  div.thumb-link {
+    margin-top: 1rem;
+  }
+
   .thumb-link {
     @include dropshadow-md1;
     display: block;
     border: 1px solid $primary-color-muted;
     text-decoration: none;
+    margin-bottom: 1rem;
 
     &:focus,
     &:hover {
@@ -106,7 +110,7 @@
     padding: 10px;
     text-align: center;
     text-transform: uppercase;
-    border-top: 3px solid $primary-color-muted;
+    border-top: 1px solid $primary-color-muted;
     font-family: $font-family-headers;
     color: $primary-color;
     font-weight: bold;
@@ -116,7 +120,6 @@
       margin-left: 5px;
     }
   }
-
 }
 
 .book-summary {
@@ -125,7 +128,7 @@
   line-height: 1.4;
 
   .author {
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
 
   .thumb {
@@ -140,29 +143,28 @@
   }
 
   .meta > div {
-    margin: .2rem 0;
+    margin: 0.2rem 0;
   }
 
   .book-title {
     font-size: 1.1rem;
     line-height: 1.25;
-    margin-top: -.4rem;
+    margin-top: -0.4rem;
   }
 
   .book-subtitle {
     // font-size: 1.3rem;
     line-height: 1.3;
-    margin-top: .2rem;
+    margin-top: 0.2rem;
   }
 }
 
 .rights-info {
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.7;
 
   img {
     vertical-align: text-top;
-
   }
 
   a:link {
