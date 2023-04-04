@@ -1,2 +1,30 @@
-<a class="thumb-link" href="https://mc.dlib.nyu.edu/files/nyupress/pdfs/{{.Params.isbn}}.pdf" download><div class="link-callout">Download PDF</div></a>
-<a class="thumb-link" href="https://mc.dlib.nyu.edu/files/nyupress/epubs/{{.Params.isbn}}.epub" download><div class="link-callout">Download EPUB</div></a>
+<a
+  class="thumb-link"
+  href="https://mc.dlib.nyu.edu/files/nyupress/pdfs/{{.Params.isbn}}.pdf"
+  download
+  ><div class="link-callout">Download PDF</div></a
+>
+<a
+  id="epub"
+  class="thumb-link-standard"
+  href="https://mc.dlib.nyu.edu/files/nyupress/epubs/{{.Params.isbn}}.epub"
+  download
+  ><div class="link-callout">Download EPUB</div></a
+>
+
+<script>
+  const epub = document.getElementById("epub");
+  epub.addEventListener("mouseover", () => {
+    epub.classList.add("thumb-link-hover", "thumb-link-focus");
+  });
+  epub.addEventListener("mouseout", () => {
+    if (epub.classList.contains("thumb-link-hover", "thumb-link-focus")) {
+      epub.classList.remove("thumb-link-hover", "thumb-link-focus");
+    }
+  });
+  epub.addEventListener("click", () => {
+    if (epub.classList.contains("thumb-link-hover", "thumb-link-focus")) {
+      epub.classList.remove("thumb-link-hover", "thumb-link-focus");
+    }
+  });
+</script>
