@@ -5,7 +5,6 @@
   ><div class="link-callout">Download PDF</div></a
 >
 <a
-  id="epub"
   class="thumb-link-standard"
   href="https://mc.dlib.nyu.edu/files/nyupress/epubs/{{.Params.isbn}}.epub"
   download
@@ -13,18 +12,20 @@
 >
 
 <script>
-  const epub = document.getElementById("epub");
-  epub.addEventListener("mouseover", () => {
-    epub.classList.add("thumb-link-hover", "thumb-link-focus");
-  });
-  epub.addEventListener("mouseout", () => {
-    if (epub.classList.contains("thumb-link-hover", "thumb-link-focus")) {
-      epub.classList.remove("thumb-link-hover", "thumb-link-focus");
-    }
-  });
-  epub.addEventListener("click", () => {
-    if (epub.classList.contains("thumb-link-hover", "thumb-link-focus")) {
-      epub.classList.remove("thumb-link-hover", "thumb-link-focus");
-    }
-  });
+  const btns = document.getElementsByClassName("thumb-link-standard");
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("mouseover", () => {
+      btns[i].classList.add("thumb-link-hover", "thumb-link-focus");
+    });
+    btns[i].addEventListener("mouseout", () => {
+      if (btns[i].classList.contains("thumb-link-hover", "thumb-link-focus")) {
+        btns[i].classList.remove("thumb-link-hover", "thumb-link-focus");
+      }
+    });
+    btns[i].addEventListener("click", () => {
+      if (btns[i].classList.contains("thumb-link-hover", "thumb-link-focus")) {
+        btns[i].classList.remove("thumb-link-hover", "thumb-link-focus");
+      }
+    });
+  }
 </script>
