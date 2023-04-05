@@ -4,4 +4,6 @@ docs/fonts/*
 themes/dlts-opensquare/static/fonts/*
 deploy.sh
 
+node_modules/*
+
 AWSCLIV2.pkg
