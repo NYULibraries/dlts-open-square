@@ -88,7 +88,7 @@
     text-decoration: none;
     margin-bottom: 1rem;
 
-    &:focus,
+    &:focus-visible,
     &:hover {
       text-decoration: none;
 
@@ -162,7 +162,7 @@
 .rights-info {
   font-size: 0.8rem;
   line-height: 1.7;
-  
+
   .openaccess-container {
     height: inherit;
     width: inherit;
