@@ -7,3 +7,5 @@ deploy.sh
 node_modules/*
 
 AWSCLIV2.pkg
+
+deploy_aws.sh
