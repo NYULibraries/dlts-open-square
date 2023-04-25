@@ -1,7 +1,7 @@
 ## production environment
 
 baseURL = "https://opensquare.nyupress.org"
-googleAnalytics = "UA-51495518-1"
+googleAnalytics = "G-6ZBRSG08EY"
 [params]
 	sassOutputFormat = "compressed"
 	enableSourceMap = "false"
