@@ -1,10 +1,11 @@
 ## production environment
 
 baseURL = "https://opensquare.nyupress.org"
-googleAnalytics = "G-6ZBRSG08EY"
+googleAnalytics = "UA-51495518-1"
 [params]
 	sassOutputFormat = "compressed"
 	enableSourceMap = "false"
 	pathtoreader = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
 	connectedyouthurl = "https://connectedyouth.nyupress.org"
   googleanalyticsconnectedyouth = "UA-51495518-3"
+  googleanalytics4 = "G-6ZBRSG08EY"
