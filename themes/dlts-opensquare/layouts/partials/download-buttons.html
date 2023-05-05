@@ -1,2 +1,10 @@
-<a class="thumb-link" href="https://mc.dlib.nyu.edu/files/nyupress/pdfs/{{.Params.isbn}}.pdf" download><div class="link-callout">Download PDF</div></a>
+{{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
+<a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF</div></a>
+{{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf"))}}
+  {{-  with .Err }}
+    {{-  warnf "%s" . }}
+  {{-  else }}
+    PDF filesize: {{  div (div (index .Data "ContentLength") 1000.0) 1000.0 }} MB
+  {{-  end }}
+{{- end }}
 <a class="thumb-link" href="https://mc.dlib.nyu.edu/files/nyupress/epubs/{{.Params.isbn}}.epub" download><div class="link-callout">Download EPUB</div></a>
