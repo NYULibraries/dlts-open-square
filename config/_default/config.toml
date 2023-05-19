@@ -11,6 +11,10 @@ publishDir = "docs"
 [markup.goldmark.renderer]
   unsafe = true
 
+[security]
+  [security.http]
+    methods = ['(?i)GET|POST|HEAD']
+
 [params]
   shorttitle = "Open Square"
   tagline = "Knowledge without Boundaries"
@@ -57,7 +61,9 @@ publishDir = "docs"
     mediaType = "text/html"
     notAlternative = false
 
-
+[mediaTypes]
+  [mediaTypes.'application/epub+zip']
+    suffixes = ['epub']
 
 [menu]
 
