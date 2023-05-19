@@ -1,21 +1,21 @@
 {{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
 {{- $epubpath := ".epub"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/epubs/"  -}}
 
-{{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf"))}}
+{{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" )}}
   {{-  with .Err }}
     {{-  warnf "%s" . }}
   {{-  else -}}
-      <a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF</div></a>
-    PDF filesize: {{  div (div (index .Data "ContentLength") 1000.0) 1000.0 }} MB
+      <a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF <br>
+    <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
+  </a>
   {{-  end -}}
 {{- end }}
-{{- if eq .Params.isbn "9780814705384" -}}
-{{/*  {{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/gzip")) }}
+{{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
   {{-  with .Err }}
     {{-  warnf "%s" . }}
   {{-  else }}
-    epub filesize: {{  div (div (index .Data "ContentLength") 1000.0) 1000.0 }} MB
+  <a class="thumb-link" href="{{ $epubpath }}" download><div class="link-callout">Download EPUB<br>
+    <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div></a>
   {{-  end }}
-{{- end }}  */}}
-{{- end -}}
-<a class="thumb-link" href="{{ $epubpath }}" download><div class="link-callout">Download EPUB</div></a>
+{{- end }}
+
