@@ -97,15 +97,14 @@
         background-color: $primary-color;
         text-decoration: none;
       }
-
-      .lockicon {
-        g {
-          fill: $callout-text-color;
-        }
-      }
     }
   }
 
+  .filesize {
+    font-size: 1.1rem;
+    font-weight: normal;
+    font-variant-numeric: lining-nums;
+  }
   .link-callout {
     padding: 10px;
     text-align: center;
@@ -115,10 +114,6 @@
     color: $primary-color;
     font-weight: bold;
     font-size: 1.2rem;
-
-    .lockicon {
-      margin-left: 5px;
-    }
   }
 }
 
