@@ -4,14 +4,21 @@
   <article class="book-full-view mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div  role="presentation" class="left-column mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone">
+       {{if .Params.isReadable }}
         <a class="thumb-link" href="./read">
           {{ partial "image-detailpage" . }}
-          {{if .Params.isReadable }}
           <div class="link-callout">Read Online</div>
-          {{end}}
         </a>
+        {{else}}
+          <div class="thumb-link">
+            {{ partial "image-detailpage" . }}
+          </div>
+        {{end}}
         {{ if .Params.isDownloadable }}
-        {{partial "download-buttons" .}}
+          {{ partial "download-buttons-pdf" .}}
+          {{if .Params.isReadable}}
+            {{ partial "download-buttons-epub" .}}
+          {{ end }}
         {{ end }}
       </div>
       <div class="meta-group mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-9-tablet mdc-layout-grid__cell--span-6-phone">

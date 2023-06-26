@@ -1,0 +1,13 @@
+{{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
+
+{{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" )}}
+  {{-  with .Err }}
+    {{-  warnf "%s" . }}
+  {{-  else -}}
+      <a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF <br>
+    <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
+  </a>
+  {{-  end -}}
+{{- end }}
+
+

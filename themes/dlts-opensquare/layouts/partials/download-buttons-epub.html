@@ -1,0 +1,10 @@
+{{- $epubpath := ".epub"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/epubs/"  -}}
+
+{{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
+  {{-  with .Err }}
+    {{-  warnf "%s" . }}
+  {{-  else }}
+  <a class="thumb-link" href="{{ $epubpath }}" download><div class="link-callout">Download EPUB<br>
+    <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div></a>
+  {{-  end }}
+{{- end }}
