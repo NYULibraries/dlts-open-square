@@ -3,9 +3,17 @@
 <main id="main-content">
   <article class="book-full-view mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
-      {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"  .Params.isbn "META-INF/container.xml" -}}
-      {{-  warnf "Epub at: %s" $xmlpath }}
-
+      {{/*  {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"  .Params.isbn "META-INF/container.xml" -}}  */}}
+      {{- $xmlpath := "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/NOTHINGHERE/META-INF/container.xml" -}}
+      {{- with resources.GetRemote $xmlpath  (dict "headers" (dict "Content-Type" "application/xml" ) "method" "HEAD" )}}
+        {{-  with .Err }}
+          {{-  errorf "ERROR %s %s " .Data.Status . }}
+        {{-  else -}}
+          {{-  warnf "%s %s " .Data.Status . }}
+        {{-  end -}}
+      {{-  else -}}
+        {{-  errorf "ERROR: No file at %s " $xmlpath }}
+      {{-  end -}}
       <div  role="presentation" class="left-column mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone">
         <a class="thumb-link" href="./read">
           {{ partial "image-detailpage" . }}
