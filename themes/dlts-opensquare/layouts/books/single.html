@@ -3,6 +3,9 @@
 <main id="main-content">
   <article class="book-full-view mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
+      {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"  .Params.isbn "META-INF/container.xml" -}}
+      {{-  warnf "Epub at: %s" $xmlpath }}
+
       <div  role="presentation" class="left-column mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone">
         <a class="thumb-link" href="./read">
           {{ partial "image-detailpage" . }}
