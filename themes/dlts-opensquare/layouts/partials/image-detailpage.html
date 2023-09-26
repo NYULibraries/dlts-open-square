@@ -1,5 +1,4 @@
 {{- $imagepath := ".jpg" | printf "%s%s" .isbn  | printf  "%s%s" site.Params.image_server  }}
-
 <picture>
   <source media="(min-width: 720px)"
     srcset="{{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,
@@ -9,6 +8,6 @@
     srcset="{{- $imagepath -}}?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x, {{- $imagepath -}}?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x, {{- $imagepath -}}?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
     srcset="{{- $imagepath -}}?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x, {{- $imagepath -}}?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x, {{- $imagepath -}}?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="{{- $imagepath -}}?auto=format&amp;w=145" alt="{{ .Title }}{{ with .Params.subtitle }}: {{.}}{{end}}"
+  <img src="{{- $imagepath -}}?auto=format&amp;w=145" alt="{{ .titleforalt }}"
   class="img-fluid">
 </picture>
