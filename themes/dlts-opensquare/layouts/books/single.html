@@ -3,26 +3,30 @@
 <main id="main-content">
   <article class="book-full-view mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
-      {{/*  {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"  .Params.isbn "META-INF/container.xml" -}}  */}}
+      <div class="left-column mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone">
+        {{/*  {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"  .Params.isbn "META-INF/container.xml" -}}  */}}
       {{- $xmlpath := "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/NOTHINGHERE/META-INF/container.xml" -}}
       {{- with resources.GetRemote $xmlpath  (dict "headers" (dict "Content-Type" "application/xml" ) "method" "HEAD" )}}
         {{-  with .Err }}
-          {{-  errorf "ERROR %s %s " .Data.Status . }}
+          {{- errorf "resources.GetRemote failed. Dividing by zero to halt the program. %s %s" $xmlpath .Data.Status -}}
+          {{- div 0 0 -}}
         {{-  else -}}
-          {{-  warnf "%s %s " .Data.Status . }}
+          {{-  warnf "All good: XML file found: %s %i  %s " .Data.Status .Data.ContentLength .Data.ContentType -}}
+          <a class="thumb-link" href="./read">
+            {{ partial "image-detailpage" . }}
+            <div class="link-callout">Read Online</div>
+          </a>
         {{-  end -}}
       {{-  else -}}
-        {{-  errorf "ERROR: No file at %s " $xmlpath }}
-      {{-  end -}}
-      <div class="left-column mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone">
-        <a class="thumb-link" href="./read">
+        {{-  warnf "Be advised: No XML file at %s " $xmlpath }}
+        <div class="thumb-no-link">
           {{ partial "image-detailpage" . }}
-          <div class="link-callout">Read Online</div>
-        </a>
-        {{ if .Params.isDownloadable }}
-        {{partial "download-buttons" .}}
-        {{ end }}
-      </div>
+        </div>
+      {{- end -}}
+      {{ if .Params.isDownloadable }}
+        {{ partial "download-buttons" . }}
+      {{ end }}
+     </div>
       <div class="meta-group mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-9-tablet mdc-layout-grid__cell--span-6-phone">
         <header>
           <h1 class="book-title">{{ .Title }}</h1>
