@@ -4,9 +4,10 @@
   {{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" )}}
     {{-  with .Err }}
       {{-  errorf "%s" . }}
+      {{-  div 0 0  }}
     {{-  else -}}
       <a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF <br>
-        <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
+      <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
       </a>
     {{-  end -}}
   {{-  else -}}
@@ -16,10 +17,11 @@
 {{ if .Params.isDownloadable }}
   {{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
     {{-  with .Err }}
-      {{-  warnf "%s" . }}
+      {{-  errorf "%s" . }}
+      {{-  div 0 0  }}
     {{-  else }}
     <a class="thumb-link" href="{{ $epubpath }}" download><div class="link-callout">Download EPUB<br>
-      <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
+    <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
     </a>
     {{-  end }}
   {{-  else -}}
