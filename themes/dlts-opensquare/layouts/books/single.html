@@ -4,23 +4,28 @@
   <article class="book-full-view mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div class="left-column mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone">
-        {{/*  {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"  .Params.isbn "META-INF/container.xml" -}}  */}}
-      {{- $xmlpath := "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/NOTHINGHERE/META-INF/container.xml" -}}
+        {{  $stringisbn := string .Params.isbn -}}
+        {{- if .Params.isbnforphoto  -}}
+          {{- $stringisbn = .isbnforphoto  -}}
+        {{- end  -}}
+        {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/" $stringisbn "META-INF/container.xml" -}}
+      {{/*  {{- $xmlpath := "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/NOTHINGHERE/META-INF/container.xml" -}}  */}}
+      {{/*  {{-  warnf "xmlpath %s " $xmlpath -}}  */}}
       {{- with resources.GetRemote $xmlpath  (dict "headers" (dict "Content-Type" "application/xml" ) "method" "HEAD" )}}
         {{-  with .Err }}
           {{- errorf "resources.GetRemote failed. Dividing by zero to halt the program. %s %s" $xmlpath .Data.Status -}}
           {{- div 0 0 -}}
         {{-  else -}}
-          {{-  warnf "All good: XML file found: %s %i  %s " .Data.Status .Data.ContentLength .Data.ContentType -}}
+          {{-  warnf "All good: XML file found: %s %s  %s " $xmlpath .Data.Status .Data.ContentType }}
           <a class="thumb-link" href="./read">
-            {{ partial "image-detailpage" . }}
+            {{ partial "image-detailpage" (dict "isbn" $stringisbn)  }}
             <div class="link-callout">Read Online</div>
           </a>
         {{-  end -}}
       {{-  else -}}
         {{-  warnf "Be advised: No XML file at %s " $xmlpath }}
         <div class="thumb-no-link">
-          {{ partial "image-detailpage" . }}
+          {{ partial "image-detailpage" (dict "isbn" $stringisbn)  }}
         </div>
       {{- end -}}
 
