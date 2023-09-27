@@ -10,7 +10,11 @@ publishDir = "docs"
 
 [markup.goldmark.renderer]
   unsafe = true
-      
+
+[security]
+  [security.http]
+    methods = ['(?i)GET|POST|HEAD']
+
 [params]
   shorttitle = "Open Square"
   tagline = "Knowledge without Boundaries"
@@ -33,6 +37,9 @@ publishDir = "docs"
   featured_series_homepage_blurb ="This series explores young people’s day-to-day lives and futures. The volumes consider changes at the intersection of civil and political reform, transformations in employment and education, and the growing presence of digital technologies in all aspects of social, cultural and political life."
   featured_series_path = "/series/connected-youth-and-digital-futures"
   image_server = "https://nyu-opensquare-us.imgix.net/covers/"
+  featured_book_isbn = "9781479819386"
+  # other_featured_books_isbn will be sorted by date.
+  other_featured_books_isbn = ["9781479866823", "9781479800124", "9780814743706", "9781479819492","9781479811175","9781479819164" ]
 
 [taxonomies]
   subject = "subjects"
@@ -54,7 +61,9 @@ publishDir = "docs"
     mediaType = "text/html"
     notAlternative = false
 
-
+[mediaTypes]
+  [mediaTypes.'application/epub+zip']
+    suffixes = ['epub']
 
 [menu]
 
