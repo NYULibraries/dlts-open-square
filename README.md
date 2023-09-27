@@ -25,12 +25,13 @@ If refreshing the content:
 * Clone the JSON found here:  https://github.com/NYULibraries/dlts-epub-metadata
 
 * Run a script to transform that JSON to .md files
+cd _setup_scripts
 sh ./processSupaduJson.sh ../../dlts-epub-metadata
 
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
  * hugo --enableGitInfo --cleanDestinationDir --ignoreCache -e local
-  * hugo --cleanDestinationDir -e dev
-  * hugo --cleanDestinationDir -e stage
+  * hugo --cleanDestinationDir --ignoreCache -e dev
+  * hugo --cleanDestinationDir --ignoreCache -e stage
   * hugo --enableGitInfo --cleanDestinationDir  --ignoreCache -e production
   * hugo --enableGitInfo --cleanDestinationDir  --ignoreCache --minify -e production
 
