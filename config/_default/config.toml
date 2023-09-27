@@ -39,7 +39,7 @@ publishDir = "docs"
   image_server = "https://nyu-opensquare-us.imgix.net/covers/"
   featured_book_isbn = "9781479819386"
   # other_featured_books_isbn will be sorted by date.
-  other_featured_books_isbn = ["9780814784273", "9781479810628", "9781479829729", "9781479819492","9781479811175","9781479819164" ]
+  other_featured_books_isbn = ["9781479866823", "9781479800124", "9780814743706", "9781479819492","9781479811175","9781479819164" ]
 
 [taxonomies]
   subject = "subjects"
