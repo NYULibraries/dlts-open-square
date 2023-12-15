@@ -6,7 +6,12 @@
         {{ with .Params.subtitle }}
         <div class="book-subtitle">{{ . }}</div>{{ end }}
       </a></div>
-    <div class="author">{{ .Params.author }}</div>
+    <div class="author">
+      {{- range $i, $e :=  sort .Params.contributors "order" }}
+      {{- if $i -}}, {{ end -}}
+        {{ .name -}}{{ end }}
+    </div>
+
     <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
     {{ if .Params.series }}
     <div class="tags"><span>Series:</span>
