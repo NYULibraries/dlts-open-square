@@ -9,9 +9,8 @@
     <div class="author">
       {{- range $i, $e :=  sort .Params.contributors "order" }}
       {{- if $i -}}, {{ end -}}
-        {{ .name -}}{{ end }}
+        {{ .name -}}{{ end -}}
     </div>
-
     <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
     {{ if .Params.series }}
     <div class="tags"><span>Series:</span>
