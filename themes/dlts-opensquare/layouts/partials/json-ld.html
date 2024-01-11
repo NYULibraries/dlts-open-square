@@ -7,9 +7,9 @@
       "@type": "Book",
       "bookFormat": "https://schema.org/EBook",
       "abridged": "https://schema.org/False",
-      "isbn": "{{ .Params.isbn }}",
+      "isbn": "{{ .Params.openSquareId }}",
       "datePublished": "{{ dateFormat "2006-01-02" .Date }}",
-      {{- $stringisbn := string .Params.isbn  }}
+      {{- $stringisbn := string .Params.openSquareId  }}
       {{- if .Params.isbnforphoto  -}}
       {{- $stringisbn = string .Params.isbnforphoto  -}}
       {{- end  -}}
