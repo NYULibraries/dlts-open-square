@@ -1,8 +1,4 @@
-{{- $stringisbn := string .Params.openSquareId  -}}
-{{- if .Params.isbnforphoto  -}}
-{{- $stringisbn = string .Params.isbnforphoto  -}}
-{{- end  -}}
-{{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  -}}
+{{- $imagepath := ".jpg" | printf "%s%s" .Params.openSquareId  | printf  "%s%s" .Site.Params.image_server  -}}
 
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
   <a aria-hidden="true" tabindex="-1" href="{{ .RelPermalink  }}">
