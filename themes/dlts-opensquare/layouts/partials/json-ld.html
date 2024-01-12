@@ -8,7 +8,7 @@
       "bookFormat": "https://schema.org/EBook",
       "abridged": "https://schema.org/False",
       "isbn": "{{ .Params.openSquareId }}",
-      "datePublished": "{{ dateFormat "2006-01-02" .Date }}",
+      "datePublished": "{{ dateFormat "2006-01-02" .Params.dateBook }}",
       {{- $imagepath := ".jpg" | printf "%s%s" .Params.openSquareId  | printf  "%s%s" .Site.Params.image_server  }}
       "thumbnailUrl": "{{-  $imagepath }}",
       "potentialAction": {

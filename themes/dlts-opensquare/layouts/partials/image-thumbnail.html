@@ -1,6 +1,6 @@
 {{- $imagepath := ".jpg" | printf "%s%s" .Params.openSquareId  | printf  "%s%s" .Site.Params.image_server  -}}
 
-<div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
+<div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Params.dateBook }}">
   <a aria-hidden="true" tabindex="-1" href="{{ .RelPermalink  }}">
 <picture>
   <source media="(min-width: 720px)"
