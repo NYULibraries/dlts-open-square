@@ -11,7 +11,7 @@
       {{- if $i -}}, {{ end -}}
         {{ .name -}}{{ end -}}
     </div>
-    <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
+    <div class="pubdate"><span>Published:</span> {{ .Params.yearBook }}</div>
     {{ if .Params.series }}
     <div class="tags"><span>Series:</span>
       <ul>{{ range .Params.series }}
