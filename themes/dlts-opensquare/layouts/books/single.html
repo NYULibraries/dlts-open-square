@@ -59,7 +59,7 @@
           <div class="isbn"><span>ISBN:</span> {{ .Params.openSquareId }}</div>
           <div class="citation_link"><span>Cite:</span> {{with .Params.citation_link }}{{ . }}{{ end }}</div>
           <div class="number_of_pages"><span>Number of pages:</span> {{ .Params.pages }}</div>
-          <div class="buy-the-book"><span>Buy the book:</span> {{with .Params.nyu_press_website_buy_the_book_url }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
+          <div class="buy-the-book"><span>Buy the book:</span> {{with .Params.pressUrl }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
         </div>
         {{ if .Params.descriptionHTML }}
         <div class="description">{{ .Params.descriptionHTML | safeHTML }}</div>
