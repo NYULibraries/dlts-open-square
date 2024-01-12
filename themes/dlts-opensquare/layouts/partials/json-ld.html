@@ -30,8 +30,14 @@
       "name":"Open Square: New York University Press",
       "url":"https://nyupress.org/"
     },
-    "author": {
+    "author": [
+      {{- range $i, $e :=  sort .Params.contributors "order" -}}
+      {{- if $i -}},
+      {{ end -}}
+      {
         "@type": "Person",
-        "name": "{{ .Params.author }}"
-    }
+        "name": "{{ .name }}"
+      }
+      {{- end -}}]
   }
+
