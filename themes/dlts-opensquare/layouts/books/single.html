@@ -65,8 +65,8 @@
           <div class="number_of_pages"><span>Number of pages:</span> {{ .Params.pages }}</div>
           <div class="buy-the-book"><span>Buy the book:</span> {{with .Params.pressUrl }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
         </div>
-        {{ if .Params.descriptionHTML }}
-        <div class="description">{{ .Params.descriptionHTML | safeHTML }}</div>
+        {{ if .Params.descriptionHtml }}
+        <div class="description">{{ .Params.descriptionHtml | safeHTML }}</div>
         {{ else }}
         <div class="description">{{ .Params.description }}</div>
         {{ end }}
