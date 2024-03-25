@@ -1,6 +1,6 @@
 ## production environment
 
-baseURL = "https://opensquare.nyupress.org"
+baseURL = "https://opensquare.nyupress.org/"
 googleAnalytics = "UA-51495518-1"
 [params]
 	sassOutputFormat = "compressed"
