@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# cd _setup_scripts
 #sh ./processSupaduJson.sh ../../dlts-epub-metadata
 
 if [ -d "$1" ]
