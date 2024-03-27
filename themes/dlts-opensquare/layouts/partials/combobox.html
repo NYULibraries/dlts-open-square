@@ -59,7 +59,7 @@
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               if (newValue == "all") {
-                window.location.href = {{.Site.BaseURL}} + "/books/";
+                window.location.href = {{ urls.AbsURL "books" }};
               } else {
                 window.location.href = {{.Site.BaseURL}} + newValue;
               }
