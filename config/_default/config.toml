@@ -4,8 +4,6 @@ title = "Open Square"
 
 theme = ["dlts-opensquare"]
 
-preserveTaxonomyNames = true
-
 publishDir = "docs"
 
 [markup.goldmark.renderer]
