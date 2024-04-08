@@ -54,7 +54,8 @@
           </div>{{ end -}}
           <div class="tags"><span class="label">Subjects:</span>
             {{ range .Params.subjects }}
-              {{- with site.GetPage ( . | urlize)   -}}
+              {{-  $path := path.Join "/subjects" . -}}
+              {{- with site.GetPage $path  -}}
                 <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
               {{ end }}
             {{- end -}}
