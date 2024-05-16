@@ -13,8 +13,6 @@
           {{- $titleforalt =  printf "%s: %s" $titleforalt . -}}
         {{- end  -}}
         {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/" $stringisbn "META-INF/container.xml" -}}
-      {{- /*  {{- $xmlpath := "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/NOTHINGHERE/META-INF/container.xml" -}}  */ -}}
-      {{/*  {{-  warnf "xmlpath %s " $xmlpath -}}  */}}
       {{- with resources.GetRemote $xmlpath  (dict "headers" (dict "Content-Type" "application/xml" ) "method" "HEAD" )}}
         {{-  with .Err }}
           {{- errorf "resources.GetRemote failed. Dividing by zero to halt the program. %s %s" $xmlpath .Data.Status -}}
@@ -27,7 +25,7 @@
           </a>
         {{-  end -}}
       {{-  else -}}
-        {{-  warnf "Be advised: No XML file at %s " $xmlpath }}
+        {{-  warnf "No readium epub for %s " $stringisbn }}
         <div class="thumb-no-link">
           {{ partial "image-detailpage" (dict "isbn" $stringisbn "titleforalt" $titleforalt)  }}
         </div>

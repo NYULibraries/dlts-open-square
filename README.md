@@ -20,7 +20,9 @@ Install Hugo
 
 ## Build
 
-If refreshing the content:
+Hugo contains the original content (in the _content_ directory), and also compiles it into HTML (here, in the _docs_ directory.)
+
+If refreshing the content (pulling it from latest epub metadata):
 
 * Clone the JSON found here:  https://github.com/NYULibraries/dlts-epub-metadata
 
