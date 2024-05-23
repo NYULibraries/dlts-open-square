@@ -3,22 +3,41 @@
 
 {{/* Get remote data. */}}
 {{ $data := dict }}
-{{ $url := "https://gohugo.io/shared/examples/data/books.json" }}
-{{ with resources.GetRemote $url }}
+{{ $docs := dict }}
+{{/* $url := "https://gohugo.io/shared/examples/data/books.json" */}}
+{{ $url := "https://stagediscovery.dlib.nyu.edu/solr/open-square-metadata/select?q=*&rows=1999&indent=on&wt=json" }}
+
+{{/* {{ $opts := dict
+  "method" "post"
+  "body" `{"complete": true}`
+  "headers" (dict  "Content-Type" "application/json")
+}} */}}
+
+{{ $opts := dict
+  "method" "get"
+  "headers" (dict
+    "Content-Type" "application/x-www-form-urlencoded"
+  )
+  "body" `{"complete": true}`
+}}
+
+
+{{ with resources.GetRemote $url $opts }}
   {{ with .Err }}
-    {{ errorf "Unable to get remote resource %s: %s" $url . }}
+    {{ errorf "Case 1: Unable to get remote resource %s: %s" $url . }}
   {{ else }}
-    {{ $data = . | transform.Unmarshal }}
+  {{ warnf "data %s" .Content.response.docs }}
+    {{ $data = .Content | transform.Unmarshal }}
+    {{ $docs = index $data "response" "docs"  }}
   {{ end }}
 {{ else }}
-  {{ errorf "Unable to get remote resource %s" $url }}
+  {{ errorf "Case 2: Unable to get remote resource %s" $url }}
 {{ end }}
 
 {{/* Add pages */}}
-{{ range $data }}
+{{ range $docs }}
   {{/* Add page. */}}
-  {{ $content := dict "mediaType" "text/markdown" "value" .summary }}
-  {{ $dates := dict "date" (time.AsTime .date) }}
+
   {{ $params := dict "author" .author "isbn" .isbn "rating" .rating "subjects" .tags  "bookpubdate" .date  "description_html" .summary}}
   {{ $page := dict
     "content" $content

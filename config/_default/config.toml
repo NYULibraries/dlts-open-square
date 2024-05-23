@@ -12,6 +12,7 @@ publishDir = "docs"
 [security]
   [security.http]
     methods = ['(?i)GET|POST|HEAD']
+    mediaTypes = ['^image/avif$', '^application/vnd\.api\+json$']
 
 [params]
   shorttitle = "Open Square"
@@ -62,6 +63,9 @@ publishDir = "docs"
 [mediaTypes]
   [mediaTypes.'application/epub+zip']
     suffixes = ['epub']
+  [mediaTypes.'application/json']
+    suffixes = ['json']
+
 
 [menu]
 
