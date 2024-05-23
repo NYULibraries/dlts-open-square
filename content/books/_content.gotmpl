@@ -1,5 +1,4 @@
 
-{{/* Test 2: Yes can get one book, but not all the fields */}}
 
 {{/* Get remote data. */}}
 {{ $data := dict }}
@@ -14,7 +13,7 @@
 }} */}}
 
 {{ $opts := dict
-  "method" "get"
+  "method" "post"
   "headers" (dict
     "Content-Type" "application/x-www-form-urlencoded"
   )
@@ -26,8 +25,9 @@
   {{ with .Err }}
     {{ errorf "Case 1: Unable to get remote resource %s: %s" $url . }}
   {{ else }}
-  {{ warnf "data %s" .Content.response.docs }}
     {{ $data = .Content | transform.Unmarshal }}
+    {{ $t := index $data "response" "docs" 0 "author"}}
+    {{ warnf "t %s" $t}}
     {{ $docs = index $data "response" "docs"  }}
   {{ end }}
 {{ else }}
@@ -38,15 +38,15 @@
 {{ range $docs }}
   {{/* Add page. */}}
 
-  {{ $params := dict "author" .author "isbn" .isbn "rating" .rating "subjects" .tags  "bookpubdate" .date  "description_html" .summary}}
+  {{ $params :=  . }}
   {{ $page := dict
-    "content" $content
+    "title" .title
     "bookpubdate" "2011"
     "date" .date
     "kind" "page"
     "params" $params
-    "path" .title
-    "title" .title
+    "path" .identifier
+    "isbn" .identifier
   }}
   {{ $.AddPage $page }}
 {{ end }}
