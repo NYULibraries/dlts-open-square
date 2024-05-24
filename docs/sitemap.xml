@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://opensquare.nyupress.org/books/</loc>
+    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/books/9780814708354/</loc>
+    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/history/</loc>
+    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/</loc>
+    <lastmod>2023-03-30T13:46:42-04:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/</loc>
+    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814753460/</loc>
     <priority>0</priority>
   </url><url>
@@ -35,6 +50,8 @@
     <loc>https://opensquare.nyupress.org/books/9781479888900/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/african-american-studies/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814769270/</loc>
     <priority>0</priority>
   </url><url>
@@ -62,8 +79,12 @@
     <loc>https://opensquare.nyupress.org/books/9780814790175/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/american-studies/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479896059/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/anthropology/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814769096/</loc>
     <priority>0</priority>
@@ -73,6 +94,8 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479834372/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/asian-american-studies/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814739105/</loc>
     <priority>0</priority>
@@ -113,8 +136,6 @@
     <loc>https://opensquare.nyupress.org/books/9780814771730/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>https://opensquare.nyupress.org/books/</loc>
-  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814759141/</loc>
     <priority>0</priority>
   </url><url>
@@ -131,9 +152,6 @@
     <priority>0</priority>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814723715/</loc>
-    <priority>0</priority>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/books/9780814708354/</loc>
     <priority>0</priority>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814744871/</loc>
@@ -187,6 +205,8 @@
     <loc>https://opensquare.nyupress.org/series/connected-youth-and-digital-futures/</loc>
     <lastmod>2023-03-29T18:50:36-04:00</lastmod>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/criminology/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479819386/</loc>
     <priority>0</priority>
   </url><url>
@@ -220,6 +240,8 @@
     <loc>https://opensquare.nyupress.org/books/9781479802340/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/disability-studies/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479811908/</loc>
     <priority>0</priority>
   </url><url>
@@ -229,6 +251,8 @@
     <loc>https://opensquare.nyupress.org/books/9780814760239/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/education/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814762622/</loc>
     <priority>0</priority>
   </url><url>
@@ -237,6 +261,8 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814723425/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/environmental-studies/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479812516/</loc>
     <priority>0</priority>
@@ -283,6 +309,8 @@
     <loc>https://opensquare.nyupress.org/books/9780814790793/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/health--medicine/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814769423/</loc>
     <priority>0</priority>
   </url><url>
@@ -316,6 +344,8 @@
     <loc>https://opensquare.nyupress.org/books/9780814786123/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/jewish-studies/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479819454/</loc>
     <priority>0</priority>
   </url><url>
@@ -327,6 +357,14 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/subjects/latino-a-studies/</loc>
     <lastmod>2022-05-17T18:21:05-04:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/latino%5Ca-studies/</loc>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/law/</loc>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/lgbtq--sexuality/</loc>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/literature--literary-studies/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814770221/</loc>
     <priority>0</priority>
@@ -348,6 +386,8 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814790168/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/media--technology/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814788431/</loc>
     <priority>0</priority>
@@ -376,14 +416,13 @@
     <loc>https://opensquare.nyupress.org/books/9781479882281/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/new-york-city--regional-interest/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479800575/</loc>
     <priority>0</priority>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814765029/</loc>
     <priority>0</priority>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/</loc>
-    <lastmod>2023-03-30T13:46:42-04:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814739280/</loc>
     <priority>0</priority>
@@ -406,8 +445,12 @@
     <loc>https://opensquare.nyupress.org/books/9780814785102/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/politics/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814763223/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/psychology/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814769447/</loc>
     <priority>0</priority>
@@ -426,6 +469,8 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814790984/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/religion/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814721100/</loc>
     <priority>0</priority>
@@ -460,11 +505,10 @@
     <loc>https://opensquare.nyupress.org/books/9781479843404/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/sociology/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814717394/</loc>
     <priority>0</priority>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/</loc>
-    <lastmod>2022-05-17T18:21:05-04:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814763179/</loc>
     <priority>0</priority>
@@ -585,6 +629,8 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814759073/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/womens--gender-studies/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814724033/</loc>
     <priority>0</priority>
