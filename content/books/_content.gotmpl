@@ -3,14 +3,7 @@
 {{/* Get remote data. */}}
 {{ $data := dict }}
 {{ $docs := dict }}
-{{/* $url := "https://gohugo.io/shared/examples/data/books.json" */}}
 {{ $url := "https://stagediscovery.dlib.nyu.edu/solr/open-square-metadata/select?q=*&rows=1999&indent=on&wt=json" }}
-
-{{/* {{ $opts := dict
-  "method" "post"
-  "body" `{"complete": true}`
-  "headers" (dict  "Content-Type" "application/json")
-}} */}}
 
 {{ $opts := dict
   "method" "post"
@@ -20,14 +13,11 @@
   "body" `{"complete": true}`
 }}
 
-
 {{ with resources.GetRemote $url $opts }}
   {{ with .Err }}
     {{ errorf "Case 1: Unable to get remote resource %s: %s" $url . }}
   {{ else }}
     {{ $data = .Content | transform.Unmarshal }}
-    {{ $t := index $data "response" "docs" 0 "author"}}
-    {{ warnf "t %s" $t}}
     {{ $docs = index $data "response" "docs"  }}
   {{ end }}
 {{ else }}
@@ -37,11 +27,19 @@
 {{/* Add pages */}}
 {{ range $docs }}
   {{/* Add page. */}}
-
-  {{ $params :=  . }}
+  {{ $subjects := split .subject "/" }}
+  {{ $subjects = collections.Apply $subjects "strings.Trim" "." " " }}
+  {{ $paramsAll :=  . }}
+  {{ $paramsUpdate :=  dict
+    "bookpubdate" .date
+    "date" .date
+    "isbn" .identifier
+    "citation_link" .handle
+    "subjects" $subjects
+  }}
+  {{ $params :=  merge $paramsAll $paramsUpdate }}
   {{ $page := dict
     "title" .title
-    "bookpubdate" "2011"
     "date" .date
     "kind" "page"
     "params" $params
