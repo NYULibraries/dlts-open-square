@@ -11,8 +11,7 @@ It uses Hugo (https://gohugo.io/), the world’s fastest framework for building 
 
 ## Installation
 
-Install JQ (if you need to refresh data source)
-  * brew install jq
+Install GoLang
 
 Install Hugo
   * brew install hugo
@@ -20,15 +19,7 @@ Install Hugo
 
 ## Build
 
-Hugo contains the original content (in the _content_ directory), and also compiles it into HTML (here, in the _docs_ directory.)
 
-If refreshing the content (pulling it from latest epub metadata):
-
-* Clone the JSON found here:  https://github.com/NYULibraries/dlts-epub-metadata
-
-* Run a script to transform that JSON to .md files
-cd _setup_scripts
-sh ./processSupaduJson.sh ../../dlts-epub-metadata
 
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
  * hugo --enableGitInfo --cleanDestinationDir --ignoreCache -e local
