@@ -2,21 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://opensquare.nyupress.org/books/</loc>
-    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/books/9780814708354/</loc>
-    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/history/</loc>
-    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/</loc>
-    <lastmod>2023-03-30T13:46:42-04:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/</loc>
-    <lastmod>2022-12-13T15:53:19-05:00</lastmod>
-  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814753460/</loc>
     <priority>0</priority>
   </url><url>
@@ -136,6 +121,8 @@
     <loc>https://opensquare.nyupress.org/books/9780814771730/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/books/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814759141/</loc>
     <priority>0</priority>
   </url><url>
@@ -152,6 +139,9 @@
     <priority>0</priority>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814723715/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/books/9780814708354/</loc>
     <priority>0</priority>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814744871/</loc>
@@ -317,6 +307,8 @@
     <loc>https://opensquare.nyupress.org/books/9780814745045/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/history/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814784600/</loc>
     <priority>0</priority>
   </url><url>
@@ -424,6 +416,9 @@
     <loc>https://opensquare.nyupress.org/books/9780814765029/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/</loc>
+    <lastmod>2023-03-30T13:46:42-04:00</lastmod>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814739280/</loc>
     <priority>0</priority>
   </url><url>
@@ -509,6 +504,9 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814717394/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/</loc>
+    <lastmod>2022-05-17T18:21:05-04:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814763179/</loc>
     <priority>0</priority>
