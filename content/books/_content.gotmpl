@@ -3,10 +3,10 @@
 {{/* Get remote data. */}}
 {{ $data := dict }}
 {{ $docs := dict }}
-{{ $url := "https://stagediscovery.dlib.nyu.edu/solr/open-square-metadata/select?q=*&rows=1999&indent=on&wt=json" }}
+{{ $url := "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press" }}
 
 {{ $opts := dict
-  "method" "post"
+  "method" "get"
   "headers" (dict
     "Content-Type" "application/x-www-form-urlencoded"
   )
