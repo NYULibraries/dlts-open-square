@@ -30,9 +30,9 @@
           {{ partial "image-detailpage" (dict "isbn" $stringisbn "titleforalt" $titleforalt)  }}
         </div>
       {{- end -}}
-
+ {{/*  Download Buttons -- These called the linked asset and retrieve header info only, to determine existence and size
       {{ partial "download-buttons" . }}
-
+ */}}
       </div>
       <div class="meta-group mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-9-tablet mdc-layout-grid__cell--span-6-phone">
         <header>
@@ -45,15 +45,22 @@
           {{- with .Params.contributors -}}
             {{ $contribs := . | transform.Unmarshal -}}
             {{- /*  https://www.feliciano.tech/blog/groupby-for-data-files-in-hugo/  */ -}}
-            {{ $contrubutorRoleCodes := slice }}
+            {{ $contrubutorRoleCodes := slice}}
             {{ range $contribs }}
-              {{ $contrubutorRoleCodes = $contrubutorRoleCodes | append .contrubutorRole.role }}
+              {{ $contrubutorRoleCodes = $contrubutorRoleCodes | append  .contrubutorRole.code   }}
             {{ end }}
             {{ $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
-
+            {{ range $contrubutorRoleCodes }}
+              {{ range where $contribs ".contrubutorRole.code" . }}
+              <span class="rolename">{{ .contrubutorRole.name }}</span>
+               {{ .contributorName -}}
+              {{ end }}
+            {{- end }}
+            {{/*  <hr>
             {{ range sort $contribs "contributorOrder" -}}
               {{ .contrubutorRole.name }} {{ .contributorName -}}
-            {{ end -}}</div>
+            {{ end -}}  */}}
+          </div>
           {{- end }}
           <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
           {{ if .Params.series }}
