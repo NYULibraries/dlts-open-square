@@ -26,25 +26,49 @@
 
 {{/* Add pages */}}
 {{ range $docs }}
-  {{/* Add page. */}}
-  {{ $subjects := split .subject "/" }}
-  {{ $subjects = collections.Apply $subjects "strings.Trim" "." " " }}
-  {{ $paramsAll :=  . }}
-  {{ $paramsUpdate :=  dict
-    "bookpubdate" .date
-    "date" .date
-    "isbn" .identifier
-    "citation_link" .handle
-    "subjects" $subjects
-  }}
-  {{ $params :=  merge $paramsAll $paramsUpdate }}
-  {{ $page := dict
-    "title" .title
-    "date" .date
-    "kind" "page"
-    "params" $params
-    "path" .identifier
-    "isbn" .identifier
-  }}
-  {{ $.AddPage $page }}
+  {{ $uri := .uri  }}
+  {{ warnf "URI is :  %s" .uri }}
+    {{/* Get remote data for each book */}}
+    {{ $opts := dict
+      "method" "get"
+      "headers" (dict
+        "Content-Type" "application/x-www-form-urlencoded"
+      )
+      "body" `{"complete": true}`
+    }}
+
+    {{ with resources.GetRemote $uri $opts }}
+      {{ with .Err }}
+        {{ errorf "Case 1: Unable to get remote resource %s: %s" $uri . }}
+      {{ else }}
+        {{ $data := .Content | transform.Unmarshal }}
+        {{ $title := index $data "title"   }}
+        {{ $date := index $data "dateBook"   }}
+        {{ $identifier := index $data "openSquareId"   }}
+        {{ warnf "Good! :  %s %s %s" $title $date $identifier }}
+
+        {{ $subjects := index $data "subjects"  }}
+
+        {{ $paramsAll :=  $data }}
+        {{ $paramsUpdate :=  dict
+          "bookpubdate" $date
+          "date" $date
+          "isbn" $identifier
+          "citation_link" (index $data "handle")
+          "subjects" $subjects
+        }}
+        {{ $params :=  merge $paramsAll $paramsUpdate }}
+        {{ $page := dict
+          "title" $title
+          "date" $date
+          "kind" "page"
+          "params" $params
+          "path" $identifier
+          "isbn" $identifier
+        }}
+        {{ $.AddPage $page }}
+      {{ end }}
+    {{ else }}
+      {{ errorf "Case 2: Unable to get remote resource %s" $uri }}
+    {{ end }}
 {{ end }}
