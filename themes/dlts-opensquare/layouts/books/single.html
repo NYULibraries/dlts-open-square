@@ -41,7 +41,13 @@
           <h2 class="book-subtitle">{{ . }}</h2>{{ end }}
         </header>
         <div class="meta">
-          <div class="author">{{ .Params.author }}</div>
+          <div class="author">
+          {{- with .Params.contributors -}}
+          {{ $contribs := . | transform.Unmarshal -}}
+          {{ range sort $contribs "contributorOrder" -}}
+            {{ .contributorName -}}
+          {{ end -}}</div>
+          {{- end }}
           <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
           {{ if .Params.series }}
           <div class="tags"><span>Series:</span>
