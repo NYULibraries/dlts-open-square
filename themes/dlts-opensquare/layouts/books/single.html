@@ -43,10 +43,17 @@
         <div class="meta">
           <div class="author">
           {{- with .Params.contributors -}}
-          {{ $contribs := . | transform.Unmarshal -}}
-          {{ range sort $contribs "contributorOrder" -}}
-            {{ .contributorName -}}
-          {{ end -}}</div>
+            {{ $contribs := . | transform.Unmarshal -}}
+            {{- /*  https://www.feliciano.tech/blog/groupby-for-data-files-in-hugo/  */ -}}
+            {{ $contrubutorRoleCodes := slice }}
+            {{ range $contribs }}
+              {{ $contrubutorRoleCodes = $contrubutorRoleCodes | append .contrubutorRole.role }}
+            {{ end }}
+            {{ $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
+
+            {{ range sort $contribs "contributorOrder" -}}
+              {{ .contrubutorRole.name }} {{ .contributorName -}}
+            {{ end -}}</div>
           {{- end }}
           <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
           {{ if .Params.series }}
