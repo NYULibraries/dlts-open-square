@@ -48,7 +48,7 @@
         {{ warnf "Good! :  %s %s %s" $title $date $identifier }}
 
         {{ $subjects := index $data "subjects"  }}
-
+        {{ $contributors := (index $data "contributors" ) | transform.Unmarshal }}
         {{ $paramsAll :=  $data }}
         {{ $paramsUpdate :=  dict
           "bookpubdate" $date
