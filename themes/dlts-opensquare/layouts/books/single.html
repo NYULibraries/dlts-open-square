@@ -80,12 +80,12 @@
             {{- end -}}
           </div>
           <div class="isbn"><span>ISBN:</span> {{ .Params.isbn }}</div>
-          <div class="citation_link"><span>Cite:</span> {{with .Params.citation_link }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
+          <div class="citation_link"><span>Cite:</span> {{with .Params.handle }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
           <div class="number_of_pages"><span>Number of pages:</span> {{ .Params.pages }}</div>
           <div class="buy-the-book"><span>Buy the book:</span> {{with .Params.pressUrl }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
         </div>
-        {{ if .Params.description_html }}
-        <div class="description">{{ .Params.description_html | safeHTML }}</div>
+        {{ if .Params.descriptionHtml }}
+        <div class="description">{{ .Params.descriptionHtml | safeHTML }}</div>
         {{ else }}
         <div class="description">{{ .Params.description }}</div>
         {{ end }}
