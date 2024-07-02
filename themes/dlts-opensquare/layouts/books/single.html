@@ -43,20 +43,19 @@
         <div class="meta">
           <div class="author">
           {{- with .Params.contributors -}}
-            {{ $contribs := . | transform.Unmarshal -}}
+            {{- $contribs := . | transform.Unmarshal -}}
             {{- /*  https://www.feliciano.tech/blog/groupby-for-data-files-in-hugo/  */ -}}
-            {{ $contrubutorRoleCodes := slice}}
-            {{ range $contribs }}
-              {{ $contrubutorRoleCodes = $contrubutorRoleCodes | append  .contrubutorRole.code   }}
-            {{ end }}
-            {{ $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
-            {{ range $contrubutorRoleCodes }}
-              {{ range where $contribs ".contrubutorRole.code" . }}
-              <span class="rolename">{{ .contrubutorRole.name }}</span>
-               {{ .contributorName -}}
-              {{ end }}
+            {{- $contrubutorRoleCodes := slice}}
+            {{- range $contribs }}
+              {{- $contrubutorRoleCodes = $contrubutorRoleCodes | append  .contrubutorRole.code   }}
             {{- end }}
-            {{/*  <hr>
+            {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
+            {{- range $contrubutorRoleCodes }}
+              {{- range where $contribs ".contrubutorRole.code" . }}
+              <span class="rolename">{{ .contrubutorRole.name }}</span> {{ .contributorName -}}
+              {{- end }}
+            {{- end -}}
+            {{- /*  <hr>
             {{ range sort $contribs "contributorOrder" -}}
               {{ .contrubutorRole.name }} {{ .contributorName -}}
             {{ end -}}  */}}
