@@ -62,7 +62,8 @@
             {{ end -}}  */}}
           </div>
           {{- end }}
-          <div class="pubdate"><span>Published:</span> {{ .Params.bookpubdate }}</div>
+          {{ $t := time.AsTime .Params.bookpubdate -}}
+          <div class="pubdate"><span>Published:</span> {{ time.Format "2006" $t }}</div>
           {{ if .Params.series }}
           <div class="tags"><span>Series:</span>
             <ul>{{ range .Params.series }}
