@@ -33,9 +33,16 @@
     "provider": {
       "name":"Open Square: New York University Press",
       "url":"https://nyupress.org/"
-    },
-    "author": {
-        "@type": "Person",
-        "name": "{{ .Params.author }}"
     }
+  {{- with .Params.contributors -}}
+    ,
+    "author": [
+    {{- $contribs := . | transform.Unmarshal -}}
+    {{- range $i, $e := $contribs }}
+      {{- if $i -}},{{ end }}
+      { "@type": "Person",
+       "name": "{{ index $e "contributorName" }}" }
+    {{- end }}
+    ]
+  {{ end }}
   }
