@@ -51,8 +51,12 @@
             {{- end }}
             {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
             {{- range $contrubutorRoleCodes }}
-              {{- range where $contribs ".contrubutorRole.code" . }}
-              <span class="rolename">{{ .contrubutorRole.name }}</span> {{ .contributorName -}}
+              {{- $thisgroup := where $contribs ".contrubutorRole.code" . }}
+              <span class="rolename">{{ index $thisgroup 0 "contrubutorRole" "name" }}</span>
+              {{- range $i, $e := $thisgroup }}
+              {{ $e.contributorName -}}
+              {{- /*  Add connectors to the printout of the list   */ -}}
+              {{- if eq ( sub ($thisgroup | len ) 2 ) $i }} and {{ else if ne ( sub ($thisgroup | len ) 1 ) $i }}, {{ end }}
               {{- end }}
             {{- end -}}
             {{- /*  <hr>
