@@ -1,0 +1,51 @@
+
+
+{{/* Get remote data. */}}
+{{ $data := dict }}
+{{ $docs := dict }}
+{{ $url := "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press" }}
+
+{{ $opts := dict
+  "method" "post"
+  "headers" (dict
+    "Content-Type" "application/x-www-form-urlencoded"
+  )
+  "body" `{"complete": true}`
+}}
+
+{{ with resources.GetRemote $url $opts }}
+  {{ with .Err }}
+    {{ errorf "Case 1: Unable to get remote resource %s: %s" $url . }}
+  {{ else }}
+    {{ $data = .Content | transform.Unmarshal }}
+    {{ $docs = index $data "response" "docs"  }}
+  {{ end }}
+{{ else }}
+  {{ errorf "Case 2: Unable to get remote resource %s" $url }}
+{{ end }}
+
+{{/* Add pages */}}
+{{ range $docs }}
+  {{/* Add page. */}}
+  {{ $subjects := split .subject "/" }}
+  {{ $subjects = collections.Apply $subjects "strings.Trim" "." " " }}
+  {{ $paramsAll :=  . }}
+  {{ $paramsUpdate :=  dict
+    "bookpubdate" .date
+    "date" .date
+    "isbn" .identifier
+    "citation_link" .handle
+    "subjects" $subjects
+  }}
+  {{ $params :=  merge $paramsAll $paramsUpdate }}
+  {{ $page := dict
+    "title" .title
+    "date" .date
+    "kind" "page"
+    "params" $params
+    "path" .identifier
+    "isbn" .identifier
+  }}
+  {{ $.AddPage $page }}
+  */}}
+{{ end }}

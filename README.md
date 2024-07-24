@@ -25,7 +25,8 @@ To build: use the hugo command, with the -e (environment) option, and one of the
  * hugo --enableGitInfo --cleanDestinationDir --ignoreCache -e local
   * hugo --cleanDestinationDir --ignoreCache -e dev
   * hugo --cleanDestinationDir --ignoreCache -e stage
-  * hugo --enableGitInfo --cleanDestinationDir  --ignoreCache -e production
+  * hugo --enableGitInfo --cleanDestinationDir -e production
+  * hugo --enableGitInfo --cleanDestinationDir --ignoreCache -e production
   * hugo --enableGitInfo --cleanDestinationDir  --ignoreCache --minify -e production
 
 
