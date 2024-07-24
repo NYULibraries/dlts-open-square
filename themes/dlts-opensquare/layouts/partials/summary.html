@@ -6,7 +6,9 @@
         {{ with .Params.subtitle }}
         <div class="book-subtitle">{{ . }}</div>{{ end }}
       </a></div>
-    <div class="author">{{ .Params.author }}</div>
+    {{ with .Params.contributors -}}
+      {{ partial "contributors.html" . }}
+    {{- end }}
     {{ $t := time.AsTime .Params.bookpubdate -}}
     <div class="pubdate"><span>Published:</span> {{ time.Format "2006" $t }}</div>
     {{ if .Params.series }}

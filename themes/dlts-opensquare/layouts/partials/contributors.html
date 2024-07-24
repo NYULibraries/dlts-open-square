@@ -1,0 +1,23 @@
+<div class="author">
+  {{- $contribs := . | transform.Unmarshal -}}
+  {{- /*  https://www.feliciano.tech/blog/groupby-for-data-files-in-hugo/  */ -}}
+  {{- $contrubutorRoleCodes := slice}}
+  {{- range $contribs }}
+    {{- $contrubutorRoleCodes = $contrubutorRoleCodes | append  .contrubutorRole.code   }}
+  {{- end }}
+  {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
+  {{- range $contrubutorRoleCodes }}
+    {{- $thisgroup := where $contribs ".contrubutorRole.code" . }}
+    <span class="rolename">{{ index $thisgroup 0 "contrubutorRole" "name" }}</span>
+    {{- range $i, $e := $thisgroup }}
+      {{ $e.contributorName -}}
+      {{- /*  Add connectors to the printout of the list   */ -}}
+      {{- if eq ( sub ($thisgroup | len ) 2 ) $i }} and {{ else if ne ( sub ($thisgroup | len ) 1 ) $i }}, {{ end }}
+    {{- end }}
+  {{- end }}
+</div>
+  {{- /* TODO: sort the contributors by their given order <hr>
+  {{ range sort $contribs "contributorOrder" -}}
+    {{ .contrubutorRole.name }} {{ .contributorName -}}
+  {{ end -}}  */ -}}
+
