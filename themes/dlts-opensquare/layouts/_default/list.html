@@ -1,10 +1,3 @@
-{{ partial "header.html" . }}
-	<main>
-		<h1 class="page-title">A hugo list: default view</h1>
-		{{ $paginator := .Paginate (where .Data.Pages "Type" "books") }}
-		{{ range $paginator.Pages }}
-			{{ partial "summary.html" . }}
-		{{ end }}
-		{{ partial "pagination.html" . }}
-	</main>
-{{ partial "footer.html" . }}
+{{- /*
+No default list needed.
+*/ -}}
