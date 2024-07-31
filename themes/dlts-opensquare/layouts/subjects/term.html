@@ -1,9 +1,10 @@
 {{ partial "header.html" . }}
   <main id="main-content">
   <h1 class="page-title sr-only" >{{.Data.Singular}}: {{ .Page.Title  }}</h1>
-  {{ partial "combobox.html" . }}
+
   <div class="item-count">{{ .Pages | len }} books</div>
-     {{ .Content }}
+  {{ partial "combobox.html" . }}
+    {{ .Content }}
      <div class="mdc-layout-grid">
        <div class="mdc-layout-grid__inner">
       {{ range .Pages}}

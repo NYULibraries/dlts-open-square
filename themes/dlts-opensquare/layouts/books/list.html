@@ -1,8 +1,8 @@
 {{ partial "header.html" . }}
 <main id="main-content">
   <h1 class="page-title sr-only">All Books</h1>
-  {{ partial "combobox.html" . }}
-  <div class="item-count">{{ .Pages | len }} books</div>
+    <div class="item-count">{{ .Pages | len }} books</div>
+    {{ partial "combobox.html" . }}
   {{ .Content }}
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
