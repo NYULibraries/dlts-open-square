@@ -1,37 +1,32 @@
 {{- /*
   Here is a partial that is called by the books/single.html template.
-  Here we test the book-specific "isDownloadable" flag; if true, check remote resources for the presence of needed files: PDFs and downloadable EPUBs, and display the buttons accordingly.
+  Here we check remote resources for the presence of needed files: PDFs and downloadable EPUBs, and display the buttons accordingly.
 */ -}}
 
 {{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
 {{- $epubpath := ".epub"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/epubs/"  -}}
-{{ if .Params.isDownloadable }}
-  {{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" )}}
-    {{-  with .Err }}
-      {{-  errorf "%s" . }}
-      {{/* Force the build to failby dividing by zero -- the fact that errorf doesn't cause the build to fail is a Hugo oddity */}}
-      {{-  div 0 0  }}
-    {{-  else -}}
-      <a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF <br>
-      <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
-      </a>
-    {{-  end -}}
+{{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" )}}
+  {{-  with .Err }}
+    {{-  errorf "%s" . }}
+    {{/* Force the build to failby dividing by zero -- the fact that errorf doesn't cause the build to fail is a Hugo oddity */}}
+    {{-  div 0 0  }}
   {{-  else -}}
-    {{-  warnf "No PDF for %s" .Params.isbn }}
-  {{- end }}
-{{- end }}
-{{ if .Params.isDownloadable }}
-  {{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
-    {{-  with .Err }}
-      {{-  errorf "%s" . }}
-      {{-  div 0 0  }}
-    {{-  else }}
-    <a class="thumb-link" href="{{ $epubpath }}" download><div class="link-callout">Download EPUB<br>
+    <a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF <br>
     <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
     </a>
-    {{-  end }}
-  {{-  else -}}
-    {{-  warnf "No downloadable epub for %s" .Params.isbn }}
-  {{- end }}
-{{ end }}
-
+  {{-  end -}}
+{{-  else -}}
+  {{-  warnf "No PDF for %s" .Params.isbn }}
+{{- end }}
+{{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
+  {{-  with .Err }}
+    {{-  errorf "%s" . }}
+    {{-  div 0 0  }}
+  {{-  else }}
+  <a class="thumb-link" href="{{ $epubpath }}" download><div class="link-callout">Download EPUB<br>
+  <span class="filesize">({{ lang.NumFmt 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
+  </a>
+  {{-  end }}
+{{-  else -}}
+  {{-  warnf "No downloadable epub for %s" .Params.isbn }}
+{{- end }}
