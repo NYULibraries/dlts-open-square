@@ -8,8 +8,14 @@
   {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
   {{- range $contrubutorRoleCodes }}
     {{- $thisgroup := where $contribs ".contrubutorRole.code" . }}
+    {{- $rolename := index $thisgroup 0 "contrubutorRole" "name" }}
+    {{- $rolecode := index $thisgroup 0 "contrubutorRole" "code" }}
+    {{- if eq $rolecode "A01" }}
+      {{- $rolename = "By" }}
+    {{- end }}
+
     <div class="author-group">
-      <span class="rolename">{{ index $thisgroup 0 "contrubutorRole" "name" }}</span>
+      <span class="rolename">{{ $rolename }}</span>
       {{- range $i, $e := $thisgroup }}
         {{ $e.contributorName -}}
         {{- /*  Add connectors to the printout of the list   */ -}}
