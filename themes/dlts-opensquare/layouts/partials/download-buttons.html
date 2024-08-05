@@ -1,7 +1,7 @@
-{{/*
+{{- /*
   Here is a partial that is called by the books/single.html template.
   Here we test the book-specific "isDownloadable" flag; if true, check remote resources for the presence of needed files: PDFs and downloadable EPUBs, and display the buttons accordingly.
-*/}}
+*/ -}}
 
 {{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
 {{- $epubpath := ".epub"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/epubs/"  -}}
