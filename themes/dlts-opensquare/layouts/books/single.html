@@ -43,8 +43,8 @@
           {{ with .Params.contributors -}}
             {{ partial "contributors.html" . }}
           {{- end }}
-          {{ $t := time.AsTime .Params.bookpubdate -}}
-          <div class="pubdate"><span>Published:</span> {{ time.Format "2006" $t }}</div>
+
+          <div class="pubdate"><span>Published:</span> {{ .Params.yearBook}}</div>
           {{ if .Params.series }}
           <div class="tags"><span>Series:</span>
             <ul>{{ range .Params.series }}
