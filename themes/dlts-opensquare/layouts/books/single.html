@@ -20,14 +20,14 @@
         {{-  else -}}
           {{/*  {{-  warnf "All good: XML file found: %s %s  %s " $xmlpath .Data.Status .Data.ContentType }}  */}}
           <a class="thumb-link" href="./read">
-            {{ partial "image-detailpage" (dict "isbn" $stringisbn "titleforalt" $titleforalt)  -}}
+            {{ partial "image-detailpage" (dict "openSquareId" $stringisbn "titleforalt" $titleforalt)  -}}
             <div class="link-callout">Read Online</div>
           </a>
         {{-  end -}}
       {{-  else -}}
         {{-  warnf "No readium epub for %s " $stringisbn -}}
         <div class="thumb-no-link">
-          {{ partial "image-detailpage" (dict "isbn" $stringisbn "titleforalt" $titleforalt)  }}
+          {{ partial "image-detailpage" (dict "openSquareId" $stringisbn "titleforalt" $titleforalt)  }}
         </div>
       {{- end -}}
  {{- /*  Download Buttons -- These called the linked asset and retrieve header info only, to determine existence and size */ -}}
@@ -42,8 +42,7 @@
         <div class="meta">
           {{ with .Params.contributors -}}
             {{ partial "contributors.html" . }}
-          {{- end }}
-
+          {{- end -}}
           <div class="pubdate"><span>Published:</span> {{ .Params.yearBook}}</div>
           {{ if .Params.series }}
           <div class="tags"><span>Series:</span>

@@ -5,16 +5,15 @@
   {{- range $contribs }}
     {{- $contrubutorRoleCodes = $contrubutorRoleCodes | append  .contrubutorRole.code   }}
   {{- end }}
-  {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
-  {{- range $contrubutorRoleCodes }}
-    {{- $thisgroup := where $contribs ".contrubutorRole.code" . }}
+  {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort -}}
+  {{- range $contrubutorRoleCodes -}}
+    {{- $thisgroup := where $contribs ".contrubutorRole.code" . -}}
     {{- $thisgroup = sort $thisgroup ".contributorOrder"  }}
-    {{- $rolename := index $thisgroup 0 "contrubutorRole" "name" }}
-    {{- $rolecode := index $thisgroup 0 "contrubutorRole" "code" }}
+    {{- $rolename := index $thisgroup 0 "contrubutorRole" "name" -}}
+    {{- $rolecode := index $thisgroup 0 "contrubutorRole" "code" -}}
     {{- if eq $rolecode "A01" }}
       {{- $rolename = "By" }}
     {{- end }}
-
     <div class="author-group">
       <span class="rolename">{{ $rolename }}</span>
       {{- range $i, $e := $thisgroup }}
@@ -25,8 +24,3 @@
     </div>
   {{- end }}
 </div>
-  {{- /* TODO: sort the contributors by their given order <hr>
-  {{ range sort $contribs "contributorOrder" -}}
-    {{ .contrubutorRole.name }} {{ .contributorName -}}
-  {{ end -}}  */ -}}
-
