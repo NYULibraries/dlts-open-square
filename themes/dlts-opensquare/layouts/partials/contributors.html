@@ -8,7 +8,7 @@
   {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort }}
   {{- range $contrubutorRoleCodes }}
     {{- $thisgroup := where $contribs ".contrubutorRole.code" . }}
-    {{/*  {{- $thisgroup = sort $thisgroup ".contributorOrder"  }}  */}}
+    {{- $thisgroup = sort $thisgroup ".contributorOrder"  }}
     {{- $rolename := index $thisgroup 0 "contrubutorRole" "name" }}
     {{- $rolecode := index $thisgroup 0 "contrubutorRole" "code" }}
     {{- if eq $rolecode "A01" }}
