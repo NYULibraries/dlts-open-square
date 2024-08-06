@@ -5,7 +5,7 @@
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-8 mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-6-phone">
-                  {{ range where .Site.Pages ".Params.isbn" site.Params.featured_book_isbn }}
+                  {{ range where .Site.Pages ".Params.openSquareId" site.Params.featured_book_isbn }}
                     <article class="mdc-layout-grid__inner featured-book">
                         <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
                           {{ partial "image-thumbnail" . }}
@@ -73,7 +73,7 @@
         <h2 class="section-title">Featured titles</h2>
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-              {{ range first 6 (where .Site.Pages ".Params.isbn" "in" site.Params.other_featured_books_isbn).ByDate.Reverse }}
+              {{ range first 6 (where .Site.Pages ".Params.openSquareId" "in" site.Params.other_featured_books_isbn).ByDate.Reverse }}
                 <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">
                   {{ partial "image-thumbnail" . }}
                 </div>

@@ -1,6 +1,6 @@
 {{ partial "headerreader.html" .  }}
 <div id="main-content" role="main">
   <h1 class="sr-only">{{ .Title }}{{- with .Params.subtitle }} :{{ . }}{{ end }}</h1>
-  <iframe title="{{ .Title }}{{- with .Params.subtitle }} :{{ . }}{{ end }}" class="nyup-iframe" src="{{.Site.Params.pathtoreader}}{{.Params.isbn}}&amp;embedded=true" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" seamless="seamless" frameborder="0" style="width:100vw; height:100%;"></iframe>
+  <iframe title="{{ .Title }}{{- with .Params.subtitle }} :{{ . }}{{ end }}" class="nyup-iframe" src="{{.Site.Params.pathtoreader}}{{.Params.openSquareId}}&amp;embedded=true" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" seamless="seamless" frameborder="0" style="width:100vw; height:100%;"></iframe>
 </div>
 {{ partial "footerreader.html" . }}

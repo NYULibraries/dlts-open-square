@@ -1,4 +1,4 @@
-{{- $imagepath := ".jpg" | printf "%s%s" .isbn  | printf  "%s%s" site.Params.image_server  }}
+{{- $imagepath := ".jpg" | printf "%s%s" .openSquareId  | printf  "%s%s" site.Params.image_server  }}
 <picture>
   <source media="(min-width: 720px)"
     srcset="{{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,

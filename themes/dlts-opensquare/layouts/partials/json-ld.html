@@ -7,11 +7,11 @@
       "@type": "Book",
       "bookFormat": "https://schema.org/EBook",
       "abridged": "https://schema.org/False",
-      "isbn": "{{ .Params.isbn }}",
+      "isbn": "{{ .Params.openSquareId }}",
       "datePublished": "{{ dateFormat "2006-01-02" .Date }}",
-      {{- $stringisbn := string .Params.isbn  }}
-      {{- if .Params.isbnforphoto  -}}
-      {{- $stringisbn = string .Params.isbnforphoto  -}}
+      {{- $stringisbn := string .Params.openSquareId  }}
+      {{- if .Params.openSquareIdforphoto  -}}
+      {{- $stringisbn = string .Params.openSquareIdforphoto  -}}
       {{- end  -}}
       {{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  }}
       "thumbnailUrl": "{{-  $imagepath }}",

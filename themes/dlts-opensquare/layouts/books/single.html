@@ -4,9 +4,9 @@
   <article class="book-full-view mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div class="left-column mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone">
-        {{-  $stringisbn := string .Params.isbn -}}
-        {{- if .Params.isbnforphoto  -}}
-          {{- $stringisbn = .isbnforphoto  -}}
+        {{-  $stringisbn := string .Params.openSquareId -}}
+        {{- if .Params.openSquareIdforphoto  -}}
+          {{- $stringisbn = .openSquareIdforphoto  -}}
         {{- end  -}}
         {{- $titleforalt :=  .Title -}}
         {{- with .Params.subtitle -}}
@@ -60,7 +60,7 @@
               {{ end }}
             {{- end -}}
           </div>
-          <div class="isbn"><span>ISBN:</span> {{ .Params.isbn }}</div>
+          <div class="isbn"><span>ISBN:</span> {{ .Params.openSquareId }}</div>
           <div class="citation_link"><span>Cite:</span> {{with .Params.handle }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
           <div class="number_of_pages"><span>Number of pages:</span> {{ .Params.pages }}</div>
           <div class="buy-the-book"><span>Buy the book:</span> {{with .Params.pressUrl }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>

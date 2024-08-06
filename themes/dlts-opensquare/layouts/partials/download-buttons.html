@@ -3,8 +3,8 @@
   Here we check remote resources for the presence of needed files: PDFs and downloadable EPUBs, and display the buttons accordingly.
 */ -}}
 
-{{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
-{{- $epubpath := ".epub"  | printf  "%s%s" .Params.isbn | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/epubs/"  -}}
+{{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.openSquareId | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
+{{- $epubpath := ".epub"  | printf  "%s%s" .Params.openSquareId | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/epubs/"  -}}
 {{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" )}}
   {{-  with .Err }}
     {{-  errorf "%s" . }}
@@ -16,7 +16,7 @@
     </a>
   {{-  end -}}
 {{-  else -}}
-  {{-  warnf "No PDF for %s" .Params.isbn }}
+  {{-  warnf "No PDF for %s" .Params.openSquareId }}
 {{- end }}
 {{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
   {{-  with .Err }}
@@ -28,5 +28,5 @@
   </a>
   {{-  end }}
 {{-  else -}}
-  {{-  warnf "No downloadable epub for %s" .Params.isbn }}
+  {{-  warnf "No downloadable epub for %s" .Params.openSquareId }}
 {{- end }}

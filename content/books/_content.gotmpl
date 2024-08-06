@@ -44,22 +44,17 @@
         {{ $data := .Content | transform.Unmarshal }}
         {{ $title := index $data "title"   }}
         {{ $date := index $data "dateBook"   }}
-        {{ $identifier := index $data "openSquareId"   }}
-        {{ warnf "Good! :  %s %s %s" $title $date $identifier }}
-
+        {{ warnf "Good! :  %s %s %s" $title $date  }}
         {{ $subjects := index $data "subjects"  }}
         {{ $subjects = collections.Apply $subjects "strings.Trim" "." " " }}
         {{ $subjects = collections.Apply $subjects "strings.Replace" "." "Latino\\a Studies" "latino-a-studies" }}
         {{ $contributors := (index $data "contributors" ) | transform.Unmarshal }}
         {{ $paramsAll :=  $data }}
         {{ $paramsUpdate :=  dict
-          "bookpubdate" $date
           "date" $date
-          "isbn" $identifier
           "citation_link" (index $data "handle")
           "subjects" $subjects
           "series" (index $data "series")
-
         }}
         {{ $params :=  merge $paramsAll $paramsUpdate }}
         {{ $page := dict
@@ -67,8 +62,7 @@
           "date" $date
           "kind" "page"
           "params" $params
-          "path" $identifier
-          "isbn" $identifier
+          "path" (index $data "openSquareId")
         }}
         {{ $.AddPage $page }}
       {{ end }}
