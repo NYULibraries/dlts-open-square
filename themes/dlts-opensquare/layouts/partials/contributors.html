@@ -9,17 +9,22 @@
   {{- range $contrubutorRoleCodes -}}
     {{- $thisgroup := where $contribs ".contrubutorRole.code" . -}}
     {{- $thisgroup = sort $thisgroup ".contributorOrder"  }}
+    {{- $thisgroupcount := $thisgroup | len -}}
     {{- $rolename := index $thisgroup 0 "contrubutorRole" "name" -}}
     {{- $rolecode := index $thisgroup 0 "contrubutorRole" "code" -}}
     {{- if eq $rolecode "A01" }}
       {{- $rolename = "By" }}
+    {{- end }}
+    {{- $connector := " and " -}}
+    {{- if gt $thisgroupcount 2 }}
+      {{- $connector = ", and " }}
     {{- end }}
     <div class="author-group">
       <span class="rolename">{{ $rolename }}</span>
       {{- range $i, $e := $thisgroup }}
         {{ $e.contributorName -}}
         {{- /*  Add connectors to the printout of the list   */ -}}
-        {{- if eq ( sub ($thisgroup | len ) 2 ) $i }} and {{ else if ne ( sub ($thisgroup | len ) 1 ) $i }}, {{ end }}
+        {{- if eq ( sub $thisgroupcount  2 ) $i }}{{- $connector -}}{{ else if ne ( sub $thisgroupcount  1 ) $i }}, {{ end }}
       {{- end }}
     </div>
   {{- end }}
