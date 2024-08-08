@@ -2,6 +2,8 @@
 
 baseURL = "https://opensquare-stage.nyupress.org"
 
+disableKinds = ['sitemap']
+
 [params]
 	sassOutputFormat = "compressed"
 	enableSourceMap = "false"
