@@ -44,7 +44,7 @@
         {{ $data := .Content | transform.Unmarshal }}
         {{ $title := index $data "title"   }}
         {{ $date := index $data "dateBook"   }}
-        {{ warnf "Good! :  %s %s %s" $title $date  }}
+        {{ warnf "Good! :  %s %s " $title $date  }}
         {{ $subjects := index $data "subjects"  }}
         {{ $subjects = collections.Apply $subjects "strings.Trim" "." " " }}
         {{ $subjects = collections.Apply $subjects "strings.Replace" "." "Latino\\a Studies" "latino-a-studies" }}
