@@ -15,8 +15,8 @@
         {{- $xmlpath := urls.JoinPath "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/" $stringisbn "META-INF/container.xml" -}}
       {{- with resources.GetRemote $xmlpath  (dict "headers" (dict "Content-Type" "application/xml" ) "method" "HEAD" )}}
         {{-  with .Err }}
-          {{- errorf "resources.GetRemote failed. Dividing by zero to halt the program. %s %s" $xmlpath .Data.Status -}}
-          {{- div 0 0 -}}
+          {{- errorf "resources.GetRemote failed. (not currently) Dividing by zero to halt the program. %s %s" $xmlpath .Data.Status -}}
+          {{/*  {{- div 0 0 -}}  */}}
         {{-  else -}}
           {{/*  {{-  warnf "All good: XML file found: %s %s  %s " $xmlpath .Data.Status .Data.ContentType }}  */}}
           <a class="thumb-link" href="./read">
@@ -70,6 +70,12 @@
         {{ else }}
         <div class="description">{{ .Params.description }}</div>
         {{ end }}
+        {{ with .Params.contributors -}}
+          {{ partial "bios.html" . }}
+        {{ end }}
+        {{ with .Params.reviews -}}
+        {{ partial "reviews.html" . }}
+      {{ end }}
         {{ partial "socialmediabuttons.html" . }}
         {{ partial "bookrights.html" . }}
       </div>

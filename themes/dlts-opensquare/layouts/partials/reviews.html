@@ -1,0 +1,7 @@
+<div class="reviews">
+  <h2>Reviews</h2>
+    {{- range ( .  ) }}
+      <h3>{{- .reviewer -}}</h3>
+      {{- .review | safeHTML -}}
+    {{- end }}
+</div>
