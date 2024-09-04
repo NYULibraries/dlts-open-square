@@ -1,4 +1,4 @@
-<div class="author">
+
   {{- $contribs := . | transform.Unmarshal -}}
   {{- /*  https://www.feliciano.tech/blog/groupby-for-data-files-in-hugo/  */ -}}
   {{- $contrubutorRoleCodes := slice}}
@@ -28,4 +28,3 @@
       {{- end }}
     </div>
   {{- end }}
-</div>
