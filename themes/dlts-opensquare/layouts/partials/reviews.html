@@ -1,7 +1,8 @@
 <div class="reviews">
   <h2>Reviews</h2>
     {{- range ( .  ) }}
-      <h3>{{- .reviewer -}}</h3>
-      {{- .review | safeHTML -}}
+    <blockquote>
+      {{- .review | safeHTML }} <cite>~ {{ .reviewer -}}</cite>
+    </blockquote>
     {{- end }}
 </div>
