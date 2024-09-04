@@ -43,8 +43,14 @@
           {{ with .Params.contributors -}}
             {{ partial "contributors.html" . }}
           {{- end -}}
+          {{ with .Params.hasVideo -}}
+            <div><span>Contains Video</span></div>
+          {{ end -}}
+          {{ with .Params.hasHiResImages -}}
+          <div><span>Contains high resolution images</span></div>
+          {{ end -}}
           <div class="pubdate"><span>Published:</span> {{ .Params.yearBook}}</div>
-          <div class="pubdate"><span>Open Access Since::</span> 2022 (placeholder)</div>
+          <div class="pubdate"><span>Open Access Since:</span> 2022 (placeholder)</div>
           {{ if .Params.series }}
           <div class="tags"><span>Series:</span>
             <ul>{{ range .Params.series }}
@@ -60,7 +66,16 @@
               {{ end }}
             {{- end -}}
           </div>
-          <div class="isbn"><span>ISBN:</span> {{ .Params.openSquareId }}</div>
+          <div class="isbn"><span>Open Square ISBN:</span> {{ .Params.openSquareId }}</div>
+          {{ with .Params.isbnPaperback -}}
+            <div class="isbn"><span>Paperback ISBN:</span> {{  . }}</div>
+          {{ end -}}
+          {{ with .Params.isbnHardcover -}}
+            <div class="isbn"><span>Hardcover ISBN:</span> {{  . }}</div>
+          {{ end -}}
+          {{ with .Params.isbnEbook -}}
+          <div class="isbn"><span>eBook ISBN:</span> {{  . }}</div>
+          {{ end -}}
           <div class="citation_link"><span>Cite:</span> {{with .Params.handle }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
           <div class="number_of_pages"><span>Number of pages:</span> {{ .Params.pages }}</div>
           <div class="buy-the-book"><span>Buy the book:</span> {{with .Params.pressUrl }}<a target="_blank" href="{{ . }}">{{ . }}</a>{{ end }}</div>
