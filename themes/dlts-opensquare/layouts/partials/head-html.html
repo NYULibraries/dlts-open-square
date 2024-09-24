@@ -10,7 +10,7 @@
 {{ end }}
 {{ with .Params.description }}
 <meta name="description" content="{{ . }}">{{- end }}
-{{- $options := (dict "targetPath" "/css/style.css" "outputStyle" .Site.Params.sassOutputFormat "enableSourceMap" .Site.Params.enableSourceMap "includePaths" (slice "themes/dlts-books/assets")) -}}
+{{- $options := (dict "targetPath" "/css/style.css" "outputStyle" .Site.Params.sassOutputFormat "enableSourceMap" .Site.Params.enableSourceMap ) -}}
 {{- $style := resources.Get "style.scss" | resources.ToCSS  $options }}
 <link rel="stylesheet" href="{{ $style.Permalink | relURL }}">
 <script src="/js/pattern-library-3.0.1.min.js"></script>
