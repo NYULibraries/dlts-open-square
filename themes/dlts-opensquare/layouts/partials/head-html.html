@@ -11,7 +11,7 @@
 {{ with .Params.description }}
 <meta name="description" content="{{ . }}">{{- end }}
 {{- $options := (dict "targetPath" "/css/style.css" "outputStyle" .Site.Params.sassOutputFormat "enableSourceMap" .Site.Params.enableSourceMap ) -}}
-{{- $style := resources.Get "style.scss" | resources.ToCSS  $options }}
+{{- $style := resources.Get "style.scss" | css.Sass $options }}
 <link rel="stylesheet" href="{{ $style.Permalink | relURL }}">
 <script src="/js/pattern-library-3.0.1.min.js"></script>
 {{ partial "opengraph_meta.html" . -}}
