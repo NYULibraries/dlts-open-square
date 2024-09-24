@@ -10,10 +10,24 @@
 {{ end }}
 {{ with .Params.description }}
 <meta name="description" content="{{ . }}">{{- end }}
-{{- $options := (dict "targetPath" "/css/style.css" "outputStyle" .Site.Params.sassOutputFormat "enableSourceMap" .Site.Params.enableSourceMap "includePaths" (slice "themes/dlts-books/assets")) -}}
-{{- $style := resources.Get "style.scss" | resources.ToCSS  $options }}
-<link rel="stylesheet" href="{{ $style.Permalink | relURL }}">
-<script src="/js/pattern-library-3.0.1.min.js"></script>
+
+{{ with resources.Get "style.scss" }}
+  {{- $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction)}}
+  {{- with . | toCSS $opts }}
+    {{- if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{- else }}
+      {{- with . | minify | fingerprint -}}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{ end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{ with resources.Get "js/pattern-library-3.0.1.min.js" -}}
+      <script src="{{ .RelPermalink }}"></script>
+{{ end }}
+
 {{ partial "opengraph_meta.html" . -}}
 
 {{ hugo.Generator }}

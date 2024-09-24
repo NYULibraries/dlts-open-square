@@ -61,7 +61,8 @@
               if (newValue == "all") {
                 window.location.href = {{ urls.AbsURL "books" }};
               } else {
-                window.location.href = {{ strings.TrimSuffix "/" .Site.BaseURL}} + newValue;
+                {{- $u :=  urls.Parse .Site.BaseURL  }}
+                window.location.href = {{ $u.Scheme }} + "://" + {{ $u.Hostname }} + newValue;
               }
             }
           });
