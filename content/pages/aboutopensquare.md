@@ -1,6 +1,8 @@
 +++
 title = "About Open Square"
 url = "/aboutopensquare"
+summary = "Open Square is NYU Press’s platform for publishing and reading open access books."
+
 +++
 <p>Welcome to knowledge without boundaries!</p>
 <p>Open Square is <a href="https://nyupress.org/" target="_blank" class="external">NYU Press</a>’s platform for publishing and reading <a href="https://guides.nyu.edu/openaccess" target="_blank" class="external">open access</a> books. A browser-based reading platform, Open Square enables us to increase the impact of scholarly work by making it freely available in a digital format and to experiment with new ways of presenting scholarship and adding enhanced content to traditionally published books. Open Square features new and recently published titles as well as a growing library of classic backlist publications. NYU Press is committed to expanding our offerings in both categories. </p>
