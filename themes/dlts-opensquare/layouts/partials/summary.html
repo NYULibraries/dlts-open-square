@@ -11,15 +11,17 @@
     {{- end -}}
 
     <div class="pubdate"><span>Published:</span> {{  .Params.yearBook }}</div>
+
     {{ if .Params.series }}
-    <div class="tags"><span>Series:</span>
-      <ul>{{ range .Params.series }}
-        <li><a href="{{ "/series/"  }}{{ . | urlize }}">{{ . }}</a> </li>
+    <div class="tags"><span class="label">Series:</span>
+      {{ range .Params.series }}
+        {{-  $path := path.Join "/series" . -}}
+        {{- with site.GetPage $path  -}}
+          <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
         {{ end }}
-      </ul>
+      {{- end -}}
     </div>
     {{ end }}
-
     <div class="tags"><span class="label">Subjects:</span>
       {{ range .Params.subjects }}
         {{-  $path := path.Join "/subjects" . -}}

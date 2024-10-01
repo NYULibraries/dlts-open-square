@@ -58,6 +58,15 @@
               {{ end }}
             </ul>
           </div>{{ end -}}
+          <div class="tags"><span class="label">Series:</span>
+            {{ range .Params.series }}
+              {{-  $path := path.Join "/series" . -}}
+              {{- with site.GetPage $path  -}}
+                <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
+              {{ end }}
+            {{- end -}}
+          </div>
+
           <div class="tags"><span class="label">Subjects:</span>
             {{ range .Params.subjects }}
               {{-  $path := path.Join "/subjects" . -}}

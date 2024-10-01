@@ -1,6 +1,7 @@
 {{ partial "header.html" . }}
 <main id="main-content">
     <h1 class="page-title sr-only">{{.Data.Singular | title }}: {{ .Page.Title  }}</h1>
+    <div class="item-count">{{ .Pages | len }} books</div>
     {{ partial "combobox.html" . }}
     <div class="series-content-hold">
         <div class="series-content">
@@ -13,3 +14,4 @@
     </div>
 </main>
 {{ partial "footer.html" . }}
+
