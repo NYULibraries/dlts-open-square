@@ -5,12 +5,14 @@
 <link rel="icon" type="image/png" href="{{ .Site.Params.faviconrelurl }}">
 {{ if eq .Section "books"}}
 <title>{{ .Title }}: {{ .Site.Params.shorttitle }}: NYU Press</title>
-{{ else }}
+{{- else }}
 <title>{{ .Title }}: NYU Press</title>
-{{ end }}
-{{ with .Params.description }}
-<meta name="description" content="{{ . }}">{{- end }}
-
+{{- end }}
+{{ with .Params.description -}}
+  <meta name="description" content="{{ . }}">
+{{- else with .Summary -}}
+  <meta name="description" content="{{ . }}">
+{{- end }}
 {{ with resources.Get "style.scss" }}
   {{- $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction)}}
   {{- with . | toCSS $opts }}
@@ -19,15 +21,13 @@
     {{- else }}
       {{- with . | minify | fingerprint -}}
         <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-      {{ end }}
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}
-
 {{ with resources.Get "js/pattern-library-3.0.1.min.js" -}}
       <script src="{{ .RelPermalink }}"></script>
-{{ end }}
-
+{{- end }}
 {{ partial "opengraph_meta.html" . -}}
 
 {{ hugo.Generator }}
