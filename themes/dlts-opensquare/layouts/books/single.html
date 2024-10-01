@@ -52,12 +52,6 @@
           <div class="pubdate"><span>Published:</span> {{ .Params.yearBook}}</div>
           <div class="pubdate"><span>Open Access Since:</span> 2022 (placeholder)</div>
           {{ if .Params.series }}
-          <div class="tags"><span>Series:</span>
-            <ul>{{ range .Params.series }}
-              <li><a href="{{ "/series/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
-              {{ end }}
-            </ul>
-          </div>{{ end -}}
           <div class="tags"><span class="label">Series:</span>
             {{ range .Params.series }}
               {{-  $path := path.Join "/series" . -}}
@@ -65,7 +59,7 @@
                 <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
               {{ end }}
             {{- end -}}
-          </div>
+          </div>{{ end -}}
 
           <div class="tags"><span class="label">Subjects:</span>
             {{ range .Params.subjects }}
