@@ -51,9 +51,9 @@
           {{ end -}}
           <div class="pubdate"><span>Published:</span> {{ .Params.yearBook}}</div>
           <div class="pubdate"><span>Open Access Since:</span> 2022 (placeholder)</div>
-          {{ if .Params.series }}
+          {{ if .Params.seriesOpenAccess }}
           <div class="tags"><span class="label">Series:</span>
-            {{ range .Params.series }}
+            {{ range .Params.seriesOpenAccess }}
               {{-  $path := path.Join "/series" . -}}
               {{- with site.GetPage $path  -}}
                 <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
