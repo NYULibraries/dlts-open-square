@@ -8,10 +8,16 @@
 {{- else }}
 <title>{{ .Title }}: NYU Press</title>
 {{- end }}
-{{ with .Params.description -}}
+{{ if (eq .Type "books") -}}
+  {{ with .Params.description -}}
+    <meta name="description" content="[Open Access] {{ . }}">
+  {{- end }}
+{{- else }}
+  {{ with .Params.description -}}
   <meta name="description" content="{{ . }}">
-{{- else with .Summary -}}
+  {{- else with .Summary -}}
   <meta name="description" content="{{ . }}">
+  {{- end }}
 {{- end }}
 {{ with resources.Get "style.scss" }}
   {{- $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction)}}
