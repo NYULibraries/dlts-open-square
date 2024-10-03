@@ -50,7 +50,7 @@
       {{ $subjects = collections.Apply $subjects "strings.Trim" "." " " }}
       {{/* Here, there is a subject with a forward slash in its name, which is not allowed. To display as intended, we change its name to its desired slug, and also create a custom file in content/subjects to create the mapping between desired slug and desired title.  */}}
       {{ $subjects = collections.Apply $subjects "strings.Replace" "." "Latino\\a Studies" "latino-a-studies" }}
-      {{ $contributors := (index $data "contributors" ) | transform.Unmarshal }}
+      {{ $contributors := (index $data "contributors" ) }}
       {{ $paramsAll :=  $data }}
       {{ $paramsUpdate :=  dict
         "date" $date

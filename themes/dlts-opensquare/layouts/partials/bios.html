@@ -1,9 +1,9 @@
 <div class="contributorbios">
   <h2>Contributor Bios</h2>
 
-    {{- range sort ( . | transform.Unmarshal ) "contributorOrder" }}
-      <h3>{{- .contributorName -}}</h3>
-      {{- .contributorBio | safeHTML -}}
+    {{- range sort ( . ) "order" }}
+      <h3>{{- .name -}}</h3>
+      {{- .bio | safeHTML -}}
     {{- end }}
 
 </div>

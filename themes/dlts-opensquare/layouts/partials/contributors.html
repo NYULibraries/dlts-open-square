@@ -1,18 +1,17 @@
 
-  {{- $contribs := . | transform.Unmarshal -}}
+  {{- $contribs := .  -}}
   {{- /*  https://www.feliciano.tech/blog/groupby-for-data-files-in-hugo/  */ -}}
-  {{- $contrubutorRoleCodes := slice}}
+  {{- $contributorRoles := slice}}
   {{- range $contribs }}
-    {{- $contrubutorRoleCodes = $contrubutorRoleCodes | append  .contrubutorRole.code   }}
+    {{- $contributorRoles = $contributorRoles | append  .role   }}
   {{- end }}
-  {{- $contrubutorRoleCodes = uniq $contrubutorRoleCodes | sort -}}
-  {{- range $contrubutorRoleCodes -}}
-    {{- $thisgroup := where $contribs ".contrubutorRole.code" . -}}
-    {{- $thisgroup = sort $thisgroup ".contributorOrder"  }}
+  {{- $contributorRoles = uniq $contributorRoles | sort -}}
+  {{- range $contributorRoles -}}
+    {{- $thisgroup := where $contribs ".role" . -}}
+    {{- $thisgroup = sort $thisgroup ".order"  }}
     {{- $thisgroupcount := $thisgroup | len -}}
-    {{- $rolename := index $thisgroup 0 "contrubutorRole" "name" -}}
-    {{- $rolecode := index $thisgroup 0 "contrubutorRole" "code" -}}
-    {{- if eq $rolecode "A01" }}
+    {{- $rolename := index $thisgroup 0 "role" -}}
+    {{- if eq $rolename "By (author)" }}
       {{- $rolename = "By" }}
     {{- end }}
     {{- $connector := " and " -}}
@@ -22,7 +21,7 @@
     <div class="author-group">
       <span class="rolename">{{ $rolename }}</span>
       {{- range $i, $e := $thisgroup }}
-        {{ $e.contributorName -}}
+        {{ $e.name -}}
         {{- /*  Add connectors to the printout of the list   */ -}}
         {{- if eq ( sub $thisgroupcount  2 ) $i }}{{- $connector -}}{{ else if ne ( sub $thisgroupcount  1 ) $i }}, {{ end }}
       {{- end }}

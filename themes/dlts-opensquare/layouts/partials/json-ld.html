@@ -10,9 +10,6 @@
       "isbn": "{{ .Params.openSquareId }}",
       "datePublished": "{{ dateFormat "2006-01-02" .Date }}",
       {{- $stringisbn := string .Params.openSquareId  }}
-      {{- if .Params.openSquareIdforphoto  -}}
-      {{- $stringisbn = string .Params.openSquareIdforphoto  -}}
-      {{- end  -}}
       {{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  }}
       "thumbnailUrl": "{{-  $imagepath }}",
       "potentialAction": {
@@ -37,11 +34,11 @@
   {{- with .Params.contributors -}}
     ,
     "author": [
-    {{- $contribs := . | transform.Unmarshal -}}
+    {{- $contribs := .  -}}
     {{- range $i, $e := $contribs }}
       {{- if $i -}},{{ end }}
       { "@type": "Person",
-       "name": "{{ index $e "contributorName" }}" }
+       "name": "{{ index $e "name" }}" }
     {{- end }}
     ]
   {{ end }}
