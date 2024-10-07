@@ -1,9 +1,6 @@
 <div class="contributorbios">
   <h2>Contributor Bios</h2>
-
-    {{- range sort ( . ) "order" }}
-      <h3>{{- .name -}}</h3>
-      {{- .bio | safeHTML -}}
-    {{- end }}
-
+    {{ range sort ( . ) "order" }}
+      {{ .bio | safeHTML -}}
+    {{ end }}
 </div>
