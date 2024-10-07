@@ -13,9 +13,7 @@
     <meta name="description" content="[Open Access] {{ . }}">
   {{- end }}
 {{- else }}
-  {{ with .Params.description -}}
-  <meta name="description" content="{{ . }}">
-  {{- else with .Summary -}}
+  {{ with $.Param "description" -}}
   <meta name="description" content="{{ . }}">
   {{- end }}
 {{- end }}

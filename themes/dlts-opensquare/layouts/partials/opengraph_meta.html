@@ -1,21 +1,27 @@
-{{ if .IsPage -}}
 
-<meta property="og:description" content="{{ .Description | default (replaceRE "\n" " " .Summary) }}">
-{{ else -}}
-<meta property="og:description" content="{{ $.Param "description" }}">
-{{ end -}}
+{{ if (eq .Type "books") -}}
+  {{ with .Params.description -}}
+    <meta property="og:description" content="[Open Access] {{ . }}">
+  {{- end }}
+{{- else }}
+  {{ with  $.Param "description" -}}
+    <meta property="og:description" content="{{ . }}">
+  {{- end }}
+{{- end }}
+
 <meta property="og:site_name" content="{{ .Site.Title }}: NYU Press">
-<meta property="og:title" content="{{ .Title }}: {{ .Params.subtitle }}">
+<meta property="og:title" content="{{ .Title }}{{ with .Params.subtitle }}: {{ . }}{{- end -}}">
+
 <meta property="og:url" content="{{ .Permalink }}">
 {{ if ( eq .Type "books") -}}<meta property="og:type" content="Book">
 {{- end -}}
 {{ if .Params.openSquareId }}
-{{- $stringisbn := string .Params.openSquareId  -}}
-{{- $imagepath := ".jpg?auto=format&fit=fill&fill=blur&h=880&w=600" | printf "%s%s" $stringisbn | printf  "%s%s" .Site.Params.image_server }}
-<meta property="og:image" content="{{ $imagepath }}" />
-<meta property="og:image:width" content="600" />
-<meta property="og:image:height" content="880" />
-<meta name="twitter:card" content="summary_large_image" />
-{{- $imagepath := ".jpg?auto=format&fit=fill&fill=blur&h=630&w=1200" | printf "%s%s" $stringisbn | printf  "%s%s" .Site.Params.image_server }}
-<meta name="twitter:image" content="{{ $imagepath }}" />
+  {{- $stringisbn := string .Params.openSquareId  -}}
+  {{- $imagepath := ".jpg?auto=format&fit=fill&fill=blur&h=880&w=600" | printf "%s%s" $stringisbn | printf  "%s%s" .Site.Params.image_server }}
+  <meta property="og:image" content="{{ $imagepath }}" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="880" />
+  <meta name="twitter:card" content="summary_large_image" />
+  {{- $imagepath := ".jpg?auto=format&fit=fill&fill=blur&h=630&w=1200" | printf "%s%s" $stringisbn | printf  "%s%s" .Site.Params.image_server }}
+  <meta name="twitter:image" content="{{ $imagepath }}" />
 {{ end }}
