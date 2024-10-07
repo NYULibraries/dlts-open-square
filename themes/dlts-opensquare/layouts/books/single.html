@@ -50,10 +50,11 @@
           <div><span>Contains high resolution images</span></div>
           {{ end -}}
           <div class="pubdate"><span>Published:</span> {{ .Params.yearBook}}</div>
-          <div class="pubdate"><span>Open Access Since:</span> 2022 (placeholder)</div>
-          {{ if .Params.seriesOpenAccess }}
+         <div class="pubdate"><span>Open Access Since:</span>  {{ with  .Params.dateOpenAccess }}{{  . }} {{ else }} NA {{ end -}}</div>
+
+          {{ if .Params.series }}
           <div class="tags"><span class="label">Series:</span>
-            {{ range .Params.seriesOpenAccess }}
+            {{ range .Params.series }}
               {{-  $path := path.Join "/series" . -}}
               {{- with site.GetPage $path  -}}
                 <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>

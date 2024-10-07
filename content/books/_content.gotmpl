@@ -46,6 +46,7 @@
       {{ $date := index $data "dateBook"   }}
       {{ warnf "Good! :  %s %s " $title $date  }}
       {{ $subjects := index $data "subjects"  }}
+      {{ $series := index $data "seriesOpenAccess"  }}
       {{/* Loop through the slice of subjects. If any have a trailing space, remove it.  */}}
       {{ $subjects = collections.Apply $subjects "strings.Trim" "." " " }}
       {{/* Here, there is a subject with a forward slash in its name, which is not allowed. To display as intended, we change its name to its desired slug, and also create a custom file in content/subjects to create the mapping between desired slug and desired title.  */}}
@@ -56,7 +57,7 @@
         "date" $date
         "citation_link" (index $data "handle")
         "subjects" $subjects
-        "series" (index $data "series")
+        "series" (index $data "seriesOpenAccess")
       }}
       {{ $params :=  merge $paramsAll $paramsUpdate }}
       {{ $page := dict

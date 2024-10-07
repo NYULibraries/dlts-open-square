@@ -9,12 +9,15 @@
     {{ with .Params.contributors -}}
       {{ partial "contributors.html" . }}
     {{- end -}}
+    {{/*  {{ $t := time.AsTime .Params.dateOpenAccess }}
+    {{ time.Format "2006" $t }}  */}}
 
     <div class="pubdate"><span>Published:</span> {{  .Params.yearBook }}</div>
+    <div class="pubdate"><span>Open Access Since:</span>  {{ with  .Params.dateOpenAccess }}{{  . }} {{ else }} NA {{ end -}}</div>
 
-    {{ if .Params.seriesOpenAccess }}
+    {{ if .Params.series }}
     <div class="tags"><span class="label">Series:</span>
-      {{ range .Params.seriesOpenAccess }}
+      {{ range .Params.series }}
         {{-  $path := path.Join "/series" . -}}
         {{- with site.GetPage $path  -}}
           <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
