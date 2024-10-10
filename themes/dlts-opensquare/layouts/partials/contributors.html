@@ -1,11 +1,11 @@
 
-  {{- $contribs := .  -}}
+  {{- $contribs := sort .  ".order" -}}
   {{- /*  https://www.feliciano.tech/blog/groupby-for-data-files-in-hugo/  */ -}}
   {{- $contributorRoles := slice}}
   {{- range $contribs }}
     {{- $contributorRoles = $contributorRoles | append  .role   }}
   {{- end }}
-  {{- $contributorRoles = uniq $contributorRoles | sort -}}
+  {{- $contributorRoles = uniq $contributorRoles -}}
   {{- range $contributorRoles -}}
     {{- $thisgroup := where $contribs ".role" . -}}
     {{- $thisgroup = sort $thisgroup ".order"  }}
