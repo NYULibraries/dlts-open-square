@@ -20,7 +20,7 @@
 {{ with resources.Get "style.scss" }}
   {{- $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction)}}
   {{- with . | toCSS $opts }}
-    {{- if hugo.IsDevelopment }}
+    {{- if (not hugo.IsProduction) }}
       <link rel="stylesheet" href="{{ .RelPermalink }}">
     {{- else }}
       {{- with . | minify | fingerprint -}}
