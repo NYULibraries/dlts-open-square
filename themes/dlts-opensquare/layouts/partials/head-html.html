@@ -8,8 +8,15 @@
 {{ else }}
 <title>{{ .Title }}: NYU Press</title>
 {{ end }}
-{{ with .Params.description }}
-<meta name="description" content="{{ . }}">{{- end }}
+{{ if (eq .Type "books") -}}
+  {{ with .Params.description -}}
+  <meta name="description" content="[Open Access] {{ . }}">
+  {{- end }}
+{{- else }}
+{{ with $.Param "description" -}}
+<meta name="description" content="{{ . }}">
+  {{- end }}
+{{- end }}
 {{- $options := (dict "targetPath" "/css/style.css" "outputStyle" .Site.Params.sassOutputFormat "enableSourceMap" .Site.Params.enableSourceMap "includePaths" (slice "themes/dlts-books/assets")) -}}
 {{- $style := resources.Get "style.scss" | resources.ToCSS  $options }}
 <link rel="stylesheet" href="{{ $style.Permalink | relURL }}">
