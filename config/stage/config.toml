@@ -13,6 +13,5 @@ disableKinds = ['sitemap']
 	enableSourceMap = "false"
 	pathtoreader = "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
 	connectedyouthurl = "https://connectedyouth-stage.nyupress.org"
-  googleanalyticsconnectedyouth = "UA-51495518-3"
   matomoanalyticsid = "18"
 
