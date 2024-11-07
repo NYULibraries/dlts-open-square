@@ -37,7 +37,8 @@
 {{ hugo.Generator }}
 <link href="https://fonts.googleapis.com/css?family=Raleway:400,500" rel="stylesheet">
 {{ partial "google-analytics.html" . }}
-{{ partial "google-analytics-4.html" . }}
+{{ partial "analytics-matomo.html" . }}
+
 {{ if (eq .Type "books") -}}
   {{ if (eq .Kind "page") -}}
 {{ partial "json-ld-wrapper.html" . }}

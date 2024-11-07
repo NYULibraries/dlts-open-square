@@ -3,8 +3,8 @@
 baseURL = "https://opensquare.nyupress.org"
 
 [services]
-  [services.googleAnalytics]
-    ID = 'UA-51495518-1'
+  [GoogleAnalytics]
+    ID = 'G-6ZBRSG08EY'
 
 [params]
 	sassOutputFormat = "compressed"
@@ -12,4 +12,4 @@ baseURL = "https://opensquare.nyupress.org"
 	pathtoreader = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
 	connectedyouthurl = "https://connectedyouth.nyupress.org"
   googleanalyticsconnectedyouth = "UA-51495518-3"
-  googleanalytics4 = "G-6ZBRSG08EY"
+  matomoanalyticsid = "18"
