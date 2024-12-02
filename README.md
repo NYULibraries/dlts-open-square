@@ -11,15 +11,14 @@ It uses Hugo (https://gohugo.io/), the world’s fastest framework for building 
 
 ## Installation
 
-Install GoLang
+Install GoLang (needed because we use modules here)
+  * brew install go
 
 Install Hugo
   * brew install hugo
 
 
 ## Build
-
-
 
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
  * hugo --enableGitInfo --cleanDestinationDir --ignoreCache -e local
