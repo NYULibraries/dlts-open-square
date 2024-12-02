@@ -52,6 +52,12 @@
     <loc>http://localhost/opensquare/books/9780814744598/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814790267/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814788592/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9781479844845/</loc>
     <priority>0</priority>
   </url><url>
@@ -75,6 +81,9 @@
     <loc>http://localhost/opensquare/books/9781479896059/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814790724/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814788752/</loc>
     <priority>0</priority>
   </url><url>
@@ -91,7 +100,13 @@
   </url><url>
     <loc>http://localhost/opensquare/subjects/asian-american-studies/</loc>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479815425/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814739105/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479854905/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814728536/</loc>
@@ -101,6 +116,9 @@
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9781479820108/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479820696/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9781479807185/</loc>
@@ -124,6 +142,9 @@
     <loc>http://localhost/opensquare/books/9780814759448/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479880324/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814728901/</loc>
     <priority>0</priority>
   </url><url>
@@ -135,6 +156,9 @@
   </url><url>
     <loc>http://localhost/opensquare/books/</loc>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479843015/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814759141/</loc>
     <priority>0</priority>
   </url><url>
@@ -142,6 +166,9 @@
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814743669/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814744420/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/subjects/business/</loc>
@@ -155,10 +182,25 @@
     <loc>http://localhost/opensquare/books/9781479800124/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814724729/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814723715/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814708354/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814722848/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479821419/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814765357/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814741283/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814744871/</loc>
@@ -247,6 +289,9 @@
     <loc>http://localhost/opensquare/books/9780814733486/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814785133/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814784273/</loc>
     <priority>0</priority>
   </url><url>
@@ -262,6 +307,9 @@
     <loc>http://localhost/opensquare/books/9780814744772/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814790748/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9781479819164/</loc>
     <priority>0</priority>
   </url><url>
@@ -273,10 +321,19 @@
     <loc>http://localhost/opensquare/books/9781479811908/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814768259/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814723647/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479828357/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814723166/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479859184/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814760239/</loc>
@@ -284,7 +341,13 @@
   </url><url>
     <loc>http://localhost/opensquare/subjects/education/</loc>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814789971/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814762622/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814723234/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814795415/</loc>
@@ -295,7 +358,13 @@
   </url><url>
     <loc>http://localhost/opensquare/subjects/environmental-studies/</loc>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479845477/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9781479812516/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814790410/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814758816/</loc>
@@ -349,7 +418,22 @@
     <loc>http://localhost/opensquare/books/9780814739112/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814705254/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814733356/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479820788/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814733134/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814790793/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814769072/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814749104/</loc>
@@ -368,6 +452,9 @@
     <loc>http://localhost/opensquare/books/9780814784600/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814753453/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814784587/</loc>
     <priority>0</priority>
   </url><url>
@@ -377,10 +464,16 @@
     <loc>http://localhost/opensquare/books/9780814767917/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479858279/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814728598/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814752685/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479804573/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814741498/</loc>
@@ -420,6 +513,9 @@
   </url><url>
     <loc>http://localhost/opensquare/subjects/literature--literary-studies/</loc>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479851638/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814790595/</loc>
     <priority>0</priority>
   </url><url>
@@ -427,6 +523,12 @@
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9781479832637/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814753323/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479838059/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814724972/</loc>
@@ -447,6 +549,12 @@
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/subjects/middle-east-studies/</loc>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814784532/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814723876/</loc>
+    <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9781479830039/</loc>
     <priority>0</priority>
@@ -504,10 +612,19 @@
     <loc>http://localhost/opensquare/books/9780814788462/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814744987/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/pages/</loc>
     <lastmod>2024-10-01T12:12:15-04:00</lastmod>
   </url><url>
+    <loc>http://localhost/opensquare/books/9781479866250/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814741023/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479875030/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814728963/</loc>
@@ -605,6 +722,9 @@
     <loc>http://localhost/opensquare/books/9780814763179/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814708811/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814733387/</loc>
     <priority>0</priority>
   </url><url>
@@ -612,6 +732,9 @@
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814768396/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479809714/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814763582/</loc>
@@ -635,6 +758,9 @@
     <loc>http://localhost/opensquare/books/9780814763551/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814786680/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814752715/</loc>
     <priority>0</priority>
   </url><url>
@@ -642,6 +768,12 @@
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814772973/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814708804/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9781479888436/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814773215/</loc>
@@ -653,7 +785,16 @@
     <loc>http://localhost/opensquare/books/9780814738979/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>http://localhost/opensquare/books/9780814785171/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814764497/</loc>
+    <priority>0</priority>
+  </url><url>
     <loc>http://localhost/opensquare/books/9780814708743/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>http://localhost/opensquare/books/9780814760116/</loc>
     <priority>0</priority>
   </url><url>
     <loc>http://localhost/opensquare/books/9780814705384/</loc>
