@@ -13,8 +13,9 @@
     {{ time.Format "2006" $t }}  */}}
 
     <div class="pubdate"><span>Published:</span> {{  .Params.yearBook }}</div>
-    <div class="pubdate"><span>Open Access Since:</span>  {{ with  .Params.dateOpenAccess }}{{  . }} {{ else }} NA {{ end -}}</div>
-
+    {{ with  .Params.yearOpenAccess }}
+      <div class="pubdate"><span>Open Access Since:</span> {{ . }}</div>
+    {{ end -}}
     {{ if .Params.series }}
     <div class="tags"><span class="label">Series:</span>
       {{ range .Params.series }}
