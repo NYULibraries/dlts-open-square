@@ -41,10 +41,14 @@
     {{ with .Err }}
       {{ errorf "Case 1: Unable to get remote resource %s: %s" $uri . }}
     {{ else }}
+    {{ warnf "********  " }}
+    {{ warnf "******** \n URI is :  %s" $uri }}
       {{ $data := .Content | transform.Unmarshal }}
       {{ $title := index $data "title"   }}
-      {{ $date := index $data "dateBook"   }}
-      {{ warnf "Good! :  %s %s " $title $date  }}
+      {{/* $date := time.AsTime (index $data "dateBook")  */}}
+      {{ $date := index $data "dateBook" }}
+      {{ warnf "Title! :  %s " $title   }}
+      {{ warnf "Date! :  %s  " $date  }}
       {{ $subjects := index $data "subjects"  }}
       {{ $series := index $data "seriesOpenAccess"  }}
       {{/* Loop through the slice of subjects. If any have a trailing space, remove it.  */}}
