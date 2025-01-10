@@ -29,8 +29,10 @@ To build: use the hugo command, with the -e (environment) option, and one of the
   * hugo --enableGitInfo --cleanDestinationDir  --ignoreCache --minify -e production
 
 
-For hot reload: use the hugo server command, with the -b (baseurl) option, for example,
-  * hugo server -b "https://opensquare.local"
+For hugo server
+hugo server --ignoreCache -e local
+To build with exact files (may not be necessary, since you can use hugo command for that. )
+ * hugo server -b "http://localhost/opensquare/" --disableFastRender  --ignoreCache --appendPort=false --disableLiveReload -e local
 
 
 ## Associated Repositories
