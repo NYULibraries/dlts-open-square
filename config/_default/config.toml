@@ -6,6 +6,8 @@ theme = ["dlts-opensquare"]
 
 publishDir = "docs"
 
+cleanDestinationDir = true
+
 [markup.goldmark.renderer]
   unsafe = true
 
