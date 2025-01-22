@@ -2,5 +2,4 @@ baseURL = "http://localhost/opensquare"
 [params]
 	sassOutputFormat = "expanded"
 	enableSourceMap = "true"
-	pathtoreader = "https://opensquare-local.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
 	connectedyouthurl = "https://localhost/connectedyouth"

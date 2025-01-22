@@ -11,7 +11,6 @@ disableKinds = ['sitemap']
 [params]
 	sassOutputFormat = "compressed"
 	enableSourceMap = "false"
-	pathtoreader = "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
 	connectedyouthurl = "https://connectedyouth-stage.nyupress.org"
   matomoanalyticsid = "18"
 

@@ -5,5 +5,4 @@ disableKinds = ['sitemap']
 [params]
 	sassOutputFormat = "expanded"
 	enableSourceMap = "true"
-	pathtoreader = "https://opensquare-dev.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
 	connectedyouthurl = "https://connectedyouth-dev.nyupress.org"
