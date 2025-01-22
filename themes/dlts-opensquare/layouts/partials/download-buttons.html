@@ -16,7 +16,7 @@
     </a>
   {{-  end -}}
 {{-  else -}}
-  {{-  warnf "No PDF for %s" .Params.openSquareId }}
+  {{-  warnf "%s: No PDF for %s at %s" .Title .Permalink $pdfpath }}
 {{- end }}
 {{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
   {{-  with .Err }}
@@ -28,5 +28,5 @@
   </a>
   {{-  end }}
 {{-  else -}}
-  {{-  warnf "No downloadable epub for %s" .Params.openSquareId }}
+  {{-  warnf "%s: No downloadable epub for %s at %s" .Title .Params.openSquareId $epubpath }}
 {{- end }}

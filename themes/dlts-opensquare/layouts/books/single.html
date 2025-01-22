@@ -26,7 +26,7 @@
           </a>
         {{-  end -}}
       {{-  else -}}
-        {{-  warnf "No readium epub for %s at %s" $stringisbn $xmlpath -}}
+        {{-  warnf "%s: No readium epub for %s at %s" .Title $stringisbn $xmlpath -}}
         <div class="thumb-no-link">
           {{ partial "image-detailpage" (dict "openSquareId" $stringisbn "titleforalt" $titleforalt)  }}
         </div>
