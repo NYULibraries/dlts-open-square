@@ -20,13 +20,12 @@ Install Hugo
 
 ## Build
 
-To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory, for example
- * hugo --enableGitInfo  --ignoreCache -e local
-  * hugo --cleanDestinationDir --ignoreCache -e dev
-  * hugo --cleanDestinationDir --ignoreCache -e stage
-  * hugo --enableGitInfo --cleanDestinationDir -e production
-  * hugo --enableGitInfo --cleanDestinationDir --ignoreCache -e production
-  * hugo --enableGitInfo --cleanDestinationDir  --ignoreCache --minify -e production
+To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory. To get the latest remote info, use the ignoreCache flag. For example
+  * hugo --ignoreCache -e local
+  * hugo --ignoreCache -e dev
+  * hugo --ignoreCache -e stage
+  * hugo -e production
+  * hugo --ignoreCache -e production
 
 
 For hugo server
