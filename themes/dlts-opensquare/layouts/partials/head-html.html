@@ -17,20 +17,14 @@
   <meta name="description" content="{{ . }}">
   {{- end }}
 {{- end }}
-{{ with resources.Get "style.scss" }}
+{{- with resources.Get "style.scss" -}}
   {{- $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" "enableSourceMap" (not hugo.IsProduction)}}
   {{- with . | toCSS $opts }}
-    {{- if (not hugo.IsProduction) }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}">
-    {{- else }}
-      {{- with . | minify | fingerprint -}}
-        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-      {{- end }}
-    {{- end }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- end }}
 {{- end }}
 {{ with resources.Get "js/pattern-library-3.0.1.min.js" -}}
-      <script src="{{ .RelPermalink }}"></script>
+  <script src="{{ .RelPermalink }}"></script>
 {{- end }}
 {{ partial "opengraph_meta.html" . -}}
 
