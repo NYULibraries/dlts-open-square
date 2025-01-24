@@ -1,4 +1,4 @@
-{{- with .Site.Config.Services.GoogleAnalytics.ID }}
+{{- with site.Params.googleanalyticsid }}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
 <script>
