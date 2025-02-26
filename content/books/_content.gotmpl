@@ -3,7 +3,7 @@
 {{/* Get remote data: first call is for a list of all the books */}}
 {{ $data := dict }}
 {{ $docs := dict }}
-{{ $url := "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press" }}
+{{ $url := site.Params.apiurl }}
 
 {{ $opts := dict
   "method" "get"
