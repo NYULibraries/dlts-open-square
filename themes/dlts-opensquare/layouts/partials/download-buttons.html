@@ -5,12 +5,12 @@
 
 {{- $pdfpath := ".pdf"  | printf  "%s%s" .Params.openSquareId | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/pdfs/"  -}}
 {{- $epubpath := ".epub"  | printf  "%s%s" .Params.openSquareId | printf "%s%s" "https://mc.dlib.nyu.edu/files/nyupress/epubs/"  -}}
-{{- with resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" )}}
+{{- with try (resources.GetRemote $pdfpath  (dict "headers" (dict "Content-Type" "application/pdf" ) "method" "HEAD" ))}}
   {{-  with .Err }}
     {{-  errorf "%s" . }}
     {{/* Force the build to failby dividing by zero -- the fact that errorf doesn't cause the build to fail is a Hugo oddity */}}
     {{/*  {{-  div 0 0  }}  */}}
-  {{-  else -}}
+  {{-  else  with .Value -}}
     <a class="thumb-link" href="{{ $pdfpath }}" download><div class="link-callout">Download PDF <br>
     <span class="filesize">({{ lang.FormatNumberCustom 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
     </a>
@@ -18,11 +18,11 @@
 {{-  else -}}
   {{-  warnf "%s: No PDF for %s at %s" .Title .Permalink $pdfpath }}
 {{- end }}
-{{- with resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD") }}
+{{- with try (resources.GetRemote $epubpath  (dict "headers" (dict "Content-Type" "application/epub+zip")  "method" "HEAD")) }}
   {{-  with .Err }}
     {{-  errorf "%s" . }}
     {{/*  {{-  div 0 0  }}  */}}
-  {{-  else }}
+  {{-  else  with .Value }}
   <a class="thumb-link" href="{{ $epubpath }}" download><div class="link-callout">Download EPUB<br>
   <span class="filesize">({{ lang.FormatNumberCustom 2 ( div (index .Data "ContentLength") 1000000.0 ) }} MB)</span></div>
   </a>

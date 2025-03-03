@@ -14,11 +14,11 @@
         {{- end  -}}
         {{- $xmlpath := urls.JoinPath site.Params.pathtoreaderfiles $stringisbn "META-INF/container.xml" -}}
     {{- /*     {{-  warnf "path is %s" $xmlpath  }} */ -}}
-      {{- with resources.GetRemote $xmlpath  (dict "headers" (dict "Content-Type" "application/xml" ) "method" "HEAD" )}}
+      {{- with try (resources.GetRemote $xmlpath  (dict "headers" (dict "Content-Type" "application/xml" ) "method" "HEAD" ))}}
         {{-  with .Err }}
           {{- errorf "resources.GetRemote failed. (not currently) Dividing by zero to halt the program. %s %s" $xmlpath .Data.Status -}}
           {{/*  {{- div 0 0 -}}  */}}
-        {{-  else -}}
+        {{-  else with .Value -}}
           {{/*  {{-  warnf "All good: XML file found: %s %s  %s " $xmlpath .Data.Status .Data.ContentType }}  */}}
           <a class="thumb-link" href="./read">
             {{ partial "image-detailpage" (dict "openSquareId" $stringisbn "titleforalt" $titleforalt)  -}}
