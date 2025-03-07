@@ -3,7 +3,7 @@
 {{/* Get remote data: first call is for a list of all the books */}}
 {{ $data := dict }}
 {{ $docs := dict }}
-{{ $url := site.Params.apiurl }}
+{{ $url := add site.Params.apiurl "?reset_cache=true" }}
 
 {{ $opts := dict
   "method" "get"
@@ -27,7 +27,7 @@
 
 {{/* Add pages */}}
 {{ range $docs }}
-  {{ $uri := .uri  }}
+  {{ $uri := add .uri "?reset_cache=true" }}
   {{ warnf "URI is :  %s" .uri }}
   {{/* Get remote data: a call for each book */}}
   {{ $opts := dict
