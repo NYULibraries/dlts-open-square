@@ -20,6 +20,8 @@ Install Hugo
 
 ## Build
 
+For local, dev, or stage, in ordder to access the stage API, connect to NYU VPN (all traffic).
+
 To build: use the hugo command, with the -e (environment) option, and one of the environments set up in config directory. To get the latest remote info, use the ignoreCache flag. For a rebuild that does not require the latest remote assets, omit the ignoreCache flag. For example:
   * hugo --ignoreCache -e local
   * hugo --ignoreCache -e dev
