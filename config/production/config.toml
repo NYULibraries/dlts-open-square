@@ -3,6 +3,7 @@
 baseURL = "https://opensquare.nyupress.org"
 
 [params]
+  apiurl = "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
   sassOutputFormat = "compressed"
   enableSourceMap = "false"
   pathtoreader = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"

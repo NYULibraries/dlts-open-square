@@ -26,6 +26,7 @@ enableGitInfo = true
   pathtoreaderfiles = "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"
   pathtoreader = "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
   thumbhrefurl = "https://opensquare-local.nyupress.org/open-square-reader"
+  apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
   faviconrelurl = "/favicon.png"
   connectedyouthurl = "https://connectedyouth.nyupress.org"
   link_title_1 = "Keywords"
@@ -39,9 +40,10 @@ enableGitInfo = true
   featured_series_homepage_blurb ="This series explores young people’s day-to-day lives and futures. The volumes consider changes at the intersection of civil and political reform, transformations in employment and education, and the growing presence of digital technologies in all aspects of social, cultural and political life."
   featured_series_path = "/series/connected-youth-and-digital-futures"
   image_server = "https://nyu-opensquare-us.imgix.net/covers/"
-  featured_book_isbn = "9781479819386"
+  featured_book_isbn = "9781479830909"
   # other_featured_books_isbn will be sorted by date.
-  other_featured_books_isbn = ["9780814722848", "9781479866250", "9781479815425", "9781479819492","9781479811175","9781479819164" ]
+  other_featured_books_isbn = ["9781479819386", "9781479819164", "9781479819492", "9781479815425","9781479866250","9780814722848" ]
+
 
 [taxonomies]
   subject = "subjects"

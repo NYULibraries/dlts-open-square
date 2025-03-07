@@ -3,7 +3,7 @@
 {{/* Get remote data: first call is for a list of all the books */}}
 {{ $data := dict }}
 {{ $docs := dict }}
-{{ $url := "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press" }}
+{{ $url := add site.Params.apiurl "?reset_cache=true" }}
 
 {{ $opts := dict
   "method" "get"
@@ -13,20 +13,21 @@
   "body" `{"complete": true}`
 }}
 
-{{ with resources.GetRemote $url $opts }}
+{{ with try (resources.GetRemote $url $opts) }}
   {{ with .Err }}
     {{ errorf "Case 1: Unable to get remote resource %s: %s" $url . }}
-  {{ else }}
+  {{ else with .Value }}
     {{ $data = .Content | transform.Unmarshal }}
     {{ $docs = index $data "response" "docs"  }}
+  {{ else }}
+    {{ errorf "Case 2: Unable to get remote resource %s" $url }}
   {{ end }}
-{{ else }}
-  {{ errorf "Case 2: Unable to get remote resource %s" $url }}
 {{ end }}
+
 
 {{/* Add pages */}}
 {{ range $docs }}
-  {{ $uri := .uri  }}
+  {{ $uri := add .uri "?reset_cache=true" }}
   {{ warnf "URI is :  %s" .uri }}
   {{/* Get remote data: a call for each book */}}
   {{ $opts := dict
@@ -37,10 +38,10 @@
     "body" `{"complete": true}`
   }}
 
-  {{ with resources.GetRemote $uri $opts }}
+  {{ with try (resources.GetRemote $uri $opts) }}
     {{ with .Err }}
       {{ errorf "Case 1: Unable to get remote resource %s: %s" $uri . }}
-    {{ else }}
+    {{ else with .Value}}
     {{ warnf "********  " }}
     {{ warnf "******** \n URI is :  %s" $uri }}
       {{ $data := .Content | transform.Unmarshal }}
