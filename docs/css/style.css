@@ -1881,6 +1881,8 @@ blockquote {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid #cdc4e1; }
+  .contributorbios div, .reviews div {
+    margin: 1em 0; }
   .contributorbios h2, .reviews h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem; }
