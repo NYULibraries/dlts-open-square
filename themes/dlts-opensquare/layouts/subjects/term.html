@@ -4,7 +4,7 @@
 
   <div class="item-count">{{ .Pages | len }} books</div>
   {{ partial "combobox.html" . }}
-  sort by <a href="#" onclick="sortbydateoa();return false;">dateOpenAccess</a>   sort by <a href="#" onclick="sortbydatebook();return false;">dateBook</a>   sort by <a href="#" onclick="sortbytitle();return false;">title</a>
+  {{ partial "comboboxsort.html" . }}
 
     {{ .Content }}
      <div class="mdc-layout-grid">
@@ -17,32 +17,5 @@
     </div>
   </div>
   </main>
-  <script>
-  function sortbydateoa() {
-    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.dateopenaccess);
-      const orderB = parseInt(b.dataset.dateopenaccess);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbydatebook() {
-    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.datebook);
-      const orderB = parseInt(b.dataset.datebook);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbytitle() {
-    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
-    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  </script>
+
 {{ partial "footer.html" . }}
