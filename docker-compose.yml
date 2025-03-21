@@ -1,8 +1,12 @@
 services:
-  tne_local_hugo:
+  opensquare_local_hugo:
     image: floryn90/hugo:0.145.0-ext-ubuntu
-    command: server --forceSyncStatic --cleanDestinationDir --disableFastRender
+    restart: always
+    working_dir: /app
+    command: server --forceSyncStatic --cleanDestinationDir --disableFastRender -e ${HUGO_ENV:-production}
+    environment:
+      - HUGO_ENV=production
     volumes:
-      - ".:."
+      - ".:/app"
     ports:
       - 1313:1313
