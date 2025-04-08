@@ -61,10 +61,10 @@
               {{ end }}
                 <div class="mdc-layout-grid__cell--span-6 featured-series-items-hold">
                     <div>
-                        <h3 class="series-title"><a href="{{.Site.Params.featured_series_path }}">{{.Site.Params.featured_series_full_name | safeHTML }}</a></h3>
+                        <h3 class="series-title"><a href="{{ absURL .Site.Params.featured_series_path }}">{{.Site.Params.featured_series_full_name | safeHTML }}</a></h3>
                         <div class="description">{{.Site.Params.featured_series_homepage_blurb | safeHTML }}</div>
                     </div>
-                    <div class="vista-callout"><a href="{{.Site.Params.featured_series_path }}" aria-label="Browse books in featured series: {{.Site.Params.featured_series_full_name | safeHTML }}">View all books in this series</a></div>
+                    <div class="vista-callout"><a href="{{  absURL .Site.Params.featured_series_path }}" aria-label="Browse books in featured series: {{.Site.Params.featured_series_full_name | safeHTML }}">View all books in this series</a></div>
                 </div>
             </div>
         </div>
