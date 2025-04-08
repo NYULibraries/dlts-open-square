@@ -91,15 +91,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="contain-main">
 
-  <main id="main-content">
-  <h1 class="page-title sr-only" >subject: Psychology</h1>
-
-  <div class="item-count">37 books</div>
-  <div class="dqpl-field-wrap">
-    <div class="dqpl-select">
+<main id="main-content">
+  <div class="main-header">
+    <h1 class="page-title sr-only">subject: Psychology</h1>
+    <div class="group">
+      
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">Psychology</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">Psychology</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
@@ -147,14 +148,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   
   
   
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
@@ -186,142 +187,103 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
-    
-     <div class="mdc-layout-grid">
-       <div class="mdc-layout-grid__inner">
+      <div class="dqpl-select" id="sort-select">
+  <div class="info-label">Sorted by</div>
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+    <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
+    </g>
+</svg>
+</div>
+  <div class="dqpl-listbox" role="listbox" id="sort-options">
+    <ul>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
+      <li class="dqpl-option" role="option" data-value="title">Title</li>
+    </ul>
+
+  </div>
+</div>
+
+<script>
+  function sortbydateoa() {
+    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.dateopenaccess);
+      const orderB = parseInt(b.dataset.dateopenaccess);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbydatebook() {
+    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.datebook);
+      const orderB = parseInt(b.dataset.datebook);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbytitle() {
+    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
+    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    Array.from(document.querySelectorAll('#sort-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              
+              switch (newValue) {
+                case "dateopenaccess":
+                  sortbydateoa();
+                  break;
+                case "datebook":
+                  sortbydatebook();
+                  break;
+                case "title":
+                  sortbytitle();
+                  break;
+                default:
+                  console.log('Unknown value');
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>
+
+    </div>
+    <div class="item-count">37 books</div>
+  </div>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
       
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479833597/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=145" alt="Adolescence, Discrimination, and the Law: Addressing Dramatic Shifts in Equality Jurisprudence"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479833597/">
-        <div class="book-title">Adolescence, Discrimination, and the Law</div>
-        
-        <div class="book-subtitle">Addressing Dramatic Shifts in Equality Jurisprudence</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Roger J.R. Levesque
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2015</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479872572/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=145" alt="Adolescent Boys: Exploring Diverse Cultures of Boyhood"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479872572/">
-        <div class="book-title">Adolescent Boys</div>
-        
-        <div class="book-subtitle">Exploring Diverse Cultures of Boyhood</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Niobe Way and 
-        Judy Y. Chu
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2004</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814723111/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=145" alt="American Karma: Race, Culture, and Identity in the Indian Diaspora"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814723111/">
-        <div class="book-title">American Karma</div>
-        
-        <div class="book-subtitle">Race, Culture, and Identity in the Indian Diaspora</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Sunil Bhatia
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2007</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-05-07" data-datebook="2005-08-01" data-titlesort="Autism and the Myth of the Person Alone">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814739105/">
 <picture>
@@ -370,9 +332,139 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-05-07" data-datebook="2013-12-16" data-titlesort="Living with Brain Injury">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814770221/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=145" alt="Living with Brain Injury: Narrative, Community, and Women’s Renegotiation of Identity"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814770221/">
+        <div class="book-title">Living with Brain Injury</div>
+        
+        <div class="book-subtitle">Narrative, Community, and Women’s Renegotiation of Identity</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">By</span>
+        J. Eric   Stewart
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2013</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2015-05-29" data-titlesort="Adolescence, Discrimination, and the Law">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479833597/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=145" alt="Adolescence, Discrimination, and the Law: Addressing Dramatic Shifts in Equality Jurisprudence"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479833597/">
+        <div class="book-title">Adolescence, Discrimination, and the Law</div>
+        
+        <div class="book-subtitle">Addressing Dramatic Shifts in Equality Jurisprudence</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Roger J.R. Levesque
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2015</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2007-08-01" data-titlesort="American Karma">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814723111/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723111.jpg?auto=format&amp;w=145" alt="American Karma: Race, Culture, and Identity in the Indian Diaspora"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814723111/">
+        <div class="book-title">American Karma</div>
+        
+        <div class="book-subtitle">Race, Culture, and Identity in the Indian Diaspora</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Sunil Bhatia
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2007</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="1987-10-01" data-titlesort="Children of Alcoholism">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814770511/">
 <picture>
@@ -412,9 +504,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2000-08-01" data-titlesort="Control">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759967/">
 <picture>
@@ -454,9 +546,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="1999-08-01" data-titlesort="Conversations about Psychology and Sexual Orientation">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723074/">
 <picture>
@@ -497,9 +589,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="1991-06-01" data-titlesort="Divorce">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723647/">
 <picture>
@@ -540,9 +632,572 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2000-11-01" data-titlesort="Flirting with Danger">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814768150/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=145" alt="Flirting with Danger: Young Women&#39;s Reflections on Sexuality and Domination"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814768150/">
+        <div class="book-title">Flirting with Danger</div>
+        
+        <div class="book-subtitle">Young Women&#39;s Reflections on Sexuality and Domination</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Lynn Phillips
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2000</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2012-07-23" data-titlesort="Gay Dads">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814708293/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=145" alt="Gay Dads: Transitions to Adoptive Fatherhood"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814708293/">
+        <div class="book-title">Gay Dads</div>
+        
+        <div class="book-subtitle">Transitions to Adoptive Fatherhood</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Abbie E. Goldberg
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2012</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2003-12-01" data-titlesort="Girlfighting">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814739112/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=145" alt="Girlfighting: Betrayal and Rejection among Girls"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814739112/">
+        <div class="book-title">Girlfighting</div>
+        
+        <div class="book-subtitle">Betrayal and Rejection among Girls</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Lyn Mikel Brown
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2003</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2009-08-01" data-titlesort="Healing the Broken Mind">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814749104/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=145" alt="Healing the Broken Mind: Transforming America’s Failed Mental Health System"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814749104/">
+        <div class="book-title">Healing the Broken Mind</div>
+        
+        <div class="book-subtitle">Transforming America’s Failed Mental Health System</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Timothy A. Kelly
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2000-11-01" data-titlesort="Inner City Kids">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814723890/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=145" alt="Inner City Kids: Adolescents Confront Life and Violence in an Urban Community"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814723890/">
+        <div class="book-title">Inner City Kids</div>
+        
+        <div class="book-subtitle">Adolescents Confront Life and Violence in an Urban Community</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Alice Mcintyre
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2000</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/urban-studies/">Urban Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2006-10-01" data-titlesort="Internationalizing the History of Psychology">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814739082/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=145" alt="Internationalizing the History of Psychology"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814739082/">
+        <div class="book-title">Internationalizing the History of Psychology</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Adrian C. Brock
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2006</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
+        <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="1999-06-01" data-titlesort="New Versions of Victims">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814752913/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=145" alt="New Versions of Victims: Feminists Struggle with the Concept"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814752913/">
+        <div class="book-title">New Versions of Victims</div>
+        
+        <div class="book-subtitle">Feminists Struggle with the Concept</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Sharon Lamb
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1999</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2005-01-01" data-titlesort="Organizational Psychology in Cross Cultural Perspective">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814786581/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=145" alt="Organizational Psychology in Cross Cultural Perspective"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814786581/">
+        <div class="book-title">Organizational Psychology in Cross Cultural Perspective</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Colin P. Silverthorne
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2005</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/business/">Business</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2009-08-01" data-titlesort="Peer-Impact Diagnosis and Therapy">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814741023/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=145" alt="Peer-Impact Diagnosis and Therapy: A Handbook for Successful Practice with Adolescents"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814741023/">
+        <div class="book-title">Peer-Impact Diagnosis and Therapy</div>
+        
+        <div class="book-subtitle">A Handbook for Successful Practice with Adolescents</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Vivian Center Seltzer
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2009-06-01" data-titlesort="Perversion of Youth">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814785225/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=145" alt="The Perversion of Youth: Controversies in the Assessment and Treatment of Juvenile Sex Offenders"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814785225/">
+        <div class="book-title">The Perversion of Youth</div>
+        
+        <div class="book-subtitle">Controversies in the Assessment and Treatment of Juvenile Sex Offenders</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Frank C. DiCataldo
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2004-01-01" data-titlesort="Adolescent Boys">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479872572/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479872572.jpg?auto=format&amp;w=145" alt="Adolescent Boys: Exploring Diverse Cultures of Boyhood"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479872572/">
+        <div class="book-title">Adolescent Boys</div>
+        
+        <div class="book-subtitle">Exploring Diverse Cultures of Boyhood</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Niobe Way and 
+        Judy Y. Chu
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2004</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2000-09-01" data-titlesort="Voted Out">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814769232/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=145" alt="Voted Out: The Psychological Consequences of Anti-Gay Politics"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814769232/">
+        <div class="book-title">Voted Out</div>
+        
+        <div class="book-subtitle">The Psychological Consequences of Anti-Gay Politics</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Glenda M. Russell
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2000</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2010-08-01" data-titlesort="Why Girls Fight">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814759073/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=145" alt="Why Girls Fight: Female Youth Violence in the Inner City"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814759073/">
+        <div class="book-title">Why Girls Fight</div>
+        
+        <div class="book-subtitle">Female Youth Violence in the Inner City</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Cindy D. Ness
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2010</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1992-12-01" data-titlesort="Embracing the Other">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814762622/">
 <picture>
@@ -586,9 +1241,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-04-01" data-titlesort="Everyday Courage">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814784891/">
 <picture>
@@ -629,9 +1284,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1995-07-01" data-titlesort="Faith Born of Seduction">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763148/">
 <picture>
@@ -672,9 +1327,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-11-01" data-titlesort="Ferenczi&#39;s Turn in Psychoanalysis">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814771501/">
 <picture>
@@ -716,182 +1371,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814768150/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=145" alt="Flirting with Danger: Young Women&#39;s Reflections on Sexuality and Domination"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814768150/">
-        <div class="book-title">Flirting with Danger</div>
-        
-        <div class="book-subtitle">Young Women&#39;s Reflections on Sexuality and Domination</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Lynn Phillips
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2000</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814708293/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=145" alt="Gay Dads: Transitions to Adoptive Fatherhood"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814708293/">
-        <div class="book-title">Gay Dads</div>
-        
-        <div class="book-subtitle">Transitions to Adoptive Fatherhood</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Abbie E. Goldberg
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2012</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814739112/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=145" alt="Girlfighting: Betrayal and Rejection among Girls"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814739112/">
-        <div class="book-title">Girlfighting</div>
-        
-        <div class="book-subtitle">Betrayal and Rejection among Girls</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Lyn Mikel Brown
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2003</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814749104/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=145" alt="Healing the Broken Mind: Transforming America’s Failed Mental Health System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814749104/">
-        <div class="book-title">Healing the Broken Mind</div>
-        
-        <div class="book-subtitle">Transforming America’s Failed Mental Health System</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Timothy A. Kelly
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-03-01" data-titlesort="HIV Mental Health for the 21st Century">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814784600/">
 <picture>
@@ -931,9 +1413,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-10-01" data-titlesort="Imagined Human Beings">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814767917/">
 <picture>
@@ -974,53 +1456,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814723890/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723890.jpg?auto=format&amp;w=145" alt="Inner City Kids: Adolescents Confront Life and Violence in an Urban Community"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814723890/">
-        <div class="book-title">Inner City Kids</div>
-        
-        <div class="book-subtitle">Adolescents Confront Life and Violence in an Urban Community</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Alice Mcintyre
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2000</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/urban-studies/">Urban Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-04-01" data-titlesort="Integrity and Conscience">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814739617/">
 <picture>
@@ -1062,95 +1500,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814739082/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=145" alt="Internationalizing the History of Psychology"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814739082/">
-        <div class="book-title">Internationalizing the History of Psychology</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Adrian C. Brock
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2006</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
-        <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814770221/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=145" alt="Living with Brain Injury: Narrative, Community, and Women’s Renegotiation of Identity"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814770221/">
-        <div class="book-title">Living with Brain Injury</div>
-        
-        <div class="book-subtitle">Narrative, Community, and Women’s Renegotiation of Identity</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        J. Eric   Stewart
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2013</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-07-01" data-titlesort="Narcissism and the Literary Libido">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814707517/">
 <picture>
@@ -1191,138 +1543,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814752913/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=145" alt="New Versions of Victims: Feminists Struggle with the Concept"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814752913/">
-        <div class="book-title">New Versions of Victims</div>
-        
-        <div class="book-subtitle">Feminists Struggle with the Concept</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Sharon Lamb
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1999</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814786581/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786581.jpg?auto=format&amp;w=145" alt="Organizational Psychology in Cross Cultural Perspective"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814786581/">
-        <div class="book-title">Organizational Psychology in Cross Cultural Perspective</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Colin P. Silverthorne
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2005</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/business/">Business</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814741023/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814741023.jpg?auto=format&amp;w=145" alt="Peer-Impact Diagnosis and Therapy: A Handbook for Successful Practice with Adolescents"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814741023/">
-        <div class="book-title">Peer-Impact Diagnosis and Therapy</div>
-        
-        <div class="book-subtitle">A Handbook for Successful Practice with Adolescents</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Vivian Center Seltzer
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-11-01" data-titlesort="Romantic Outlaws, Beloved Prisons">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814721100/">
 <picture>
@@ -1364,9 +1587,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-01-01" data-titlesort="Seasons of Captivity">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479898626/">
 <picture>
@@ -1407,9 +1630,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1991-10-01" data-titlesort="Self and Other">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769485/">
 <picture>
@@ -1450,9 +1673,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1993-02-01" data-titlesort="Beginning of Terror">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763582/">
 <picture>
@@ -1493,52 +1716,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814785225/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=145" alt="The Perversion of Youth: Controversies in the Assessment and Treatment of Juvenile Sex Offenders"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814785225/">
-        <div class="book-title">The Perversion of Youth</div>
-        
-        <div class="book-subtitle">Controversies in the Assessment and Treatment of Juvenile Sex Offenders</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Frank C. DiCataldo
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-05-01" data-titlesort="The Psychological Assessment of Presidential Candidates">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814776636/">
 <picture>
@@ -1578,9 +1758,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1995-03-01" data-titlesort="Slave Soul of Russia">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769409/">
 <picture>
@@ -1621,9 +1801,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-11-01" data-titlesort="Smart Culture">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744789/">
 <picture>
@@ -1665,9 +1845,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-06-01" data-titlesort="Truth About Freud&#39;s Technique">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814784488/">
 <picture>
@@ -1708,98 +1888,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814769232/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=145" alt="Voted Out: The Psychological Consequences of Anti-Gay Politics"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814769232/">
-        <div class="book-title">Voted Out</div>
-        
-        <div class="book-subtitle">The Psychological Consequences of Anti-Gay Politics</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Glenda M. Russell
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2000</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814759073/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=145" alt="Why Girls Fight: Female Youth Violence in the Inner City"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814759073/">
-        <div class="book-title">Why Girls Fight</div>
-        
-        <div class="book-subtitle">Female Youth Violence in the Inner City</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Cindy D. Ness
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2010</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
+      
     </div>
   </div>
-  </main>
+</main>
+
 </div>
 <footer class="page-footer">
   <nav class="nav-links"  aria-label="footer-navigation-items">

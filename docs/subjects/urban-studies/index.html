@@ -91,15 +91,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="contain-main">
 
-  <main id="main-content">
-  <h1 class="page-title sr-only" >subject: Urban Studies</h1>
-
-  <div class="item-count">1 books</div>
-  <div class="dqpl-field-wrap">
-    <div class="dqpl-select">
+<main id="main-content">
+  <div class="main-header">
+    <h1 class="page-title sr-only">subject: Urban Studies</h1>
+    <div class="group">
+      
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">Urban Studies</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">Urban Studies</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
@@ -147,14 +148,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   
   
   
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
@@ -186,12 +187,103 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
-    
-     <div class="mdc-layout-grid">
-       <div class="mdc-layout-grid__inner">
+      <div class="dqpl-select" id="sort-select">
+  <div class="info-label">Sorted by</div>
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+    <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
+    </g>
+</svg>
+</div>
+  <div class="dqpl-listbox" role="listbox" id="sort-options">
+    <ul>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
+      <li class="dqpl-option" role="option" data-value="title">Title</li>
+    </ul>
+
+  </div>
+</div>
+
+<script>
+  function sortbydateoa() {
+    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.dateopenaccess);
+      const orderB = parseInt(b.dataset.dateopenaccess);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbydatebook() {
+    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.datebook);
+      const orderB = parseInt(b.dataset.datebook);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbytitle() {
+    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
+    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    Array.from(document.querySelectorAll('#sort-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              
+              switch (newValue) {
+                case "dateopenaccess":
+                  sortbydateoa();
+                  break;
+                case "datebook":
+                  sortbydatebook();
+                  break;
+                case "title":
+                  sortbytitle();
+                  break;
+                default:
+                  console.log('Unknown value');
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>
+
+    </div>
+    <div class="item-count">1 book</div>
+  </div>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
       
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2000-11-01" data-titlesort="Inner City Kids">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723890/">
 <picture>
@@ -233,10 +325,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
+      
     </div>
   </div>
-  </main>
+</main>
+
 </div>
 <footer class="page-footer">
   <nav class="nav-links"  aria-label="footer-navigation-items">

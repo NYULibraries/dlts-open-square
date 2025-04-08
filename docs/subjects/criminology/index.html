@@ -91,15 +91,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="contain-main">
 
-  <main id="main-content">
-  <h1 class="page-title sr-only" >subject: Criminology</h1>
-
-  <div class="item-count">21 books</div>
-  <div class="dqpl-field-wrap">
-    <div class="dqpl-select">
+<main id="main-content">
+  <div class="main-header">
+    <h1 class="page-title sr-only">subject: Criminology</h1>
+    <div class="group">
+      
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">Criminology</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">Criminology</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
@@ -147,14 +148,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   
   
   
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
@@ -186,56 +187,103 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
-    
-     <div class="mdc-layout-grid">
-       <div class="mdc-layout-grid__inner">
-      
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814725160/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=145" alt="5 Grams: Crack Cocaine, Rap Music, and the War on Drugs"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+      <div class="dqpl-select" id="sort-select">
+  <div class="info-label">Sorted by</div>
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+    <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
+    </g>
+</svg>
 </div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814725160/">
-        <div class="book-title">5 Grams</div>
-        
-        <div class="book-subtitle">Crack Cocaine, Rap Music, and the War on Drugs</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Dimitri A. Bogazianos
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        </div>
+  <div class="dqpl-listbox" role="listbox" id="sort-options">
+    <ul>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
+      <li class="dqpl-option" role="option" data-value="title">Title</li>
+    </ul>
 
   </div>
-</article>
+</div>
 
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+<script>
+  function sortbydateoa() {
+    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.dateopenaccess);
+      const orderB = parseInt(b.dataset.dateopenaccess);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbydatebook() {
+    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.datebook);
+      const orderB = parseInt(b.dataset.datebook);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbytitle() {
+    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
+    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    Array.from(document.querySelectorAll('#sort-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              
+              switch (newValue) {
+                case "dateopenaccess":
+                  sortbydateoa();
+                  break;
+                case "datebook":
+                  sortbydatebook();
+                  break;
+                case "title":
+                  sortbytitle();
+                  break;
+                default:
+                  console.log('Unknown value');
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>
+
+    </div>
+    <div class="item-count">21 books</div>
+  </div>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2015-05-29" data-titlesort="Adolescence, Discrimination, and the Law">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479833597/">
 <picture>
@@ -277,181 +325,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814743980/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=145" alt="Bird-Self Accumulated"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814743980/">
-        <div class="book-title">Bird-Self Accumulated</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Don Judson
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1996</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/literature--literary-studies/">Literature &amp; Literary Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814743669/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=145" alt="Breaking the Devil’s Pact: The Battle to Free the Teamsters from the Mob"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814743669/">
-        <div class="book-title">Breaking the Devil’s Pact</div>
-        
-        <div class="book-subtitle">The Battle to Free the Teamsters from the Mob</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        James B. Jacobs and 
-        Kerry T. Cooperman
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479863402/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145" alt="Choosing the Future for American Juvenile Justice"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479863402/">
-        <div class="book-title">Choosing the Future for American Juvenile Justice</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Franklin E. Zimring and 
-        David S. Tanenhaus
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2014</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814708033/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=145" alt="Community Criminology: Fundamentals of Spatial and Temporal Scaling, Ecological Indicators, and Selectivity Bias"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814708033/">
-        <div class="book-title">Community Criminology</div>
-        
-        <div class="book-subtitle">Fundamentals of Spatial and Temporal Scaling, Ecological Indicators, and Selectivity Bias</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Ralph B. Taylor
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2015</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2006-09-01" data-titlesort="Critical Cyberculture Studies">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708903/">
 <picture>
@@ -496,9 +372,227 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2009-06-01" data-titlesort="Perversion of Youth">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814785225/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=145" alt="The Perversion of Youth: Controversies in the Assessment and Treatment of Juvenile Sex Offenders"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814785225/">
+        <div class="book-title">The Perversion of Youth</div>
+        
+        <div class="book-subtitle">Controversies in the Assessment and Treatment of Juvenile Sex Offenders</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Frank C. DiCataldo
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2008-06-01" data-titlesort="When Mothers Kill">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814762516/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145" alt="When Mothers Kill: Interviews from Prison"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814762516/">
+        <div class="book-title">When Mothers Kill</div>
+        
+        <div class="book-subtitle">Interviews from Prison</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Cheryl L. Meyer and 
+        Michelle Oberman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2008</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2011-12-01" data-titlesort="5 Grams">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814725160/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=145" alt="5 Grams: Crack Cocaine, Rap Music, and the War on Drugs"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814725160/">
+        <div class="book-title">5 Grams</div>
+        
+        <div class="book-subtitle">Crack Cocaine, Rap Music, and the War on Drugs</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Dimitri A. Bogazianos
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2014-05-02" data-titlesort="Choosing the Future for American Juvenile Justice">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479863402/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145" alt="Choosing the Future for American Juvenile Justice"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479863402/">
+        <div class="book-title">Choosing the Future for American Juvenile Justice</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Franklin E. Zimring and 
+        David S. Tanenhaus
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2014</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2015-01-09" data-titlesort="Community Criminology">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814708033/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=145" alt="Community Criminology: Fundamentals of Spatial and Temporal Scaling, Ecological Indicators, and Selectivity Bias"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814708033/">
+        <div class="book-title">Community Criminology</div>
+        
+        <div class="book-subtitle">Fundamentals of Spatial and Temporal Scaling, Ecological Indicators, and Selectivity Bias</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Ralph B. Taylor
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2015</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2001-08-01" data-titlesort="Critical Race Narratives">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733332/">
 <picture>
@@ -540,9 +634,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2012-02-01" data-titlesort="Doing Time in the Depression">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723166/">
 <picture>
@@ -583,9 +677,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2013-07-19" data-titlesort="Economics and Youth Violence">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814760239/">
 <picture>
@@ -630,9 +724,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2014-05-02" data-titlesort="Get a Job">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479829729/">
 <picture>
@@ -673,53 +767,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790793/">
-        <div class="book-title">Habeas Corpus after 9/11</div>
-        
-        <div class="book-subtitle">Confronting America’s New Global Detention System</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Jonathan Hafetz
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2012-12-03" data-titlesort="Judging Addicts">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759417/">
 <picture>
@@ -760,9 +810,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2011-03-07" data-titlesort="Policing Methamphetamine">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733004/">
 <picture>
@@ -804,53 +854,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814721100/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=145" alt="Romantic Outlaws, Beloved Prisons: The Unconscious Meanings of Crime and Punishment"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814721100/">
-        <div class="book-title">Romantic Outlaws, Beloved Prisons</div>
-        
-        <div class="book-subtitle">The Unconscious Meanings of Crime and Punishment</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Martha Grace Duncan
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1996</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2011-09-12" data-titlesort="Shutting Down the Streets">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814738351/">
 <picture>
@@ -894,95 +900,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814785225/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=145" alt="The Perversion of Youth: Controversies in the Assessment and Treatment of Juvenile Sex Offenders"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814785225/">
-        <div class="book-title">The Perversion of Youth</div>
-        
-        <div class="book-subtitle">Controversies in the Assessment and Treatment of Juvenile Sex Offenders</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Frank C. DiCataldo
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814785157/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145" alt="The Sense of Justice: Empathy in Law and Punishment"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814785157/">
-        <div class="book-title">The Sense of Justice</div>
-        
-        <div class="book-subtitle">Empathy in Law and Punishment</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Markus Dirk Dubber
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2006</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2018-05-08" data-titlesort="Sex Offender Housing Dilemma">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479871247/">
 <picture>
@@ -1023,9 +943,140 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2011-10-01" data-titlesort="Breaking the Devil’s Pact">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814743669/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=145" alt="Breaking the Devil’s Pact: The Battle to Free the Teamsters from the Mob"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814743669/">
+        <div class="book-title">Breaking the Devil’s Pact</div>
+        
+        <div class="book-subtitle">The Battle to Free the Teamsters from the Mob</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">By</span>
+        James B. Jacobs and 
+        Kerry T. Cooperman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2011-01-04" data-titlesort="Habeas Corpus after 9/11">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790793/">
+        <div class="book-title">Habeas Corpus after 9/11</div>
+        
+        <div class="book-subtitle">Confronting America’s New Global Detention System</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Jonathan Hafetz
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2006-10-01" data-titlesort="Sense of Justice">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814785157/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145" alt="The Sense of Justice: Empathy in Law and Punishment"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814785157/">
+        <div class="book-title">The Sense of Justice</div>
+        
+        <div class="book-subtitle">Empathy in Law and Punishment</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Markus Dirk Dubber
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2006</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2002-06-07" data-titlesort="Victims in the War on Crime">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769881/">
 <picture>
@@ -1066,55 +1117,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-03-01" data-titlesort="Bird-Self Accumulated">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814762516/">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814743980/">
 <picture>
   <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145" alt="When Mothers Kill: Interviews from Prison"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=145" alt="Bird-Self Accumulated"
     data-baseline-images="image" class="img-fluid">
 </picture></a>
 </div>
 
   <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814762516/">
-        <div class="book-title">When Mothers Kill</div>
+    <div class="book-title-group"><a href="/books/9780814743980/">
+        <div class="book-title">Bird-Self Accumulated</div>
         
-        <div class="book-subtitle">Interviews from Prison</div>
       </a></div>
     
     <div class="author-group">
       <span class="rolename">By</span>
-        Cheryl L. Meyer and 
-        Michelle Oberman
+        Don Judson
     </div>
 
 
-    <div class="pubdate"><span>Published:</span> 2008</div>
+    <div class="pubdate"><span>Published:</span> 1996</div>
     
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
     <div class="tags"><span class="label">Subjects:</span>
       <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        <span class="tag"><a href="/subjects/literature--literary-studies/">Literature &amp; Literary Studies</a></span>
         </div>
 
   </div>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-11-01" data-titlesort="Romantic Outlaws, Beloved Prisons">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814721100/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=145" alt="Romantic Outlaws, Beloved Prisons: The Unconscious Meanings of Crime and Punishment"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814721100/">
+        <div class="book-title">Romantic Outlaws, Beloved Prisons</div>
+        
+        <div class="book-subtitle">The Unconscious Meanings of Crime and Punishment</div>
+      </a></div>
     
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Martha Grace Duncan
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1996</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
     </div>
   </div>
-  </main>
+</main>
+
 </div>
 <footer class="page-footer">
   <nav class="nav-links"  aria-label="footer-navigation-items">

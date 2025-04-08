@@ -91,15 +91,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="contain-main">
 
-  <main id="main-content">
-  <h1 class="page-title sr-only" >subject: Law</h1>
-
-  <div class="item-count">32 books</div>
-  <div class="dqpl-field-wrap">
-    <div class="dqpl-select">
+<main id="main-content">
+  <div class="main-header">
+    <h1 class="page-title sr-only">subject: Law</h1>
+    <div class="group">
+      
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">Law</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">Law</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
@@ -147,14 +148,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   
   
   
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
@@ -186,12 +187,233 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
-    
-     <div class="mdc-layout-grid">
-       <div class="mdc-layout-grid__inner">
+      <div class="dqpl-select" id="sort-select">
+  <div class="info-label">Sorted by</div>
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+    <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
+    </g>
+</svg>
+</div>
+  <div class="dqpl-listbox" role="listbox" id="sort-options">
+    <ul>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
+      <li class="dqpl-option" role="option" data-value="title">Title</li>
+    </ul>
+
+  </div>
+</div>
+
+<script>
+  function sortbydateoa() {
+    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.dateopenaccess);
+      const orderB = parseInt(b.dataset.dateopenaccess);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbydatebook() {
+    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.datebook);
+      const orderB = parseInt(b.dataset.datebook);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbytitle() {
+    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
+    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    Array.from(document.querySelectorAll('#sort-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              
+              switch (newValue) {
+                case "dateopenaccess":
+                  sortbydateoa();
+                  break;
+                case "datebook":
+                  sortbydatebook();
+                  break;
+                case "title":
+                  sortbytitle();
+                  break;
+                default:
+                  console.log('Unknown value');
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>
+
+    </div>
+    <div class="item-count">32 books</div>
+  </div>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
       
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-05-29" data-datebook="1991-09-01" data-titlesort="Compensatory Justice">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790144/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=145" alt="Compensatory Justice: Nomos XXXIII"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790144/">
+        <div class="book-title">Compensatory Justice</div>
+        
+        <div class="book-subtitle">Nomos XXXIII</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        John W. Chapman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1991</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-05-07" data-datebook="2019-06-25" data-titlesort="Loving Justice">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479832637/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=145" alt="Loving Justice: Legal Emotions in William Blackstone&#39;s England"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479832637/">
+        <div class="book-title">Loving Justice</div>
+        
+        <div class="book-subtitle">Legal Emotions in William Blackstone&#39;s England</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Kathryn D. Temple
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2019</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-05-07" data-datebook="2009-05-01" data-titlesort="Ugly Laws">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814708873/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=145" alt="The Ugly Laws: Disability in Public"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814708873/">
+        <div class="book-title">The Ugly Laws</div>
+        
+        <div class="book-subtitle">Disability in Public</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Susan M. Schweik
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/disability-studies/">Disability Studies</a></span>
+        <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2015-05-29" data-titlesort="Adolescence, Discrimination, and the Law">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479833597/">
 <picture>
@@ -233,84 +455,130 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2008-07-12" data-titlesort="Pride in the Projects">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790175/">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814785218/">
 <picture>
   <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=145" alt="American Law in the Age of Hypercapitalism: The Worker, the Family, and the State"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=145" alt="Pride in the Projects: Teens Building Identities in Urban Contexts"
     data-baseline-images="image" class="img-fluid">
 </picture></a>
 </div>
 
   <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790175/">
-        <div class="book-title">American Law in the Age of Hypercapitalism</div>
+    <div class="book-title-group"><a href="/books/9780814785218/">
+        <div class="book-title">Pride in the Projects</div>
         
-        <div class="book-subtitle">The Worker, the Family, and the State</div>
+        <div class="book-subtitle">Teens Building Identities in Urban Contexts</div>
       </a></div>
     
     <div class="author-group">
       <span class="rolename">By</span>
-        Ruth Colker
+        Nancy L. Deutsch
     </div>
 
 
-    <div class="pubdate"><span>Published:</span> 1998</div>
+    <div class="pubdate"><span>Published:</span> 2008</div>
     
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
     <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
+        <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
 
   </div>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2011-08-01" data-titlesort="Global Flow of Information">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814744765/">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814749470/">
 <picture>
   <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=145" alt="Black Rage Confronts the Law"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=145" alt="The Global Flow of Information: Legal, Social, and Cultural Perspectives"
     data-baseline-images="image" class="img-fluid">
 </picture></a>
 </div>
 
   <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814744765/">
-        <div class="book-title">Black Rage Confronts the Law</div>
+    <div class="book-title-group"><a href="/books/9780814749470/">
+        <div class="book-title">The Global Flow of Information</div>
+        
+        <div class="book-subtitle">Legal, Social, and Cultural Perspectives</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Ramesh Subramanian and 
+        Eddan Katz
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2014-05-02" data-titlesort="Choosing the Future for American Juvenile Justice">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479863402/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145" alt="Choosing the Future for American Juvenile Justice"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479863402/">
+        <div class="book-title">Choosing the Future for American Juvenile Justice</div>
         
       </a></div>
     
     <div class="author-group">
-      <span class="rolename">By</span>
-        Paul Harris
+      <span class="rolename">Edited by</span>
+        Franklin E. Zimring and 
+        David S. Tanenhaus
     </div>
 
 
-    <div class="pubdate"><span>Published:</span> 1997</div>
+    <div class="pubdate"><span>Published:</span> 2014</div>
     
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
     
     <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
         <span class="tag"><a href="/subjects/law/">Law</a></span>
         </div>
 
@@ -318,9 +586,99 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2013-07-19" data-titlesort="Economics and Youth Violence">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814760239/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=145" alt="Economics and Youth Violence: Crime, Disadvantage, and Community"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814760239/">
+        <div class="book-title">Economics and Youth Violence</div>
+        
+        <div class="book-subtitle">Crime, Disadvantage, and Community</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Richard Rosenfeld, 
+        Mark Edberg, 
+        Xiangming Fang, and 
+        Curtis S. Florence
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2013</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2014-09-26" data-titlesort="Making Race in the Courtroom">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814724972/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=145" alt="Making Race in the Courtroom: The Legal Construction of Three Races in Early New Orleans"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814724972/">
+        <div class="book-title">Making Race in the Courtroom</div>
+        
+        <div class="book-subtitle">The Legal Construction of Three Races in Early New Orleans</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Kenneth R. Aslakson
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2014</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2011-10-01" data-titlesort="Breaking the Devil’s Pact">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743669/">
 <picture>
@@ -362,9 +720,353 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2011-01-04" data-titlesort="Habeas Corpus after 9/11">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790793/">
+        <div class="book-title">Habeas Corpus after 9/11</div>
+        
+        <div class="book-subtitle">Confronting America’s New Global Detention System</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Jonathan Hafetz
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2009-07-01" data-titlesort="Neither Fugitive nor Free">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814795460/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=145" alt="Neither Fugitive nor Free: Atlantic Slavery, Freedom Suits, and the Legal Culture of Travel"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814795460/">
+        <div class="book-title">Neither Fugitive nor Free</div>
+        
+        <div class="book-subtitle">Atlantic Slavery, Freedom Suits, and the Legal Culture of Travel</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Edlie L. Wong
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
+        <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2001-03-01" data-titlesort="Nothing but the Truth">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814765029/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=145" alt="Nothing but the Truth: Why Trial Lawyers Don&#39;t, Can&#39;t, and Shouldn&#39;t Have to Tell the Whole Truth"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814765029/">
+        <div class="book-title">Nothing but the Truth</div>
+        
+        <div class="book-subtitle">Why Trial Lawyers Don&#39;t, Can&#39;t, and Shouldn&#39;t Have to Tell the Whole Truth</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Steven Lubet
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2001</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2009-04-01" data-titlesort="Rules of Disengagement">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814762929/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=145" alt="Rules of Disengagement"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814762929/">
+        <div class="book-title">Rules of Disengagement</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Marjorie Cohn and 
+        Kathleen Gilberd
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2006-10-01" data-titlesort="Sense of Justice">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814785157/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145" alt="The Sense of Justice: Empathy in Law and Punishment"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814785157/">
+        <div class="book-title">The Sense of Justice</div>
+        
+        <div class="book-subtitle">Empathy in Law and Punishment</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Markus Dirk Dubber
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2006</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2002-06-07" data-titlesort="Victims in the War on Crime">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814769881/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=145" alt="Victims in the War on Crime: The Use and Abuse of Victims&#39; Rights"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814769881/">
+        <div class="book-title">Victims in the War on Crime</div>
+        
+        <div class="book-subtitle">The Use and Abuse of Victims&#39; Rights</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Markus Dirk Dubber
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2002</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-03-01" data-titlesort="American Law in the Age of Hypercapitalism">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790175/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=145" alt="American Law in the Age of Hypercapitalism: The Worker, the Family, and the State"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790175/">
+        <div class="book-title">American Law in the Age of Hypercapitalism</div>
+        
+        <div class="book-subtitle">The Worker, the Family, and the State</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Ruth Colker
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1998</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-05-01" data-titlesort="Black Rage Confronts the Law">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814744765/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=145" alt="Black Rage Confronts the Law"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814744765/">
+        <div class="book-title">Black Rage Confronts the Law</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Paul Harris
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1997</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-10-01" data-titlesort="Busting the Mob">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743959/">
 <picture>
@@ -410,9 +1112,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1993-06-01" data-titlesort="Can Unions Survive?">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723715/">
 <picture>
@@ -453,95 +1155,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479863402/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145" alt="Choosing the Future for American Juvenile Justice"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479863402/">
-        <div class="book-title">Choosing the Future for American Juvenile Justice</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Franklin E. Zimring and 
-        David S. Tanenhaus
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2014</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790144/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=145" alt="Compensatory Justice: Nomos XXXIII"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790144/">
-        <div class="book-title">Compensatory Justice</div>
-        
-        <div class="book-subtitle">Nomos XXXIII</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        John W. Chapman
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1991</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-09-01" data-titlesort="Culture Clash">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733486/">
 <picture>
@@ -582,100 +1198,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814760239/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=145" alt="Economics and Youth Violence: Crime, Disadvantage, and Community"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814760239/">
-        <div class="book-title">Economics and Youth Violence</div>
-        
-        <div class="book-subtitle">Crime, Disadvantage, and Community</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Richard Rosenfeld, 
-        Mark Edberg, 
-        Xiangming Fang, and 
-        Curtis S. Florence
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2013</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790793/">
-        <div class="book-title">Habeas Corpus after 9/11</div>
-        
-        <div class="book-subtitle">Confronting America’s New Global Detention System</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Jonathan Hafetz
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-05-01" data-titlesort="Hybrid">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814772195/">
 <picture>
@@ -716,9 +1241,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-04-01" data-titlesort="Integrity and Conscience">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814739617/">
 <picture>
@@ -760,95 +1285,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479832637/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=145" alt="Loving Justice: Legal Emotions in William Blackstone&#39;s England"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479832637/">
-        <div class="book-title">Loving Justice</div>
-        
-        <div class="book-subtitle">Legal Emotions in William Blackstone&#39;s England</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Kathryn D. Temple
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2019</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814724972/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=145" alt="Making Race in the Courtroom: The Legal Construction of Three Races in Early New Orleans"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814724972/">
-        <div class="book-title">Making Race in the Courtroom</div>
-        
-        <div class="book-subtitle">The Legal Construction of Three Races in Early New Orleans</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Kenneth R. Aslakson
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2014</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1989-03-01" data-titlesort="Markets and Justice">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790168/">
 <picture>
@@ -889,9 +1328,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-05-01" data-titlesort="Negrophobia and Reasonable Racism">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814707821/">
 <picture>
@@ -933,95 +1372,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814795460/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=145" alt="Neither Fugitive nor Free: Atlantic Slavery, Freedom Suits, and the Legal Culture of Travel"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814795460/">
-        <div class="book-title">Neither Fugitive nor Free</div>
-        
-        <div class="book-subtitle">Atlantic Slavery, Freedom Suits, and the Legal Culture of Travel</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Edlie L. Wong
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
-        <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814765029/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=145" alt="Nothing but the Truth: Why Trial Lawyers Don&#39;t, Can&#39;t, and Shouldn&#39;t Have to Tell the Whole Truth"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814765029/">
-        <div class="book-title">Nothing but the Truth</div>
-        
-        <div class="book-subtitle">Why Trial Lawyers Don&#39;t, Can&#39;t, and Shouldn&#39;t Have to Tell the Whole Truth</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Steven Lubet
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2001</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-12-01" data-titlesort="Please Don&#39;t Wish Me a Merry Christmas">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728048/">
 <picture>
@@ -1062,9 +1415,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-05-01" data-titlesort="Postmodern Legal Movements">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763223/">
 <picture>
@@ -1105,54 +1458,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814785218/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=145" alt="Pride in the Projects: Teens Building Identities in Urban Contexts"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814785218/">
-        <div class="book-title">Pride in the Projects</div>
-        
-        <div class="book-subtitle">Teens Building Identities in Urban Contexts</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Nancy L. Deutsch
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2008</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
-        <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-11-01" data-titlesort="Romantic Outlaws, Beloved Prisons">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814721100/">
 <picture>
@@ -1194,52 +1502,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814762929/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=145" alt="Rules of Disengagement"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814762929/">
-        <div class="book-title">Rules of Disengagement</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Marjorie Cohn and 
-        Kathleen Gilberd
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-07-01" data-titlesort="Seriatim">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814738573/">
 <picture>
@@ -1280,9 +1545,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-04-01" data-titlesort="Gender Line">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814752715/">
 <picture>
@@ -1323,95 +1588,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814749470/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=145" alt="The Global Flow of Information: Legal, Social, and Cultural Perspectives"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814749470/">
-        <div class="book-title">The Global Flow of Information</div>
-        
-        <div class="book-subtitle">Legal, Social, and Cultural Perspectives</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Ramesh Subramanian and 
-        Eddan Katz
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814785157/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145" alt="The Sense of Justice: Empathy in Law and Punishment"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814785157/">
-        <div class="book-title">The Sense of Justice</div>
-        
-        <div class="book-subtitle">Empathy in Law and Punishment</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Markus Dirk Dubber
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2006</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-11-01" data-titlesort="Smart Culture">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744789/">
 <picture>
@@ -1453,53 +1632,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814708873/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=145" alt="The Ugly Laws: Disability in Public"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814708873/">
-        <div class="book-title">The Ugly Laws</div>
-        
-        <div class="book-subtitle">Disability in Public</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Susan M. Schweik
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/disability-studies/">Disability Studies</a></span>
-        <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-03-01" data-titlesort="To Be An American">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744840/">
 <picture>
@@ -1542,53 +1677,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814769881/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=145" alt="Victims in the War on Crime: The Use and Abuse of Victims&#39; Rights"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814769881/">
-        <div class="book-title">Victims in the War on Crime</div>
-        
-        <div class="book-subtitle">The Use and Abuse of Victims&#39; Rights</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Markus Dirk Dubber
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2002</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
+      
     </div>
   </div>
-  </main>
+</main>
+
 </div>
 <footer class="page-footer">
   <nav class="nav-links"  aria-label="footer-navigation-items">
