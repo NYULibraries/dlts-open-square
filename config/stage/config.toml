@@ -5,7 +5,7 @@ baseURL = "https://opensquare-stage.nyupress.org"
 disableKinds = ['sitemap']
 
 [params]
-  apiurl = "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
+  apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
   sassOutputFormat = "compressed"
   enableSourceMap = "false"
   connectedyouthurl = "https://connectedyouth-stage.nyupress.org"
