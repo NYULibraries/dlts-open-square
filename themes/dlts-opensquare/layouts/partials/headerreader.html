@@ -12,7 +12,8 @@
       <div id="skipnav"><a href="#main-content">Skip navigation</a></div>
       <header class="page-header">
         <div class="top-hold">
-          <div class="osq-logo site-title"><a href="{{ .Site.BaseURL }}"><img src="/images/opensquare_logo.svg" alt="{{ .Site.Title }}:{{.Site.Params.tagline}}"></a></div>
-          <div class="nyup-logo"><a href="https://nyupress.org"><img class="img-fluid" src="/images/NYUPLogo.png" alt="NYU Press"></a></div>
+          {{ with resources.Get "images/opensquare_logo.svg" -}}
+          <div class="osq-logo site-title"><a href="{{ site.Home.Permalink }}"><img src="{{ .RelPermalink }}" alt="{{ site.Title }}:{{ site.Params.tagline}}"></a></div>{{ end }}
+          <div class="nyup-logo">{{ with resources.Get "images/NYUPLogo.png" }}<a href="https://nyupress.org"><img class="img-fluid" src="{{ .RelPermalink }}" alt="NYU Press"></a>{{ end }}</div>
         </div>
       </header>
