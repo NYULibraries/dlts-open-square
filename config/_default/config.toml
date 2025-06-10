@@ -23,10 +23,10 @@ enableGitInfo = true
   enableSourceMap = "true"
   description = "Open Square is NYU Press’s platform for publishing and reading open access books."
   introcopy = "Open Square is NYU Press’s platform for publishing and reading open access books."
-  pathtoreaderfiles = "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/epub_content/"
-  pathtoreader = "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
+  pathtoreaderfiles = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/epub_content/"
+  pathtoreader = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
   thumbhrefurl = "https://opensquare-local.nyupress.org/open-square-reader"
-  apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
+
   faviconrelurl = "/favicon.png"
   connectedyouthurl = "https://connectedyouth.nyupress.org"
   link_title_1 = "Keywords"
