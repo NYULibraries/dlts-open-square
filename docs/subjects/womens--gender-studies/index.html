@@ -91,15 +91,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="contain-main">
 
-  <main id="main-content">
-  <h1 class="page-title sr-only" >subject: Women&#39;s &amp; Gender Studies</h1>
-
-  <div class="item-count">25 books</div>
-  <div class="dqpl-field-wrap">
-    <div class="dqpl-select">
+<main id="main-content">
+  <div class="main-header">
+    <h1 class="page-title sr-only">subject: Women&#39;s &amp; Gender Studies</h1>
+    <div class="group">
+      
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">Women&#39;s &amp; Gender Studies</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">Women&#39;s &amp; Gender Studies</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
@@ -147,14 +148,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   
   
   
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
@@ -186,12 +187,887 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
-    
-     <div class="mdc-layout-grid">
-       <div class="mdc-layout-grid__inner">
+      <div class="dqpl-select" id="sort-select">
+  <div class="info-label">Sorted by</div>
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+    <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
+    </g>
+</svg>
+</div>
+  <div class="dqpl-listbox" role="listbox" id="sort-options">
+    <ul>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
+      <li class="dqpl-option" role="option" data-value="title">Title</li>
+    </ul>
+
+  </div>
+</div>
+
+<script>
+  function sortbydateoa() {
+    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.dateopenaccess);
+      const orderB = parseInt(b.dataset.dateopenaccess);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbydatebook() {
+    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.datebook);
+      const orderB = parseInt(b.dataset.datebook);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbytitle() {
+    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
+    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    Array.from(document.querySelectorAll('#sort-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              
+              switch (newValue) {
+                case "dateopenaccess":
+                  sortbydateoa();
+                  break;
+                case "datebook":
+                  sortbydatebook();
+                  break;
+                case "title":
+                  sortbytitle();
+                  break;
+                default:
+                  console.log('Unknown value');
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>
+
+    </div>
+    <div class="item-count">26 books</div>
+  </div>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
       
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2025-04-22" data-datebook="2025-04-22" data-titlesort="New Reproductive Order">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479832668/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=145" alt="The New Reproductive Order: Technology, Fertility, and Social Change around the Globe"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479832668/">
+        <div class="book-title">The New Reproductive Order</div>
+        
+        <div class="book-subtitle">Technology, Fertility, and Social Change around the Globe</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Sarah Franklin and 
+        Marcia C. Inhorn
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2025</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2025</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
+        <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-12-02" data-datebook="2011-04-11" data-titlesort="Islam of Her Own">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790724/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=145" alt="An Islam of Her Own: Reconsidering Religion and Secularism in Women’s Islamic Movements"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790724/">
+        <div class="book-title">An Islam of Her Own</div>
+        
+        <div class="book-subtitle">Reconsidering Religion and Secularism in Women’s Islamic Movements</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Sherine Hafez
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
+        <span class="tag"><a href="/subjects/religion/">Religion</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-12-02" data-datebook="2005-01-01" data-titlesort="Evangelical Feminism">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790410/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=145" alt="Evangelical Feminism: A History"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790410/">
+        <div class="book-title">Evangelical Feminism</div>
+        
+        <div class="book-subtitle">A History</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Pamela D.H. Cochran
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2005</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/religion/">Religion</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-05-07" data-datebook="2013-12-16" data-titlesort="Living with Brain Injury">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814770221/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=145" alt="Living with Brain Injury: Narrative, Community, and Women’s Renegotiation of Identity"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814770221/">
+        <div class="book-title">Living with Brain Injury</div>
+        
+        <div class="book-subtitle">Narrative, Community, and Women’s Renegotiation of Identity</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        J. Eric   Stewart
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2013</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="1999-08-01" data-titlesort="Conversations about Psychology and Sexual Orientation">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814723074/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=145" alt="Conversations about Psychology and Sexual Orientation"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814723074/">
+        <div class="book-title">Conversations about Psychology and Sexual Orientation</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Janis S. Bohan and 
+        Glenda M. Russell
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1999</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2000-11-01" data-titlesort="Flirting with Danger">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814768150/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=145" alt="Flirting with Danger: Young Women&#39;s Reflections on Sexuality and Domination"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814768150/">
+        <div class="book-title">Flirting with Danger</div>
+        
+        <div class="book-subtitle">Young Women&#39;s Reflections on Sexuality and Domination</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Lynn Phillips
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2000</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2012-07-23" data-titlesort="Gay Dads">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814708293/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=145" alt="Gay Dads: Transitions to Adoptive Fatherhood"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814708293/">
+        <div class="book-title">Gay Dads</div>
+        
+        <div class="book-subtitle">Transitions to Adoptive Fatherhood</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Abbie E. Goldberg
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2012</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2000-11-01" data-titlesort="Murdering Masculinities">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814728185/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=145" alt="Murdering Masculinities: Fantasies of Gender and Violence in the American Crime Novel"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814728185/">
+        <div class="book-title">Murdering Masculinities</div>
+        
+        <div class="book-subtitle">Fantasies of Gender and Violence in the American Crime Novel</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Gregory Forter
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2000</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="1999-06-01" data-titlesort="New Versions of Victims">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814752913/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=145" alt="New Versions of Victims: Feminists Struggle with the Concept"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814752913/">
+        <div class="book-title">New Versions of Victims</div>
+        
+        <div class="book-subtitle">Feminists Struggle with the Concept</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Sharon Lamb
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1999</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2008-06-01" data-titlesort="When Mothers Kill">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814762516/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145" alt="When Mothers Kill: Interviews from Prison"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814762516/">
+        <div class="book-title">When Mothers Kill</div>
+        
+        <div class="book-subtitle">Interviews from Prison</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Cheryl L. Meyer and 
+        Michelle Oberman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2008</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2013-08-30" data-titlesort="As Long as We Both Shall Love">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814764763/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=145" alt="As Long as We Both Shall Love: The White Wedding in Postwar America"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814764763/">
+        <div class="book-title">As Long as We Both Shall Love</div>
+        
+        <div class="book-subtitle">The White Wedding in Postwar America</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Karen M. Dunak
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2013</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2014-06-13" data-titlesort="Clarity, Cut, and Culture">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479877430/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=145" alt="Clarity, Cut, and Culture: The Many Meanings of Diamonds"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479877430/">
+        <div class="book-title">Clarity, Cut, and Culture</div>
+        
+        <div class="book-subtitle">The Many Meanings of Diamonds</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Susan Falls
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2014</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2013-01-07" data-titlesort="Making Women’s Histories">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814759226/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=145" alt="Making Women’s Histories: Beyond National Perspectives"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814759226/">
+        <div class="book-title">Making Women’s Histories</div>
+        
+        <div class="book-subtitle">Beyond National Perspectives</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Pamela S. Nadell and 
+        Kate Haulman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2013</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2011-12-01" data-titlesort="Policing Pleasure">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814785102/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=145" alt="Policing Pleasure: Sex Work, Policy, and the State in Global Perspective"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814785102/">
+        <div class="book-title">Policing Pleasure</div>
+        
+        <div class="book-subtitle">Sex Work, Policy, and the State in Global Perspective</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Susan Dewey and 
+        Patty Kelly
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2001-08-01" data-titlesort="Watching Rape">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814768716/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=145" alt="Watching Rape: Film and Television in Postfeminist Culture"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814768716/">
+        <div class="book-title">Watching Rape</div>
+        
+        <div class="book-subtitle">Film and Television in Postfeminist Culture</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Sarah Projansky
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2001</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2009-07-26" data-titlesort="Babysitter">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814728536/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=145" alt="Babysitter: An American History"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814728536/">
+        <div class="book-title">Babysitter</div>
+        
+        <div class="book-subtitle">An American History</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Miriam Forman-Brunell
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2012-03-12" data-titlesort="Breaking into the Lab">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814771525/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=145" alt="Breaking into the Lab: Engineering Progress for Women in Science"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814771525/">
+        <div class="book-title">Breaking into the Lab</div>
+        
+        <div class="book-subtitle">Engineering Progress for Women in Science</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Sue V. Rosser
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2012</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2010-08-01" data-titlesort="Why Girls Fight">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814759073/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=145" alt="Why Girls Fight: Female Youth Violence in the Inner City"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814759073/">
+        <div class="book-title">Why Girls Fight</div>
+        
+        <div class="book-subtitle">Female Youth Violence in the Inner City</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Cindy D. Ness
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2010</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-04-01" data-titlesort="Republic of Men">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763520/">
 <picture>
@@ -233,9 +1109,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1992-06-01" data-titlesort="Adventures of the Mind">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814725078/">
 <picture>
@@ -281,182 +1157,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790724/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=145" alt="An Islam of Her Own: Reconsidering Religion and Secularism in Women’s Islamic Movements"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790724/">
-        <div class="book-title">An Islam of Her Own</div>
-        
-        <div class="book-subtitle">Reconsidering Religion and Secularism in Women’s Islamic Movements</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Sherine Hafez
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
-        <span class="tag"><a href="/subjects/religion/">Religion</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814764763/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=145" alt="As Long as We Both Shall Love: The White Wedding in Postwar America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814764763/">
-        <div class="book-title">As Long as We Both Shall Love</div>
-        
-        <div class="book-subtitle">The White Wedding in Postwar America</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Karen M. Dunak
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2013</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814728536/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=145" alt="Babysitter: An American History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814728536/">
-        <div class="book-title">Babysitter</div>
-        
-        <div class="book-subtitle">An American History</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Miriam Forman-Brunell
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814771525/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=145" alt="Breaking into the Lab: Engineering Progress for Women in Science"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814771525/">
-        <div class="book-title">Breaking into the Lab</div>
-        
-        <div class="book-subtitle">Engineering Progress for Women in Science</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Sue V. Rosser
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2012</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1993-02-01" data-titlesort="Charles Dickens and the Image of Women">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744871/">
 <picture>
@@ -496,226 +1199,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479877430/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=145" alt="Clarity, Cut, and Culture: The Many Meanings of Diamonds"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479877430/">
-        <div class="book-title">Clarity, Cut, and Culture</div>
-        
-        <div class="book-subtitle">The Many Meanings of Diamonds</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Susan Falls
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2014</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814723074/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=145" alt="Conversations about Psychology and Sexual Orientation"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814723074/">
-        <div class="book-title">Conversations about Psychology and Sexual Orientation</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Janis S. Bohan and 
-        Glenda M. Russell
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1999</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790410/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=145" alt="Evangelical Feminism: A History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790410/">
-        <div class="book-title">Evangelical Feminism</div>
-        
-        <div class="book-subtitle">A History</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Pamela D.H. Cochran
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2005</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/religion/">Religion</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814768150/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=145" alt="Flirting with Danger: Young Women&#39;s Reflections on Sexuality and Domination"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814768150/">
-        <div class="book-title">Flirting with Danger</div>
-        
-        <div class="book-subtitle">Young Women&#39;s Reflections on Sexuality and Domination</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Lynn Phillips
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2000</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814708293/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=145" alt="Gay Dads: Transitions to Adoptive Fatherhood"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814708293/">
-        <div class="book-title">Gay Dads</div>
-        
-        <div class="book-subtitle">Transitions to Adoptive Fatherhood</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Abbie E. Goldberg
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2012</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1995-07-01" data-titlesort="Genders 22">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723418/">
 <picture>
@@ -757,9 +1243,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1995-07-01" data-titlesort="In Search of the Swan Maiden">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814752685/">
 <picture>
@@ -800,52 +1286,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814770221/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=145" alt="Living with Brain Injury: Narrative, Community, and Women’s Renegotiation of Identity"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814770221/">
-        <div class="book-title">Living with Brain Injury</div>
-        
-        <div class="book-subtitle">Narrative, Community, and Women’s Renegotiation of Identity</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        J. Eric   Stewart
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2013</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1993-10-01" data-titlesort="Lover">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814773130/">
 <picture>
@@ -885,183 +1328,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814759226/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=145" alt="Making Women’s Histories: Beyond National Perspectives"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814759226/">
-        <div class="book-title">Making Women’s Histories</div>
-        
-        <div class="book-subtitle">Beyond National Perspectives</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Pamela S. Nadell and 
-        Kate Haulman
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2013</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814728185/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=145" alt="Murdering Masculinities: Fantasies of Gender and Violence in the American Crime Novel"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814728185/">
-        <div class="book-title">Murdering Masculinities</div>
-        
-        <div class="book-subtitle">Fantasies of Gender and Violence in the American Crime Novel</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Gregory Forter
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2000</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814752913/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=145" alt="New Versions of Victims: Feminists Struggle with the Concept"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814752913/">
-        <div class="book-title">New Versions of Victims</div>
-        
-        <div class="book-subtitle">Feminists Struggle with the Concept</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Sharon Lamb
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1999</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814785102/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=145" alt="Policing Pleasure: Sex Work, Policy, and the State in Global Perspective"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814785102/">
-        <div class="book-title">Policing Pleasure</div>
-        
-        <div class="book-subtitle">Sex Work, Policy, and the State in Global Perspective</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Susan Dewey and 
-        Patty Kelly
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-04-01" data-titlesort="Gender Line">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814752715/">
 <picture>
@@ -1102,9 +1371,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-12-01" data-titlesort="Prostitution of Sexuality">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814786086/">
 <picture>
@@ -1145,142 +1414,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814768716/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=145" alt="Watching Rape: Film and Television in Postfeminist Culture"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814768716/">
-        <div class="book-title">Watching Rape</div>
-        
-        <div class="book-subtitle">Film and Television in Postfeminist Culture</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Sarah Projansky
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2001</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814762516/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145" alt="When Mothers Kill: Interviews from Prison"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814762516/">
-        <div class="book-title">When Mothers Kill</div>
-        
-        <div class="book-subtitle">Interviews from Prison</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Cheryl L. Meyer and 
-        Michelle Oberman
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2008</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814759073/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=145" alt="Why Girls Fight: Female Youth Violence in the Inner City"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814759073/">
-        <div class="book-title">Why Girls Fight</div>
-        
-        <div class="book-subtitle">Female Youth Violence in the Inner City</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Cindy D. Ness
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2010</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
+      
     </div>
   </div>
-  </main>
+</main>
+
 </div>
 <footer class="page-footer">
   <nav class="nav-links"  aria-label="footer-navigation-items">

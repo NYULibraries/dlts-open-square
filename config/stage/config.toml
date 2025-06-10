@@ -5,9 +5,10 @@ baseURL = "https://opensquare-stage.nyupress.org"
 disableKinds = ['sitemap']
 
 [params]
-	sassOutputFormat = "compressed"
-	enableSourceMap = "false"
-	connectedyouthurl = "https://connectedyouth-stage.nyupress.org"
+  apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
+  sassOutputFormat = "compressed"
+  enableSourceMap = "false"
+  connectedyouthurl = "https://connectedyouth-stage.nyupress.org"
   matomoanalyticsid = "18"
   googleanalyticsid = "G-6ZBRSG08EY"
 

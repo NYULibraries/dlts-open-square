@@ -1163,12 +1163,53 @@ a {
   margin-right: 10px;
   border-bottom: 2px solid #040404;
   color: #040404; }
+  .dqpl-select .current-subject-title:hover {
+    border-bottom: 2px solid #040404;
+    cursor: pointer; }
 
 .dqpl-select .dqpl-pseudo-value {
-  min-width: 4rem; }
+  min-width: 4rem;
+  display: inline-block;
+  margin-right: 10px; }
 
-.dqpl-select .disclosure-arrow {
-  padding: 0 22px 0 30px; }
+@media (min-width: 840px) {
+  .dqpl-select#subject-select {
+    float: left; } }
+
+.dqpl-select #subject-list {
+  width: 90vw; }
+
+.dqpl-select#sort-select {
+  float: left; }
+  @media (min-width: 840px) {
+    .dqpl-select#sort-select {
+      float: right; } }
+  .dqpl-select#sort-select .dqpl-listbox {
+    width: auto;
+    left: 0;
+    right: auto;
+    line-height: 1; }
+    @media (min-width: 840px) {
+      .dqpl-select#sort-select .dqpl-listbox {
+        right: 0;
+        left: auto; } }
+    .dqpl-select#sort-select .dqpl-listbox ul {
+      display: block;
+      margin-top: 10px; }
+    .dqpl-select#sort-select .dqpl-listbox .dqpl-option {
+      padding: 0 20px;
+      min-width: 14em;
+      line-height: 2; }
+  .dqpl-select#sort-select .current-sorting-criterion {
+    margin-right: 0; }
+  .dqpl-select#sort-select .dqpl-pseudo-value {
+    min-width: 2em;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #040404;
+    color: #040404; }
+    .dqpl-select#sort-select .dqpl-pseudo-value:hover {
+      border-bottom: 2px solid #040404;
+      cursor: pointer; }
 
 .dqpl-select .dqpl-combobox,
 .dqpl-select .info-label {
@@ -1176,12 +1217,11 @@ a {
   @media (min-width: 840px) {
     .dqpl-select .dqpl-combobox,
     .dqpl-select .info-label {
-      font-size: 1.5rem; } }
+      font-size: 1.25rem; } }
   @media (min-width: 600px) and (max-width: 839px) {
     .dqpl-select .dqpl-combobox,
     .dqpl-select .info-label {
-      font-size: 1.4rem;
-      font-weight: 600; } }
+      font-size: 1.2rem; } }
   @media (max-width: 599px) {
     .dqpl-select .dqpl-combobox,
     .dqpl-select .info-label {
@@ -1240,6 +1280,11 @@ a {
       .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true']::before, .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active::before {
         content: ''; }
 
+.group:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 /*
  * Emigre web font kit 6hRsSuxHzHkJrdB5qwqgbg==
  *
@@ -1255,85 +1300,85 @@ a {
  */
 @font-face {
   font-family: 'vistasansnarot-light';
-  src: url("/fonts/vistasansnarot-light-webfont.eot");
-  src: url("/fonts/vistasansnarot-light-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-light-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-light-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-light-webfont.eot");
+  src: url("../fonts/vistasansnarot-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-light-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-light-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-lightital';
-  src: url("/fonts/vistasansnarot-lightital-webfont.eot");
-  src: url("/fonts/vistasansnarot-lightital-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-lightital-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-lightital-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-lightital-webfont.eot");
+  src: url("../fonts/vistasansnarot-lightital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-lightital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-lightital-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-reg';
-  src: url("/fonts/vistasansnarot-reg-webfont.eot");
-  src: url("/fonts/vistasansnarot-reg-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-reg-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-reg-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-reg-webfont.eot");
+  src: url("../fonts/vistasansnarot-reg-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-reg-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-reg-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-regital';
-  src: url("/fonts/vistasansnarot-regital-webfont.eot");
-  src: url("/fonts/vistasansnarot-regital-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-regital-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-regital-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-regital-webfont.eot");
+  src: url("../fonts/vistasansnarot-regital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-regital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-regital-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-bold';
-  src: url("/fonts/vistasansnarot-bold-webfont.eot");
-  src: url("/fonts/vistasansnarot-bold-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-bold-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-bold-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-bold-webfont.eot");
+  src: url("fonts/vistasansnarot-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-bold-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-bold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-boldital';
-  src: url("/fonts/vistasansnarot-boldital-webfont.eot");
-  src: url("/fonts/vistasansnarot-boldital-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-boldital-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-boldital-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-boldital-webfont.eot");
+  src: url("../fonts/vistasansnarot-boldital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-boldital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-boldital-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-book';
-  src: url("/fonts/vistasansnarot-book-webfont.eot");
-  src: url("/fonts/vistasansnarot-book-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-book-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-book-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-book-webfont.eot");
+  src: url("../fonts/vistasansnarot-book-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-book-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-book-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-bookital';
-  src: url("/fonts/vistasansnarot-bookital-webfont.eot");
-  src: url("/fonts/vistasansnarot-bookital-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-bookital-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-bookital-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-bookital-webfont.eot");
+  src: url("../fonts/vistasansnarot-bookital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-bookital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-bookital-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-med';
-  src: url("/fonts/vistasansnarot-med-webfont.eot");
-  src: url("/fonts/vistasansnarot-med-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-med-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-med-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-med-webfont.eot");
+  src: url("../fonts/vistasansnarot-med-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-med-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-med-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-medital';
-  src: url("/fonts/vistasansnarot-medital-webfont.eot");
-  src: url("/fonts/vistasansnarot-medital-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-medital-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-medital-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-medital-webfont.eot");
+  src: url("../fonts/vistasansnarot-medital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-medital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-medital-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-black';
-  src: url("/fonts/vistasansnarot-black-webfont.eot");
-  src: url("/fonts/vistasansnarot-black-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-black-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-black-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-black-webfont.eot");
+  src: url("../fonts/vistasansnarot-black-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-black-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-black-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'vistasansnarot-blackital';
-  src: url("/fonts/vistasansnarot-blackital-webfont.eot");
-  src: url("/fonts/vistasansnarot-blackital-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/vistasansnarot-blackital-webfont.woff2") format("woff2"), url("/fonts/vistasansnarot-blackital-webfont.woff") format("woff");
+  src: url("../fonts/vistasansnarot-blackital-webfont.eot");
+  src: url("../fonts/vistasansnarot-blackital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-blackital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-blackital-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2036,6 +2081,8 @@ header nav {
   display: inline-block; }
 
 .item-count {
-  float: right;
-  font-size: 1.1rem;
-  margin-top: .7rem; }
+  font-size: 1rem;
+  margin-top: 1.5rem; }
+
+main .main-header {
+  margin-bottom: .5rem; }

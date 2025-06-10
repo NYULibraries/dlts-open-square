@@ -91,15 +91,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="contain-main">
 
-  <main id="main-content">
-  <h1 class="page-title sr-only" >subject: Politics</h1>
-
-  <div class="item-count">37 books</div>
-  <div class="dqpl-field-wrap">
-    <div class="dqpl-select">
+<main id="main-content">
+  <div class="main-header">
+    <h1 class="page-title sr-only">subject: Politics</h1>
+    <div class="group">
+      
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">Politics</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">Politics</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
@@ -147,14 +148,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   
   
   
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
@@ -186,357 +187,190 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
-    
-     <div class="mdc-layout-grid">
-       <div class="mdc-layout-grid__inner">
+      <div class="dqpl-select" id="sort-select">
+  <div class="info-label">Sorted by</div>
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+    <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
+    </g>
+</svg>
+</div>
+  <div class="dqpl-listbox" role="listbox" id="sort-options">
+    <ul>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
+      <li class="dqpl-option" role="option" data-value="title">Title</li>
+    </ul>
+
+  </div>
+</div>
+
+<script>
+  function sortbydateoa() {
+    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.dateopenaccess);
+      const orderB = parseInt(b.dataset.dateopenaccess);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbydatebook() {
+    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.datebook);
+      const orderB = parseInt(b.dataset.datebook);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbytitle() {
+    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
+    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    Array.from(document.querySelectorAll('#sort-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              
+              switch (newValue) {
+                case "dateopenaccess":
+                  sortbydateoa();
+                  break;
+                case "datebook":
+                  sortbydatebook();
+                  break;
+                case "title":
+                  sortbytitle();
+                  break;
+                default:
+                  console.log('Unknown value');
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>
+
+    </div>
+    <div class="item-count">37 books</div>
+  </div>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
       
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-12-02" data-datebook="2009-12-01" data-titlesort="Guadalupe in New York">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814753460/">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814733134/">
 <picture>
   <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=145" alt="“At This Defining Moment”: Barack Obama’s Presidential Candidacy and the New Politics of Race"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=145" alt="Guadalupe in New York: Devotion and the Struggle for Citizenship Rights among Mexican Immigrants"
     data-baseline-images="image" class="img-fluid">
 </picture></a>
 </div>
 
   <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814753460/">
-        <div class="book-title">“At This Defining Moment”</div>
+    <div class="book-title-group"><a href="/books/9780814733134/">
+        <div class="book-title">Guadalupe in New York</div>
         
-        <div class="book-subtitle">Barack Obama’s Presidential Candidacy and the New Politics of Race</div>
+        <div class="book-subtitle">Devotion and the Struggle for Citizenship Rights among Mexican Immigrants</div>
       </a></div>
     
     <div class="author-group">
       <span class="rolename">By</span>
-        Enid Lynette Logan
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814744598/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=145" alt="After Whiteness: Unmaking an American Majority"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814744598/">
-        <div class="book-title">After Whiteness</div>
-        
-        <div class="book-subtitle">Unmaking an American Majority</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Mike Hill
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2004</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/literature--literary-studies/">Literature &amp; Literary Studies</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790175/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=145" alt="American Law in the Age of Hypercapitalism: The Worker, the Family, and the State"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790175/">
-        <div class="book-title">American Law in the Age of Hypercapitalism</div>
-        
-        <div class="book-subtitle">The Worker, the Family, and the State</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Ruth Colker
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1998</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814762561/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=145" alt="Beyond the Bonus March and GI Bill: How Veteran Politics Shaped the New Deal Era"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814762561/">
-        <div class="book-title">Beyond the Bonus March and GI Bill</div>
-        
-        <div class="book-subtitle">How Veteran Politics Shaped the New Deal Era</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Stephen R. Ortiz
+        Alyshia Galvez
     </div>
 
 
     <div class="pubdate"><span>Published:</span> 2009</div>
     
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814771518/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=145" alt="Bisexuality and the Challenge to Lesbian Politics: Sex, Loyalty, and Revolution"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814771518/">
-        <div class="book-title">Bisexuality and the Challenge to Lesbian Politics</div>
-        
-        <div class="book-subtitle">Sex, Loyalty, and Revolution</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Paula C Rust
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1995</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814771730/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=145" alt="Bombs, Bugs, Drugs, and Thugs: Intelligence and America&#39;s Quest for Security"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814771730/">
-        <div class="book-title">Bombs, Bugs, Drugs, and Thugs</div>
-        
-        <div class="book-subtitle">Intelligence and America&#39;s Quest for Security</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Loch K. Johnson
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2002</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814760192/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=145" alt="Childhood Deployed: Remaking Child Soldiers in Sierra Leone"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814760192/">
-        <div class="book-title">Childhood Deployed</div>
-        
-        <div class="book-subtitle">Remaking Child Soldiers in Sierra Leone</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Susan Shepler
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2014</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
     <div class="tags"><span class="label">Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
 
   </div>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-12-02" data-datebook="2017-05-23" data-titlesort="Paranoid Science">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814769461/">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479866250/">
 <picture>
   <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=145" alt="Clarence Thomas and the Tough Love Crowd: Counterfeit Heroes and Unhappy Truths"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=145" alt="Paranoid Science: The Christian Right&#39;s War on Reality"
     data-baseline-images="image" class="img-fluid">
 </picture></a>
 </div>
 
   <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814769461/">
-        <div class="book-title">Clarence Thomas and the Tough Love Crowd</div>
+    <div class="book-title-group"><a href="/books/9781479866250/">
+        <div class="book-title">Paranoid Science</div>
         
-        <div class="book-subtitle">Counterfeit Heroes and Unhappy Truths</div>
+        <div class="book-subtitle">The Christian Right&#39;s War on Reality</div>
       </a></div>
     
     <div class="author-group">
       <span class="rolename">By</span>
-        Ronald Suresh Roberts
+        Antony Alumkal
     </div>
 
 
-    <div class="pubdate"><span>Published:</span> 1994</div>
+    <div class="pubdate"><span>Published:</span> 2017</div>
     
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
     <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
 
   </div>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2024-05-29" data-datebook="1991-09-01" data-titlesort="Compensatory Justice">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790144/">
 <picture>
@@ -577,51 +411,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814784259/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=145" alt="Confronting the New Conservatism: The Rise of the Right in America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814784259/">
-        <div class="book-title">Confronting the New Conservatism</div>
-        
-        <div class="book-subtitle">The Rise of the Right in America</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Michael Thompson
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2007</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2011-07-11" data-titlesort="Critical Rhetorics of Race">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814765296/">
 <picture>
@@ -664,9 +456,226 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2009-08-01" data-titlesort="Healing the Broken Mind">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814749104/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=145" alt="Healing the Broken Mind: Transforming America’s Failed Mental Health System"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814749104/">
+        <div class="book-title">Healing the Broken Mind</div>
+        
+        <div class="book-subtitle">Transforming America’s Failed Mental Health System</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Timothy A. Kelly
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2023-08-18" data-datebook="2015-04-03" data-titlesort="Surveillance Cinema">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479876853/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=145" alt="Surveillance Cinema"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479876853/">
+        <div class="book-title">Surveillance Cinema</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Catherine Zimmer
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2015</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2004-01-01" data-titlesort="After Whiteness">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814744598/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744598.jpg?auto=format&amp;w=145" alt="After Whiteness: Unmaking an American Majority"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814744598/">
+        <div class="book-title">After Whiteness</div>
+        
+        <div class="book-subtitle">Unmaking an American Majority</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Mike Hill
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2004</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/literature--literary-studies/">Literature &amp; Literary Studies</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2009-12-01" data-titlesort="Beyond the Bonus March and GI Bill">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814762561/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762561.jpg?auto=format&amp;w=145" alt="Beyond the Bonus March and GI Bill: How Veteran Politics Shaped the New Deal Era"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814762561/">
+        <div class="book-title">Beyond the Bonus March and GI Bill</div>
+        
+        <div class="book-subtitle">How Veteran Politics Shaped the New Deal Era</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Stephen R. Ortiz
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2014-06-06" data-titlesort="Childhood Deployed">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814760192/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760192.jpg?auto=format&amp;w=145" alt="Childhood Deployed: Remaking Child Soldiers in Sierra Leone"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814760192/">
+        <div class="book-title">Childhood Deployed</div>
+        
+        <div class="book-subtitle">Remaking Child Soldiers in Sierra Leone</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Susan Shepler
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2014</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2022</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2015-04-24" data-titlesort="Death in the Shape of a Young Girl">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479820221/">
 <picture>
@@ -707,52 +716,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814744772/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=145" alt="Deconstruction Is/In America: A New Sense of the Political"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814744772/">
-        <div class="book-title">Deconstruction Is/In America</div>
-        
-        <div class="book-subtitle">A New Sense of the Political</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Anselm Haverkamp
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1995</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2013-07-19" data-titlesort="Economics and Youth Violence">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814760239/">
 <picture>
@@ -797,573 +763,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814723418/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=145" alt="Genders 22: Postcommunism and the Body Politic"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814723418/">
-        <div class="book-title">Genders 22</div>
-        
-        <div class="book-subtitle">Postcommunism and the Body Politic</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Ellen E. Berry
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1995</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814733134/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=145" alt="Guadalupe in New York: Devotion and the Struggle for Citizenship Rights among Mexican Immigrants"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814733134/">
-        <div class="book-title">Guadalupe in New York</div>
-        
-        <div class="book-subtitle">Devotion and the Struggle for Citizenship Rights among Mexican Immigrants</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Alyshia Galvez
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/religion/">Religion</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790793/">
-        <div class="book-title">Habeas Corpus after 9/11</div>
-        
-        <div class="book-subtitle">Confronting America’s New Global Detention System</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Jonathan Hafetz
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2011</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
-        <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814749104/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749104.jpg?auto=format&amp;w=145" alt="Healing the Broken Mind: Transforming America’s Failed Mental Health System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814749104/">
-        <div class="book-title">Healing the Broken Mind</div>
-        
-        <div class="book-subtitle">Transforming America’s Failed Mental Health System</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Timothy A. Kelly
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/health--medicine/">Health &amp; Medicine</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814769423/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=145" alt="High Hopes: Bill Clinton and the Politics of Ambition"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814769423/">
-        <div class="book-title">High Hopes</div>
-        
-        <div class="book-subtitle">Bill Clinton and the Politics of Ambition</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Stanley A Renshon
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1996</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814784587/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=145" alt="How the Left Can Win Arguments and Influence People: A Tactical Manual for Pragmatic Progressives"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814784587/">
-        <div class="book-title">How the Left Can Win Arguments and Influence People</div>
-        
-        <div class="book-subtitle">A Tactical Manual for Pragmatic Progressives</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        John K. Wilson
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2000</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814759271/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=145" alt="Manifesto of a Tenured Radical"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814759271/">
-        <div class="book-title">Manifesto of a Tenured Radical</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Cary Nelson
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1997</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/education/">Education</a></span>
-        <span class="tag"><a href="/subjects/history/">History</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814790168/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=145" alt="Markets and Justice: Nomos XXXI"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814790168/">
-        <div class="book-title">Markets and Justice</div>
-        
-        <div class="book-subtitle">Nomos XXXI</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        John W. Chapman
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1989</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814788462/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=145" alt="Out of Work: Unemployment and Government in Twentieth-Century America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814788462/">
-        <div class="book-title">Out of Work</div>
-        
-        <div class="book-subtitle">Unemployment and Government in Twentieth-Century America</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Richard K Vedder and 
-        Lowell E. Gallaway
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1997</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479866250/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=145" alt="Paranoid Science: The Christian Right&#39;s War on Reality"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479866250/">
-        <div class="book-title">Paranoid Science</div>
-        
-        <div class="book-subtitle">The Christian Right&#39;s War on Reality</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Antony Alumkal
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2017</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2024</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/religion/">Religion</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814728048/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=145" alt="Please Don&#39;t Wish Me a Merry Christmas: A Critical History of the Separation of Church and State"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814728048/">
-        <div class="book-title">Please Don&#39;t Wish Me a Merry Christmas</div>
-        
-        <div class="book-subtitle">A Critical History of the Separation of Church and State</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">Edited by</span>
-        Stephen M. Feldman
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1996</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814763223/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=145" alt="Postmodern Legal Movements: Law and Jurisprudence At Century&#39;s End"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814763223/">
-        <div class="book-title">Postmodern Legal Movements</div>
-        
-        <div class="book-subtitle">Law and Jurisprudence At Century&#39;s End</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Gary Minda
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 1996</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814762929/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=145" alt="Rules of Disengagement"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814762929/">
-        <div class="book-title">Rules of Disengagement</div>
-        
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Marjorie Cohn and 
-        Kathleen Gilberd
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2009</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/law/">Law</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2022-04-15" data-datebook="2011-09-12" data-titlesort="Shutting Down the Streets">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814738351/">
 <picture>
@@ -1407,42 +809,171 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2011-10-01" data-titlesort="“At This Defining Moment”">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479876853/">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814753460/">
 <picture>
   <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=145" alt="Surveillance Cinema"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814753460.jpg?auto=format&amp;w=145" alt="“At This Defining Moment”: Barack Obama’s Presidential Candidacy and the New Politics of Race"
     data-baseline-images="image" class="img-fluid">
 </picture></a>
 </div>
 
   <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479876853/">
-        <div class="book-title">Surveillance Cinema</div>
+    <div class="book-title-group"><a href="/books/9780814753460/">
+        <div class="book-title">“At This Defining Moment”</div>
         
+        <div class="book-subtitle">Barack Obama’s Presidential Candidacy and the New Politics of Race</div>
       </a></div>
     
     <div class="author-group">
       <span class="rolename">By</span>
-        Catherine Zimmer
+        Enid Lynette Logan
     </div>
 
 
-    <div class="pubdate"><span>Published:</span> 2015</div>
+    <div class="pubdate"><span>Published:</span> 2011</div>
     
-      <div class="pubdate"><span>Open Access Since:</span> 2023</div>
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
     <div class="tags"><span class="label">Subjects:</span>
       <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2002-04-01" data-titlesort="Bombs, Bugs, Drugs, and Thugs">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814771730/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771730.jpg?auto=format&amp;w=145" alt="Bombs, Bugs, Drugs, and Thugs: Intelligence and America&#39;s Quest for Security"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814771730/">
+        <div class="book-title">Bombs, Bugs, Drugs, and Thugs</div>
+        
+        <div class="book-subtitle">Intelligence and America&#39;s Quest for Security</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Loch K. Johnson
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2002</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2007-05-01" data-titlesort="Confronting the New Conservatism">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814784259/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814784259.jpg?auto=format&amp;w=145" alt="Confronting the New Conservatism: The Rise of the Right in America"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814784259/">
+        <div class="book-title">Confronting the New Conservatism</div>
+        
+        <div class="book-subtitle">The Rise of the Right in America</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Michael Thompson
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2007</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2011-01-04" data-titlesort="Habeas Corpus after 9/11">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790793/">
+        <div class="book-title">Habeas Corpus after 9/11</div>
+        
+        <div class="book-subtitle">Confronting America’s New Global Detention System</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Jonathan Hafetz
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2011</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
+        <span class="tag"><a href="/subjects/law/">Law</a></span>
         <span class="tag"><a href="/subjects/politics/">Politics</a></span>
         </div>
 
@@ -1450,9 +981,614 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2000-11-01" data-titlesort="How the Left Can Win Arguments and Influence People">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814784587/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814784587.jpg?auto=format&amp;w=145" alt="How the Left Can Win Arguments and Influence People: A Tactical Manual for Pragmatic Progressives"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814784587/">
+        <div class="book-title">How the Left Can Win Arguments and Influence People</div>
+        
+        <div class="book-subtitle">A Tactical Manual for Pragmatic Progressives</div>
+      </a></div>
     
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+    <div class="author-group">
+      <span class="rolename">By</span>
+        John K. Wilson
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2000</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2009-04-01" data-titlesort="Rules of Disengagement">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814762929/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=145" alt="Rules of Disengagement"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814762929/">
+        <div class="book-title">Rules of Disengagement</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Marjorie Cohn and 
+        Kathleen Gilberd
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2009</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2021-06-08" data-datebook="2000-09-01" data-titlesort="Voted Out">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814769232/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=145" alt="Voted Out: The Psychological Consequences of Anti-Gay Politics"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814769232/">
+        <div class="book-title">Voted Out</div>
+        
+        <div class="book-subtitle">The Psychological Consequences of Anti-Gay Politics</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Glenda M. Russell
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2000</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1998-03-01" data-titlesort="American Law in the Age of Hypercapitalism">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790175/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=145" alt="American Law in the Age of Hypercapitalism: The Worker, the Family, and the State"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790175/">
+        <div class="book-title">American Law in the Age of Hypercapitalism</div>
+        
+        <div class="book-subtitle">The Worker, the Family, and the State</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Ruth Colker
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1998</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1995-10-01" data-titlesort="Bisexuality and the Challenge to Lesbian Politics">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814771518/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=145" alt="Bisexuality and the Challenge to Lesbian Politics: Sex, Loyalty, and Revolution"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814771518/">
+        <div class="book-title">Bisexuality and the Challenge to Lesbian Politics</div>
+        
+        <div class="book-subtitle">Sex, Loyalty, and Revolution</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Paula C Rust
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1995</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-12-01" data-titlesort="Clarence Thomas and the Tough Love Crowd">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814769461/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769461.jpg?auto=format&amp;w=145" alt="Clarence Thomas and the Tough Love Crowd: Counterfeit Heroes and Unhappy Truths"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814769461/">
+        <div class="book-title">Clarence Thomas and the Tough Love Crowd</div>
+        
+        <div class="book-subtitle">Counterfeit Heroes and Unhappy Truths</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Ronald Suresh Roberts
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1994</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1995-01-01" data-titlesort="Deconstruction Is/In America">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814744772/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744772.jpg?auto=format&amp;w=145" alt="Deconstruction Is/In America: A New Sense of the Political"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814744772/">
+        <div class="book-title">Deconstruction Is/In America</div>
+        
+        <div class="book-subtitle">A New Sense of the Political</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Anselm Haverkamp
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1995</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1995-07-01" data-titlesort="Genders 22">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814723418/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=145" alt="Genders 22: Postcommunism and the Body Politic"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814723418/">
+        <div class="book-title">Genders 22</div>
+        
+        <div class="book-subtitle">Postcommunism and the Body Politic</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Ellen E. Berry
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1995</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/womens--gender-studies/">Women&#39;s &amp; Gender Studies</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-04-01" data-titlesort="High Hopes">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814769423/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769423.jpg?auto=format&amp;w=145" alt="High Hopes: Bill Clinton and the Politics of Ambition"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814769423/">
+        <div class="book-title">High Hopes</div>
+        
+        <div class="book-subtitle">Bill Clinton and the Politics of Ambition</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Stanley A Renshon
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1996</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-04-01" data-titlesort="Manifesto of a Tenured Radical">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814759271/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759271.jpg?auto=format&amp;w=145" alt="Manifesto of a Tenured Radical"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814759271/">
+        <div class="book-title">Manifesto of a Tenured Radical</div>
+        
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Cary Nelson
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1997</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/education/">Education</a></span>
+        <span class="tag"><a href="/subjects/history/">History</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1989-03-01" data-titlesort="Markets and Justice">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814790168/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=145" alt="Markets and Justice: Nomos XXXI"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814790168/">
+        <div class="book-title">Markets and Justice</div>
+        
+        <div class="book-subtitle">Nomos XXXI</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        John W. Chapman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1989</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-07-01" data-titlesort="Out of Work">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814788462/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814788462.jpg?auto=format&amp;w=145" alt="Out of Work: Unemployment and Government in Twentieth-Century America"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814788462/">
+        <div class="book-title">Out of Work</div>
+        
+        <div class="book-subtitle">Unemployment and Government in Twentieth-Century America</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Richard K Vedder and 
+        Lowell E. Gallaway
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1997</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-12-01" data-titlesort="Please Don&#39;t Wish Me a Merry Christmas">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814728048/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=145" alt="Please Don&#39;t Wish Me a Merry Christmas: A Critical History of the Separation of Church and State"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814728048/">
+        <div class="book-title">Please Don&#39;t Wish Me a Merry Christmas</div>
+        
+        <div class="book-subtitle">A Critical History of the Separation of Church and State</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">Edited by</span>
+        Stephen M. Feldman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1996</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-05-01" data-titlesort="Postmodern Legal Movements">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9780814763223/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=145" alt="Postmodern Legal Movements: Law and Jurisprudence At Century&#39;s End"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9780814763223/">
+        <div class="book-title">Postmodern Legal Movements</div>
+        
+        <div class="book-subtitle">Law and Jurisprudence At Century&#39;s End</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Gary Minda
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 1996</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2014</div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/law/">Law</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-07-01" data-titlesort="Teaching What You&#39;re Not">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763179/">
 <picture>
@@ -1494,9 +1630,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-07-01" data-titlesort="Chrysanthemum and the Eagle">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814788707/">
 <picture>
@@ -1537,9 +1673,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1989-07-01" data-titlesort="Dilemma of Context">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814788745/">
 <picture>
@@ -1579,9 +1715,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-08-01" data-titlesort="Lavender Vote">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814773215/">
 <picture>
@@ -1622,9 +1758,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1994-12-01" data-titlesort="Prostitution of Sexuality">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814786086/">
 <picture>
@@ -1665,9 +1801,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1996-05-01" data-titlesort="The Psychological Assessment of Presidential Candidates">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814776636/">
 <picture>
@@ -1707,9 +1843,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2014-05-29" data-datebook="1997-03-01" data-titlesort="To Be An American">
+        <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744840/">
 <picture>
@@ -1752,54 +1888,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
       </div>
-    
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone">
-      <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9780814769232/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=145" alt="Voted Out: The Psychological Consequences of Anti-Gay Politics"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9780814769232/">
-        <div class="book-title">Voted Out</div>
-        
-        <div class="book-subtitle">The Psychological Consequences of Anti-Gay Politics</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Glenda M. Russell
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2000</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2021</div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/lgbtq--sexuality/">LGBTQ &amp; Sexuality</a></span>
-        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
-        <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
-        </div>
-
-  </div>
-</article>
-
-      </div>
-    
+      
     </div>
   </div>
-  </main>
+</main>
+
 </div>
 <footer class="page-footer">
   <nav class="nav-links"  aria-label="footer-navigation-items">

@@ -1,7 +1,11 @@
 {{ partial "header.html" . }}
 <main id="main-content">
+  <div class="main-header">
     <h1 class="page-title sr-only">{{.Data.Singular | title }}: {{ .Page.Title  }}</h1>
-    {{ partial "combobox.html" . }}
+    <div class="group dqpl-field-wrap">
+      {{ partial "combobox.html" . }}
+      {{ partial "comboboxsort.html" . }}
+    </div>
     <aside class="series-banner">
         <div class="series-banner-image">
             {{- partial "svgs/connectedyouth-logo.svg" -}}
@@ -13,14 +17,12 @@
             <a href="https://www.macfound.org/" target="_blank"><img alt="Logo: MacArthur Foundation" class="img-fluid" src="/images/macarthur_logo.svg"></a>
         </div>
     </aside>
+  </div>
     <div class="series-content-hold">
-        <div class="series-content">
-            {{ .Content }} </div>
-        {{ $paginator := .Paginate (where .Data.Pages "Type" "books") }}
-        {{ range $paginator.Pages }}
-        {{ partial "summary.html" . }}
+        <div class="series-content">{{ .Content }} </div>
+        {{ range sort .Pages ".Params.dateOpenAccess" "desc" }}
+          {{ partial "summary.html" . }}
         {{ end }}
-        {{ partial "pagination.html" . }}
     </div>
 </main>
 {{ partial "footer.html" . }}

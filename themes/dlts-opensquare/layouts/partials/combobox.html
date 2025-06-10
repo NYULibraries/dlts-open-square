@@ -1,4 +1,4 @@
-<div class="dqpl-field-wrap">
+
     {{- $pageurl := .Permalink -}}
     {{ $.Scratch.Set "currentTitle" "All Books" -}}
     {{ $.Scratch.Set "currentSlug" "all" -}}
@@ -16,10 +16,11 @@
           {{ $.Scratch.Set "currentSlug" .Page.RelPermalink -}}
         {{- end -}}
     {{ end }}
-    <div class="dqpl-select">
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">{{ $.Scratch.Get "currentTitle" }}</span> {{- partial "svgs/arrow.svg" (dict "fill" "#444444") -}}</div>
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">{{ $.Scratch.Get "currentTitle" }}</span> {{- partial "svgs/arrow.svg" (dict "fill" "#444444") -}}</div>
         </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
@@ -40,14 +41,14 @@
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   // https://codepen.io/schne324/pen/XyRvMx?editors=1111
   // https://unpkg.com/deque-pattern-library@3.0.1/dist/js/pattern-library.js
   // https://github.com/dequelabs/pattern-library/issues/83
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
