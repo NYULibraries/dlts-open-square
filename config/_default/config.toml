@@ -38,7 +38,7 @@ enableGitInfo = true
   featured_series = ["Connected Youth and Digital Futures"]
   featured_series_full_name = "Connected Youth and Digital Futures"
   featured_series_homepage_blurb ="This series explores young people’s day-to-day lives and futures. The volumes consider changes at the intersection of civil and political reform, transformations in employment and education, and the growing presence of digital technologies in all aspects of social, cultural and political life."
-  featured_series_path = "/series/connected-youth-and-digital-futures"
+  featured_series_path = "series/connected-youth-and-digital-futures"
   image_server = "https://nyu-opensquare-us.imgix.net/covers/"
   featured_book_isbn = "9781479830909"
   # other_featured_books_isbn will be sorted by date.

@@ -92,13 +92,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="contain-main">
 
 <main id="main-content">
+  <div class="main-header">
     <h1 class="page-title sr-only">Series: Connected Youth and Digital Futures</h1>
-    <div class="dqpl-field-wrap">
+    <div class="group dqpl-field-wrap">
+      
           
-    <div class="dqpl-select">
+    <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
-            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title"><span class="current-subject-title">Connected Youth and Digital Futures</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
+              <span class="current-subject-title">Connected Youth and Digital Futures</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
@@ -146,14 +149,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
         </div>
     </div>
-</div>
+
 <script>
   
   
   
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    Array.from(document.querySelectorAll('.dqpl-select'))
+    Array.from(document.querySelectorAll('#subject-select'))
       .forEach(wrapper => {
         const combobox = wrapper.querySelector('.dqpl-combobox');
         const listbox = wrapper.querySelector('.dqpl-listbox');
@@ -185,6 +188,96 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
+      <div class="dqpl-select" id="sort-select">
+  <div class="info-label">Sorted by</div>
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+    <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
+    </g>
+</svg>
+</div>
+  <div class="dqpl-listbox" role="listbox" id="sort-options">
+    <ul>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
+      <li class="dqpl-option" role="option" data-value="title">Title</li>
+    </ul>
+
+  </div>
+</div>
+
+<script>
+  function sortbydateoa() {
+    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.dateopenaccess);
+      const orderB = parseInt(b.dataset.dateopenaccess);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbydatebook() {
+    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
+    elements.sort((a, b) => {
+      const orderA = parseInt(a.dataset.datebook);
+      const orderB = parseInt(b.dataset.datebook);
+      return orderB - orderA;
+    });
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  function sortbytitle() {
+    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
+    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
+    const parent = elements[0].parentNode;
+    elements.forEach(element => parent.appendChild(element));
+  }
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    Array.from(document.querySelectorAll('#sort-select'))
+      .forEach(wrapper => {
+        const combobox = wrapper.querySelector('.dqpl-combobox');
+        const listbox = wrapper.querySelector('.dqpl-listbox');
+        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+        const checkChanged = () => {
+          
+          setTimeout(() => {
+            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            if (newValue !== cachedValue) {
+              cachedValue = newValue;
+              
+              switch (newValue) {
+                case "dateopenaccess":
+                  sortbydateoa();
+                  break;
+                case "datebook":
+                  sortbydatebook();
+                  break;
+                case "title":
+                  sortbytitle();
+                  break;
+                default:
+                  console.log('Unknown value');
+              }
+            }
+          });
+        };
+
+        listbox.addEventListener('click', checkChanged);
+        combobox.addEventListener('keydown', e => {
+          if (e.which !== 32 && e.which !== 13) {
+            return;
+          }
+          checkChanged();
+        });
+
+      });
+  });
+</script>
+
+    </div>
     <aside class="series-banner">
         <div class="series-banner-image"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 600 19.1" aria-label="Series: Connected Youth and Digital Futures" style="enable-background:new 0 0 600 19.1;" xml:space="preserve">
@@ -254,13 +347,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="https://www.macfound.org/" target="_blank"><img alt="Logo: MacArthur Foundation" class="img-fluid" src="/images/macarthur_logo.svg"></a>
         </div>
     </aside>
+  </div>
     <div class="series-content-hold">
-        <div class="series-content">
-            <p>This series explores young people’s day-to-day lives and futures. The volumes consider changes at the intersection of civil and political reform, transformations in employment and education, and the growing presence of digital technologies in all aspects of social, cultural and political life. The John D. and Catherine T. MacArthur Foundation’s Digital Media and Learning (DML) Initiative has supported two research networks that have helped launch this series: the Youth and Participatory Politics Research Network and the Connected Learning Research Network. The DML Initiative and the DML Hub at the University of California, Irvine, also support production and open access for this series.</p>
+        <div class="series-content"><p>This series explores young people’s day-to-day lives and futures. The volumes consider changes at the intersection of civil and political reform, transformations in employment and education, and the growing presence of digital technologies in all aspects of social, cultural and political life. The John D. and Catherine T. MacArthur Foundation’s Digital Media and Learning (DML) Initiative has supported two research networks that have helped launch this series: the Youth and Participatory Politics Research Network and the Connected Learning Research Network. The DML Initiative and the DML Hub at the University of California, Irvine, also support production and open access for this series.</p>
  </div>
         
-        
-        <article class="book-summary">
+          <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479888900/">
 <picture>
@@ -310,102 +402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
         
-        <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479829712/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=145" alt="By Any Media Necessary: The New Youth Activism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479829712/">
-        <div class="book-title">By Any Media Necessary</div>
-        
-        <div class="book-subtitle">The New Youth Activism</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Henry Jenkins, 
-        Sangita Shresthova, 
-        Liana Gamber-Thompson, 
-        Neta Kligler-Vilenchik, and 
-        Arely Zimmerman
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2016</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2016</div>
-    
-    <div class="tags"><span class="label">Series:</span>
-      <span class="tag"><a href="/series/connected-youth-and-digital-futures/">Connected Youth and Digital Futures</a></span>
-        </div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
-        <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
-        </div>
-
-  </div>
-</article>
-
-        
-        <article class="book-summary">
-  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
-  <a aria-hidden="true" tabindex="-1" href="/books/9781479863570/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=145" alt="The Class: Living and Learning in the Digital Age"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
-</div>
-
-  <div class="meta">
-    <div class="book-title-group"><a href="/books/9781479863570/">
-        <div class="book-title">The Class</div>
-        
-        <div class="book-subtitle">Living and Learning in the Digital Age</div>
-      </a></div>
-    
-    <div class="author-group">
-      <span class="rolename">By</span>
-        Sonia Livingstone and 
-        Julian Sefton-Green
-    </div>
-
-
-    <div class="pubdate"><span>Published:</span> 2016</div>
-    
-      <div class="pubdate"><span>Open Access Since:</span> 2016</div>
-    
-    <div class="tags"><span class="label">Series:</span>
-      <span class="tag"><a href="/series/connected-youth-and-digital-futures/">Connected Youth and Digital Futures</a></span>
-        </div>
-    
-    <div class="tags"><span class="label">Subjects:</span>
-      <span class="tag"><a href="/subjects/education/">Education</a></span>
-        <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
-        </div>
-
-  </div>
-</article>
-
-        
-        <article class="book-summary">
+          <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479888788/">
 <picture>
@@ -458,8 +455,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 
         
-        
+          <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479829712/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=145" alt="By Any Media Necessary: The New Youth Activism"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
 
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479829712/">
+        <div class="book-title">By Any Media Necessary</div>
+        
+        <div class="book-subtitle">The New Youth Activism</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Henry Jenkins, 
+        Sangita Shresthova, 
+        Liana Gamber-Thompson, 
+        Neta Kligler-Vilenchik, and 
+        Arely Zimmerman
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2016</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2016</div>
+    
+    <div class="tags"><span class="label">Series:</span>
+      <span class="tag"><a href="/series/connected-youth-and-digital-futures/">Connected Youth and Digital Futures</a></span>
+        </div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
+        <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
+        </div>
+
+  </div>
+</article>
+
+        
+          <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="0001-01-01 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479863570/">
+<picture>
+  <source media="(min-width: 720px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 480px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=145" alt="The Class: Living and Learning in the Digital Age"
+    data-baseline-images="image" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479863570/">
+        <div class="book-title">The Class</div>
+        
+        <div class="book-subtitle">Living and Learning in the Digital Age</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Sonia Livingstone and 
+        Julian Sefton-Green
+    </div>
+
+
+    <div class="pubdate"><span>Published:</span> 2016</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2016</div>
+    
+    <div class="tags"><span class="label">Series:</span>
+      <span class="tag"><a href="/series/connected-youth-and-digital-futures/">Connected Youth and Digital Futures</a></span>
+        </div>
+    
+    <div class="tags"><span class="label">Subjects:</span>
+      <span class="tag"><a href="/subjects/education/">Education</a></span>
+        <span class="tag"><a href="/subjects/media--technology/">Media &amp; Technology</a></span>
+        </div>
+
+  </div>
+</article>
+
+        
     </div>
 </main>
 </div>

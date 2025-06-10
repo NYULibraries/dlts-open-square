@@ -1,13 +1,12 @@
-{{- /* All Books Page */ -}}
 {{ partial "header.html" . }}
 <main id="main-content">
   <div class="main-header">
-    <h1 class="page-title sr-only">All Books</h1>
+    <h1 class="page-title sr-only">{{.Data.Singular}}: {{ .Page.Title }}</h1>
     <div class="group">
       {{ partial "combobox.html" . }}
       {{ partial "comboboxsort.html" . }}
     </div>
-    <div class="item-count">{{ .Pages | len }} books</div>
+    <div class="item-count">{{ .Pages | len }} book{{if gt (.Pages | len) 1}}s{{end}}</div>
   </div>
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
@@ -19,4 +18,5 @@
     </div>
   </div>
 </main>
+
 {{ partial "footer.html" . }}
