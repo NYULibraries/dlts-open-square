@@ -1,7 +1,5 @@
 baseURL = "https://opensquare-dev.nyupress.org"
 
-disableKinds = ['sitemap']
-
 [params]
 	sassOutputFormat = "expanded"
 	enableSourceMap = "true"

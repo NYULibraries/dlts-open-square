@@ -17,10 +17,10 @@ enableGitInfo = true
     methods = ['(?i)GET|POST|HEAD']
 
 [params]
+  sassOutputFormat = "compressed"
+  enableSourceMap = "false"
   shorttitle = "Open Square"
   tagline = "Knowledge without Boundaries"
-  sassOutputFormat = "expanded"
-  enableSourceMap = "true"
   description = "Open Square is NYU Press’s platform for publishing and reading open access books."
   introcopy = "Open Square is NYU Press’s platform for publishing and reading open access books."
   pathtoreaderfiles = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/epub_content/"

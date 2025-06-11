@@ -1,6 +1,6 @@
 baseURL = "http://localhost/opensquare"
 [params]
 	sassOutputFormat = "expanded"
-	enableSourceMap = "true"
+  enableSourceMap = "true"
 	connectedyouthurl = "https://localhost/connectedyouth"
     apiurl = "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
