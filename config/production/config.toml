@@ -1,4 +1,4 @@
-## production environment
+## Configuration file for production environment
 
 baseURL = "https://opensquare.nyupress.org"
 

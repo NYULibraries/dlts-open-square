@@ -1,3 +1,5 @@
+## Configuration file for development environment
+
 baseURL = "https://opensquare-dev.nyupress.org"
 
 [params]

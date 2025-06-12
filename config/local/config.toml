@@ -1,3 +1,5 @@
+## Configuration file for local environment
+
 baseURL = "http://localhost/opensquare"
 [params]
 	sassOutputFormat = "expanded"
