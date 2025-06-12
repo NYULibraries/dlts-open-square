@@ -2,7 +2,8 @@ name = "DLTS-opensquare"
 license = "MIT"
 licenselink = "https://github.com/vimux/blank/blob/master/LICENSE.md"
 description = "Hugo theme for NYU Press's Open Square platform for Open Access books."
-min_version = 0.19
+min_version = 0.147
+extended = true
 
 [author]
   name = "NYU DLTS"

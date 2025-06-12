@@ -1,3 +1,5 @@
+## Base configuration file. Defines default values for all environments.
+
 baseURL = "http://opensquare-local.nyupress.org"
 languageCode = "en-us"
 title = "Open Square"

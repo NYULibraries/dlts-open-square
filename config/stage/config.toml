@@ -1,4 +1,4 @@
-## config file for stage environment
+## Configuration file for stage environment
 
 baseURL = "https://opensquare-stage.nyupress.org"
 
