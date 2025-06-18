@@ -1,6 +1,6 @@
-baseURL = "https://opensquare-dev.nyupress.org"
+## Configuration file for development environment
 
-disableKinds = ['sitemap']
+baseURL = "https://opensquare-dev.nyupress.org"
 
 [params]
 	sassOutputFormat = "expanded"
