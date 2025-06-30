@@ -1,0 +1,47 @@
+baseURL = "http://opensquare-local.nyupress.org"
+languageCode = "en-us"
+title = "Open Square"
+
+theme = ["dlts-opensquare"]
+
+publishDir = "mystuff"
+
+cleanDestinationDir = true
+enableGitInfo = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[security]
+  [security.http]
+    methods = ['(?i)GET|POST|HEAD']
+
+[params]
+  sassOutputFormat = "compressed"
+  enableSourceMap = "false"
+  shorttitle = "Open Square"
+  tagline = "Knowledge without Boundaries"
+  description = "Open Square is NYU Press’s platform for publishing and reading open access books."
+    apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
+
+[taxonomies]
+
+[outputs]
+  home = ["HTML"]
+   section = ["HTML"]
+  page = ["HTML", "JSON"]
+
+
+[outputFormats]
+  [outputFormats.read]
+    name = "read"
+    baseName = "read/index"
+    isPlainText = false
+    isHTML = true
+    mediaType = "text/html"
+    notAlternative = false
+
+[mediaTypes]
+  [mediaTypes.'application/epub+zip']
+    suffixes = ['epub']
+
