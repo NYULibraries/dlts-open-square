@@ -8,10 +8,8 @@
 {{- else }}
 <title>{{ .Title }}: NYU Press</title>
 {{- end }}
-{{ if (eq .Type "books") -}}
-  {{ with .Params.description -}}
-    <meta name="description" content="[Open Access] {{ . }}">
-  {{- end }}
+{{ if and (eq .Type "books") (isset .Params "description") -}}
+  <meta name="description" content="[Open Access] {{ .Params.description }}">
 {{- else }}
   {{ with $.Param "description" -}}
   <meta name="description" content="{{ . }}">
