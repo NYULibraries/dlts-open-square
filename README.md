@@ -17,6 +17,7 @@
     - [Prerequisites](#prerequisites)
     - [Install on macOS](#install-on-macos)
   - [Building the Site](#building-the-site)
+    - [Commands](#commands)
     - [Running the Development Server](#running-the-development-server)
   - [Development Workflow](#development-workflow)
   - [Deployment](#deployment)
@@ -84,6 +85,7 @@ brew upgrade hugo
 
 ## Building the Site
 
+### Commands
 To build the static site, use the `hugo` command with the appropriate environment:
 
 ```sh
