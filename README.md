@@ -3,6 +3,8 @@
 *Open Square* is NYU Press’s platform for publishing and reading open access books. This repository contains the content for static pages, code for accessing the data for the books, configuration, and theme for the Open Square website, built using [Hugo](https://gohugo.io/).
 
 - **Live Site:** [https://opensquare.nyupress.org/](https://opensquare.nyupress.org/)
+- **Stage Site (requires VPN):** [https://opensquare-stage.nyupress.org/](https://opensquare-stage.nyupress.org/)
+- **Development Site (requires VPN):** [https://opensquare-dev.nyupress.org/](https://opensquare-dev.nyupress.org/)
 
 ---
 
