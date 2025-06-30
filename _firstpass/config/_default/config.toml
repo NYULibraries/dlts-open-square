@@ -17,19 +17,12 @@ enableGitInfo = true
     methods = ['(?i)GET|POST|HEAD']
 
 [params]
-  sassOutputFormat = "compressed"
-  enableSourceMap = "false"
-  shorttitle = "Open Square"
-  tagline = "Knowledge without Boundaries"
-  description = "Open Square is NYU Press’s platform for publishing and reading open access books."
     apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
 
 [taxonomies]
 
 [outputs]
-  home = ["HTML"]
-   section = ["HTML"]
-  page = ["HTML", "JSON"]
+  page = [ "JSON", "markdown"]
 
 
 [outputFormats]

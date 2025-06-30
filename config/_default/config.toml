@@ -10,7 +10,7 @@ publishDir = "docs"
 
 cleanDestinationDir = true
 enableGitInfo = true
-
+contentDir = "_firstpass/mystuff"
 [markup.goldmark.renderer]
   unsafe = true
 
