@@ -41,8 +41,8 @@
 
   {{ with try (resources.GetRemote $uri $opts) }}
     {{ with .Err }}
-      {{ errorf "Case 1: Unable to get remote resource %s: %s" $uri . }}
-      {{ div 0 0 }}
+      {{ errorf "Case 1: Unable to get remote resource %s: ############################################# Error is  %s" $uri . }}
+
     {{ else with .Value}}
     {{ warnf "********  " }}
     {{ warnf "******** \n URI is :  %s" $uri }}
