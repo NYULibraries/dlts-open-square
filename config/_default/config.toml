@@ -7,10 +7,11 @@ title = "Open Square"
 theme = ["dlts-opensquare"]
 
 publishDir = "docs"
+cacheDir = "/Users/henze/projects/nyupress/opensquare/dlts-open-square/cache"
 
 cleanDestinationDir = true
 enableGitInfo = true
-contentDir = "_firstpass/mystuff"
+
 [markup.goldmark.renderer]
   unsafe = true
 
@@ -113,3 +114,11 @@ contentDir = "_firstpass/mystuff"
     url = "https://www.nyu.edu/footer/accessibility.html"
     weight = -5
     identifier = "external"
+
+[module]
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+  [[module.mounts]]
+    source = '_firstpass/output'
+    target = 'content'
