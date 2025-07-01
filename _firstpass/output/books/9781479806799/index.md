@@ -25,7 +25,7 @@
    "files": {
      "cloudreader": {
        "http_code": 200,
-       "url": "https://opensquare-stage.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/9781479806799\u0026embedded=true"
+       "url": "https://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/9781479806799\u0026embedded=true"
      },
      "epub": {
        "content-length": "1211279",

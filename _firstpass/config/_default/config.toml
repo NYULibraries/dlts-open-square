@@ -1,9 +1,6 @@
-baseURL = "http://opensquare-local.nyupress.org"
-languageCode = "en-us"
 title = "Open Square"
 
 publishDir = "output"
-
 cleanDestinationDir = true
 enableGitInfo = true
 disableKinds = ['sitemap','404','home', 'robotstxt', 'rss', 'section', 'taxonomy','term']
@@ -16,9 +13,7 @@ disableKinds = ['sitemap','404','home', 'robotstxt', 'rss', 'section', 'taxonomy
     methods = ['(?i)GET|POST|HEAD']
 
 [params]
-    apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
-
-[taxonomies]
+    apiurl = "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
 
 [outputs]
   page = [ "markdown"]
