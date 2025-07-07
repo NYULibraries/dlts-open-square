@@ -3,6 +3,8 @@
 *Open Square* is NYU Press’s platform for publishing and reading open access books. This repository contains the content for static pages, code for accessing the data for the books, configuration, and theme for the Open Square website, built using [Hugo](https://gohugo.io/).
 
 - **Live Site:** [https://opensquare.nyupress.org/](https://opensquare.nyupress.org/)
+- **Stage Site (requires VPN):** [https://opensquare-stage.nyupress.org/](https://opensquare-stage.nyupress.org/)
+- **Development Site (requires VPN):** [https://opensquare-dev.nyupress.org/](https://opensquare-dev.nyupress.org/)
 
 ---
 
@@ -15,6 +17,7 @@
     - [Prerequisites](#prerequisites)
     - [Install on macOS](#install-on-macos)
   - [Building the Site](#building-the-site)
+    - [Commands](#commands)
     - [Running the Development Server](#running-the-development-server)
   - [Development Workflow](#development-workflow)
   - [Deployment](#deployment)
@@ -82,6 +85,7 @@ brew upgrade hugo
 
 ## Building the Site
 
+### Commands
 To build the static site, use the `hugo` command with the appropriate environment:
 
 ```sh
