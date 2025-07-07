@@ -2,7 +2,7 @@
    "citation_link": "https://doi.org/10.18574/nyu/9781479859184.001.0001",
    "contributors": [
      {
-       "bio": "\u003cb\u003eDavid Feltmate\u003c/b\u003e is an Associate Professor of Sociology at Auburn University at Montgomery where he conducts research in the sociology of religion, the sociology of humor, religion and popular culture, religion and mass media, and sociological theory.",
+       "bio": "\u003cb\u003eDavid Feltmate\u003c/b\u003e is Associate Professor of Sociology at Auburn University at Montgomery. He is the author of our \u003ci\u003eDrawn to the Gods: Religion and Humor in the Simpsons, South Park, and Family Guy.\u003c/i\u003e",
        "name": "David Feltmate",
        "nameSort": "Feltmate, David",
        "order": 1,
