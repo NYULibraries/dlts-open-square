@@ -113,3 +113,11 @@ enableGitInfo = true
     url = "https://www.nyu.edu/footer/accessibility.html"
     weight = -5
     identifier = "external"
+
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+
+  [[module.mounts]]
+    source = '../dlts-open-square-markdown/output'
+    target = 'content'
