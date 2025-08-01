@@ -74,13 +74,13 @@ enableGitInfo = true
 [menu]
 
   [[menu.main]]
-    name = "Browse Books"
+    name = "Books"
     identifier = "browseallbooks"
     url = "books"
     weight = -110
 
   [[menu.main]]
-    name = "About Open Square"
+    name = "About"
     identifier = "about-open-square"
     url = "aboutopensquare/"
     weight = -90
@@ -92,13 +92,13 @@ enableGitInfo = true
     weight = -10
 
   [[menu.footer]]
-      name = "Browse Books"
+      name = "Books"
       identifier = "browseallbooks"
       url = "books"
       weight = -150
 
   [[menu.footer]]
-   name = "About Open Square"
+   name = "About"
    identifier = "about-open-square"
    url = "aboutopensquare/"
    weight = -90
