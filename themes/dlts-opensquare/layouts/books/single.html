@@ -24,6 +24,10 @@
             {{ partial "image-detailpage" (dict "openSquareId" $stringisbn "titleforalt" $titleforalt)  -}}
             <div class="link-callout">Read Online</div>
           </a>
+        {{-  else -}}
+          <div class="thumb-no-link">
+            {{ partial "image-detailpage" (dict "openSquareId" $stringisbn "titleforalt" $titleforalt)  }}
+          </div>
         {{-  end -}}
       {{-  else -}}
         {{-  warnf "%s: No readium epub for %s at %s" .Title $stringisbn $xmlpath -}}
