@@ -119,5 +119,5 @@ enableGitInfo = true
     target = 'content'
 
   [[module.mounts]]
-    source = '../dlts-open-square-markdown/output'
+    source = '../dlts-open-square-markdown-hugo/output'
     target = 'content'
