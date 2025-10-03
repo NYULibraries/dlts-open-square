@@ -16,6 +16,7 @@
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Install on macOS](#install-on-macos)
+  - [Refreshing the data](#refreshing-the-data)
   - [Building the Site](#building-the-site)
     - [Commands](#commands)
     - [Running the Development Server](#running-the-development-server)
@@ -44,12 +45,12 @@ This repository contains configurations, some content written in Markdown, code 
 ---
 
 ## Repository Structure
+There are now two repositories used to publish. One refreshes the data from the API, and the other builds the html site from that data.
 
 ```
 dlts-open-square/
 ├── config/                # Hugo configuration files for different environments
 ├── content/               # Markdown content for site pages
-│   └── books/             # Code for calling latest book data from API
 │   └── pages/             # Content for static "pages"
 │   └── series/            # Information needed for "series" taxonomy items
 │   └── subjects/          # Information needed for "subjects" taxonomy items
@@ -58,6 +59,16 @@ dlts-open-square/
 ├── themes/
 │   └── dlts-opensquare/   # Custom Hugo theme
 ├── README.md              # This file
+└── ...
+```
+```
+dlts-open-square-markdown-hugo/
+├── config/                # Hugo configuration files for different environments
+├── content/               # Markdown content for site pages
+│   └── books/             # Code for calling latest book data from API
+├── layouts/               # Theme to shape the .md files
+├── output /               # The actual markdown content; other repo points here
+├── README.md              # More info about repo
 └── ...
 ```
 
@@ -82,32 +93,43 @@ brew upgrade hugo
 ```
 
 ---
+## Refreshing the data
+
+To refresh the data, use the `hugo` command with the appropriate environment:
+
+```sh
+cd ../dlts-open-square-markdown-hugo
+hugo -e stage
+```
+
 
 ## Building the Site
 
 ### Commands
+
+
+
 To build the static site, use the `hugo` command with the appropriate environment:
 
 ```sh
 # For local development
-hugo --ignoreCache -e local
+hugo -e local
 
 # For development or staging
-hugo --ignoreCache -e dev
-hugo --ignoreCache -e stage
+hugo -e dev
+hugo -e stage
 
 # For production build
 hugo -e production
-hugo --ignoreCache -e production
+hugo -e production
 ```
 
-- The `--ignoreCache` flag ensures fresh data from remote sources. It takes a few minutes to build this way.
 - The `-e` flag selects the environment configuration from the `config/` directory.
 
 ### Running the Development Server
 
 ```sh
-hugo server --ignoreCache -e local
+hugo server -e local
 ```
 
 - Visit [http://localhost:1313/](http://localhost:1313/) to preview the site.
@@ -117,9 +139,10 @@ hugo server --ignoreCache -e local
 
 ## Development Workflow
 
-1. **Clone the repository:**
+1. **Clone the repositories:**
    ```sh
    git clone https://github.com/NYULibraries/dlts-open-square.git
+   git clone https://github.com/NYULibraries/dlts-open-square-markdown-hugo.git
    cd dlts-open-square
    ```
 
@@ -128,7 +151,7 @@ hugo server --ignoreCache -e local
 
 3. **Start the server:**
    ```sh
-   hugo server --ignoreCache -e local
+   hugo server -e local
    ```
 
 4. **Edit content or theme:**
