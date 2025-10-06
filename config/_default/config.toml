@@ -7,7 +7,7 @@ title = "Open Square"
 theme = ["dlts-opensquare"]
 
 publishDir = "docs"
-
+ignoreCache = true
 cleanDestinationDir = true
 enableGitInfo = true
 
