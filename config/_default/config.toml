@@ -44,7 +44,7 @@ enableGitInfo = true
   image_server = "https://nyu-opensquare-us.imgix.net/covers/"
   featured_book_isbn = "9781479833511"
   # other_featured_books_isbn will be sorted by date.
-  other_featured_books_isbn = ["9781479833306", "9781479832668", "9781479830909", "9781479819386","9781479819164","9781479811175" ]
+  other_featured_books_isbn = ["9781479830121", "9781479833306", "9781479832668", "9781479830909","9781479819386","9781479819164"]
 
 [taxonomies]
   subject = "subjects"
