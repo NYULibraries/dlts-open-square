@@ -192,8 +192,6 @@
     <loc>https://opensquare.nyupress.org/books/9780814744420/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/business/</loc>
-  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814743959/</loc>
     <priority>0</priority>
   </url><url>
@@ -390,8 +388,6 @@
     <loc>https://opensquare.nyupress.org/books/9780814760239/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/education/</loc>
-  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814789971/</loc>
     <priority>0</priority>
   </url><url>
@@ -472,6 +468,8 @@
     <loc>https://opensquare.nyupress.org/books/9780814708293/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/gender--sexuality/</loc>
+  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814723418/</loc>
     <priority>0</priority>
   </url><url>
@@ -516,8 +514,6 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814749104/</loc>
     <priority>0</priority>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/health--medicine/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479866748/</loc>
     <priority>0</priority>
@@ -615,9 +611,7 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/subjects/law/</loc>
   </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/lgbtq--sexuality/</loc>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/literature--literary-studies/</loc>
+    <loc>https://opensquare.nyupress.org/subjects/literature--poetry/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814770221/</loc>
     <priority>0</priority>
@@ -655,12 +649,10 @@
     <loc>https://opensquare.nyupress.org/books/9780814790168/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/media--technology/</loc>
+    <loc>https://opensquare.nyupress.org/subjects/media--communication/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814788431/</loc>
     <priority>0</priority>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/middle-east-studies/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814784532/</loc>
     <priority>0</priority>
@@ -700,8 +692,6 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814752913/</loc>
     <priority>0</priority>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/new-york-city--regional-interest/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479800575/</loc>
     <priority>0</priority>
@@ -804,6 +794,8 @@
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479840052/</loc>
     <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/science--technology/</loc>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479898626/</loc>
     <priority>0</priority>
@@ -1002,8 +994,6 @@
     <loc>https://opensquare.nyupress.org/books/9781479842865/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/urban-studies/</loc>
-  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814769881/</loc>
     <priority>0</priority>
   </url><url>
@@ -1034,12 +1024,13 @@
     <loc>https://opensquare.nyupress.org/books/9780814745052/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/womens--gender-studies/</loc>
-  </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814724033/</loc>
     <priority>0</priority>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814749128/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/books/9781479830121/</loc>
     <priority>0</priority>
   </url>
 </urlset>
