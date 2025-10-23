@@ -1,13 +1,13 @@
 ## Base configuration file. Defines default values for all environments.
 
-baseURL = "http://opensquare-local.nyupress.org"
+baseURL = "https://opensquare.nyupress.org"
 languageCode = "en-us"
 title = "Open Square"
 
 theme = ["dlts-opensquare"]
 
 publishDir = "docs"
-
+ignoreCache = true
 cleanDestinationDir = true
 enableGitInfo = true
 
@@ -19,6 +19,7 @@ enableGitInfo = true
     methods = ['(?i)GET|POST|HEAD']
 
 [params]
+  apiurl = "https://sites.dlib.nyu.edu/viewer/api/v1/epubs/"
   sassOutputFormat = "compressed"
   enableSourceMap = "false"
   shorttitle = "Open Square"
@@ -44,7 +45,7 @@ enableGitInfo = true
   image_server = "https://nyu-opensquare-us.imgix.net/covers/"
   featured_book_isbn = "9781479833511"
   # other_featured_books_isbn will be sorted by date.
-  other_featured_books_isbn = ["9781479833306", "9781479832668", "9781479830909", "9781479819386","9781479819164","9781479811175" ]
+  other_featured_books_isbn = ["9781479830121", "9781479833306", "9781479832668", "9781479830909","9781479819386","9781479819164"]
 
 [taxonomies]
   subject = "subjects"
@@ -113,3 +114,11 @@ enableGitInfo = true
     url = "https://www.nyu.edu/footer/accessibility.html"
     weight = -5
     identifier = "external"
+
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+
+  [[module.mounts]]
+    source = '../dlts-open-square-markdown-hugo/output'
+    target = 'content'
