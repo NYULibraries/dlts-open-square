@@ -2,7 +2,7 @@ $nyuteal: #008996;
 $nyu-purple: #57068c;
 $nyugray1: #4a4f55;
 $nyugray2: #939a90;
-$lightgray: #cdc4e1;
+$lightgray: #7f499e7d;
 
 // ==========================================================================
 // Base theme
@@ -143,6 +143,21 @@ ul {
 .contain-main,
 .page-footer {
   background-color: $background-color-main;
+}
+
+.page-footer {
+  background: url(../images/skyline.png);
+  background-size: contain;
+  padding-bottom: 200px;
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: auto 90px;
+
+  @include mdc-layout-grid-media-query_("desktop") {
+    background-size: auto 138px;
+    background-position: bottom right;
+
+  }
 }
 
 main {
