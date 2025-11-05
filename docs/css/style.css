@@ -1456,44 +1456,54 @@ blockquote {
 
 .navhold {
   background-color: #ffffff;
-  margin-top: 1rem; }
+  margin-top: 1.5rem; }
   .navhold .inner {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; }
+    justify-content: flex-end; }
+    @media (max-width: 599px) {
+      .navhold .inner {
+        justify-content: flex-start; } }
+.osq-logo a {
+  display: block; }
 
-.osq-logo {
-  max-width: 450px; }
-  .osq-logo a {
-    display: block; }
-  .osq-logo img {
-    width: 100%;
-    height: auto; }
-
-.nyup-logo a {
-  display: inline-block; }
-
-.nyup-logo img {
+.osq-logo img {
   width: 100%;
   height: auto; }
 
+.nyup-logo {
+  text-align: right; }
+  .nyup-logo a {
+    display: block; }
+  .nyup-logo img {
+    width: 100%;
+    height: auto; }
+
+@media (max-width: 599px) {
+  .nyup-logo img {
+    max-width: 130px; } }
+
+@media (min-width: 600px) and (max-width: 839px) {
+  .nyup-logo img {
+    max-width: 200px; } }
+
 @media (min-width: 840px) {
   body .navhold {
-    margin-top: 24px; }
+    margin-top: -1.1rem;
+    margin-left: 222px; }
   body .page-header {
-    padding: 24px 0 20px;
+    padding: 34px 0;
     position: relative; }
-  body .osq-logo img {
-    width: auto;
-    height: 130px; }
   body .nyup-logo {
-    text-align: right; }
+    align-self: top; }
     body .nyup-logo img {
-      width: auto;
-      height: 130px; } }
+      height: auto; }
+  body .osq-logo img {
+    width: 230px;
+    height: 174px; } }
 
 .home .section-title {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-family: "nyuperstarecondensed", Verdana, sans-serif;
   text-transform: uppercase;
   color: #e00022;
@@ -1524,12 +1534,12 @@ blockquote {
 .home .box2 {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #cdc4e1;
+  border-top: 1px solid #7f499e7d;
   font-size: .9rem;
   line-height: 1.5; }
   @media (min-width: 840px) {
     .home .box2 {
-      border-left: 1px solid #cdc4e1;
+      border-left: 1px solid #7f499e7d;
       border-top: 0;
       padding-left: 24px;
       margin-top: 0;
@@ -1611,19 +1621,19 @@ blockquote {
 
 @media (min-width: 840px) {
   .sister-links-section {
-    border-right: 1px solid #cdc4e1; } }
+    border-right: 1px solid #7f499e7d; } }
 
 @media (min-width: 600px) and (max-width: 839px) {
   .sister-links-section {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #cdc4e1; } }
+    border-bottom: 1px solid #7f499e7d; } }
 
 @media (max-width: 599px) {
   .sister-links-section {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #cdc4e1; } }
+    border-bottom: 1px solid #7f499e7d; } }
 
 .social-media-section {
   padding-bottom: 0 !important;
@@ -1632,7 +1642,7 @@ blockquote {
     font-size: 1rem; }
     @media (min-width: 840px) {
       .social-media-section div:not(:last-child) {
-        border-bottom: 1px solid #cdc4e1; } }
+        border-bottom: 1px solid #7f499e7d; } }
     @media (max-width: 599px) {
       .social-media-section div {
         font-size: 1rem; } }
@@ -1654,7 +1664,7 @@ blockquote {
   margin-bottom: 2rem;
   padding-bottom: 2rem; }
   .home-section:not(:last-child) {
-    border-bottom: 1px solid #cdc4e1; }
+    border-bottom: 1px solid #7f499e7d; }
 
 .series-banner {
   background-color: #57068c;
@@ -1770,7 +1780,7 @@ blockquote {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: block;
-  border: 1px solid #cdc4e1;
+  border: 1px solid #7f499e7d;
   text-decoration: none;
   margin-bottom: 1rem; }
   .book-full-view .thumb-link:focus-visible, .book-full-view .thumb-link:hover {
@@ -1794,7 +1804,7 @@ blockquote {
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
-  border-top: 1px solid #cdc4e1;
+  border-top: 1px solid #7f499e7d;
   font-family: "nyuperstarecondensed", Verdana, sans-serif;
   color: #57068c;
   font-weight: 400;
@@ -1847,7 +1857,7 @@ blockquote {
 .contributorbios, .reviews {
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #cdc4e1; }
+  border-top: 1px solid #7f499e7d; }
   .contributorbios div, .reviews div {
     margin: 1em 0; }
   .contributorbios h2, .reviews h2 {
@@ -1869,7 +1879,9 @@ blockquote {
 .nav-links a:visited {
   color: #57068c;
   letter-spacing: .2px;
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem; }
 
 .hold-all-readingpage {
   display: flex;
@@ -1971,12 +1983,12 @@ ul {
     .hold-all {
       padding: 0 30px; } }
 .page-header {
-  border-bottom: 2px solid #cdc4e1;
+  border-bottom: 2px solid #7f499e7d;
   padding: 20px 0;
   position: relative; }
 
 .page-footer {
-  border-top: 2px solid #cdc4e1;
+  border-top: 2px solid #7f499e7d;
   padding: 35px 0; }
 
 .contain-main,
@@ -1989,6 +2001,17 @@ ul {
 .page-footer {
   background-color: #ffffff; }
 
+.page-footer {
+  background: url(../images/skyline.png);
+  background-size: contain;
+  padding-bottom: 200px;
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: auto 90px; }
+  @media (min-width: 840px) {
+    .page-footer {
+      background-size: auto 138px;
+      background-position: bottom right; } }
 main {
   padding: 22px 0;
   font-size: .9rem;
