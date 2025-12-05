@@ -1,120 +1,35 @@
-/*
- * Emigre web font kit 6hRsSuxHzHkJrdB5qwqgbg==
- *
- * These fonts are not shareware.
- * Use of these fonts requires the purchase
- * of a license from Emigre, www.emigre.com
- * Please contact sales@emigre.com
- *
- * To purchase a license to use this font go to:
- * http://www.emigre.com/
- *
- * © 2019 Emigre, Inc
- */
+
+
 
 @font-face {
-  font-family: 'vistasansnarot-light';
-  src: url("../fonts/vistasansnarot-light-webfont.eot");
-  src: url("../fonts/vistasansnarot-light-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-light-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-light-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'nyuperstare';
+  src: url("../fonts/NYUPerstare/NYUPerstare-VF.ttf");
+  // font-weight: normal;
+  // font-style: normal;
 
 }
 
 @font-face {
-  font-family: 'vistasansnarot-lightital';
-  src: url("../fonts/vistasansnarot-lightital-webfont.eot");
-  src: url("../fonts/vistasansnarot-lightital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-lightital-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-lightital-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'nyuperstareital';
+  src: url("../fonts/NYUPerstare/nyuperstareital-webfont.eot");
+  src: url("../fonts/NYUPerstare/nyuperstareital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/NYUPerstare/nyuperstareital-webfont.woff2") format('woff2'), url("../fonts/NYUPerstare/nyuperstareital-webfont.woff") format('woff');
+  // font-weight: normal;
+  // font-style: normal;
 
 }
 
 @font-face {
-  font-family: 'vistasansnarot-reg';
-  src: url("../fonts/vistasansnarot-reg-webfont.eot");
-  src: url("../fonts/vistasansnarot-reg-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-reg-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-reg-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-regital';
-  src: url("../fonts/vistasansnarot-regital-webfont.eot");
-  src: url("../fonts/vistasansnarot-regital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-regital-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-regital-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-bold';
-  src: url("../fonts/vistasansnarot-bold-webfont.eot");
-  src: url("fonts/vistasansnarot-bold-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-bold-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-bold-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'nyuperstarecondensed';
+  src: url("../fonts/NYUPerstare/NYUPerstareCondensed-VF.ttf");
+  // font-weight: normal;
+  // font-style: normal;
 
 }
 
 @font-face {
   font-family: 'vistasansnarot-boldital';
-  src: url("../fonts/vistasansnarot-boldital-webfont.eot");
-  src: url("../fonts/vistasansnarot-boldital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-boldital-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-boldital-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-book';
-  src: url("../fonts/vistasansnarot-book-webfont.eot");
-  src: url("../fonts/vistasansnarot-book-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-book-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-book-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-bookital';
-  src: url("../fonts/vistasansnarot-bookital-webfont.eot");
-  src: url("../fonts/vistasansnarot-bookital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-bookital-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-bookital-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-med';
-  src: url("../fonts/vistasansnarot-med-webfont.eot");
-  src: url("../fonts/vistasansnarot-med-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-med-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-med-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-medital';
-  src: url("../fonts/vistasansnarot-medital-webfont.eot");
-  src: url("../fonts/vistasansnarot-medital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-medital-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-medital-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-black';
-  src: url("../fonts/vistasansnarot-black-webfont.eot");
-  src: url("../fonts/vistasansnarot-black-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-black-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-black-webfont.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'vistasansnarot-blackital';
-  src: url("../fonts/vistasansnarot-blackital-webfont.eot");
-  src: url("../fonts/vistasansnarot-blackital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/vistasansnarot-blackital-webfont.woff2") format('woff2'), url("../fonts/vistasansnarot-blackital-webfont.woff") format('woff');
+  src: url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.eot");
+  src: url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.woff2") format('woff2'), url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.woff") format('woff');
   font-weight: normal;
   font-style: normal;
 

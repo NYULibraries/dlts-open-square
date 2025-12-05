@@ -17,7 +17,7 @@
 
 .book-subtitle,
 .book-title {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .meta {
@@ -111,7 +111,7 @@
     border-top: 1px solid $primary-color-muted;
     font-family: $font-family-headers;
     color: $primary-color;
-    font-weight: bold;
+    font-weight: 400;
     font-size: 1.2rem;
   }
 }
@@ -170,7 +170,7 @@
   a:link {
     color: $nyu-purple;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   a:hover {
