@@ -18,85 +18,94 @@
     flex: 1 1 auto;
     padding: 10px;
     max-width: none;
-    font-size: .85rem;
+
     min-height: 50px;
-  }
-
-  .top-hold {
-    display: flex;
-    justify-content: space-between;
-    // #{map-get($mdc-layout-grid-default-gutter, "desktop")};
-
-    @include mdc-layout-grid-media-query_("desktop") {
-      height: 40px;
-    }
-    @include mdc-layout-grid-media-query_("tablet") {
-      height: 35px;
-    }
-    @include mdc-layout-grid-media-query_("phone") {
-      height: 35px;
-    }
-
-  }
-
-  .osq-logo {
-    max-height: 100%;
-    max-width: none;
-    margin: 0;
-    line-height: 1;
-    padding: 0;
-    flex: 1 1 auto;
-
-    a {
-      height: 100%;
-      line-height: 1;
-    }
-
-    img {
-      width: auto;
-      height: 100%;
+    background-image: none;
+    .nav-links a:link, .nav-links a:visited {
+      font-size: .85rem;
     }
   }
 
-  .nyup-logo {
-    flex: 0 1 83px;
-    text-align: right;
+.top-hold {
+  display: flex;
+  justify-content: space-between;
+  // #{map-get($mdc-layout-grid-default-gutter, "desktop")};
 
-    img {
-      width: auto;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
-
-  .nyup-logo a {
-    display: block;
-    height: 100%;
-    width: auto;
-  }
   @include mdc-layout-grid-media-query_("desktop") {
-    .social {
-      float: right;
-      margin-top: -16px;
-    }
+    height: 40px;
   }
-  @include mdc-layout-grid-media-query_("tablet") {
-    .nav-links {
-      float: left;
-      margin-bottom: 10px;
-    }
 
-    .social {
-      float: right;
-    }
+  @include mdc-layout-grid-media-query_("tablet") {
+    height: 35px;
   }
+
   @include mdc-layout-grid-media-query_("phone") {
-    .social {
-      margin-top: 5px;
-      text-align: center;
-    }
+    height: 35px;
   }
+
+}
+
+.osq-logo {
+  max-height: 100%;
+  max-width: none;
+  margin: 0;
+  line-height: 1;
+  padding: 0;
+  flex: 1 1 auto;
+
+  a {
+    height: 100%;
+    line-height: 1;
+  }
+
+  img {
+    width: auto;
+    height: 100%;
+  }
+}
+
+.nyup-logo {
+  flex: 0 1 83px;
+  text-align: right;
+
+  img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.nyup-logo a {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+@include mdc-layout-grid-media-query_("desktop") {
+  .social {
+    float: right;
+    margin-top: -16px;
+  }
+}
+
+@include mdc-layout-grid-media-query_("tablet") {
+  .nav-links {
+    float: left;
+    margin-bottom: 10px;
+  }
+
+  .social {
+    float: right;
+  }
+}
+
+@include mdc-layout-grid-media-query_("phone") {
+  .social {
+    margin-top: 5px;
+    text-align: center;
+  }
+}
 
 }
 
