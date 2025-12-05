@@ -1898,8 +1898,10 @@ blockquote {
     flex: 1 1 auto;
     padding: 10px;
     max-width: none;
-    font-size: .85rem;
-    min-height: 50px; }
+    min-height: 50px;
+    background-image: none; }
+    .hold-all-readingpage .page-footer .nav-links a:link, .hold-all-readingpage .page-footer .nav-links a:visited {
+      font-size: .85rem; }
   .hold-all-readingpage .top-hold {
     display: flex;
     justify-content: space-between; }
