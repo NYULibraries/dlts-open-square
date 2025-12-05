@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* sanitize.css v8.0.0 | CC0 License | github.com/csstools/sanitize.css */
 /* Document
  * ========================================================================== */
@@ -1257,7 +1256,7 @@ a {
   .dqpl-select .dqpl-listbox .item-section-title {
     padding: 0 20px;
     font-size: 1.2rem;
-    font-family: "vistasansnarot-reg", Verdana, sans-serif; }
+    font-family: "nyuperstarecondensed", Verdana, sans-serif; }
   .dqpl-select .dqpl-listbox li {
     flex: 1 1 32%; }
   .dqpl-select .dqpl-listbox .dqpl-option {
@@ -1285,100 +1284,23 @@ a {
   display: table;
   clear: both; }
 
-/*
- * Emigre web font kit 6hRsSuxHzHkJrdB5qwqgbg==
- *
- * These fonts are not shareware.
- * Use of these fonts requires the purchase
- * of a license from Emigre, www.emigre.com
- * Please contact sales@emigre.com
- *
- * To purchase a license to use this font go to:
- * http://www.emigre.com/
- *
- * © 2019 Emigre, Inc
- */
 @font-face {
-  font-family: 'vistasansnarot-light';
-  src: url("../fonts/vistasansnarot-light-webfont.eot");
-  src: url("../fonts/vistasansnarot-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-light-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-light-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
+  font-family: 'nyuperstare';
+  src: url("../fonts/NYUPerstare/NYUPerstare-VF.ttf"); }
 
 @font-face {
-  font-family: 'vistasansnarot-lightital';
-  src: url("../fonts/vistasansnarot-lightital-webfont.eot");
-  src: url("../fonts/vistasansnarot-lightital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-lightital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-lightital-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
+  font-family: 'nyuperstareital';
+  src: url("../fonts/NYUPerstare/nyuperstareital-webfont.eot");
+  src: url("../fonts/NYUPerstare/nyuperstareital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/NYUPerstare/nyuperstareital-webfont.woff2") format("woff2"), url("../fonts/NYUPerstare/nyuperstareital-webfont.woff") format("woff"); }
 
 @font-face {
-  font-family: 'vistasansnarot-reg';
-  src: url("../fonts/vistasansnarot-reg-webfont.eot");
-  src: url("../fonts/vistasansnarot-reg-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-reg-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-reg-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-regital';
-  src: url("../fonts/vistasansnarot-regital-webfont.eot");
-  src: url("../fonts/vistasansnarot-regital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-regital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-regital-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-bold';
-  src: url("../fonts/vistasansnarot-bold-webfont.eot");
-  src: url("fonts/vistasansnarot-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-bold-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-bold-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
+  font-family: 'nyuperstarecondensed';
+  src: url("../fonts/NYUPerstare/NYUPerstareCondensed-VF.ttf"); }
 
 @font-face {
   font-family: 'vistasansnarot-boldital';
-  src: url("../fonts/vistasansnarot-boldital-webfont.eot");
-  src: url("../fonts/vistasansnarot-boldital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-boldital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-boldital-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-book';
-  src: url("../fonts/vistasansnarot-book-webfont.eot");
-  src: url("../fonts/vistasansnarot-book-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-book-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-book-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-bookital';
-  src: url("../fonts/vistasansnarot-bookital-webfont.eot");
-  src: url("../fonts/vistasansnarot-bookital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-bookital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-bookital-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-med';
-  src: url("../fonts/vistasansnarot-med-webfont.eot");
-  src: url("../fonts/vistasansnarot-med-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-med-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-med-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-medital';
-  src: url("../fonts/vistasansnarot-medital-webfont.eot");
-  src: url("../fonts/vistasansnarot-medital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-medital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-medital-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-black';
-  src: url("../fonts/vistasansnarot-black-webfont.eot");
-  src: url("../fonts/vistasansnarot-black-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-black-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-black-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'vistasansnarot-blackital';
-  src: url("../fonts/vistasansnarot-blackital-webfont.eot");
-  src: url("../fonts/vistasansnarot-blackital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vistasansnarot-blackital-webfont.woff2") format("woff2"), url("../fonts/vistasansnarot-blackital-webfont.woff") format("woff");
+  src: url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.eot");
+  src: url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.woff2") format("woff2"), url("../fonts/NYUPerstare/vistasansnarot-boldital-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1404,7 +1326,7 @@ a {
   white-space: nowrap;
   outline: none;
   background-color: #ffffff;
-  font-family: "vistasansnarot-reg", Verdana, sans-serif;
+  font-family: "nyuperstarecondensed", Verdana, sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 20px; }
@@ -1426,7 +1348,7 @@ a {
     box-shadow: none; }
 
 #main-content {
-  font-family: "Raleway", Verdana, sans-serif; }
+  font-family: "nyuperstare", Verdana, sans-serif; }
 
 h1,
 h2,
@@ -1434,7 +1356,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500; }
+  font-weight: 400; }
 
 h1 {
   font-size: 1.5rem;
@@ -1527,59 +1449,69 @@ blockquote {
 
 .nav-links {
   text-align: center;
-  font-family: "vistasansnarot-med", Verdana, sans-serif; }
+  font-family: "nyuperstare", Verdana, sans-serif; }
   .nav-links a {
     text-transform: uppercase;
     text-decoration: none; }
 
 .navhold {
   background-color: #ffffff;
-  margin-top: 1rem; }
+  margin-top: 1.5rem; }
   .navhold .inner {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; }
+    justify-content: flex-end; }
+    @media (max-width: 599px) {
+      .navhold .inner {
+        justify-content: flex-start; } }
+.osq-logo a {
+  display: block; }
 
-.osq-logo {
-  max-width: 450px; }
-  .osq-logo a {
-    display: block; }
-  .osq-logo img {
-    width: 100%;
-    height: auto; }
-
-.nyup-logo a {
-  display: inline-block; }
-
-.nyup-logo img {
+.osq-logo img {
   width: 100%;
   height: auto; }
 
+.nyup-logo {
+  text-align: right; }
+  .nyup-logo a {
+    display: block; }
+  .nyup-logo img {
+    width: 100%;
+    height: auto; }
+
+@media (max-width: 599px) {
+  .nyup-logo img {
+    max-width: 130px; } }
+
+@media (min-width: 600px) and (max-width: 839px) {
+  .nyup-logo img {
+    max-width: 200px; } }
+
 @media (min-width: 840px) {
   body .navhold {
-    margin-top: 24px; }
+    margin-top: -1.1rem;
+    margin-left: 222px; }
   body .page-header {
-    padding: 24px 0 20px;
+    padding: 34px 0;
     position: relative; }
-  body .osq-logo img {
-    width: auto;
-    height: 75px; }
   body .nyup-logo {
-    text-align: right; }
+    align-self: top; }
     body .nyup-logo img {
-      width: auto;
-      height: 75px; } }
+      height: auto; }
+  body .osq-logo img {
+    width: 230px;
+    height: 174px; } }
 
 .home .section-title {
-  font-size: 1.1rem;
-  font-family: "vistasansnarot-reg", Verdana, sans-serif;
+  font-size: 1.3rem;
+  font-family: "nyuperstarecondensed", Verdana, sans-serif;
   text-transform: uppercase;
   color: #e00022;
   margin: 0 0 1rem; }
 
 .home .intro-copy {
   font-weight: 500;
-  font-family: "vistasansnarot-reg", Verdana, sans-serif;
+  font-family: "nyuperstarecondensed", Verdana, sans-serif;
   font-size: 1rem;
   padding-right: 10px; }
 
@@ -1602,12 +1534,12 @@ blockquote {
 .home .box2 {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #cdc4e1;
+  border-top: 1px solid #7f499e7d;
   font-size: .9rem;
   line-height: 1.5; }
   @media (min-width: 840px) {
     .home .box2 {
-      border-left: 1px solid #cdc4e1;
+      border-left: 1px solid #7f499e7d;
       border-top: 0;
       padding-left: 24px;
       margin-top: 0;
@@ -1662,7 +1594,7 @@ blockquote {
 
 .vista-callout {
   text-transform: uppercase;
-  font-family: "vistasansnarot-reg", Verdana, sans-serif;
+  font-family: "nyuperstarecondensed", Verdana, sans-serif;
   margin-top: 1rem; }
   .vista-callout a {
     display: inline-block; }
@@ -1689,19 +1621,19 @@ blockquote {
 
 @media (min-width: 840px) {
   .sister-links-section {
-    border-right: 1px solid #cdc4e1; } }
+    border-right: 1px solid #7f499e7d; } }
 
 @media (min-width: 600px) and (max-width: 839px) {
   .sister-links-section {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #cdc4e1; } }
+    border-bottom: 1px solid #7f499e7d; } }
 
 @media (max-width: 599px) {
   .sister-links-section {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #cdc4e1; } }
+    border-bottom: 1px solid #7f499e7d; } }
 
 .social-media-section {
   padding-bottom: 0 !important;
@@ -1710,7 +1642,7 @@ blockquote {
     font-size: 1rem; }
     @media (min-width: 840px) {
       .social-media-section div:not(:last-child) {
-        border-bottom: 1px solid #cdc4e1; } }
+        border-bottom: 1px solid #7f499e7d; } }
     @media (max-width: 599px) {
       .social-media-section div {
         font-size: 1rem; } }
@@ -1732,7 +1664,7 @@ blockquote {
   margin-bottom: 2rem;
   padding-bottom: 2rem; }
   .home-section:not(:last-child) {
-    border-bottom: 1px solid #cdc4e1; }
+    border-bottom: 1px solid #7f499e7d; }
 
 .series-banner {
   background-color: #57068c;
@@ -1796,7 +1728,7 @@ blockquote {
 
 .book-subtitle,
 .book-title {
-  font-weight: 500; }
+  font-weight: 400; }
 
 .meta {
   font-size: 0.9rem; }
@@ -1848,7 +1780,7 @@ blockquote {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: block;
-  border: 1px solid #cdc4e1;
+  border: 1px solid #7f499e7d;
   text-decoration: none;
   margin-bottom: 1rem; }
   .book-full-view .thumb-link:focus-visible, .book-full-view .thumb-link:hover {
@@ -1872,10 +1804,10 @@ blockquote {
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
-  border-top: 1px solid #cdc4e1;
-  font-family: "vistasansnarot-reg", Verdana, sans-serif;
+  border-top: 1px solid #7f499e7d;
+  font-family: "nyuperstarecondensed", Verdana, sans-serif;
   color: #57068c;
-  font-weight: bold;
+  font-weight: 400;
   font-size: 1.2rem; }
 
 .book-summary {
@@ -1916,7 +1848,7 @@ blockquote {
   .rights-info a:link {
     color: #57068c;
     text-decoration: none;
-    font-weight: 500; }
+    font-weight: 400; }
   .rights-info a:hover {
     text-decoration: underline; }
   .rights-info .license-abbreviation {
@@ -1925,7 +1857,7 @@ blockquote {
 .contributorbios, .reviews {
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #cdc4e1; }
+  border-top: 1px solid #7f499e7d; }
   .contributorbios div, .reviews div {
     margin: 1em 0; }
   .contributorbios h2, .reviews h2 {
@@ -1947,7 +1879,9 @@ blockquote {
 .nav-links a:visited {
   color: #57068c;
   letter-spacing: .2px;
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem; }
 
 .hold-all-readingpage {
   display: flex;
@@ -1964,8 +1898,10 @@ blockquote {
     flex: 1 1 auto;
     padding: 10px;
     max-width: none;
-    font-size: .85rem;
-    min-height: 50px; }
+    min-height: 50px;
+    background-image: none; }
+    .hold-all-readingpage .page-footer .nav-links a:link, .hold-all-readingpage .page-footer .nav-links a:visited {
+      font-size: .85rem; }
   .hold-all-readingpage .top-hold {
     display: flex;
     justify-content: space-between; }
@@ -2049,12 +1985,12 @@ ul {
     .hold-all {
       padding: 0 30px; } }
 .page-header {
-  border-bottom: 2px solid #cdc4e1;
+  border-bottom: 2px solid #7f499e7d;
   padding: 20px 0;
   position: relative; }
 
 .page-footer {
-  border-top: 2px solid #cdc4e1;
+  border-top: 2px solid #7f499e7d;
   padding: 35px 0; }
 
 .contain-main,
@@ -2067,6 +2003,17 @@ ul {
 .page-footer {
   background-color: #ffffff; }
 
+.page-footer {
+  background: url(../images/skyline.png);
+  background-size: contain;
+  padding-bottom: 200px;
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: auto 90px; }
+  @media (min-width: 840px) {
+    .page-footer {
+      background-size: auto 138px;
+      background-position: bottom right; } }
 main {
   padding: 22px 0;
   font-size: .9rem;

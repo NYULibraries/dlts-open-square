@@ -2,7 +2,7 @@ $nyuteal: #008996;
 $nyu-purple: #57068c;
 $nyugray1: #4a4f55;
 $nyugray2: #939a90;
-$lightgray: #cdc4e1;
+$lightgray: #7f499e7d;
 
 // ==========================================================================
 // Base theme
@@ -64,10 +64,10 @@ $viewportpadding-desktop: 50px;
 
 $background-color-main: #ffffff;
 $background-color-navbar: #ffffff;
-$font-family-general: Arial, sans-serif;
-$font-family-headers: "vistasansnarot-reg", Verdana, sans-serif;
-$font-family-headers-bold: "vistasansnarot-med", Verdana, sans-serif;
-$font-family-body: 'Raleway', Verdana, sans-serif;
+$font-family-general: "nyuperstare", Verdana, sans-serif;
+$font-family-headers: "nyuperstarecondensed", Verdana, sans-serif;
+$font-family-headers-bold: "nyuperstare", Verdana, sans-serif;
+$font-family-body: "nyuperstare", Verdana, sans-serif;
 
 $skipnav-background: #ffffff;
 $skipnav-border: $primary-color;
@@ -143,6 +143,21 @@ ul {
 .contain-main,
 .page-footer {
   background-color: $background-color-main;
+}
+
+.page-footer {
+  background: url(../images/skyline.png);
+  background-size: contain;
+  padding-bottom: 200px;
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: auto 90px;
+
+  @include mdc-layout-grid-media-query_("desktop") {
+    background-size: auto 138px;
+    background-position: bottom right;
+
+  }
 }
 
 main {
