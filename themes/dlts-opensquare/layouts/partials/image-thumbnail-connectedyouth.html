@@ -1,6 +1,5 @@
-{{- $stringisbn := .openSquareId  -}}
+{{- $stringisbn := .isbn  -}}
 {{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .context.Site.Params.image_server  -}}
-
 <div class="thumb" role="presentation" aria-hidden="true" >
  <picture>
   <source media="(min-width: 720px)"
