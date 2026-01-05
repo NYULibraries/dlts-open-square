@@ -1,7 +1,4 @@
 {{- $stringisbn := string .Params.openSquareId  -}}
-{{- if .Params.openSquareIdforphoto  -}}
-{{- $stringisbn = string .Params.openSquareIdforphoto  -}}
-{{- end  -}}
 {{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  -}}
 
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
