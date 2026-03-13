@@ -3,7 +3,6 @@
 baseURL = "https://opensquare-stage.nyupress.org"
 
 [params]
-  apiurl = "https://stage-sites.dlib.nyu.edu/viewer/api/v1/epubs/nyu-press"
   connectedyouthurl = "https://connectedyouth-stage.nyupress.org"
   matomoanalyticsid = "18"
   googleanalyticsid = "G-6ZBRSG08EY"
