@@ -2,22 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://opensquare.nyupress.org/subjects/american-studies/</loc>
-    <lastmod>2025-07-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://opensquare.nyupress.org/books/</loc>
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/gender--sexuality/</loc>
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/</loc>
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/politics/</loc>
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/sociology/</loc>
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/</loc>
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/books/9781479830206/</loc>
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/american-studies/</loc>
     <lastmod>2025-07-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/subjects/media--communication/</loc>
     <lastmod>2025-07-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://opensquare.nyupress.org/</loc>
-    <lastmod>2025-07-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://opensquare.nyupress.org/subjects/science--technology/</loc>
-    <lastmod>2025-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/</loc>
     <lastmod>2025-07-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479833306/</loc>
@@ -41,13 +53,7 @@
     <loc>https://opensquare.nyupress.org/subjects/religion/</loc>
     <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/sociology/</loc>
-    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://opensquare.nyupress.org/subjects/anthropology/</loc>
-    <lastmod>2025-04-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/gender--sexuality/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479832668/</loc>
@@ -81,9 +87,6 @@
     <lastmod>2020-12-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479868148/</loc>
-    <lastmod>2020-12-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/politics/</loc>
     <lastmod>2020-12-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479891672/</loc>
@@ -249,6 +252,9 @@
     <lastmod>2015-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814760079/</loc>
+    <lastmod>2015-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/media--technology/</loc>
     <lastmod>2015-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9780814708033/</loc>
