@@ -54,12 +54,17 @@
 @include mdc-layout-grid-media-query_(phone) {
   .nyup-logo img {
     max-width: 130px;
+    width: 80%;
+  }
+
+  .osq-logo img {
+    max-width: 130px;
   }
 }
 
 @include mdc-layout-grid-media-query_(tablet) {
   .nyup-logo img {
-    max-width: 200px;
+    max-width: 140px;
   }
 }
 
@@ -88,8 +93,8 @@
 
     .osq-logo {
       img {
-        width: 230px;
-        height: 174px;
+        width: 130px;
+        height: auto;
       }
     }
 
