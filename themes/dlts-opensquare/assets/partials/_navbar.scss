@@ -45,7 +45,7 @@
   }
 
   img {
-    width: 100%;
+    width: 88%;
     height: auto;
   }
 
@@ -68,12 +68,33 @@
   }
 }
 
+.top-hold {
+  font-family: $font-family-body;
+
+  h1 {
+   margin-bottom: .4rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: #8400de;
+    font-weight: 600;
+
+    span {
+      font-weight: 300;
+    }
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: $nyu-purple;
+  }
+}
+
 
 
 @include mdc-layout-grid-media-query_(desktop) {
   body {
     .navhold {
-      margin-top: -1.1rem;
+      margin-top: 0rem;
       margin-left: 222px;
     }
 
@@ -93,7 +114,7 @@
 
     .osq-logo {
       img {
-        width: 130px;
+        width: 150px;
         height: auto;
       }
     }
