@@ -54,7 +54,8 @@
         <h2 class="section-title">Featured Series</h2>
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-              {{ range first 3 (where .Site.Pages ".Params.series" "intersect" .Site.Params.featured_series )}}
+              {{/*  Exclude specific book by Open Square ID */}}
+              {{ range first 3 ( where (where .Site.Pages ".Params.series" "intersect" .Site.Params.featured_series ) ".Params.openSquareId" "!=" "9781479819454")}}
               <div class="mdc-layout-grid__cell--span-2">
                 {{ partial "image-thumbnail" . }}
               </div>
