@@ -24,6 +24,29 @@
   }
 }
 
+.top-hold {
+  font-family: $font-family-body;
+  justify-content: flex-end;
+
+  h1 {
+    margin-bottom: .4rem;
+    // font-size: 2.5rem;
+    text-transform: uppercase;
+    color: #8400de;
+    font-weight: 600;
+
+    span {
+      font-weight: 300;
+    }
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    color: $nyu-purple;
+  }
+}
+
+
 
 .osq-logo {
 
@@ -52,40 +75,33 @@
 }
 
 @include mdc-layout-grid-media-query_(phone) {
-  .nyup-logo img {
-    max-width: 130px;
-    width: 80%;
+  .nyup-logo {
+    order: -1;
+
+    img {
+      max-width: 100px;
+      width: 80%;
+    }
   }
 
   .osq-logo img {
     max-width: 130px;
+  }
+
+  .top-hold {
+    h1 {
+      font-size: calc(.8rem + 4vw);
+    }
+
+    h2 {
+      font-size: calc(.5rem + 2vw);
+    }
   }
 }
 
 @include mdc-layout-grid-media-query_(tablet) {
   .nyup-logo img {
     max-width: 140px;
-  }
-}
-
-.top-hold {
-  font-family: $font-family-body;
-
-  h1 {
-   margin-bottom: .4rem;
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    color: #8400de;
-    font-weight: 600;
-
-    span {
-      font-weight: 300;
-    }
-  }
-
-  h2 {
-    font-size: 1.1rem;
-    color: $nyu-purple;
   }
 }
 
@@ -104,21 +120,9 @@
     }
 
     .nyup-logo {
-      align-self: top;
-
       img {
-
         height: auto;
       }
     }
-
-    .osq-logo {
-      img {
-        width: 150px;
-        height: auto;
-      }
-    }
-
-
   }
 }
