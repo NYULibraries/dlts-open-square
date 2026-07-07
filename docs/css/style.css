@@ -1137,14 +1137,12 @@ a {
 
 .ispage.pages main {
   max-width: 45rem; }
-
-.ispage.pages h2 {
-  font-size: 1.2rem;
-  margin-top: 2.5rem; }
-
-.ispage.pages h3 {
-  margin-top: 1.5rem;
-  font-size: 1rem; }
+  .ispage.pages main h2 {
+    font-size: 1.2rem;
+    margin-top: 2.5rem; }
+  .ispage.pages main h3 {
+    margin-top: 1.5rem;
+    font-size: 1rem; }
 
 .dqpl-field-wrap {
   margin-bottom: 30px; }
@@ -1464,42 +1462,57 @@ blockquote {
     @media (max-width: 599px) {
       .navhold .inner {
         justify-content: flex-start; } }
-.osq-logo a {
-  display: block; }
-
-.osq-logo img {
-  width: 100%;
-  height: auto; }
+.top-hold {
+  font-family: "nyuperstare", Verdana, sans-serif;
+  justify-content: flex-end; }
+  .top-hold h1 a {
+    margin-bottom: .4rem;
+    text-transform: uppercase;
+    color: #8400de;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 1;
+    font-size: 2rem; }
+    .top-hold h1 a span {
+      font-weight: 300; }
+  .top-hold h2 {
+    font-size: 1.1rem;
+    color: #57068c; }
 
 .nyup-logo {
   text-align: right; }
   .nyup-logo a {
-    display: block; }
+    display: inline-block; }
   .nyup-logo img {
-    width: 100%;
+    width: 110px;
     height: auto; }
 
 @media (max-width: 599px) {
-  .nyup-logo img {
-    max-width: 130px; } }
+  .nyup-logo {
+    order: -1; }
+    .nyup-logo img {
+      max-width: 100px;
+      width: 80%; }
+  .osq-logo img {
+    max-width: 130px; }
+  .top-hold h1 {
+    font-size: calc(.8rem + 4vw); }
+  .top-hold h2 {
+    font-size: calc(.5rem + 2vw); } }
 
 @media (min-width: 600px) and (max-width: 839px) {
   .nyup-logo img {
-    max-width: 200px; } }
+    max-width: 140px; } }
 
 @media (min-width: 840px) {
   body .navhold {
-    margin-top: -1.1rem;
+    margin-top: 0rem;
     margin-left: 222px; }
   body .page-header {
     padding: 34px 0;
     position: relative; }
-  body .nyup-logo {
-    align-self: top; }
-    body .nyup-logo img {
-      height: auto; }
-  body .osq-logo img {
-    width: 130px;
+  body .nyup-logo img {
     height: auto; } }
 
 .home .section-title {
@@ -1534,12 +1547,12 @@ blockquote {
 .home .box2 {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #7f499e7d;
+  border-top: 1px solid #57068c;
   font-size: .9rem;
   line-height: 1.5; }
   @media (min-width: 840px) {
     .home .box2 {
-      border-left: 1px solid #7f499e7d;
+      border-left: 1px solid #57068c;
       border-top: 0;
       padding-left: 24px;
       margin-top: 0;
@@ -1621,19 +1634,19 @@ blockquote {
 
 @media (min-width: 840px) {
   .sister-links-section {
-    border-right: 1px solid #7f499e7d; } }
+    border-right: 1px solid #57068c; } }
 
 @media (min-width: 600px) and (max-width: 839px) {
   .sister-links-section {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #7f499e7d; } }
+    border-bottom: 1px solid #57068c; } }
 
 @media (max-width: 599px) {
   .sister-links-section {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #7f499e7d; } }
+    border-bottom: 1px solid #57068c; } }
 
 .social-media-section {
   padding-bottom: 0 !important;
@@ -1642,7 +1655,7 @@ blockquote {
     font-size: 1rem; }
     @media (min-width: 840px) {
       .social-media-section div:not(:last-child) {
-        border-bottom: 1px solid #7f499e7d; } }
+        border-bottom: 1px solid #57068c; } }
     @media (max-width: 599px) {
       .social-media-section div {
         font-size: 1rem; } }
@@ -1664,7 +1677,7 @@ blockquote {
   margin-bottom: 2rem;
   padding-bottom: 2rem; }
   .home-section:not(:last-child) {
-    border-bottom: 1px solid #7f499e7d; }
+    border-bottom: 1px solid #57068c; }
 
 .series-banner {
   background-color: #57068c;
@@ -1780,7 +1793,7 @@ blockquote {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: block;
-  border: 1px solid #7f499e7d;
+  border: 1px solid #57068c;
   text-decoration: none;
   margin-bottom: 1rem; }
   .book-full-view .thumb-link:focus-visible, .book-full-view .thumb-link:hover {
@@ -1804,7 +1817,7 @@ blockquote {
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
-  border-top: 1px solid #7f499e7d;
+  border-top: 1px solid #57068c;
   font-family: "nyuperstarecondensed", Verdana, sans-serif;
   color: #57068c;
   font-weight: 400;
@@ -1985,12 +1998,12 @@ ul {
     .hold-all {
       padding: 0 30px; } }
 .page-header {
-  border-bottom: 2px solid #7f499e7d;
+  border-bottom: 2px solid #57068c;
   padding: 20px 0;
   position: relative; }
 
 .page-footer {
-  border-top: 2px solid #7f499e7d;
+  border-top: 2px solid #57068c;
   padding: 35px 0; }
 
 .contain-main,
