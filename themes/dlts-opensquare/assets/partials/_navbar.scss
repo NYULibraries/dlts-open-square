@@ -28,13 +28,15 @@
   font-family: $font-family-body;
   justify-content: flex-end;
 
-  h1 {
+  h1 a {
     margin-bottom: .4rem;
-    // font-size: 2.5rem;
     text-transform: uppercase;
     color: #8400de;
+    text-decoration: none;
     font-weight: 600;
-
+    display: inline-block;
+    line-height: 1;
+    font-size: 2rem;
     span {
       font-weight: 300;
     }
@@ -46,29 +48,15 @@
   }
 }
 
-
-
-.osq-logo {
-
-  a {
-    display: block;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
-
 .nyup-logo {
   text-align: right;
 
   a {
-    display: block;
+    display: inline-block;
   }
 
   img {
-    width: 88%;
+    width: 110px;
     height: auto;
   }
 
