@@ -1,7 +1,6 @@
 ## Base configuration file. Defines default values for all environments.
 
 baseURL = "https://opensquare.nyupress.org"
-languageCode = "en-us"
 title = "Open Square"
 
 theme = ["dlts-opensquare"]
@@ -11,6 +10,10 @@ ignoreCache = true
 cleanDestinationDir = true
 enableGitInfo = true
 buildFuture = true
+
+[languages]
+  [languages.en]
+    locale = 'en-us'
 
 [markup.goldmark.renderer]
   unsafe = true
