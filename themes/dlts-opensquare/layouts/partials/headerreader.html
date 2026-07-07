@@ -14,6 +14,10 @@
         <div class="top-hold">
           {{ with resources.Get "images/OpenSquareLogo.png" -}}
           <div class="osq-logo site-title"><a href="{{ site.Home.Permalink }}"><img src="{{ .RelPermalink }}" alt="{{ site.Title }}:{{ site.Params.tagline}}"></a></div>{{ end }}
-          <div class="nyup-logo">{{ with resources.Get "images/NYUPress_stacked_color.svg" }}<a href="https://nyupress.org"><img class="img-fluid" src="{{ .RelPermalink }}" alt="NYU Press"></a>{{ end }}</div>
+            <div class="osq-logo"><h1><a href="{{ site.Home.Permalink }}">Open <span>Square</span></a></h1></div>
+          <div class="nyup-logo">
+          {{ with resources.Get "images/NYUPress_short_color.svg" }}<a href="https://nyupress.org" target="_blank"><img class="img-fluid" src="{{ .RelPermalink }}" alt="NYU Press"></a>{{ end }}
+        </div>
+
         </div>
       </header>
