@@ -33,7 +33,11 @@ buildFuture = true
   pathtoreader = "https://opensquare.nyupress.org/open-square-reader/cloud-reader/?epub=epub_content/"
   thumbhrefurl = "https://opensquare-local.nyupress.org/open-square-reader"
 
-  faviconrelurl = "/favicon.png"
+  faviconrelurl = "/cropped-Arch-Icon-32x32.png"
+  faviconrelurl192 = "/cropped-Arch-Icon-192x192.png"
+  faviconrelurl180 = "/cropped-Arch-Icon-180x180.png"
+  faviconrelurl270 = "/cropped-Arch-Icon-270x270.png"
+
   connectedyouthurl = "https://connectedyouth.nyupress.org"
   link_title_1 = "Keywords"
   link1_description = "The books in the Keywords series collect essays by authors across the humanities and social sciences, with each essay focusing on a single term and set of debates.  The Keywords website provides access to online essays selected from each of the volumes, as well as preview text for all of the print-only essays."
