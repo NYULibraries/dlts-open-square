@@ -13,9 +13,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/cropped-Arch-Icon-32x32.png" sizes="32x32" >
+<link rel="icon" type="image/png" href="/cropped-Arch-Icon-192x192.png" sizes="192x192" >
+<link rel="apple-touch-icon" type="image/png" href="/cropped-Arch-Icon-180x180.png" >
+<meta name="msapplication-TileImage" content="/cropped-Arch-Icon-270x270.png" >
 
-<title>About Open Square: NYU Press</title>
+
+<title>Search: NYU Press</title>
 
   <meta name="description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
     <link rel="stylesheet" href="/css/style.css">
@@ -25,9 +29,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
 
 <meta property="og:site_name" content="Open Square: NYU Press">
-<meta property="og:title" content="About Open Square">
+<meta property="og:title" content="Search">
 
-<meta property="og:url" content="https://opensquare.nyupress.org/aboutopensquare/">
+<meta property="og:url" content="https://opensquare.nyupress.org/searchbooks/">
 
 <meta name="generator" content="Hugo 0.162.1">
 
@@ -92,24 +96,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="contain-main">
 
 <main id="main-content">
-    <h1 id="book-title">About Open Square</h1>
-    <div><p>Welcome to knowledge without boundaries!</p>
-<p>Open Square is <a href="https://nyupress.org/" target="_blank" class="external">NYU Press</a>’s platform for publishing and reading <a href="https://guides.nyu.edu/openaccess" target="_blank" class="external">open access</a> books. A browser-based reading platform, Open Square enables us to increase the impact of scholarly work by making it freely available in a digital format and to experiment with new ways of presenting scholarship and adding enhanced content to traditionally published books. Open Square features new and recently published titles as well as a growing library of classic backlist publications. NYU Press is committed to expanding our offerings in both categories. </p>
-<p>Print copies of any of these books can be purchased by clicking the “Buy the Book” link on each title’s detail page.</p>
-<p>This site uses <a href="http://readium.github.io/" target="_blank" class="external">Readium</a>, an open source software package for handling EPUB documents.
-The site was developed by our colleagues in the <a href="http://dlib.nyu.edu/dlts/" target="_blank" class="external">NYU Libraries Digital Library Technology Services</a> department. Development is ongoing, and new features and improvements are planned.</p>
-<p>Open Square is optimized for use on Chrome and Firefox browsers on Mac and Windows.</p>
-<h2>For Libraries</h2>
-<h3>NYU Press Open Square Title List</h3>
-<p><a href="https://docs.google.com/spreadsheets/d/1QsXvNN8BDP6iKGF-M7-1FTOaML1qOZX0wBamTuwqkMQ/edit?usp=sharing" target="_blank" class="external">Title list</a></p>
-<h3>Download MARC Catalog Records</h3>
-<p>MARC records for NYU Press Open Square titles are available to download through OCLC Worldshare Collection Manager. New titles will be added to the collection several times a year.</p>
-<p>If you do not have an OCLC Worldshare Collection Manager account please <a href="https://help.oclc.org/Metadata_Services/WorldShare_Collection_Manager/Get_started/Create_a_Collection_Manager_account" target="_blank" class="external">create an account</a>.</p>
-<ol><li>Login to OCLC Worldshare Collection Manager.</li>
-<li>Set up MARC record delivery for the collection "NYU Press Open Square" (global.1976.63). OCLC <a href="https://help.oclc.org/Metadata_Services/WorldShare_Collection_Manager/Choose_your_Collection_Manager_workflow/Knowledge_base_collections/Get_WorldCat_MARC_records_for_knowledge_base_collections/010Configure_institution_MARC_Records_settings_for_knowledge_base_collections" target="_blank" class="external" >documentation</a> and <a href="https://youtu.be/iXyqdkN3o9g" target="_blank" class="external">video</a>.</li></ol>
-<p>If you have questions about downloading MARC records from OCLC Worldshare Collection Manager please email support@oclc.org or speak to OCLC support during <a href="https://help.oclc.org/Metadata_Services/WorldShare_Collection_Manager/Get_started/Collection_Manager_office_hours" target="_blank" class="external">office hours</a>.</p>
-</div>
+  <h1 id="book-title">Search</h1>
+  <div id="app">
+    <section class="hero is-primary osq-searchbox-hero">
+      <div class="hero-body">
+        <form class="osq-searchform">
+          <div class="osq-searchbox osq-search"><input aria-label="Search for books" placeholder="Search for books" type="text" id="osq-searchinput" name="search"><button type="submit" aria-label="submit" value="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg></button></div>
+        </form>
+      </div>
+      <div class="osq-panes" style="padding-top: 32px;">
+        <div class="osq-results-hold"></div>
+      </div>
+    </section>
+  </div>
 </main>
+  <script src="/js/search.js"></script><link rel="stylesheet" href="/css/search.css">
+
 </div>
 <footer class="page-footer">
   <nav class="nav-links"  aria-label="footer-navigation-items">
@@ -124,3 +128,4 @@ fill="#57068c" width="15" height="15" viewBox="0 0 32 32" aria-label="External L
 </div>
 </body>
 </html>
+
