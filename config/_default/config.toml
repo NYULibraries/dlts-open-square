@@ -50,9 +50,9 @@ buildFuture = true
   featured_series_homepage_blurb ="A comprehensive history of Jews and Jewish life in the Soviet Union, from the establishment of the Russian Soviet Republic in late 1917 through to the Union’s formal dissolution on December 8, 1991. The six-book series will be complete in 2027."
   featured_series_path = "series/jews-in-the-soviet-union"
   image_server = "https://nyu-opensquare-us.imgix.net/covers/"
-  featured_book_isbn = "9781479830206"
+  featured_book_isbn = "9781479841295"
   # other_featured_books_isbn will be sorted by date.
-  other_featured_books_isbn = ["9781479833511","9781479830121", "9781479833306", "9781479832668", "9781479830909","9781479819386"]
+  other_featured_books_isbn = ["9781479833511","9781479830121", "9781479833306", "9781479832668", "9781479830909","9781479830206"]
 
 [taxonomies]
   subject = "subjects"
