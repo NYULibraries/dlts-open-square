@@ -1,5 +1,6 @@
 $nyuteal: #008996;
 $nyu-purple: #57068c;
+$nyu-purple-dark: #350357;
 $nyugray1: #4a4f55;
 $nyugray2: #939a90;
 $lightgray: #7f499e7d;
@@ -46,7 +47,7 @@ $mdc-layout-grid-default-gutter: (
 // ========================================================================== */
 
 $primary-color: $nyu-purple;
-$primary-color-muted: $lightgray;
+$primary-color-muted: $nyu-purple;
 
 $textcolora: #040404;
 $textcolorb: rgba(26, 28, 29, .65);
@@ -121,14 +122,14 @@ ul {
 }
 
 .page-header {
-  border-bottom: 2px solid $lightgray;
+  border-bottom: 2px solid $primary-color-muted;
   padding: 20px 0;
   position: relative;
 
 }
 
 .page-footer {
-  border-top: 2px solid $lightgray;
+  border-top: 2px solid $primary-color-muted;
   padding: 35px 0;
 }
 

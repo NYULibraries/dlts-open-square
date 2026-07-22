@@ -4,6 +4,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://opensquare.nyupress.org/books/</loc>
+<<<<<<< HEAD
     <lastmod>2026-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/subjects/history/</loc>
@@ -19,6 +20,29 @@
     <lastmod>2026-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/subjects/</loc>
+=======
+    <lastmod>2026-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/history/</loc>
+    <lastmod>2026-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/jewish-studies/</loc>
+    <lastmod>2026-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/</loc>
+    <lastmod>2026-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/books/9781479841295/</loc>
+    <lastmod>2026-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/religion/</loc>
+    <lastmod>2026-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/subjects/</loc>
+    <lastmod>2026-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://opensquare.nyupress.org/books/9781479844562/</loc>
+>>>>>>> header-fix
     <lastmod>2026-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/subjects/gender--sexuality/</loc>
@@ -52,9 +76,6 @@
     <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/books/9781479837557/</loc>
-    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://opensquare.nyupress.org/subjects/religion/</loc>
     <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/subjects/anthropology/</loc>
@@ -1036,7 +1057,7 @@
     <lastmod>1983-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/aboutopensquare/</loc>
-    <lastmod>2024-10-01T12:12:15-04:00</lastmod>
+    <lastmod>2026-07-15T13:25:59-04:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/connectedyouth/</loc>
     <lastmod>2021-09-09T12:22:15-04:00</lastmod>
@@ -1054,7 +1075,7 @@
     <lastmod>2022-05-17T18:21:05-04:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/pages/</loc>
-    <lastmod>2024-10-01T12:12:15-04:00</lastmod>
+    <lastmod>2026-07-15T13:25:59-04:00</lastmod>
   </url><url>
     <loc>https://opensquare.nyupress.org/series/</loc>
     <lastmod>2019-06-27T16:29:57-04:00</lastmod>
