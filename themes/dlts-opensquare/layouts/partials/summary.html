@@ -11,7 +11,9 @@
     {{- end -}}
     {{/*  {{ $t := time.AsTime .Params.dateOpenAccess }}
     {{ time.Format "2006" $t }}  */}}
-
+    {{ with .Params.imprint -}}
+            <div><span>Imprint:</span> {{  . }}</div>
+    {{- end }}
     <div class="pubdate"><span>Published:</span> {{  .Params.yearBook }}</div>
     {{ with  .Params.yearOpenAccess }}
       <div class="pubdate"><span>Open Access Since:</span> {{ . }}</div>
