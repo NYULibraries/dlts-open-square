@@ -46,7 +46,10 @@
         <div class="meta">
           {{ with .Params.contributors -}}
             {{ partial "contributors.html" . }}
-          {{- end -}}
+          {{ end -}}
+          {{ with .Params.imprint -}}
+            <div><span>Imprint:</span> {{  . }}</div>
+          {{- end }}
           {{ with .Params.hasVideo -}}
             <div><span>Contains Video</span></div>
           {{ end -}}
