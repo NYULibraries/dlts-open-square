@@ -16,6 +16,13 @@
           {{ $.Scratch.Set "currentSlug" .Page.RelPermalink -}}
         {{- end -}}
     {{ end }}
+    {{range ($.Site.GetPage "taxonomy" "imprint").Pages -}}
+        {{- $thisurl := .Permalink -}}
+        {{- if eq $pageurl $thisurl }}
+          {{ $.Scratch.Set "currentTitle" .Title -}}
+          {{ $.Scratch.Set "currentSlug" .Page.RelPermalink -}}
+        {{- end -}}
+    {{ end }}
     <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
@@ -25,6 +32,12 @@
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
                 <li class="dqpl-option" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}>All Books</li>
+            </ul>
+            <div class="item-section-title">Imprints</div>
+            <ul>
+              {{- range .Site.Taxonomies.imprint.Alphabetical }}
+                <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentSlug") .Page.RelPermalink }} id="default" {{ end -}}>{{ .Page.Title  }}</li>
+                {{- end }}
             </ul>
             <div class="item-section-title">Series</div>
             <ul>
