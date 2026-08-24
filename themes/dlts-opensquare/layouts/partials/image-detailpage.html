@@ -1,4 +1,8 @@
 {{- $imagepath := ".jpg" | printf "%s%s" .openSquareId  | printf  "%s%s" site.Params.image_server  }}
+
+{{- if eq .openSquareId "9781479852574" }}
+  {{ $imagepath = "https://ingram-nyu.imgix.net/covers/9781479852550.jpg" }}
+{{- end }}
 <picture>
   <source media="(min-width: 720px)"
     srcset="{{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,

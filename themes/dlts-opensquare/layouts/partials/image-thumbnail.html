@@ -1,6 +1,9 @@
 {{- $stringisbn := string .Params.openSquareId  -}}
 {{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .Site.Params.image_server  -}}
 
+{{- if eq $stringisbn "9781479852574" -}}
+  {{ $imagepath = "https://ingram-nyu.imgix.net/covers/9781479852550.jpg" }}
+{{- end -}}
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ .Date }}">
   <a aria-hidden="true" tabindex="-1" href="{{ .RelPermalink  }}">
 <picture>
