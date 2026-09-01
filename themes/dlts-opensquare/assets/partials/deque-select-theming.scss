@@ -5,6 +5,9 @@
 }
 
 .dqpl-select {
+  // the options field container should ignore size of this since it is small.
+  position: static;
+
   .info-label {
     display: inline-block;
     margin-right: .5rem;
@@ -41,6 +44,7 @@
 
   #subject-list {
     width: 90vw;
+    max-width: 100%;
   }
 
   &#sort-select {
@@ -138,39 +142,48 @@
     @include dropshadow-md1;
 
     ul {
-      margin-top: 1em;
-      display: flex;
-      flex-wrap: wrap;
       padding-left: 0;
     }
 
     .item-section-title {
-      padding: 0 20px;
+
       font-size: 1.2rem;
+      font-weight: 500;
       font-family: $font-family-headers;
+      overflow-x: hidden;
+      // min-width: 200px;
     }
 
     li {
-      flex: 1 1 32%;
+      padding: 5px 30px 5px 20px;
+      display: inline-block;
+      line-height: 1.4rem;
+      overflow-x: hidden;
+      vertical-align: top;
+
+      &[data-value='all'] {
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
     }
 
     .dqpl-option {
       @include mdc-layout-grid-media-query_("desktop") {
         font-size: 1.1rem;
-        min-width: 300px;
+        // min-width: 300px;
       }
 
       @include mdc-layout-grid-media-query_("tablet") {
         font-size: 1rem;
-        min-width: 250px;
+        // min-width: 250px;
       }
 
       @include mdc-layout-grid-media-query_("phone") {
         font-size: 1rem;
-        min-width: 250px;
+        // min-width: 250px;
       }
 
-      padding: 10px 20px;
+
 
       &[aria-selected='true'],
       &[aria-selected='true'].dqpl-option-active {
@@ -185,9 +198,15 @@
   }
 }
 
-// clearfix for the wrapper that include the two selects
-.group:after {
-  content: "";
-  display: table;
-  clear: both;
+
+.group {
+  // dropdown has position relative; it needs to expand to size of this container.
+  position: relative;
+
+  // clearfix for the wrapper that include the two selects
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }

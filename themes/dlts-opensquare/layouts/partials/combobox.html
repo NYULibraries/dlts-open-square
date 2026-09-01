@@ -31,22 +31,27 @@
         </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}>All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}>All Books</li>
             </ul>
-            <div class="item-section-title">Imprints</div>
+
             <ul>
+               <li class="item-section-title">Imprints</li>
               {{- range .Site.Taxonomies.imprint.Alphabetical }}
+
                 <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentSlug") .Page.RelPermalink }} id="default" {{ end -}}>{{ .Page.Title  }}</li>
                 {{- end }}
             </ul>
-            <div class="item-section-title">Series</div>
+
             <ul>
+              <li class="item-section-title">Series</li>
               {{- range .Site.Taxonomies.series.Alphabetical }}
                 <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentSlug") .Page.RelPermalink }} id="default" {{ end -}}>{{ .Page.Title  }}</li>
                 {{- end }}
             </ul>
-            <div class="item-section-title">Subjects</div>
-            <ul>{{- range .Site.Taxonomies.subjects.Alphabetical }}
+
+            <ul>
+                <li class="item-section-title">Subjects</li>
+                {{- range .Site.Taxonomies.subjects.Alphabetical }}
                 <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentTitle") .Page.Title }} id="default" {{ end -}}>{{ .Page.Title }}</li>
                 {{- end }}
                 <li class="empty-item">&nbsp;</li>
