@@ -1154,7 +1154,6 @@ a:focus {
     color: #040404; }
   .dqpl-select .current-subject-title {
     padding-bottom: 2px;
-    margin-right: 10px;
     border-bottom: 2px solid #040404;
     color: #040404; }
     .dqpl-select .current-subject-title:hover {
@@ -1269,14 +1268,14 @@ a:focus {
       @media (max-width: 599px) {
         .dqpl-select .dqpl-listbox .dqpl-option {
           font-size: 1rem; } }
-      .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active {
+      .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'], .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active {
         background-color: inherit;
         color: #57068c; }
-        .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active:active {
+        .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true']:active, .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active:active {
           outline: 5px solid transparent;
           box-shadow: 0 0 0 5px #00eaffbc;
           font-weight: normal; }
-        .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active::before {
+        .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true']::before, .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active::before {
           content: ''; }
 
 .dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active {
