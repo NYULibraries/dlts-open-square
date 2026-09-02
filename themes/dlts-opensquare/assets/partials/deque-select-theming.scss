@@ -40,12 +40,14 @@
     @include mdc-layout-grid-media-query_(desktop) {
       float: left;
     }
+
+    #subject-list {
+      width: 100%;
+      max-width: 70rem;
+    }
   }
 
-  #subject-list {
-    width: 90vw;
-    max-width: 100%;
-  }
+
 
   &#sort-select {
     float: left;
@@ -74,6 +76,7 @@
         padding: 0 20px;
         min-width: 14em;
         line-height: 2;
+        display: block;
       }
     }
 
@@ -126,7 +129,12 @@
 
   .dqpl-listbox {
     // Dropdown area
-    width: 95%;
+    // width: 95%;
+    top: 39px;
+    left: -3px;
+    max-height: none;
+    padding: 10px;
+    @include dropshadow-md1;
 
     @include mdc-layout-grid-media-query_("desktop") {
       width: 95%;
@@ -136,38 +144,36 @@
       width: 80%;
     }
 
-    top: 39px;
-    left: -3px;
-    max-height: none;
-    @include dropshadow-md1;
+
 
     ul {
       padding-left: 0;
     }
 
-    .item-section-title {
-
-      font-size: 1.2rem;
-      font-weight: 500;
-      font-family: $font-family-headers;
-      overflow-x: hidden;
-      // min-width: 200px;
-    }
-
-    li {
-      padding: 5px 30px 5px 20px;
+    li,
+    .dqpl-option {
+      padding: 5px 20px 5px 20px;
       display: inline-block;
-      line-height: 1.4rem;
+      line-height: 1.8rem;
       overflow-x: hidden;
-      vertical-align: top;
+      vertical-align: baseline;
+
+      &.item-section-title,
+      &[data-value='all'] {
+        font-size: 1.2rem;
+        font-weight: 500;
+        font-family: $font-family-headers;
+        padding: 5px 10px 5px 20px;
+      }
 
       &[data-value='all'] {
-        font-weight: 500;
-        font-size: 1.2rem;
+        padding: 5px 20px 5px 20px;
       }
     }
 
     .dqpl-option {
+      cursor: pointer;
+
       @include mdc-layout-grid-media-query_("desktop") {
         font-size: 1.1rem;
         // min-width: 300px;
@@ -183,12 +189,17 @@
         // min-width: 250px;
       }
 
-
-
       &[aria-selected='true'],
       &[aria-selected='true'].dqpl-option-active {
         background-color: inherit;
-        color: #555;
+        color: $nyu-purple;
+
+        &:active {
+          // while the mouse button is down
+          outline: 5px solid transparent;
+          box-shadow: 0 0 0 5px $focus-color;
+          font-weight: normal;
+        }
 
         &::before {
           content: '';
@@ -198,6 +209,17 @@
   }
 }
 
+.dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active {
+  // Tabbed to
+  background-color: white;
+  color: $nyu-purple;
+}
+
+.dqpl-select .dqpl-listbox .dqpl-option:hover {
+  background-color: white;
+  outline: 5px solid transparent;
+  box-shadow: 0 0 0 5px $focus-color;
+}
 
 .group {
   // dropdown has position relative; it needs to expand to size of this container.
