@@ -75,7 +75,11 @@
         const checkChanged = () => {
           // setting timeout here to let dqpl handle the events first and change the value
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               if (newValue == "all") {

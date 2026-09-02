@@ -208,13 +208,9 @@
   }
 }
 
-.dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active {
-  // Tabbed to
-  background-color: white;
-  color: $nyu-purple;
-}
-
+.dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active,
 .dqpl-select .dqpl-listbox .dqpl-option:hover {
+  // hover or keyboard focus: blue box, regular text (current-page option stays purple via aria-selected)
   background-color: white;
   outline: 5px solid transparent;
   box-shadow: 0 0 0 5px $focus-color;
