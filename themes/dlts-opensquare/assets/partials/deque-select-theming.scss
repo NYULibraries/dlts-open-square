@@ -5,7 +5,7 @@
 }
 
 .dqpl-select {
-  // the options field container should ignore size of this since it is small.
+  // dqpl-listbox (which opens up) should ignore size of this since it is too narrow; if it is position static, dqpl-listbox will be positioned relative to its parent instead
   position: static;
 
   .info-label {
