@@ -8,6 +8,11 @@
   // dqpl-listbox (which opens up) should ignore size of this since it is too narrow; if it is position static, dqpl-listbox will be positioned relative to its parent instead
   position: static;
 
+  @include mdc-layout-grid-media-query_("phone") {
+    position: relative;
+    // width: 100vw;
+  }
+
   .info-label {
     display: inline-block;
     margin-right: .5rem;
@@ -132,18 +137,17 @@
     top: 39px;
     left: -3px;
     max-height: none;
-    padding: 10px;
     @include dropshadow-md1;
 
     @include mdc-layout-grid-media-query_("desktop") {
       width: 95%;
+      padding: 10px;
     }
 
     @include mdc-layout-grid-media-query_("phone") {
-      width: 80%;
+      width: 100%;
+      padding: 0;
     }
-
-
 
     ul {
       padding-left: 0;
@@ -162,11 +166,20 @@
         font-size: 1.2rem;
         font-weight: 500;
         font-family: $font-family-headers;
-        padding: 5px 10px 5px 20px;
+        padding-right: 10px;
       }
 
       &[data-value='all'] {
         padding: 5px 20px 5px 20px;
+      }
+
+      @include mdc-layout-grid-media-query_("phone") {
+        padding: 5px !important;
+        display: block;
+
+        &.empty-item {
+          display: none;
+        }
       }
     }
 

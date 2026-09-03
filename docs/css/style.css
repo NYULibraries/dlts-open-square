@@ -1146,6 +1146,9 @@ a:focus {
 
 .dqpl-select {
   position: static; }
+  @media (max-width: 599px) {
+    .dqpl-select {
+      position: relative; } }
   .dqpl-select .info-label {
     display: inline-block;
     margin-right: .5rem; }
@@ -1227,17 +1230,18 @@ a:focus {
     top: 39px;
     left: -3px;
     max-height: none;
-    padding: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .dqpl-select .dqpl-listbox:focus-visible, .dqpl-select .dqpl-listbox:hover {
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
     @media (min-width: 840px) {
       .dqpl-select .dqpl-listbox {
-        width: 95%; } }
+        width: 95%;
+        padding: 10px; } }
     @media (max-width: 599px) {
       .dqpl-select .dqpl-listbox {
-        width: 80%; } }
+        width: 100%;
+        padding: 0; } }
     .dqpl-select .dqpl-listbox ul {
       padding-left: 0; }
     .dqpl-select .dqpl-listbox li,
@@ -1253,10 +1257,18 @@ a:focus {
         font-size: 1.2rem;
         font-weight: 500;
         font-family: "nyuperstarecondensed", Verdana, sans-serif;
-        padding: 5px 10px 5px 20px; }
+        padding-right: 10px; }
       .dqpl-select .dqpl-listbox li[data-value='all'],
       .dqpl-select .dqpl-listbox .dqpl-option[data-value='all'] {
         padding: 5px 20px 5px 20px; }
+      @media (max-width: 599px) {
+        .dqpl-select .dqpl-listbox li,
+        .dqpl-select .dqpl-listbox .dqpl-option {
+          padding: 5px !important;
+          display: block; }
+          .dqpl-select .dqpl-listbox li.empty-item,
+          .dqpl-select .dqpl-listbox .dqpl-option.empty-item {
+            display: none; } }
     .dqpl-select .dqpl-listbox .dqpl-option {
       cursor: pointer; }
       @media (min-width: 840px) {
@@ -1278,10 +1290,7 @@ a:focus {
         .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true']::before, .dqpl-select .dqpl-listbox .dqpl-option[aria-selected='true'].dqpl-option-active::before {
           content: ''; }
 
-.dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active {
-  background-color: white;
-  color: #57068c; }
-
+.dqpl-select .dqpl-listbox .dqpl-option.dqpl-option-active,
 .dqpl-select .dqpl-listbox .dqpl-option:hover {
   background-color: white;
   outline: 5px solid transparent;

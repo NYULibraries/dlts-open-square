@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/opensquare/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=opensquare/livereload" data-no-instant defer></script>
   
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -31,7 +31,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:site_name" content="Open Square: NYU Press">
 <meta property="og:title" content="Disability Studies">
 
-<meta property="og:url" content="http://localhost/opensquare/subjects/disability-studies/">
+<meta property="og:url" content="http://localhost:1313/opensquare/subjects/disability-studies/">
 
 <meta name="generator" content="Hugo 0.162.1">
 
@@ -51,7 +51,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="top-hold mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-phone ">
-             <div class="osq-logo"><h1><a href="http://localhost/opensquare/">Open <span>Square</span></a></h1>
+             <div class="osq-logo"><h1><a href="http://localhost:1313/opensquare/">Open <span>Square</span></a></h1>
             <h2>Open Access books from NYU Press</h2></div>
           </div>
           <div class="nyup-logo  mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-12-phone"><a href="https://nyupress.org" target="_blank"><img src="/opensquare/images/NYUPress_short_color.svg" alt="NYU Press"></a></div>
@@ -145,11 +145,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const checkChanged = () => {
           
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               if (newValue == "all") {
-                window.location.href = "http://localhost/opensquare/books";
+                window.location.href = "http://localhost:1313/opensquare/books";
               } else {
                 window.location.href = "http" + "://" + "localhost" + newValue;
               }
@@ -171,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="dqpl-select" id="sort-select">
   <div class="info-label">Sorted by</div>
-  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="sort-default">
     <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
@@ -180,7 +184,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
   <div class="dqpl-listbox" role="listbox" id="sort-options">
     <ul>
-      <li class="dqpl-option" role="option" data-value="dateopenaccess" id="default" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" id="sort-default" aria-selected="true">Open Access Date</li>
       <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
       <li class="dqpl-option" role="option" data-value="title">Title</li>
     </ul>
@@ -225,7 +229,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const checkChanged = () => {
           
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               
