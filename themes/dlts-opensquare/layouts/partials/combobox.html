@@ -37,8 +37,7 @@
 
             <ul>
                <li class="item-section-title">Imprints</li>
-              {{- range .Site.Taxonomies.imprint.Alphabetical }}
-
+              {{- range (($.Site.GetPage "taxonomy" "imprint").Pages.ByWeight) }}
                 <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentSlug") .Page.RelPermalink }} id="default" {{ end -}}>{{ .Page.Title  }}</li>
                 {{- end }}
             </ul>
