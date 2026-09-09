@@ -189,22 +189,19 @@
 
       @include mdc-layout-grid-media-query_("desktop") {
         font-size: 1.1rem;
-        // min-width: 300px;
       }
 
       @include mdc-layout-grid-media-query_("tablet") {
         font-size: 1rem;
-        // min-width: 250px;
       }
 
       @include mdc-layout-grid-media-query_("phone") {
         font-size: 1rem;
-        // min-width: 250px;
       }
 
       &[aria-selected='true'],
       &[aria-selected='true'].dqpl-option-active {
-        background-color: inherit;
+        background-color: white;
         color: $nyu-purple;
 
         &:active {
@@ -212,6 +209,7 @@
           outline: 5px solid transparent;
           box-shadow: 0 0 0 5px $focus-color;
           font-weight: normal;
+          background-color: white;
         }
 
         &::before {
@@ -225,6 +223,12 @@
         background-color: white;
         outline: 5px solid transparent;
         box-shadow: 0 0 0 5px $focus-color;
+
+        @include mdc-layout-grid-media-query_("phone") {
+          outline: 5px solid transparent;
+          box-shadow: 0 0 0 5px transparent;
+        }
+
       }
     }
   }
