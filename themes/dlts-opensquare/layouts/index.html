@@ -8,7 +8,7 @@
                   {{ range where .Site.Pages ".Params.openSquareId" site.Params.featured_book_isbn }}
                     <article class="mdc-layout-grid__inner featured-book">
                         <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
-                          {{ partial "image-thumbnail" . }}
+                                                    {{ partial "image-thumbnail" (dict "page" .) }}
                         </div>
                         <div class="mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-9-tablet mdc-layout-grid__cell--span-4-phone featured-series-items-hold">
                             <div class="meta">
@@ -54,7 +54,7 @@
               {{/*  Exclude specific book by Open Square ID */}}
               {{ range first 3 ( where (where .Site.Pages ".Params.series" "intersect" .Site.Params.featured_series ) ".Params.openSquareId" "!=" "9781479819454")}}
               <div class="mdc-layout-grid__cell--span-2">
-                {{ partial "image-thumbnail" . }}
+                                {{ partial "image-thumbnail" (dict "page" .) }}
               </div>
               {{ end }}
                 <div class="mdc-layout-grid__cell--span-6 featured-series-items-hold">
@@ -73,7 +73,7 @@
             <div class="mdc-layout-grid__inner">
               {{ range  (first 6 ( sort (where .Site.Pages ".Params.openSquareId" "in" site.Params.other_featured_books_isbn) ".Params.dateBook" "desc"))  }}
                 <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">
-                  {{ partial "image-thumbnail" . }}
+                                    {{ partial "image-thumbnail" (dict "page" .) }}
 
                 </div>
                 {{ end }}

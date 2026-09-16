@@ -10,9 +10,9 @@
   </div>
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
-      {{ range sort .Pages ".Params.dateOpenAccess" "desc" }}
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="{{ .Params.dateOpenAccess }}" data-datebook="{{ .Params.dateBook }}" data-titlesort="{{ .Params.titleSort }}">
-        {{ partial "summary.html" . }}
+      {{ range $index, $page := sort .Pages ".Params.dateOpenAccess" "desc" }}
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="{{ $page.Params.dateOpenAccess }}" data-datebook="{{ $page.Params.dateBook }}" data-titlesort="{{ $page.Params.titleSort }}">
+        {{ partial "summary.html" (dict "page" $page "number" (add $index 1)) }}
       </div>
       {{ end }}
     </div>
