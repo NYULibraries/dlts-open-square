@@ -16,24 +16,42 @@
           {{ $.Scratch.Set "currentSlug" .Page.RelPermalink -}}
         {{- end -}}
     {{ end }}
+    {{range ($.Site.GetPage "taxonomy" "imprint").Pages -}}
+        {{- $thisurl := .Permalink -}}
+        {{- if eq $pageurl $thisurl }}
+          {{ $.Scratch.Set "currentTitle" .Title -}}
+          {{ $.Scratch.Set "currentSlug" .Page.RelPermalink -}}
+        {{- end -}}
+    {{ end }}
     <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
             <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
-              <span class="current-subject-title">{{ $.Scratch.Get "currentTitle" }}</span> {{- partial "svgs/arrow.svg" (dict "fill" "#444444") -}}</div>
+              <span class="current-subject-title">{{ $.Scratch.Get "currentTitle" }}</span></div>
+            {{- partial "svgs/arrow.svg" (dict "fill" "#444444") -}}
         </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}>All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}>All Books</li>
             </ul>
-            <div class="item-section-title">Series</div>
+
             <ul>
+               <li class="item-section-title">Imprints</li>
+              {{- range (($.Site.GetPage "taxonomy" "imprint").Pages.ByWeight) }}
+                <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentSlug") .Page.RelPermalink }} id="default" {{ end -}}>{{ .Page.Title  }}</li>
+                {{- end }}
+            </ul>
+
+            <ul>
+              <li class="item-section-title">Series</li>
               {{- range .Site.Taxonomies.series.Alphabetical }}
                 <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentSlug") .Page.RelPermalink }} id="default" {{ end -}}>{{ .Page.Title  }}</li>
                 {{- end }}
             </ul>
-            <div class="item-section-title">Subjects</div>
-            <ul>{{- range .Site.Taxonomies.subjects.Alphabetical }}
+
+            <ul>
+                <li class="item-section-title">Subjects</li>
+                {{- range .Site.Taxonomies.subjects.Alphabetical }}
                 <li class="dqpl-option" role="option" data-value="{{ .Page.RelPermalink }}" {{ if eq ($.Scratch.Get "currentTitle") .Page.Title }} id="default" {{ end -}}>{{ .Page.Title }}</li>
                 {{- end }}
                 <li class="empty-item">&nbsp;</li>
@@ -56,7 +74,11 @@
         const checkChanged = () => {
           // setting timeout here to let dqpl handle the events first and change the value
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               if (newValue == "all") {

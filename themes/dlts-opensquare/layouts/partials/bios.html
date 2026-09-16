@@ -1,8 +1,11 @@
+{{- $contributorsWithBios := where . "bio" "ne" nil -}}
+{{- with $contributorsWithBios -}}
 <div class="contributorbios">
   <h2>Contributor Bios</h2>
-    {{ range sort ( . ) "order" }}
+    {{ range sort . "order" }}
     <div>
       {{ .bio | safeHTML -}}
     </div>
     {{ end }}
 </div>
+{{- end -}}

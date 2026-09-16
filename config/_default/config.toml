@@ -57,6 +57,7 @@ buildFuture = true
 [taxonomies]
   subject = "subjects"
   series = "series"
+  imprint = "imprint"
 
 [outputs]
   home = ["HTML"]

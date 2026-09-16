@@ -11,15 +11,18 @@
     {{- end -}}
     {{/*  {{ $t := time.AsTime .Params.dateOpenAccess }}
     {{ time.Format "2006" $t }}  */}}
-    {{ with .Params.imprint -}}
-            <div><span>Imprint:</span> {{  . }}</div>
-    {{- end }}
+    <div class="tags">
+      <span>Imprint:</span>
+      {{ with site.GetPage (path.Join "/imprint" .Params.imprint )  -}}
+        <span><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
+      {{ end }}
+    </div>
     <div class="pubdate"><span>Published:</span> {{  .Params.yearBook }}</div>
     {{ with  .Params.yearOpenAccess }}
       <div class="pubdate"><span>Open Access Since:</span> {{ . }}</div>
     {{ end -}}
     {{ if .Params.series }}
-    <div class="tags"><span class="label">Series:</span>
+    <div class="tags"><span>Series:</span>
       {{ range .Params.series }}
         {{-  $path := path.Join "/series" . -}}
         {{- with site.GetPage $path  -}}
@@ -28,7 +31,7 @@
       {{- end -}}
     </div>
     {{ end }}
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       {{ range .Params.subjects }}
         {{-  $path := path.Join "/subjects" . -}}
         {{- with site.GetPage $path  -}}

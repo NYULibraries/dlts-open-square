@@ -31,7 +31,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:site_name" content="Open Square: NYU Press">
 <meta property="og:title" content="Religion">
 
-<meta property="og:url" content="https://opensquare.nyupress.org/subjects/religion/">
+<meta property="og:url" content="https://opensquare-stage.nyupress.org/subjects/religion/">
 
 <meta name="generator" content="Hugo 0.162.1">
 
@@ -79,7 +79,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="top-hold mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-phone ">
-             <div class="osq-logo"><h1><a href="https://opensquare.nyupress.org/">Open <span>Square</span></a></h1>
+             <div class="osq-logo"><h1><a href="https://opensquare-stage.nyupress.org/">Open <span>Square</span></a></h1>
             <h2>Open Access books from NYU Press</h2></div>
           </div>
           <div class="nyup-logo  mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-12-phone"><a href="https://nyupress.org" target="_blank"><img src="/images/NYUPress_short_color.svg" alt="NYU Press"></a></div>
@@ -100,28 +100,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1 class="page-title sr-only">subject: Religion</h1>
     <div class="group">
       
+    
     <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
             <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
-              <span class="current-subject-title">Religion</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <span class="current-subject-title">Religion</span></div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
 </svg>
 </div>
-        </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
             </ul>
-            <div class="item-section-title">Series</div>
+
             <ul>
+               <li class="item-section-title">Imprints</li>
+                <li class="dqpl-option" role="option" data-value="/imprint/nyu-press/" >NYU Press</li>
+                <li class="dqpl-option" role="option" data-value="/imprint/nyu-global-access-publications/" >NYU Global Access Publications</li>
+                <li class="dqpl-option" role="option" data-value="/imprint/washington-mews-books/nyu-press/" >Washington Mews/NYU Press</li>
+            </ul>
+
+            <ul>
+              <li class="item-section-title">Series</li>
                 <li class="dqpl-option" role="option" data-value="/series/connected-youth-and-digital-futures/" >Connected Youth and Digital Futures</li>
                 <li class="dqpl-option" role="option" data-value="/series/jews-in-the-soviet-union/" >Jews in the Soviet Union</li>
             </ul>
-            <div class="item-section-title">Subjects</div>
+
             <ul>
+                <li class="item-section-title">Subjects</li>
                 <li class="dqpl-option" role="option" data-value="/subjects/african-american-studies/" >African American Studies</li>
                 <li class="dqpl-option" role="option" data-value="/subjects/american-studies/" >American Studies</li>
                 <li class="dqpl-option" role="option" data-value="/subjects/anthropology/" >Anthropology</li>
@@ -161,13 +170,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const checkChanged = () => {
           
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               if (newValue == "all") {
-                window.location.href = "https://opensquare.nyupress.org/books";
+                window.location.href = "https://opensquare-stage.nyupress.org/books";
               } else {
-                window.location.href = "https" + "://" + "opensquare.nyupress.org" + newValue;
+                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
               }
             }
           });
@@ -187,7 +200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="dqpl-select" id="sort-select">
   <div class="info-label">Sorted by</div>
-  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="sort-default">
     <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
@@ -196,7 +209,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
   <div class="dqpl-listbox" role="listbox" id="sort-options">
     <ul>
-      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" id="sort-default" aria-selected="true">Open Access Date</li>
       <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
       <li class="dqpl-option" role="option" data-value="title">Title</li>
     </ul>
@@ -241,7 +254,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const checkChanged = () => {
           
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               
@@ -308,12 +325,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Jennifer Rich
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2026</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2026</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -352,16 +373,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Elissa Bemporad
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2025</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2025</div>
     
-    <div class="tags"><span class="label">Series:</span>
+    <div class="tags"><span>Series:</span>
       <span class="tag"><a href="/series/jews-in-the-soviet-union/">Jews in the Soviet Union</a></span>
         </div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -400,12 +425,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Kathleen C. Oberlin
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2020</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2025</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/politics/">Politics</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -444,12 +473,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Sharon D. Welch
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2019</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2025</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -487,12 +520,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Maureen K. Day
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2020</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -530,12 +567,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Jessica Cooperman
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2018</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -574,12 +615,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Matthew J. Cressler
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2017</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -617,12 +662,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Prema A. Kurien
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2017</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
         <span class="tag"><a href="/subjects/asian-american-studies/">Asian American Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -662,12 +711,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Samuel L. Perry
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2017</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -705,12 +758,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Antony Alumkal
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2017</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/politics/">Politics</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/science--technology/">Science &amp; Technology</a></span>
@@ -749,12 +806,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         David Feltmate
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2017</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -792,12 +853,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Betty Livingston Adams
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2016</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -836,12 +901,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Mike McMullen
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2015</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -881,12 +950,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Curtis D. Coats
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2015</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -925,12 +998,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Herbert Robinson Marbury
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2015</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -969,12 +1046,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Benjamin Schreier
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2015</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -1013,12 +1094,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Adam L. Rovner
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2014</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -1057,12 +1142,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Brett Hendrickson
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2014</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1100,12 +1189,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Darren E. Sherkat
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2014</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -1143,12 +1236,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Phillip Connor
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2014</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1186,12 +1283,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Andrea C.      Abrams
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2014</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1229,12 +1330,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Priscilla Pope-Levison
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1271,12 +1376,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Theodore Sasson
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1314,12 +1423,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Carolyn Renée Dupont
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1357,12 +1470,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         S. Zohreh Kermani
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -1400,12 +1517,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Margaret  M. McGuinness
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -1444,12 +1565,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Jason S. Lantzer
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2012</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1487,12 +1612,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Richard N.  Pitt
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2012</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -1532,12 +1661,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Andrew Quicke
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2011</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -1576,12 +1709,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         James S. Bielo
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2011</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1619,12 +1756,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         C.  Melissa Snarr
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2011</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -1662,12 +1803,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Sherine Hafez
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2011</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -1706,12 +1851,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Robert Glenn Howard
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2011</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -1750,12 +1899,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         John Frederick Schwaller
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2011</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1793,12 +1946,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         David L. Weddle
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2010</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
 
@@ -1836,12 +1993,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Michelle A. Gonzalez
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2010</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -1879,12 +2040,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Alyshia Galvez
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2009</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/politics/">Politics</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -1923,12 +2088,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Nathan D. Mitchell
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2009</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
 
@@ -1966,12 +2135,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Shayne Lee
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2009</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -2008,12 +2181,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Herbert Berg
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2009</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -2051,12 +2228,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Morris L. Davis
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2008</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -2094,12 +2275,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Marie W. Dallam
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2007</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -2138,12 +2323,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Raymond A. Schroth
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2007</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -2180,12 +2369,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         E. Burke Rochford
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2007</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -2223,12 +2416,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Darnise C. Martin
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2005</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -2268,12 +2465,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Korie Little Edwards
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2005</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -2311,12 +2512,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Pamela D.H. Cochran
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2005</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -2354,12 +2559,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Kenneth J. Guest
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2003</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -2397,12 +2606,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Albert I. Slomovitz
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1998</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -2441,16 +2654,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Gennady Estraikh
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2022</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2022</div>
     
-    <div class="tags"><span class="label">Series:</span>
+    <div class="tags"><span>Series:</span>
       <span class="tag"><a href="/series/jews-in-the-soviet-union/">Jews in the Soviet Union</a></span>
         </div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -2489,12 +2706,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Leah Sarat
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2022</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
@@ -2537,12 +2758,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Archbishop Thomas Wenski
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -2580,12 +2805,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Marion  Goldman
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2012</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -2625,12 +2854,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         John C. Green
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2010</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -2668,12 +2901,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Cynthia Taylor
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2005</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -2712,12 +2949,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Timothy Nelson
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2004</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -2757,12 +2998,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Fenggang Yang
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2004</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         </div>
 
@@ -2801,12 +3046,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Susan E. Darnell
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2000</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -2844,12 +3093,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Seth Forman
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1998</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/african-american-studies/">African American Studies</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -2888,12 +3141,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         James Darsey
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1997</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -2932,12 +3189,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Steven T. Katz
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1997</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -2976,12 +3237,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Stephen M. Feldman
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1996</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/law/">Law</a></span>
         <span class="tag"><a href="/subjects/politics/">Politics</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -3020,12 +3285,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Jennifer L Manlowe
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1995</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/religion/">Religion</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
         </div>
@@ -3062,12 +3331,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Moshe Y. Herczl
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1993</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>
@@ -3105,12 +3378,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Joseph Dan
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1987</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/jewish-studies/">Jewish Studies</a></span>
         <span class="tag"><a href="/subjects/religion/">Religion</a></span>

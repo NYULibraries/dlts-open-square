@@ -31,7 +31,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:site_name" content="Open Square: NYU Press">
 <meta property="og:title" content="Psychology">
 
-<meta property="og:url" content="https://opensquare.nyupress.org/subjects/psychology/">
+<meta property="og:url" content="https://opensquare-stage.nyupress.org/subjects/psychology/">
 
 <meta name="generator" content="Hugo 0.162.1">
 
@@ -79,7 +79,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="top-hold mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-phone ">
-             <div class="osq-logo"><h1><a href="https://opensquare.nyupress.org/">Open <span>Square</span></a></h1>
+             <div class="osq-logo"><h1><a href="https://opensquare-stage.nyupress.org/">Open <span>Square</span></a></h1>
             <h2>Open Access books from NYU Press</h2></div>
           </div>
           <div class="nyup-logo  mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-12-phone"><a href="https://nyupress.org" target="_blank"><img src="/images/NYUPress_short_color.svg" alt="NYU Press"></a></div>
@@ -100,28 +100,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1 class="page-title sr-only">subject: Psychology</h1>
     <div class="group">
       
+    
     <div class="dqpl-select" id="subject-select">
         <div class="info-label">Browsing</div>
         <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="subject-list" aria-expanded="false" aria-label="Browse By Subject" aria-required="true" aria-activedescendant="default">
             <div role="textbox" class="dqpl-pseudo-value" aria-label="Current Subject Title">
-              <span class="current-subject-title">Psychology</span><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <span class="current-subject-title">Psychology</span></div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
     </g>
 </svg>
 </div>
-        </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
             </ul>
-            <div class="item-section-title">Series</div>
+
             <ul>
+               <li class="item-section-title">Imprints</li>
+                <li class="dqpl-option" role="option" data-value="/imprint/nyu-press/" >NYU Press</li>
+                <li class="dqpl-option" role="option" data-value="/imprint/nyu-global-access-publications/" >NYU Global Access Publications</li>
+                <li class="dqpl-option" role="option" data-value="/imprint/washington-mews-books/nyu-press/" >Washington Mews/NYU Press</li>
+            </ul>
+
+            <ul>
+              <li class="item-section-title">Series</li>
                 <li class="dqpl-option" role="option" data-value="/series/connected-youth-and-digital-futures/" >Connected Youth and Digital Futures</li>
                 <li class="dqpl-option" role="option" data-value="/series/jews-in-the-soviet-union/" >Jews in the Soviet Union</li>
             </ul>
-            <div class="item-section-title">Subjects</div>
+
             <ul>
+                <li class="item-section-title">Subjects</li>
                 <li class="dqpl-option" role="option" data-value="/subjects/african-american-studies/" >African American Studies</li>
                 <li class="dqpl-option" role="option" data-value="/subjects/american-studies/" >American Studies</li>
                 <li class="dqpl-option" role="option" data-value="/subjects/anthropology/" >Anthropology</li>
@@ -161,13 +170,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const checkChanged = () => {
           
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               if (newValue == "all") {
-                window.location.href = "https://opensquare.nyupress.org/books";
+                window.location.href = "https://opensquare-stage.nyupress.org/books";
               } else {
-                window.location.href = "https" + "://" + "opensquare.nyupress.org" + newValue;
+                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
               }
             }
           });
@@ -187,7 +200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="dqpl-select" id="sort-select">
   <div class="info-label">Sorted by</div>
-  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="default">
+  <div class="dqpl-combobox" role="combobox" tabindex="0" aria-autocomplete="none" aria-owns="sort-options" aria-expanded="false" aria-label="Sort" aria-required="true" aria-activedescendant="sort-default">
     <div role="textbox" class="dqpl-pseudo-value" aria-label="dateopenaccess">Open Access Date</div><svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Triangle" fill="#444444" points="9 12 0 0 18 0"></polygon>
@@ -196,7 +209,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
   <div class="dqpl-listbox" role="listbox" id="sort-options">
     <ul>
-      <li class="dqpl-option" role="option" data-value="dateopenaccess" aria-selected="true">Open Access Date</li>
+      <li class="dqpl-option" role="option" data-value="dateopenaccess" id="sort-default" aria-selected="true">Open Access Date</li>
       <li class="dqpl-option" role="option" data-value="datebook">Publication Date</li>
       <li class="dqpl-option" role="option" data-value="title">Title</li>
     </ul>
@@ -241,7 +254,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const checkChanged = () => {
           
           setTimeout(() => {
-            const newValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
+            const selected = listbox.querySelector('[aria-selected="true"]');
+            if (!selected) {
+              return;
+            }
+            const newValue = selected.getAttribute('data-value');
             if (newValue !== cachedValue) {
               cachedValue = newValue;
               
@@ -308,12 +325,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Mandy Merck
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2000</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2025</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
         <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
@@ -353,12 +374,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         J. Eric   Stewart
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2013</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -405,12 +430,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Sue Rubin
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2005</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2024</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -447,12 +476,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Roger J.R. Levesque
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2015</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
         <span class="tag"><a href="/subjects/law/">Law</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
@@ -491,12 +524,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Abbie E. Goldberg
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2012</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -534,12 +571,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Timothy A. Kelly
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2009</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/politics/">Politics</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
@@ -578,12 +619,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Vivian Center Seltzer
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2009</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -622,12 +667,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Frank C. DiCataldo
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2009</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -665,12 +714,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Nancy L. Deutsch
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2008</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/law/">Law</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
@@ -711,12 +764,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Michelle Oberman
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2008</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/criminology/">Criminology</a></span>
         <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
@@ -755,12 +812,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Adrian C. Brock
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2006</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/law/">Law</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
@@ -803,12 +864,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Steve Jones
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2006</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -845,12 +910,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Colin P. Silverthorne
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2005</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -887,12 +956,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Lyn Mikel Brown
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2003</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -931,12 +1004,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Lynn Phillips
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2000</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -974,12 +1051,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         John A. Mills
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2000</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -1016,12 +1097,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Glenda M. Russell
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1999</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -1060,12 +1145,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         William A. Galston
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1991</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -1102,12 +1191,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Barbara L. Wood
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1987</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2023</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -1144,12 +1237,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Cindy D. Ness
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2010</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/gender--sexuality/">Gender &amp; Sexuality</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         <span class="tag"><a href="/subjects/sociology/">Sociology</a></span>
@@ -1189,12 +1286,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Judy Y. Chu
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2004</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2021</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -1231,12 +1332,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Jonathan Gray
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 2010</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2017</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -1274,12 +1379,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Bernard Jay Paris
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1997</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -1316,12 +1425,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Mark G. Winiarski
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1997</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -1359,12 +1472,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Patrizia Giampieri-Deutsch
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1996</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -1402,12 +1519,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Marshall W. Alcorn Jr.
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1994</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/american-studies/">American Studies</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -1445,12 +1566,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Michael Guy Thompson
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1994</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -1488,12 +1613,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Amia Lieblich
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1994</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/history/">History</a></span>
         <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
@@ -1531,12 +1660,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         David Kleinbard
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1993</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
@@ -1573,12 +1706,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Robert Rogers
     </div>
 
-    <div><span>Imprint:</span> NYU Press</div>
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
     <div class="pubdate"><span>Published:</span> 1991</div>
     
       <div class="pubdate"><span>Open Access Since:</span> 2014</div>
     
-    <div class="tags"><span class="label">Subjects:</span>
+    <div class="tags"><span>Subjects:</span>
       <span class="tag"><a href="/subjects/psychology/">Psychology</a></span>
         </div>
 
