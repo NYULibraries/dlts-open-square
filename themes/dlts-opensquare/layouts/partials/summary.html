@@ -1,29 +1,31 @@
+{{- $page := .page -}}
+{{- $number := .number -}}
 <article class="book-summary">
-  {{ partial "image-thumbnail" . }}
+  {{ partial "image-thumbnail" (dict "page" $page "lazy" (gt $number 6)) }}
   <div class="meta">
-    <div class="book-title-group"><a href="{{ .RelPermalink }}">
-        <div class="book-title">{{ .Title }}</div>
-        {{ with .Params.subtitle }}
+    <div class="book-title-group"><a href="{{ $page.RelPermalink }}">
+        <div class="book-title">{{ $page.Title }}</div>
+        {{ with $page.Params.subtitle }}
         <div class="book-subtitle">{{ . }}</div>{{ end }}
       </a></div>
-    {{ with .Params.contributors -}}
+    {{ with $page.Params.contributors -}}
       {{ partial "contributors.html" . }}
     {{- end -}}
-    {{/*  {{ $t := time.AsTime .Params.dateOpenAccess }}
+    {{/*  {{ $t := time.AsTime $page.Params.dateOpenAccess }}
     {{ time.Format "2006" $t }}  */}}
     <div class="tags">
       <span>Imprint:</span>
-      {{ with site.GetPage (path.Join "/imprint" .Params.imprint )  -}}
+      {{ with site.GetPage (path.Join "/imprint" $page.Params.imprint )  -}}
         <span><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
       {{ end }}
     </div>
-    <div class="pubdate"><span>Published:</span> {{  .Params.yearBook }}</div>
-    {{ with  .Params.yearOpenAccess }}
+    <div class="pubdate"><span>Published:</span> {{  $page.Params.yearBook }}</div>
+    {{ with  $page.Params.yearOpenAccess }}
       <div class="pubdate"><span>Open Access Since:</span> {{ . }}</div>
     {{ end -}}
-    {{ if .Params.series }}
+    {{ if $page.Params.series }}
     <div class="tags"><span>Series:</span>
-      {{ range .Params.series }}
+      {{ range $page.Params.series }}
         {{-  $path := path.Join "/series" . -}}
         {{- with site.GetPage $path  -}}
           <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
@@ -32,7 +34,7 @@
     </div>
     {{ end }}
     <div class="tags"><span>Subjects:</span>
-      {{ range .Params.subjects }}
+      {{ range $page.Params.subjects }}
         {{-  $path := path.Join "/subjects" . -}}
         {{- with site.GetPage $path  -}}
           <span class="tag"><a href="{{ .RelPermalink }}">{{- .Title -}}</a></span>
