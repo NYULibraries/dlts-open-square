@@ -1,8 +1,7 @@
 {{- $page := .page -}}
 {{- $lazy := .lazy -}}
 {{- $stringisbn := string $page.Params.openSquareId  -}}
-{{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" $page.Site.Params.image_server  -}}
-
+{{- $imagepath :=  urls.JoinPath $page.Site.Params.image_server (add $stringisbn ".jpg")   -}}
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ $page.Date }}">
   <a aria-hidden="true" tabindex="-1" href="{{ $page.RelPermalink  }}">
 <picture>
