@@ -139,6 +139,7 @@
 
     const selected = getSelectedOption(combobox, listbox) || getEnabledOptions(listbox)[0];
     selectOption(combobox, listbox, selected, false);
+    let suppressNextOptionClick = false;
 
     combobox.addEventListener('click', () => {
       if (isOpen(listbox)) {
@@ -224,6 +225,32 @@
       }
 
       event.preventDefault();
+      setActive(combobox, listbox, option, false);
+      combobox.focus();
+
+      document.addEventListener('mouseup', mouseupEvent => {
+        const releasedOption = mouseupEvent.target.closest('[role="option"]');
+        suppressNextOptionClick = Boolean(releasedOption && listbox.contains(releasedOption));
+
+        if (releasedOption && listbox.contains(releasedOption) && releasedOption.getAttribute('aria-disabled') !== 'true') {
+          selectOption(combobox, listbox, releasedOption, true);
+        } else {
+          cancelListbox(combobox, listbox);
+        }
+      }, { once: true });
+    });
+
+    listbox.addEventListener('click', event => {
+      const option = event.target.closest('[role="option"]');
+      if (!option || option.getAttribute('aria-disabled') === 'true') {
+        return;
+      }
+
+      if (suppressNextOptionClick) {
+        suppressNextOptionClick = false;
+        return;
+      }
+
       selectOption(combobox, listbox, option, true);
       combobox.focus();
     });
