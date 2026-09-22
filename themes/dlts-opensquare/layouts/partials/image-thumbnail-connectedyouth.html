@@ -1,5 +1,5 @@
 {{- $stringisbn := .isbn  -}}
-{{- $imagepath := ".jpg" | printf "%s%s" $stringisbn  | printf  "%s%s" .context.Site.Params.image_server  -}}
+{{- $imagepath := urls.JoinPath .context.Site.Params.image_server (add $stringisbn ".jpg") -}}
 <div class="thumb" role="presentation" aria-hidden="true" >
  <picture>
   <source media="(min-width: 720px)"
