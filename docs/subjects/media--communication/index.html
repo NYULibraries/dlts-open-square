@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <meta name="description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
     <link rel="stylesheet" href="/css/style.css">
-<script src="/js/pattern-library-3.0.1.min.js"></script>
+<script src="/js/combobox-select.js"></script>
 
 
   <meta property="og:description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="/books" >All Books</li>
             </ul>
 
             <ul>
@@ -127,6 +127,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li class="item-section-title">Series</li>
                 <li class="dqpl-option" role="option" data-value="/series/connected-youth-and-digital-futures/" >Connected Youth and Digital Futures</li>
                 <li class="dqpl-option" role="option" data-value="/series/jews-in-the-soviet-union/" >Jews in the Soviet Union</li>
+                <li class="dqpl-option" role="option" data-value="/series/roadmap-for-urban-nature-based-solutions/" >Roadmap for Urban Nature-Based Solutions</li>
             </ul>
 
             <ul>
@@ -157,44 +158,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 <script>
-  
-  
-  
   document.addEventListener("DOMContentLoaded", function(event) {
+    const combobox = document.querySelector('#subject-select .dqpl-combobox');
+    if (!combobox) {
+      return;
+    }
 
-    Array.from(document.querySelectorAll('#subject-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              if (newValue == "all") {
-                window.location.href = "https://opensquare-stage.nyupress.org/books";
-              } else {
-                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
+    combobox.addEventListener('combobox-select:change', event => {
+      window.location.href = event.detail.value;
+    });
   });
 </script>
 
@@ -217,99 +189,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script>
-  function sortbydateoa() {
-    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.dateopenaccess);
-      const orderB = parseInt(b.dataset.dateopenaccess);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbydatebook() {
-    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.datebook);
-      const orderB = parseInt(b.dataset.datebook);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbytitle() {
-    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
-    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  document.addEventListener("DOMContentLoaded", function (event) {
-
-    Array.from(document.querySelectorAll('#sort-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              
-              switch (newValue) {
-                case "dateopenaccess":
-                  sortbydateoa();
-                  break;
-                case "datebook":
-                  sortbydatebook();
-                  break;
-                case "title":
-                  sortbytitle();
-                  break;
-                default:
-                  console.log('Unknown value');
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
-  });
-</script>
+<script src="/js/book-summary-sort.js"></script>
 
     </div>
-    <div class="item-count">47 books</div>
+    <div class="item-count">48 books</div>
   </div>
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
+      
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2026-10-27" data-datebook="2026-10-27" data-titlesort="Mobile Popular">
+        <article class="book-summary">
+  <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2026-10-27 00:00:00 &#43;0000 UTC">
+  <a aria-hidden="true" tabindex="-1" href="/books/9781479813001/">
+<picture>
+  <source media="(min-width: 300px)"
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479813001.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479813001.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479813001.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479813001.jpg?auto=format&amp;w=150" alt="A Mobile Popular: Media Entertainment and the Political in Digital India" height="175" width="115" class="img-fluid">
+</picture></a>
+</div>
+
+  <div class="meta">
+    <div class="book-title-group"><a href="/books/9781479813001/">
+        <div class="book-title">A Mobile Popular</div>
+        
+        <div class="book-subtitle">Media Entertainment and the Political in Digital India</div>
+      </a></div>
+    
+    <div class="author-group">
+      <span class="rolename">By</span>
+        Aswin Punathambekar, 
+        Sangeet Kumar, and 
+        Sriram Mohan
+    </div>
+
+    <div class="tags">
+      <span>Imprint:</span>
+      <span><a href="/imprint/nyu-press/">NYU Press</a></span>
+      
+    </div>
+    <div class="pubdate"><span>Published:</span> 2026</div>
+    
+      <div class="pubdate"><span>Open Access Since:</span> 2026</div>
+    
+    <div class="tags"><span>Subjects:</span>
+      <span class="tag"><a href="/subjects/anthropology/">Anthropology</a></span>
+        <span class="tag"><a href="/subjects/media--communication/">Media &amp; Communication</a></span>
+        <span class="tag"><a href="/subjects/politics/">Politics</a></span>
+        </div>
+
+  </div>
+</article>
+
+      </div>
       
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone" data-dateopenaccess="2025-07-08" data-datebook="2025-07-08" data-titlesort="WhatsApp in the World">
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2025-07-08 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479833306/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=145" alt="WhatsApp in the World: Disinformation, Encryption, and Extreme Speech"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833306.jpg?auto=format&amp;w=150" alt="WhatsApp in the World: Disinformation, Encryption, and Extreme Speech" height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -351,14 +291,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-01-30 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479800223/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=145" alt="Democratizing Inequalities: Dilemmas of the New Public Participation"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479800223.jpg?auto=format&amp;w=150" alt="Democratizing Inequalities: Dilemmas of the New Public Participation" height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -404,14 +339,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-01-30 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814760079/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=145" alt="Fashioning Fat: Inside Plus-Size Modeling"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=150" alt="Fashioning Fat: Inside Plus-Size Modeling" height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -452,14 +382,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-02-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785256/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=145" alt="Body Panic: Gender, Health, and the Selling of Fitness"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=150" alt="Body Panic: Gender, Health, and the Selling of Fitness" height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -501,14 +426,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2000-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814737996/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=145" alt="In Your Face: 9 Sexual Studies"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=150" alt="In Your Face: 9 Sexual Studies" height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -550,14 +470,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2025-02-25 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479830909/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=145" alt="How to Be Disabled in a Pandemic"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479830909.jpg?auto=format&amp;w=150" alt="How to Be Disabled in a Pandemic" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -607,14 +522,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-04-11 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479859184/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=145" alt="Drawn to the Gods: Religion and Humor in The Simpsons, South Park, and Family Guy"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=150" alt="Drawn to the Gods: Religion and Humor in The Simpsons, South Park, and Family Guy" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -654,14 +564,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-10-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479828357/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=145" alt="Does God Make the Man?: Media, Religion, and the Crisis of Masculinity"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=150" alt="Does God Make the Man?: Media, Religion, and the Crisis of Masculinity" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -703,14 +608,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814765357/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=145" alt="Celluloid Sermons: The Emergence of the Christian Film Industry, 1930-1986"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=150" alt="Celluloid Sermons: The Emergence of the Christian Film Industry, 1930-1986" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -752,14 +652,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-02-16 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790748/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=145" alt="Digital Jesus: The Making of a New Christian Fundamentalist Community on the Internet"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=150" alt="Digital Jesus: The Making of a New Christian Fundamentalist Community on the Internet" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -800,14 +695,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-10-03 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479802340/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=145" alt="Disability Media Studies"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479802340.jpg?auto=format&amp;w=150" alt="Disability Media Studies" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -848,14 +738,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-10-20 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479806294/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=145" alt="Chronic Youth: Disability, Sexuality, and U.S. Media Cultures of Rehabilitation"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479806294.jpg?auto=format&amp;w=150" alt="Chronic Youth: Disability, Sexuality, and U.S. Media Cultures of Rehabilitation" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -896,14 +781,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2008-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479830039/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=145" alt="Mixed Race Hollywood"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479830039.jpg?auto=format&amp;w=150" alt="Mixed Race Hollywood" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -943,14 +823,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2018-03-13 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479866823/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=145" alt="More Than Meets the Eye: Special Effects and the Fantastic Transmedia Franchise"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479866823.jpg?auto=format&amp;w=150" alt="More Than Meets the Eye: Special Effects and the Fantastic Transmedia Franchise" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -989,14 +864,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2016-04-05 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479837182/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=145" alt="Playing War: Military Video Games After 9/11"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479837182.jpg?auto=format&amp;w=150" alt="Playing War: Military Video Games After 9/11" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1036,14 +906,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-04-03 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479876853/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=145" alt="Surveillance Cinema"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479876853.jpg?auto=format&amp;w=150" alt="Surveillance Cinema" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1083,14 +948,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-03-27 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814764732/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=145" alt="Orienting Hollywood: A Century of Film Culture between Los Angeles and Bombay"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764732.jpg?auto=format&amp;w=150" alt="Orienting Hollywood: A Century of Film Culture between Los Angeles and Bombay" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1130,14 +990,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-03-31 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479800124/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=145" alt="Cable Guys: Television and Masculinities in the 21st Century"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=150" alt="Cable Guys: Television and Masculinities in the 21st Century" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1178,14 +1033,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-03-28 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814770153/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=145" alt="Feeling Mediated: A History of Media Technology and Emotion in America"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770153.jpg?auto=format&amp;w=150" alt="Feeling Mediated: A History of Media Technology and Emotion in America" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1225,14 +1075,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-05-06 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723838/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=145" alt="Citizenship Excess: Latino/as, Media, and the Nation"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723838.jpg?auto=format&amp;w=150" alt="Citizenship Excess: Latino/as, Media, and the Nation" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1273,14 +1118,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759448/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=145" alt="Black Television Travels: African American Media around the Globe"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759448.jpg?auto=format&amp;w=150" alt="Black Television Travels: African American Media around the Globe" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1320,14 +1160,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-01-28 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790595/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=145" alt="Love and Money: Queers, Class, and Cultural Production"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=150" alt="Love and Money: Queers, Class, and Cultural Production" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1368,14 +1203,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-10-29 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814738979/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=145" alt="The Makeover: Reality Television and Reflexive Audiences"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814738979.jpg?auto=format&amp;w=150" alt="The Makeover: Reality Television and Reflexive Audiences" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1414,14 +1244,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728963/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=145" alt="Planned Obsolescence: Publishing, Technology, and the Future of the Academy"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728963.jpg?auto=format&amp;w=150" alt="Planned Obsolescence: Publishing, Technology, and the Future of the Academy" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1460,14 +1285,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-07-18 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744680/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=145" alt="Circuits of Visibility: Gender and Transnational Media Cultures"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=150" alt="Circuits of Visibility: Gender and Transnational Media Cultures" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1507,14 +1327,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-12-05 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708743/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=145" alt="The Net Effect: Romanticism, Capitalism, and the Internet"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708743.jpg?auto=format&amp;w=150" alt="The Net Effect: Romanticism, Capitalism, and the Internet" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1555,14 +1370,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2006-12-24 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743706/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=145" alt="The Wow Climax: Tracing the Emotional Impact of Popular Culture"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743706.jpg?auto=format&amp;w=150" alt="The Wow Climax: Tracing the Emotional Impact of Popular Culture" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1602,14 +1412,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2006-09-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708903/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=145" alt="Critical Cyberculture Studies"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708903.jpg?auto=format&amp;w=150" alt="Critical Cyberculture Studies" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1653,14 +1458,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2000-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728185/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=145" alt="Murdering Masculinities: Fantasies of Gender and Violence in the American Crime Novel"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=150" alt="Murdering Masculinities: Fantasies of Gender and Violence in the American Crime Novel" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1700,14 +1500,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1993-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814788752/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=145" alt="Androids, Humanoids, and Other Folklore Monsters: Science and Soul in Science Fiction Films"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814788752.jpg?auto=format&amp;w=150" alt="Androids, Humanoids, and Other Folklore Monsters: Science and Soul in Science Fiction Films" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1747,14 +1542,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2023-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479819386/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=145" alt="Crip Authorship: Disability as Method"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819386.jpg?auto=format&amp;w=150" alt="Crip Authorship: Disability as Method" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1795,14 +1585,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2023-04-11 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479819164/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=145" alt="Digital Unsettling: Decoloniality and Dispossession in the Age of Social Media"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819164.jpg?auto=format&amp;w=150" alt="Digital Unsettling: Decoloniality and Dispossession in the Age of Social Media" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1842,14 +1627,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-05-28 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723920/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=145" alt="Race in Translation: Culture Wars around the Postcolonial Atlantic"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723920.jpg?auto=format&amp;w=150" alt="Race in Translation: Culture Wars around the Postcolonial Atlantic" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1891,14 +1671,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-02-23 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743324/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=145" alt="Race for Citizenship: Black Orientalism and Asian Uplift from Pre-Emancipation to Neoliberal America"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743324.jpg?auto=format&amp;w=150" alt="Race for Citizenship: Black Orientalism and Asian Uplift from Pre-Emancipation to Neoliberal America" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1939,14 +1714,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814772904/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=145" alt="Musical ImagiNation: U.S-Colombian Identity and the Latin Music Boom"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814772904.jpg?auto=format&amp;w=150" alt="Musical ImagiNation: U.S-Colombian Identity and the Latin Music Boom" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -1987,14 +1757,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2004-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759141/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=145" alt="Boricua Pop: Puerto Ricans and the Latinization of American Culture"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759141.jpg?auto=format&amp;w=150" alt="Boricua Pop: Puerto Ricans and the Latinization of American Culture" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2034,14 +1799,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2001-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814768716/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=145" alt="Watching Rape: Film and Television in Postfeminist Culture"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=150" alt="Watching Rape: Film and Television in Postfeminist Culture" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2081,14 +1841,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2018-07-10 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479815357/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=145" alt="Playing to the Crowd: Musicians, Audiences, and the Intimate Work of Connection"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479815357.jpg?auto=format&amp;w=150" alt="Playing to the Crowd: Musicians, Audiences, and the Intimate Work of Connection" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2128,14 +1883,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479812905/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=145" alt="net.wars"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479812905.jpg?auto=format&amp;w=150" alt="net.wars" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2174,14 +1924,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2020-02-25 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479811908/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=145" alt="Distributed Blackness: African American Cybercultures"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479811908.jpg?auto=format&amp;w=150" alt="Distributed Blackness: African American Cybercultures" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2222,14 +1967,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2019-12-03 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479807185/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=145" alt="Beyond Hashtags: Racial Politics and Black Digital Networks"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479807185.jpg?auto=format&amp;w=150" alt="Beyond Hashtags: Racial Politics and Black Digital Networks" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2270,14 +2010,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2019-01-08 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479882281/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=145" alt="Netflix Nations: The Geography of Digital Distribution"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479882281.jpg?auto=format&amp;w=150" alt="Netflix Nations: The Geography of Digital Distribution" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2317,14 +2052,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2018-12-18 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479888900/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=145" alt="Affinity Online: How Connection and Shared Interest Fuel Learning"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479888900.jpg?auto=format&amp;w=150" alt="Affinity Online: How Connection and Shared Interest Fuel Learning" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2373,14 +2103,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2018-12-11 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479888788/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=145" alt="The Digital Edge: How Black and Latino Youth Navigate Digital Inequality"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479888788.jpg?auto=format&amp;w=150" alt="The Digital Edge: How Black and Latino Youth Navigate Digital Inequality" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2432,14 +2157,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733158/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=145" alt="Show Sold Separately: Promos, Spoilers, and Other Media Paratexts"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733158.jpg?auto=format&amp;w=150" alt="Show Sold Separately: Promos, Spoilers, and Other Media Paratexts" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2479,14 +2199,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2016-05-03 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479829712/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=145" alt="By Any Media Necessary: The New Youth Activism"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479829712.jpg?auto=format&amp;w=150" alt="By Any Media Necessary: The New Youth Activism" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
@@ -2534,14 +2249,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2016-05-03 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479863570/">
 <picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
   <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=145" alt="The Class: Living and Learning in the Digital Age"
-    data-baseline-images="image" class="img-fluid">
+    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=150&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=150&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=150&amp;dpr=3&amp;q=20 3x, ">
+  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863570.jpg?auto=format&amp;w=150" alt="The Class: Living and Learning in the Digital Age" loading="lazy" decoding="async"  height="175" width="115" class="img-fluid">
 </picture></a>
 </div>
 
