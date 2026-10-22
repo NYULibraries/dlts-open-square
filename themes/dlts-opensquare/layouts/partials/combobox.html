@@ -1,7 +1,8 @@
 
     {{- $pageurl := .Permalink -}}
+    {{- $booksURL := urls.RelURL "books" -}}
     {{ $.Scratch.Set "currentTitle" "All Books" -}}
-    {{ $.Scratch.Set "currentSlug" "all" -}}
+    {{ $.Scratch.Set "currentSlug" $booksURL -}}
     {{range ($.Site.GetPage "taxonomy" "subjects").Pages -}}
         {{ $thisurl := .Permalink -}}
         {{- if eq $pageurl $thisurl -}}
@@ -32,7 +33,7 @@
         </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option item-section-title" role="option" data-value="all" {{ if eq ($.Scratch.Get "currentSlug") "all" }} id="default" {{ end -}}>All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="{{ $booksURL }}" {{ if eq ($.Scratch.Get "currentSlug") $booksURL }} id="default" {{ end -}}>All Books</li>
             </ul>
 
             <ul>
@@ -61,44 +62,14 @@
     </div>
 
 <script>
-  // https://codepen.io/schne324/pen/XyRvMx?editors=1111
-  // https://unpkg.com/deque-pattern-library@3.0.1/dist/js/pattern-library.js
-  // https://github.com/dequelabs/pattern-library/issues/83
   document.addEventListener("DOMContentLoaded", function(event) {
+    const combobox = document.querySelector('#subject-select .dqpl-combobox');
+    if (!combobox) {
+      return;
+    }
 
-    Array.from(document.querySelectorAll('#subject-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          // setting timeout here to let dqpl handle the events first and change the value
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              if (newValue == "all") {
-                window.location.href = {{ urls.AbsURL "books" }};
-              } else {
-                {{- $u :=  urls.Parse .Site.BaseURL  }}
-                window.location.href = {{ $u.Scheme }} + "://" + {{ $u.Hostname }} + newValue;
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
+    combobox.addEventListener('combobox-select:change', event => {
+      window.location.href = event.detail.value;
+    });
   });
 </script>

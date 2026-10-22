@@ -18,8 +18,7 @@ This theme provides the visual structure and styling for the Open Square website
 ## Dependencies
 
 *   [Material Design Components (MDC)](https://material.io/components): Used for layout and UI elements.
-*   [Deque Systems Pattern Library](https://www.npmjs.com/package/deque-pattern-library/v/3.0.1): Used for accessible JS components
-    *   See [https://github.com/dequelabs](https://github.com/dequelabs)
+*   Local combobox JavaScript: Used for the accessible browse and sort dropdowns.
 
 ## Customization
 
@@ -36,7 +35,7 @@ The theme offers several ways to customize the appearance and functionality of y
     *   [`assets/google-material-design/`](assets/google-material-design/): Google Material Design
     *   [`assets/style.scss`](assets/style.scss): Main SCSS file
     *   [`assets/images/`](assets/images/): Images used in the theme
-    *   [`assets/js`](assets/js/): Deque's Accessible JS Framework
+    *   [`assets/js`](assets/js/): Local JavaScript for interactive theme components
     *   [`assets/mixins`](assets/mixins/): Reusable SCSS functions
     *   [`assets/partials`](assets/partials/): Reusable SCSS code blocks
 *   [`layouts/`](layouts/): Contains the HTML templates for different page types
