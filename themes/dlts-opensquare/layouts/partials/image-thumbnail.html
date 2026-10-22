@@ -1,16 +1,20 @@
 {{- $page := .page -}}
 {{- $lazy := .lazy -}}
+{{- $sizes := .sizes | default "115px" -}}
+{{- $fetchpriority := .fetchpriority -}}
 {{- $stringisbn := string $page.Params.openSquareId  -}}
 {{- $imagepath :=  urls.JoinPath $page.Site.Params.image_server (add $stringisbn ".jpg")   -}}
 <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="{{ $page.Date }}">
   <a aria-hidden="true" tabindex="-1" href="{{ $page.RelPermalink  }}">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="{{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x, {{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x, {{- $imagepath -}}?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="{{- $imagepath -}}?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x, {{- $imagepath -}}?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x, {{- $imagepath -}}?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="{{- $imagepath -}}?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x, {{- $imagepath -}}?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x, {{- $imagepath -}}?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="{{- $imagepath -}}?auto=format&amp;w=145" alt="{{ $page.Title }}{{ with $page.Params.subtitle }}: {{.}}{{end}}"{{ if $lazy }} loading="lazy" decoding="async" {{ end }} height="175" width="115" class="img-fluid">
-</picture></a>
+    <img src="{{- $imagepath -}}?auto=format&amp;w=145&amp;q=60"
+      srcset="{{- $imagepath -}}?auto=format&amp;w=115&amp;q=60 115w,
+        {{- $imagepath -}}?auto=format&amp;w=260&amp;q=60 260w,
+        {{- $imagepath -}}?auto=format&amp;w=520&amp;q=60 520w,
+        {{- $imagepath -}}?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="{{ $sizes }}"
+      alt="{{ $page.Title }}{{ with $page.Params.subtitle }}: {{.}}{{end}}"
+      {{ if $lazy }}loading="lazy" {{ end }}
+      {{ if $fetchpriority }}fetchpriority="{{ $fetchpriority }}"{{ else }}decoding="async"{{ end }}
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
