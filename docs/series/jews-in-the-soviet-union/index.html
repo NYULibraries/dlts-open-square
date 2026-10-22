@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <meta name="description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
     <link rel="stylesheet" href="/css/style.css">
-<script src="/js/pattern-library-3.0.1.min.js"></script>
+<script src="/js/combobox-select.js"></script>
 
 
   <meta property="og:description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
@@ -114,7 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="/books" >All Books</li>
             </ul>
 
             <ul>
@@ -159,44 +159,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 <script>
-  
-  
-  
   document.addEventListener("DOMContentLoaded", function(event) {
+    const combobox = document.querySelector('#subject-select .dqpl-combobox');
+    if (!combobox) {
+      return;
+    }
 
-    Array.from(document.querySelectorAll('#subject-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              if (newValue == "all") {
-                window.location.href = "https://opensquare-stage.nyupress.org/books";
-              } else {
-                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
+    combobox.addEventListener('combobox-select:change', event => {
+      window.location.href = event.detail.value;
+    });
   });
 </script>
 
@@ -219,79 +190,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script>
-  function sortbydateoa() {
-    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.dateopenaccess);
-      const orderB = parseInt(b.dataset.dateopenaccess);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbydatebook() {
-    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.datebook);
-      const orderB = parseInt(b.dataset.datebook);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbytitle() {
-    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
-    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  document.addEventListener("DOMContentLoaded", function (event) {
-
-    Array.from(document.querySelectorAll('#sort-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              
-              switch (newValue) {
-                case "dateopenaccess":
-                  sortbydateoa();
-                  break;
-                case "datebook":
-                  sortbydatebook();
-                  break;
-                case "title":
-                  sortbytitle();
-                  break;
-                default:
-                  console.log('Unknown value');
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
-  });
-</script>
+<script src="/js/book-summary-sort.js"></script>
 
     </div>
     <div class="item-count">4 books</div>
@@ -303,16 +202,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2026-06-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479844562/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=145" alt="Jews in the Soviet Union: A History: Postwar Life, Hopes, and Fears, 1945–1953, Volume 4"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479844562.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Jews in the Soviet Union: A History: Postwar Life, Hopes, and Fears, 1945–1953, Volume 4"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -354,16 +251,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2025-06-24 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479837557/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=145" alt="Jews in the Soviet Union: A History: Revolution, Civil War, and New Ways of Life, 1917–1930, Volume 1"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Jews in the Soviet Union: A History: Revolution, Civil War, and New Ways of Life, 1917–1930, Volume 1"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -406,16 +301,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2022-12-20 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479819454/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=145" alt="Jews in the Soviet Union: A History: War, Conquest, and Catastrophe, 1939–1945, Volume 3"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479819454.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Jews in the Soviet Union: A History: War, Conquest, and Catastrophe, 1939–1945, Volume 3"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -460,16 +353,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2022-12-20 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479819492/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=145" alt="Jews in the Soviet Union: A History: After Stalin, 1953–1967, Volume 5"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Jews in the Soviet Union: A History: After Stalin, 1953–1967, Volume 5"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">

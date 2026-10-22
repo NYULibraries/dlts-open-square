@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <meta name="description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
     <link rel="stylesheet" href="/css/style.css">
-<script src="/js/pattern-library-3.0.1.min.js"></script>
+<script src="/js/combobox-select.js"></script>
 
 
   <meta property="og:description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="/books" >All Books</li>
             </ul>
 
             <ul>
@@ -158,44 +158,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 <script>
-  
-  
-  
   document.addEventListener("DOMContentLoaded", function(event) {
+    const combobox = document.querySelector('#subject-select .dqpl-combobox');
+    if (!combobox) {
+      return;
+    }
 
-    Array.from(document.querySelectorAll('#subject-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              if (newValue == "all") {
-                window.location.href = "https://opensquare-stage.nyupress.org/books";
-              } else {
-                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
+    combobox.addEventListener('combobox-select:change', event => {
+      window.location.href = event.detail.value;
+    });
   });
 </script>
 
@@ -218,79 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script>
-  function sortbydateoa() {
-    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.dateopenaccess);
-      const orderB = parseInt(b.dataset.dateopenaccess);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbydatebook() {
-    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.datebook);
-      const orderB = parseInt(b.dataset.datebook);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbytitle() {
-    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
-    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  document.addEventListener("DOMContentLoaded", function (event) {
-
-    Array.from(document.querySelectorAll('#sort-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              
-              switch (newValue) {
-                case "dateopenaccess":
-                  sortbydateoa();
-                  break;
-                case "datebook":
-                  sortbydatebook();
-                  break;
-                case "title":
-                  sortbytitle();
-                  break;
-                default:
-                  console.log('Unknown value');
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
-  });
-</script>
+<script src="/js/book-summary-sort.js"></script>
 
     </div>
     <div class="item-count">65 books</div>
@@ -302,16 +201,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2026-07-21 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479841295/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=145" alt="Paper Tombs: Post-Holocaust Memorial Books and Prewar Jewish Life"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479841295.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Paper Tombs: Post-Holocaust Memorial Books and Prewar Jewish Life"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -350,16 +247,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2025-06-24 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479837557/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=145" alt="Jews in the Soviet Union: A History: Revolution, Civil War, and New Ways of Life, 1917–1930, Volume 1"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479837557.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Jews in the Soviet Union: A History: Revolution, Civil War, and New Ways of Life, 1917–1930, Volume 1"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -402,16 +297,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2020-12-15 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479897520/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=145" alt="Creating the Creation Museum: How Fundamentalist Beliefs Come to Life"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479897520.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Creating the Creation Museum: How Fundamentalist Beliefs Come to Life"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -450,16 +343,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2019-01-15 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479840571/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=145" alt="After the Protests Are Heard: Enacting Civic Engagement and Social Transformation"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479840571.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="After the Protests Are Heard: Enacting Civic Engagement and Social Transformation"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -497,16 +388,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2020-06-09 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479821419/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=145" alt="Catholic Activism Today: Individual Transformation and the Struggle for Social Justice"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479821419.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Catholic Activism Today: Individual Transformation and the Struggle for Social Justice"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -544,16 +433,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2018-10-16 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479838059/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=145" alt="Making Judaism Safe for America: World War I and the Origins of Religious Pluralism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479838059.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Making Judaism Safe for America: World War I and the Origins of Religious Pluralism"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -592,16 +479,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-11-14 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479815425/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=145" alt="Authentically Black and Truly Catholic: The Rise of Black Catholicism in the Great Migration"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479815425.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Authentically Black and Truly Catholic: The Rise of Black Catholicism in the Great Migration"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -639,16 +524,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-06-20 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479845477/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=145" alt="Ethnic Church Meets Megachurch: Indian American Christianity in Motion"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479845477.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Ethnic Church Meets Megachurch: Indian American Christianity in Motion"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -688,16 +571,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-06-13 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479820788/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=145" alt="Growing God’s Family: The Global Orphan Care Movement and the Limits of Evangelical Activism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479820788.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Growing God’s Family: The Global Orphan Care Movement and the Limits of Evangelical Activism"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -735,16 +616,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-05-23 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479866250/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=145" alt="Paranoid Science: The Christian Right&#39;s War on Reality"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479866250.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Paranoid Science: The Christian Right&#39;s War on Reality"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -783,16 +662,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-04-11 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479859184/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=145" alt="Drawn to the Gods: Religion and Humor in The Simpsons, South Park, and Family Guy"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479859184.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Drawn to the Gods: Religion and Humor in The Simpsons, South Park, and Family Guy"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -830,16 +707,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2016-02-16 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479880324/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=145" alt="Black Women’s Christian Activism: Seeking Social Justice in a Northern Suburb"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Black Women’s Christian Activism: Seeking Social Justice in a Northern Suburb"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -878,16 +753,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-11-27 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479809714/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=145" alt="The Bahá’ís of America: The Growth of a Religious Movement"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479809714.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Bahá’ís of America: The Growth of a Religious Movement"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -926,16 +799,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-10-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479828357/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=145" alt="Does God Make the Man?: Media, Religion, and the Crisis of Masculinity"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479828357.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Does God Make the Man?: Media, Religion, and the Crisis of Masculinity"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -975,16 +846,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-08-28 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479875030/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=145" alt="Pillars of Cloud and Fire: The Politics of Exodus in African American Biblical Interpretation"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479875030.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Pillars of Cloud and Fire: The Politics of Exodus in African American Biblical Interpretation"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1023,16 +892,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-06-12 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479888436/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=145" alt="The Impossible Jew: Identity and the Reconstruction of Jewish American Literary History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479888436.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Impossible Jew: Identity and the Reconstruction of Jewish American Literary History"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1071,16 +938,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-12-12 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479804573/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=145" alt="In the Shadow of Zion: Promised Lands Before Israel"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479804573.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="In the Shadow of Zion: Promised Lands Before Israel"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1119,16 +984,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-12-05 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479843015/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=145" alt="Border Medicine: A Transcultural History of Mexican American Curanderismo"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479843015.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Border Medicine: A Transcultural History of Mexican American Curanderismo"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1166,16 +1029,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-08-22 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814741283/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=145" alt="Changing Faith: The Dynamics and Consequences of Americans’ Shifting Religious Identities"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814741283.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Changing Faith: The Dynamics and Consequences of Americans’ Shifting Religious Identities"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1213,16 +1074,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-08-22 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479858279/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=145" alt="Immigrant Faith: Patterns of Immigrant Religion in the United States, Canada, and Western Europe"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479858279.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Immigrant Faith: Patterns of Immigrant Religion in the United States, Canada, and Western Europe"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1260,16 +1119,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-03-21 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814705254/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=145" alt="God and Blackness: Race, Gender, and Identity in a Middle Class Afrocentric Church"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814705254.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="God and Blackness: Race, Gender, and Identity in a Middle Class Afrocentric Church"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1307,16 +1164,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-12-06 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744420/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=145" alt="Building the Old Time Religion: Women Evangelists in the Progressive Era"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744420.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Building the Old Time Religion: Women Evangelists in the Progressive Era"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1354,16 +1209,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-11-29 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814760116/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=145" alt="The New American Zionism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814760116.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The New American Zionism"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1400,16 +1253,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-08-23 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723876/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=145" alt="Mississippi Praying: Southern White Evangelicals and the Civil Rights Movement, 1945-1975"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814723876.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Mississippi Praying: Southern White Evangelicals and the Civil Rights Movement, 1945-1975"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1447,16 +1298,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-07-29 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744987/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=145" alt="Pagan Family Values: Childhood and the Religious Imagination in Contemporary American Paganism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744987.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Pagan Family Values: Childhood and the Religious Imagination in Contemporary American Paganism"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1494,16 +1343,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-03-04 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814724729/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=145" alt="Called to Serve: A History of Nuns in America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Called to Serve: A History of Nuns in America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1542,16 +1389,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-04-30 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814753323/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=145" alt="Mainline Christianity: The Past and Future of America&#39;s Majority Faith"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814753323.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Mainline Christianity: The Past and Future of America&#39;s Majority Faith"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1589,16 +1434,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-02-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814768259/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=145" alt="Divine Callings: Understanding the Call to Ministry in Black Pentecostalism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814768259.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Divine Callings: Understanding the Call to Ministry in Black Pentecostalism"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1637,16 +1480,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814765357/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=145" alt="Celluloid Sermons: The Emergence of the Christian Film Industry, 1930-1986"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814765357.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Celluloid Sermons: The Emergence of the Christian Film Industry, 1930-1986"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1686,16 +1527,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723234/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=145" alt="Emerging Evangelicals: Faith, Modernity, and the Desire for Authenticity"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814723234.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Emerging Evangelicals: Faith, Modernity, and the Desire for Authenticity"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1733,16 +1572,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-08-22 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814788592/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=145" alt="All You That Labor: Religion and Ethics in the Living Wage Movement"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814788592.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="All You That Labor: Religion and Ethics in the Living Wage Movement"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1780,16 +1617,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-04-11 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790724/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=145" alt="An Islam of Her Own: Reconsidering Religion and Secularism in Women’s Islamic Movements"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="An Islam of Her Own: Reconsidering Religion and Secularism in Women’s Islamic Movements"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1828,16 +1663,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-02-16 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790748/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=145" alt="Digital Jesus: The Making of a New Christian Fundamentalist Community on the Internet"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790748.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Digital Jesus: The Making of a New Christian Fundamentalist Community on the Internet"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1876,16 +1709,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-02-14 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708804/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=145" alt="The History of the Catholic Church in Latin America: From Conquest to Revolution and Beyond"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814708804.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The History of the Catholic Church in Latin America: From Conquest to Revolution and Beyond"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1923,16 +1754,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814784532/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=145" alt="Miracles: Wonder and Meaning in World Religions"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814784532.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Miracles: Wonder and Meaning in World Religions"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1969,16 +1798,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814722848/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=145" alt="Caribbean Religious History: An Introduction"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814722848.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Caribbean Religious History: An Introduction"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2017,16 +1844,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733134/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=145" alt="Guadalupe in New York: Devotion and the Struggle for Citizenship Rights among Mexican Immigrants"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814733134.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Guadalupe in New York: Devotion and the Struggle for Citizenship Rights among Mexican Immigrants"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2065,16 +1890,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-09-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814764497/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=145" alt="The Mystery of the Rosary: Marian Devotion and the Reinvention of Catholicism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814764497.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Mystery of the Rosary: Marian Devotion and the Reinvention of Catholicism"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2111,16 +1934,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814753453/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=145" alt="Holy Mavericks: Evangelical Innovators and the Spiritual Marketplace"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814753453.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Holy Mavericks: Evangelical Innovators and the Spiritual Marketplace"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2159,16 +1980,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814789971/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=145" alt="Elijah Muhammad and Islam"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814789971.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Elijah Muhammad and Islam"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2205,16 +2024,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2008-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785171/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=145" alt="The Methodist Unification: Christianity and the Politics of Race in the Jim Crow Era"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785171.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Methodist Unification: Christianity and the Politics of Race in the Jim Crow Era"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2252,16 +2069,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2007-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785133/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=145" alt="Daddy Grace: A Celebrity Preacher and His House of Prayer"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785133.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Daddy Grace: A Celebrity Preacher and His House of Prayer"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2300,16 +2115,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2007-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708811/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=145" alt="The American Jesuits: A History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814708811.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The American Jesuits: A History"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2347,16 +2160,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2007-05-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769072/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=145" alt="Hare Krishna Transformed"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814769072.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Hare Krishna Transformed"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2393,16 +2204,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2005-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479820696/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=145" alt="Beyond Christianity: African Americans in a New Thought Church"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479820696.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Beyond Christianity: African Americans in a New Thought Church"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2440,16 +2249,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2005-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790267/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=145" alt="Against All Odds: The Struggle for Racial Integration in Religious Organizations"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790267.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Against All Odds: The Struggle for Racial Integration in Religious Organizations"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2489,16 +2296,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2005-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790410/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=145" alt="Evangelical Feminism: A History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Evangelical Feminism: A History"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2536,16 +2341,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2003-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733356/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=145" alt="God in Chinatown: Religion and Survival in New York&#39;s Evolving Immigrant Community"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814733356.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="God in Chinatown: Religion and Survival in New York&#39;s Evolving Immigrant Community"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2583,16 +2386,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814786680/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=145" alt="The Fighting Rabbis: Jewish Military Chaplains and American History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814786680.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Fighting Rabbis: Jewish Military Chaplains and American History"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2631,16 +2432,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2022-12-20 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479819492/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=145" alt="Jews in the Soviet Union: A History: After Stalin, 1953–1967, Volume 5"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479819492.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Jews in the Soviet Union: A History: After Stalin, 1953–1967, Volume 5"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2683,16 +2482,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-11-11 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814724675/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=145" alt="Fire in the Canyon: Religion, Migration, and the Mexican Dream"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814724675.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Fire in the Canyon: Religion, Migration, and the Mexican Dream"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2730,16 +2527,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-08-19 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479802678/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=145" alt="Crossing the Water and Keeping the Faith: Haitian Religion in Miami"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479802678.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Crossing the Water and Keeping the Faith: Haitian Religion in Miami"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2782,16 +2577,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733387/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=145" alt="The American Soul Rush: Esalen and the Rise of Spiritual Privilege"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814733387.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The American Soul Rush: Esalen and the Rise of Spiritual Privilege"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2830,16 +2623,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-11-23 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814768396/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=145" alt="The Assemblies of God: Godly Love and the Revitalization of American Pentecostalism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814768396.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Assemblies of God: Godly Love and the Revitalization of American Pentecostalism"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2878,16 +2669,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2005-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479899388/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=145" alt="A. Philip Randolph: The Religious Journey of an African American Labor Leader"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479899388.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="A. Philip Randolph: The Religious Journey of an African American Labor Leader"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2926,16 +2715,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2004-12-05 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814758816/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=145" alt="Every Time I Feel the Spirit: Religious Experience and Ritual in an African American Church"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814758816.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Every Time I Feel the Spirit: Religious Experience and Ritual in an African American Church"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2974,16 +2761,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2004-05-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479834372/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=145" alt="Asian American Religions: The Making and Remaking of Borders and Boundaries"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479834372.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Asian American Religions: The Making and Remaking of Borders and Boundaries"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3021,16 +2806,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2000-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814786697/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=145" alt="Bad Pastors: Clergy Misconduct in Modern America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814786697.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Bad Pastors: Clergy Misconduct in Modern America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3070,16 +2853,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728901/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=145" alt="Blacks in the Jewish Mind: A Crisis of Liberalism"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814728901.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Blacks in the Jewish Mind: A Crisis of Liberalism"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3119,16 +2900,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1997-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814720981/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=145" alt="The Prophetic Tradition and Radical Rhetoric in America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814720981.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Prophetic Tradition and Radical Rhetoric in America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3166,16 +2945,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1997-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763551/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=145" alt="The Essential Agus: The Writings of Jacob B. Agus"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814763551.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Essential Agus: The Writings of Jacob B. Agus"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3214,16 +2991,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728048/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=145" alt="Please Don&#39;t Wish Me a Merry Christmas: A Critical History of the Separation of Church and State"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Please Don&#39;t Wish Me a Merry Christmas: A Critical History of the Separation of Church and State"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3262,16 +3037,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1995-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763148/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=145" alt="Faith Born of Seduction: Sexual Trauma, Body Image, and Religion"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814763148.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Faith Born of Seduction: Sexual Trauma, Body Image, and Religion"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3309,16 +3082,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1993-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744819/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=145" alt="Christianity and the Holocaust of Hungarian Jewry"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744819.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Christianity and the Holocaust of Hungarian Jewry"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3356,16 +3127,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1987-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744147/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=145" alt="Gershom Scholem and the Mystical Dimension of Jewish History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744147.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Gershom Scholem and the Mystical Dimension of Jewish History"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">

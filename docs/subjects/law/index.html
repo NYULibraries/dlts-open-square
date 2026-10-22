@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <meta name="description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
     <link rel="stylesheet" href="/css/style.css">
-<script src="/js/pattern-library-3.0.1.min.js"></script>
+<script src="/js/combobox-select.js"></script>
 
 
   <meta property="og:description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="/books" >All Books</li>
             </ul>
 
             <ul>
@@ -158,44 +158,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 <script>
-  
-  
-  
   document.addEventListener("DOMContentLoaded", function(event) {
+    const combobox = document.querySelector('#subject-select .dqpl-combobox');
+    if (!combobox) {
+      return;
+    }
 
-    Array.from(document.querySelectorAll('#subject-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              if (newValue == "all") {
-                window.location.href = "https://opensquare-stage.nyupress.org/books";
-              } else {
-                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
+    combobox.addEventListener('combobox-select:change', event => {
+      window.location.href = event.detail.value;
+    });
   });
 </script>
 
@@ -218,79 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script>
-  function sortbydateoa() {
-    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.dateopenaccess);
-      const orderB = parseInt(b.dataset.dateopenaccess);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbydatebook() {
-    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.datebook);
-      const orderB = parseInt(b.dataset.datebook);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbytitle() {
-    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
-    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  document.addEventListener("DOMContentLoaded", function (event) {
-
-    Array.from(document.querySelectorAll('#sort-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              
-              switch (newValue) {
-                case "dateopenaccess":
-                  sortbydateoa();
-                  break;
-                case "datebook":
-                  sortbydatebook();
-                  break;
-                case "title":
-                  sortbytitle();
-                  break;
-                default:
-                  console.log('Unknown value');
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
-  });
-</script>
+<script src="/js/book-summary-sort.js"></script>
 
     </div>
     <div class="item-count">36 books</div>
@@ -302,16 +201,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2026-09-15 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479852574/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=145" alt="Democracy’s Challenges: 100 Ideas"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479852574.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Democracy’s Challenges: 100 Ideas"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -352,16 +249,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-05-09 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733370/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=145" alt="Street Kids: Homeless Youth, Outreach, and Policing New York’s Streets"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814733370.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Street Kids: Homeless Youth, Outreach, and Policing New York’s Streets"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -399,16 +294,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2007-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708989/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=145" alt="Fraternity Gang Rape: Sex, Brotherhood, and Privilege on Campus"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Fraternity Gang Rape: Sex, Brotherhood, and Privilege on Campus"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -447,16 +340,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1991-09-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790144/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=145" alt="Compensatory Justice: Nomos XXXIII"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790144.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Compensatory Justice: Nomos XXXIII"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -494,16 +385,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2019-06-25 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479832637/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=145" alt="Loving Justice: Legal Emotions in William Blackstone&#39;s England"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479832637.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Loving Justice: Legal Emotions in William Blackstone&#39;s England"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -541,16 +430,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-05-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708873/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=145" alt="The Ugly Laws: Disability in Public"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814708873.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Ugly Laws: Disability in Public"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -589,16 +476,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-05-29 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479833597/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=145" alt="Adolescence, Discrimination, and the Law: Addressing Dramatic Shifts in Equality Jurisprudence"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Adolescence, Discrimination, and the Law: Addressing Dramatic Shifts in Equality Jurisprudence"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -637,16 +522,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814749470/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=145" alt="The Global Flow of Information: Legal, Social, and Cultural Perspectives"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814749470.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Global Flow of Information: Legal, Social, and Cultural Perspectives"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -684,16 +567,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2008-07-12 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785218/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=145" alt="Pride in the Projects: Teens Building Identities in Urban Contexts"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785218.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Pride in the Projects: Teens Building Identities in Urban Contexts"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -733,16 +614,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2006-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814739082/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=145" alt="Internationalizing the History of Psychology"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814739082.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Internationalizing the History of Psychology"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -780,16 +659,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-09-26 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814724972/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=145" alt="Making Race in the Courtroom: The Legal Construction of Three Races in Early New Orleans"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814724972.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Making Race in the Courtroom: The Legal Construction of Three Races in Early New Orleans"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -827,16 +704,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-05-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479863402/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145" alt="Choosing the Future for American Juvenile Justice"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Choosing the Future for American Juvenile Justice"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -874,16 +749,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-07-19 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814760239/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=145" alt="Economics and Youth Violence: Crime, Disadvantage, and Community"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Economics and Youth Violence: Crime, Disadvantage, and Community"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -925,16 +798,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743669/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=145" alt="Breaking the Devil’s Pact: The Battle to Free the Teamsters from the Mob"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Breaking the Devil’s Pact: The Battle to Free the Teamsters from the Mob"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -973,16 +844,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-01-04 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1021,16 +890,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814795460/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=145" alt="Neither Fugitive nor Free: Atlantic Slavery, Freedom Suits, and the Legal Culture of Travel"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814795460.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Neither Fugitive nor Free: Atlantic Slavery, Freedom Suits, and the Legal Culture of Travel"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1069,16 +936,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814762929/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=145" alt="Rules of Disengagement"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814762929.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Rules of Disengagement"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1116,16 +981,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2006-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785157/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145" alt="The Sense of Justice: Empathy in Law and Punishment"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Sense of Justice: Empathy in Law and Punishment"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1163,16 +1026,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2002-06-07 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769881/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=145" alt="Victims in the War on Crime: The Use and Abuse of Victims&#39; Rights"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Victims in the War on Crime: The Use and Abuse of Victims&#39; Rights"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1210,16 +1071,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2001-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814765029/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=145" alt="Nothing but the Truth: Why Trial Lawyers Don&#39;t, Can&#39;t, and Shouldn&#39;t Have to Tell the Whole Truth"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814765029.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Nothing but the Truth: Why Trial Lawyers Don&#39;t, Can&#39;t, and Shouldn&#39;t Have to Tell the Whole Truth"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1256,16 +1115,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814738573/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=145" alt="Seriatim: The Supreme Court Before John Marshall"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814738573.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Seriatim: The Supreme Court Before John Marshall"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1303,16 +1160,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814739617/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=145" alt="Integrity and Conscience: Nomos XL"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814739617.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Integrity and Conscience: Nomos XL"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1350,16 +1205,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814752715/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=145" alt="The Gender Line: Men, Women, and the Law"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Gender Line: Men, Women, and the Law"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1397,16 +1250,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790175/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=145" alt="American Law in the Age of Hypercapitalism: The Worker, the Family, and the State"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790175.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="American Law in the Age of Hypercapitalism: The Worker, the Family, and the State"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1444,16 +1295,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1997-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744789/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=145" alt="The Smart Culture: Society, Intelligence, and Law"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744789.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Smart Culture: Society, Intelligence, and Law"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1491,16 +1340,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1997-05-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744765/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=145" alt="Black Rage Confronts the Law"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744765.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Black Rage Confronts the Law"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1537,16 +1384,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1997-05-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814707821/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=145" alt="Negrophobia and Reasonable Racism: The Hidden Costs of Being Black in America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814707821.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Negrophobia and Reasonable Racism: The Hidden Costs of Being Black in America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1585,16 +1430,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1997-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744840/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=145" alt="To Be An American: Cultural Pluralism and the Rhetoric of Assimilation"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744840.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="To Be An American: Cultural Pluralism and the Rhetoric of Assimilation"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1634,16 +1477,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728048/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=145" alt="Please Don&#39;t Wish Me a Merry Christmas: A Critical History of the Separation of Church and State"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814728048.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Please Don&#39;t Wish Me a Merry Christmas: A Critical History of the Separation of Church and State"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1682,16 +1523,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814721100/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=145" alt="Romantic Outlaws, Beloved Prisons: The Unconscious Meanings of Crime and Punishment"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Romantic Outlaws, Beloved Prisons: The Unconscious Meanings of Crime and Punishment"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1729,16 +1568,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-05-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814772195/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=145" alt="Hybrid: Bisexuals, Multiracials, and Other Misfits Under American Law"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814772195.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Hybrid: Bisexuals, Multiracials, and Other Misfits Under American Law"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1776,16 +1613,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-05-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763223/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=145" alt="Postmodern Legal Movements: Law and Jurisprudence At Century&#39;s End"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814763223.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Postmodern Legal Movements: Law and Jurisprudence At Century&#39;s End"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1823,16 +1658,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1994-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743959/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=145" alt="Busting the Mob: The United States v. Cosa Nostra"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814743959.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Busting the Mob: The United States v. Cosa Nostra"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1875,16 +1708,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1994-09-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733486/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=145" alt="Culture Clash: Law and Science in America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814733486.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Culture Clash: Law and Science in America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1923,16 +1754,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1993-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723715/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=145" alt="Can Unions Survive?: The Rejuvenation of the American Labor Movement"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814723715.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Can Unions Survive?: The Rejuvenation of the American Labor Movement"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1970,16 +1799,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1989-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790168/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=145" alt="Markets and Justice: Nomos XXXI"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790168.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Markets and Justice: Nomos XXXI"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">

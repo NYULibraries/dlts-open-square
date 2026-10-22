@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <meta name="description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
     <link rel="stylesheet" href="/css/style.css">
-<script src="/js/pattern-library-3.0.1.min.js"></script>
+<script src="/js/combobox-select.js"></script>
 
 
   <meta property="og:description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="/books" >All Books</li>
             </ul>
 
             <ul>
@@ -158,44 +158,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 <script>
-  
-  
-  
   document.addEventListener("DOMContentLoaded", function(event) {
+    const combobox = document.querySelector('#subject-select .dqpl-combobox');
+    if (!combobox) {
+      return;
+    }
 
-    Array.from(document.querySelectorAll('#subject-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              if (newValue == "all") {
-                window.location.href = "https://opensquare-stage.nyupress.org/books";
-              } else {
-                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
+    combobox.addEventListener('combobox-select:change', event => {
+      window.location.href = event.detail.value;
+    });
   });
 </script>
 
@@ -218,79 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script>
-  function sortbydateoa() {
-    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.dateopenaccess);
-      const orderB = parseInt(b.dataset.dateopenaccess);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbydatebook() {
-    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.datebook);
-      const orderB = parseInt(b.dataset.datebook);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbytitle() {
-    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
-    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  document.addEventListener("DOMContentLoaded", function (event) {
-
-    Array.from(document.querySelectorAll('#sort-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              
-              switch (newValue) {
-                case "dateopenaccess":
-                  sortbydateoa();
-                  break;
-                case "datebook":
-                  sortbydatebook();
-                  break;
-                case "title":
-                  sortbytitle();
-                  break;
-                default:
-                  console.log('Unknown value');
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
-  });
-</script>
+<script src="/js/book-summary-sort.js"></script>
 
     </div>
     <div class="item-count">60 books</div>
@@ -302,16 +201,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2026-03-10 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479830206/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=145" alt="Troubling Testimonies: Women&#39;s Narratives of War, Genocide, and Sexual Violence"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479830206.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Troubling Testimonies: Women&#39;s Narratives of War, Genocide, and Sexual Violence"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -352,16 +249,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2018-08-10 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479838677/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=145" alt="Vulnerability Politics: The Uses and Abuses of Precarity in Political Debate"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479838677.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Vulnerability Politics: The Uses and Abuses of Precarity in Political Debate"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -399,16 +294,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2017-04-25 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479841264/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=145" alt="Finding Feminism: Millennial Activists and the Unfinished Gender Revolution"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479841264.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Finding Feminism: Millennial Activists and the Unfinished Gender Revolution"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -446,16 +339,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2016-08-30 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479851188/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=145" alt="Failing Families, Failing Science: Work-Family Conflict in Academic Science"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479851188.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Failing Families, Failing Science: Work-Family Conflict in Academic Science"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -495,16 +386,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2016-03-22 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479846023/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=145" alt="A Bun in the Oven: How the Food and Birth Movements Resist Industrialization"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479846023.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="A Bun in the Oven: How the Food and Birth Movements Resist Industrialization"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -542,16 +431,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-09-18 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814794197/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=145" alt="This Year&#39;s Model: Fashion, Media, and the Making of Glamour"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814794197.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="This Year&#39;s Model: Fashion, Media, and the Making of Glamour"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -589,16 +476,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-01-30 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814760079/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=145" alt="Fashioning Fat: Inside Plus-Size Modeling"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814760079.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Fashioning Fat: Inside Plus-Size Modeling"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -637,16 +522,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-01-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814762912/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=145" alt="Dancing Tango: Passionate Encounters in a Globalizing World"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814762912.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Dancing Tango: Passionate Encounters in a Globalizing World"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -684,16 +567,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-10-31 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479806799/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=145" alt="Border Politics: Social Movements, Collective Identities, and Globalization"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479806799.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Border Politics: Social Movements, Collective Identities, and Globalization"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -732,16 +613,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-04-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814745052/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=145" alt="Women Who Opt Out: The Debate over Working Mothers and Work-Family Balance"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814745052.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Women Who Opt Out: The Debate over Working Mothers and Work-Family Balance"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -779,16 +658,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814722855/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=145" alt="Dance With Me: Ballroom Dancing and the Promise of Instant Intimacy"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814722855.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Dance With Me: Ballroom Dancing and the Promise of Instant Intimacy"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -827,16 +704,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-12-20 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785072/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=145" alt="Getting Ahead: Social Mobility, Public Housing, and Immigrant Networks"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785072.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Getting Ahead: Social Mobility, Public Housing, and Immigrant Networks"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -875,16 +750,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-12-19 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814795255/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=145" alt="Is Breast Best?: Taking on the Breastfeeding Experts and the New High Stakes of Motherhood"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814795255.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Is Breast Best?: Taking on the Breastfeeding Experts and the New High Stakes of Motherhood"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -922,16 +795,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-09-14 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814768532/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=145" alt="Strip Club: Gender, Power, and Sex Work"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814768532.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Strip Club: Gender, Power, and Sex Work"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -970,16 +841,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759509/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=145" alt="Gun Crusaders: The NRA’s Culture War"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814759509.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Gun Crusaders: The NRA’s Culture War"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1018,16 +887,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-02-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785256/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=145" alt="Body Panic: Gender, Health, and the Selling of Fitness"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785256.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Body Panic: Gender, Health, and the Selling of Fitness"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1067,16 +934,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2007-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814765074/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=145" alt="The Latino Body: Crisis Identities in American Literary and Cultural Memory"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814765074.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Latino Body: Crisis Identities in American Literary and Cultural Memory"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1114,16 +979,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2007-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708989/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=145" alt="Fraternity Gang Rape: Sex, Brotherhood, and Privilege on Campus"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814708989.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Fraternity Gang Rape: Sex, Brotherhood, and Privilege on Campus"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1162,16 +1025,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2000-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814737996/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=145" alt="In Your Face: 9 Sexual Studies"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814737996.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="In Your Face: 9 Sexual Studies"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1211,16 +1072,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2025-04-22 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479832668/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=145" alt="The New Reproductive Order: Technology, Fertility, and Social Change around the Globe"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479832668.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The New Reproductive Order: Technology, Fertility, and Social Change around the Globe"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1259,16 +1118,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2016-02-16 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479880324/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=145" alt="Black Women’s Christian Activism: Seeking Social Justice in a Northern Suburb"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479880324.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Black Women’s Christian Activism: Seeking Social Justice in a Northern Suburb"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1307,16 +1164,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-03-04 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814724729/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=145" alt="Called to Serve: A History of Nuns in America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814724729.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Called to Serve: A History of Nuns in America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1355,16 +1210,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-04-11 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790724/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=145" alt="An Islam of Her Own: Reconsidering Religion and Secularism in Women’s Islamic Movements"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790724.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="An Islam of Her Own: Reconsidering Religion and Secularism in Women’s Islamic Movements"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1403,16 +1256,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2005-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790410/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=145" alt="Evangelical Feminism: A History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790410.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Evangelical Feminism: A History"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1450,16 +1301,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-12-16 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814770221/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=145" alt="Living with Brain Injury: Narrative, Community, and Women’s Renegotiation of Identity"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814770221.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Living with Brain Injury: Narrative, Community, and Women’s Renegotiation of Identity"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1497,16 +1346,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-03-31 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479800124/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=145" alt="Cable Guys: Television and Masculinities in the 21st Century"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479800124.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Cable Guys: Television and Masculinities in the 21st Century"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1545,16 +1392,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-01-28 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790595/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=145" alt="Love and Money: Queers, Class, and Cultural Production"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790595.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Love and Money: Queers, Class, and Cultural Production"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1593,16 +1438,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-07-23 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708293/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=145" alt="Gay Dads: Transitions to Adoptive Fatherhood"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814708293.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Gay Dads: Transitions to Adoptive Fatherhood"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1640,16 +1483,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-07-18 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744680/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=145" alt="Circuits of Visibility: Gender and Transnational Media Cultures"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744680.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Circuits of Visibility: Gender and Transnational Media Cultures"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1687,16 +1528,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2008-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814762516/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145" alt="When Mothers Kill: Interviews from Prison"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="When Mothers Kill: Interviews from Prison"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1737,16 +1576,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2003-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814739112/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=145" alt="Girlfighting: Betrayal and Rejection among Girls"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814739112.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Girlfighting: Betrayal and Rejection among Girls"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1785,16 +1622,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2000-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814768150/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=145" alt="Flirting with Danger: Young Women&#39;s Reflections on Sexuality and Domination"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814768150.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Flirting with Danger: Young Women&#39;s Reflections on Sexuality and Domination"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1832,16 +1667,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2000-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728185/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=145" alt="Murdering Masculinities: Fantasies of Gender and Violence in the American Crime Novel"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814728185.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Murdering Masculinities: Fantasies of Gender and Violence in the American Crime Novel"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1879,16 +1712,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1999-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723074/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=145" alt="Conversations about Psychology and Sexual Orientation"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814723074.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Conversations about Psychology and Sexual Orientation"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1926,16 +1757,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1999-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814752913/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=145" alt="New Versions of Victims: Feminists Struggle with the Concept"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814752913.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="New Versions of Victims: Feminists Struggle with the Concept"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1972,16 +1801,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-06-13 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479877430/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=145" alt="Clarity, Cut, and Culture: The Many Meanings of Diamonds"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479877430.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Clarity, Cut, and Culture: The Many Meanings of Diamonds"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2020,16 +1847,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-08-30 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814764763/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=145" alt="As Long as We Both Shall Love: The White Wedding in Postwar America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814764763.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="As Long as We Both Shall Love: The White Wedding in Postwar America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2067,16 +1892,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-01-07 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759226/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=145" alt="Making Women’s Histories: Beyond National Perspectives"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814759226.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Making Women’s Histories: Beyond National Perspectives"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2115,16 +1938,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-02-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814768662/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=145" alt="Beyond the Nation: Diasporic Filipino Literature and Queer Reading"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814768662.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Beyond the Nation: Diasporic Filipino Literature and Queer Reading"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2162,16 +1983,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785102/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=145" alt="Policing Pleasure: Sex Work, Policy, and the State in Global Perspective"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785102.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Policing Pleasure: Sex Work, Policy, and the State in Global Perspective"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2210,16 +2029,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2001-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814768716/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=145" alt="Watching Rape: Film and Television in Postfeminist Culture"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814768716.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Watching Rape: Film and Television in Postfeminist Culture"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2257,16 +2074,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-03-12 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814771525/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=145" alt="Breaking into the Lab: Engineering Progress for Women in Science"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814771525.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Breaking into the Lab: Engineering Progress for Women in Science"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2305,16 +2120,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2010-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759073/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=145" alt="Why Girls Fight: Female Youth Violence in the Inner City"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814759073.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Why Girls Fight: Female Youth Violence in the Inner City"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2353,16 +2166,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-07-26 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814728536/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=145" alt="Babysitter: An American History"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814728536.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Babysitter: An American History"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2400,16 +2211,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2005-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814765241/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=145" alt="A Feeling of Belonging: Asian American Women&#39;s Public Culture, 1930-1960"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814765241.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="A Feeling of Belonging: Asian American Women&#39;s Public Culture, 1930-1960"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2448,16 +2257,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2001-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814739280/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=145" alt="Our Monica, Ourselves: The Clinton Affair and the National Interest"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814739280.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Our Monica, Ourselves: The Clinton Affair and the National Interest"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2497,16 +2304,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2000-09-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769232/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=145" alt="Voted Out: The Psychological Consequences of Anti-Gay Politics"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814769232.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Voted Out: The Psychological Consequences of Anti-Gay Politics"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2544,16 +2349,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2020-09-15 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479891672/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=145" alt="A Queer New York: Geographies of Lesbians, Dykes, and Queers"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479891672.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="A Queer New York: Geographies of Lesbians, Dykes, and Queers"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2592,16 +2395,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759714/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=145" alt="Freedom to Differ: The Shaping of the Gay and Lesbian Struggle for Civil Rights"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814759714.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Freedom to Differ: The Shaping of the Gay and Lesbian Struggle for Civil Rights"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2639,16 +2440,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814763520/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=145" alt="A Republic of Men: The American Founders, Gendered Language, and Patriarchal Politics"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814763520.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="A Republic of Men: The American Founders, Gendered Language, and Patriarchal Politics"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2687,16 +2486,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1998-04-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814752715/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=145" alt="The Gender Line: Men, Women, and the Law"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814752715.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Gender Line: Men, Women, and the Law"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2734,16 +2531,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814773215/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=145" alt="The Lavender Vote: Lesbians, Gay Men, and Bisexuals in American Electoral Politics"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814773215.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Lavender Vote: Lesbians, Gay Men, and Bisexuals in American Electoral Politics"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2781,16 +2576,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1995-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814771518/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=145" alt="Bisexuality and the Challenge to Lesbian Politics: Sex, Loyalty, and Revolution"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814771518.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Bisexuality and the Challenge to Lesbian Politics: Sex, Loyalty, and Revolution"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2828,16 +2621,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1995-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723418/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=145" alt="Genders 22: Postcommunism and the Body Politic"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814723418.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Genders 22: Postcommunism and the Body Politic"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2875,16 +2666,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1995-07-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814752685/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=145" alt="In Search of the Swan Maiden: A Narrative on Folklore and Gender"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814752685.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="In Search of the Swan Maiden: A Narrative on Folklore and Gender"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2921,16 +2710,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1994-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814786086/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=145" alt="The Prostitution of Sexuality: The Global Exploitation of Women"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814786086.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Prostitution of Sexuality: The Global Exploitation of Women"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -2968,16 +2755,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1994-01-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769447/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=145" alt="Queer Words, Queer Images: Communication and the Construction of Homosexuality"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814769447.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Queer Words, Queer Images: Communication and the Construction of Homosexuality"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3015,16 +2800,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1993-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814773130/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=145" alt="Lover"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814773130.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Lover"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3061,16 +2844,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1993-02-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814744871/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=145" alt="Charles Dickens and the Image of Women"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814744871.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Charles Dickens and the Image of Women"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -3106,16 +2887,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1992-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814725078/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=145" alt="Adventures of the Mind: The Memoirs of Natalie Clifford Barney"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814725078.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Adventures of the Mind: The Memoirs of Natalie Clifford Barney"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">

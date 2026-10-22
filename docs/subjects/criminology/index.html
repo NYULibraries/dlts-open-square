@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <meta name="description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
     <link rel="stylesheet" href="/css/style.css">
-<script src="/js/pattern-library-3.0.1.min.js"></script>
+<script src="/js/combobox-select.js"></script>
 
 
   <meta property="og:description" content="Open Square is NYU Press’s platform for publishing and reading open access books.">
@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
         <div class="dqpl-listbox" role="listbox" id="subject-list">
             <ul>
-                <li class="dqpl-option item-section-title" role="option" data-value="all" >All Books</li>
+                <li class="dqpl-option item-section-title" role="option" data-value="/books" >All Books</li>
             </ul>
 
             <ul>
@@ -158,44 +158,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 <script>
-  
-  
-  
   document.addEventListener("DOMContentLoaded", function(event) {
+    const combobox = document.querySelector('#subject-select .dqpl-combobox');
+    if (!combobox) {
+      return;
+    }
 
-    Array.from(document.querySelectorAll('#subject-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              if (newValue == "all") {
-                window.location.href = "https://opensquare-stage.nyupress.org/books";
-              } else {
-                window.location.href = "https" + "://" + "opensquare-stage.nyupress.org" + newValue;
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
+    combobox.addEventListener('combobox-select:change', event => {
+      window.location.href = event.detail.value;
+    });
   });
 </script>
 
@@ -218,79 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script>
-  function sortbydateoa() {
-    const elements = Array.from(document.querySelectorAll('[data-dateopenaccess]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.dateopenaccess);
-      const orderB = parseInt(b.dataset.dateopenaccess);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbydatebook() {
-    const elements = Array.from(document.querySelectorAll('[data-datebook]'));
-    elements.sort((a, b) => {
-      const orderA = parseInt(a.dataset.datebook);
-      const orderB = parseInt(b.dataset.datebook);
-      return orderB - orderA;
-    });
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  function sortbytitle() {
-    const elements = Array.from(document.querySelectorAll('[data-titlesort]'));
-    elements.sort((a, b) => a.getAttribute('data-titlesort').localeCompare(b.getAttribute('data-titlesort')));
-    const parent = elements[0].parentNode;
-    elements.forEach(element => parent.appendChild(element));
-  }
-  document.addEventListener("DOMContentLoaded", function (event) {
-
-    Array.from(document.querySelectorAll('#sort-select'))
-      .forEach(wrapper => {
-        const combobox = wrapper.querySelector('.dqpl-combobox');
-        const listbox = wrapper.querySelector('.dqpl-listbox');
-        let cachedValue = listbox.querySelector('[aria-selected="true"]').getAttribute('data-value');
-        const checkChanged = () => {
-          
-          setTimeout(() => {
-            const selected = listbox.querySelector('[aria-selected="true"]');
-            if (!selected) {
-              return;
-            }
-            const newValue = selected.getAttribute('data-value');
-            if (newValue !== cachedValue) {
-              cachedValue = newValue;
-              
-              switch (newValue) {
-                case "dateopenaccess":
-                  sortbydateoa();
-                  break;
-                case "datebook":
-                  sortbydatebook();
-                  break;
-                case "title":
-                  sortbytitle();
-                  break;
-                default:
-                  console.log('Unknown value');
-              }
-            }
-          });
-        };
-
-        listbox.addEventListener('click', checkChanged);
-        combobox.addEventListener('keydown', e => {
-          if (e.which !== 32 && e.which !== 13) {
-            return;
-          }
-          checkChanged();
-        });
-
-      });
-  });
-</script>
+<script src="/js/book-summary-sort.js"></script>
 
     </div>
     <div class="item-count">21 books</div>
@@ -302,16 +201,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2008-08-10 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759028/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=145" alt="Illegal, Alien, or Immigrant: The Politics of Immigration Reform"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814759028.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Illegal, Alien, or Immigrant: The Politics of Immigration Reform"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -351,16 +248,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-05-29 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479833597/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=145" alt="Adolescence, Discrimination, and the Law: Addressing Dramatic Shifts in Equality Jurisprudence"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479833597.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Adolescence, Discrimination, and the Law: Addressing Dramatic Shifts in Equality Jurisprudence"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -399,16 +294,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2009-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785225/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=145" alt="The Perversion of Youth: Controversies in the Assessment and Treatment of Juvenile Sex Offenders"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785225.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Perversion of Youth: Controversies in the Assessment and Treatment of Juvenile Sex Offenders"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -446,16 +339,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2008-06-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814762516/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145" alt="When Mothers Kill: Interviews from Prison"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814762516.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="When Mothers Kill: Interviews from Prison"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -496,16 +387,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2018-05-08 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479871247/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=145" alt="The Sex Offender Housing Dilemma: Community Activism, Safety, and Social Justice"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479871247.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Sex Offender Housing Dilemma: Community Activism, Safety, and Social Justice"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -543,16 +432,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2015-01-09 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814708033/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=145" alt="Community Criminology: Fundamentals of Spatial and Temporal Scaling, Ecological Indicators, and Selectivity Bias"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814708033.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Community Criminology: Fundamentals of Spatial and Temporal Scaling, Ecological Indicators, and Selectivity Bias"
+      
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -590,16 +477,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-05-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479863402/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145" alt="Choosing the Future for American Juvenile Justice"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479863402.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Choosing the Future for American Juvenile Justice"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -637,16 +522,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2014-05-02 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9781479829729/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=145" alt="Get a Job: Labor Markets, Economic Opportunity, and Crime"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9781479829729.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Get a Job: Labor Markets, Economic Opportunity, and Crime"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -684,16 +567,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2013-07-19 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814760239/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=145" alt="Economics and Youth Violence: Crime, Disadvantage, and Community"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814760239.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Economics and Youth Violence: Crime, Disadvantage, and Community"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -735,16 +616,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-12-03 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814759417/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=145" alt="Judging Addicts: Drug Courts and Coercion in the Justice System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814759417.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Judging Addicts: Drug Courts and Coercion in the Justice System"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -782,16 +661,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2012-02-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814723166/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=145" alt="Doing Time in the Depression: Everyday Life in Texas and California Prisons"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814723166.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Doing Time in the Depression: Everyday Life in Texas and California Prisons"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -829,16 +706,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-12-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814725160/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=145" alt="5 Grams: Crack Cocaine, Rap Music, and the War on Drugs"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814725160.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="5 Grams: Crack Cocaine, Rap Music, and the War on Drugs"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -877,16 +752,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-09-12 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814738351/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=145" alt="Shutting Down the Streets: Political Violence and Social Control in the Global Era"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814738351.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Shutting Down the Streets: Political Violence and Social Control in the Global Era"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -927,16 +800,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-03-07 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733004/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=145" alt="Policing Methamphetamine: Narcopolitics in Rural America"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814733004.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Policing Methamphetamine: Narcopolitics in Rural America"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -975,16 +846,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2001-08-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814733332/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=145" alt="Critical Race Narratives: A Study of Race, Rhetoric and Injury"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814733332.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Critical Race Narratives: A Study of Race, Rhetoric and Injury"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1022,16 +891,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743669/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=145" alt="Breaking the Devil’s Pact: The Battle to Free the Teamsters from the Mob"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814743669.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Breaking the Devil’s Pact: The Battle to Free the Teamsters from the Mob"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1070,16 +937,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2011-01-04 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814790793/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145" alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814790793.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Habeas Corpus after 9/11: Confronting America’s New Global Detention System"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1118,16 +983,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2006-10-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814785157/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145" alt="The Sense of Justice: Empathy in Law and Punishment"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814785157.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="The Sense of Justice: Empathy in Law and Punishment"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1165,16 +1028,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="2002-06-07 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814769881/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=145" alt="Victims in the War on Crime: The Use and Abuse of Victims&#39; Rights"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814769881.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Victims in the War on Crime: The Use and Abuse of Victims&#39; Rights"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1212,16 +1073,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-11-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814721100/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=145" alt="Romantic Outlaws, Beloved Prisons: The Unconscious Meanings of Crime and Punishment"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814721100.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Romantic Outlaws, Beloved Prisons: The Unconscious Meanings of Crime and Punishment"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
@@ -1259,16 +1118,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <article class="book-summary">
   <div class="thumb" role="presentation" aria-hidden="true" data-pubdate="1996-03-01 00:00:00 &#43;0000 UTC">
   <a aria-hidden="true" tabindex="-1" href="/books/9780814743980/">
-<picture>
-  <source media="(min-width: 720px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=298&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 480px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;dpr=3&amp;q=20 3x, ">
-  <source media="(min-width: 300px)"
-    srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=1&amp;q=20 1x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=2&amp;q=20 2x,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=198&amp;dpr=3&amp;q=20 3x, ">
-  <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=145" alt="Bird-Self Accumulated"
-    data-baseline-images="image" class="img-fluid">
-</picture></a>
+    <img src="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=145&amp;q=60"
+      srcset="https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=115&amp;q=60 115w,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=260&amp;q=60 260w,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=520&amp;q=60 520w,https://nyu-opensquare-us.imgix.net/covers/9780814743980.jpg?auto=format&amp;w=780&amp;q=60 780w"
+      sizes="115px"
+      alt="Bird-Self Accumulated"
+      loading="lazy" 
+      decoding="async"
+      height="175" width="115" class="img-fluid">
+  </a>
 </div>
 
   <div class="meta">
