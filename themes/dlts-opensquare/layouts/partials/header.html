@@ -4,8 +4,12 @@
 <head>
   {{ partial "head-html.html" . -}}
 </head>
-
+{{- if eq .Layout "search" -}}
+<body class="search-page">
+{{- else -}}
 <body class="{{- if .IsHome -}}ishome {{ end -}}{{if .IsNode}}isnode {{end -}}{{if .IsPage}}ispage {{end}}{{ with .Type }}{{ . }} {{ end }}{{ with .Kind }}{{ . }}{{ end }}">
+{{- end -}}
+
   {{ partial "google-tag-manager-body.html" . }}
   <div class="hold-all">
     <header class="page-header">
