@@ -78,7 +78,7 @@ dlts-open-square-markdown-hugo/
 
 ### Prerequisites
 
-- [Hugo](https://gohugo.io/installation/) 0.147.8 or later
+- [Hugo]
 - Git
 
 ### Install on macOS

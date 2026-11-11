@@ -5,7 +5,7 @@
   {{ partial "head-html.html" . -}}
 </head>
 
-<body class="{{- if .IsHome -}}ishome {{ end -}}{{if .IsNode}}isnode {{end -}}{{if .IsPage}}ispage {{end}}{{ with .Type }}{{ . }} {{ end }}{{ with .Kind }}{{ . }}{{ end }}">
+<body class="{{- if .IsHome -}}ishome {{ end -}}{{if .IsPage}}ispage {{end}}{{ with .Type }}{{ . }} {{ end }}{{ with .Kind }}{{ . }}{{ end }}">
   {{ partial "google-tag-manager-body.html" . }}
   <div class="hold-all">
     <header class="page-header">
