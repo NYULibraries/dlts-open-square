@@ -9,6 +9,7 @@
 ---
 
 ## Table of Contents
+
 - [Open Square Static Site](#open-square-static-site)
   - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
@@ -47,9 +48,10 @@ This repository contains configurations, some content written in Markdown, code 
 ---
 
 ## Repository Structure
+
 There are now two repositories used to publish. One refreshes the data from the API, and the other builds the html site from that data.
 
-```
+```text
 dlts-open-square/
 ├── config/                # Hugo configuration files for different environments
 ├── content/               # Markdown content for site pages
@@ -63,7 +65,8 @@ dlts-open-square/
 ├── README.md              # This file
 └── ...
 ```
-```
+
+```text
 dlts-open-square-markdown-hugo/
 ├── config/                # Hugo configuration files for different environments
 ├── content/               # Markdown content for site pages
@@ -136,12 +139,9 @@ cd ../dlts-open-square-markdown-hugo
 hugo -e stage
 ```
 
-
 ## Building the Site
 
 ### Commands
-
-
 
 With the HVM shell alias configured, the `hugo` command uses the version pinned in `.hvm`. Select the build environment with the `-e` flag:
 
@@ -168,31 +168,30 @@ hugo server -e local
 
 - Visit [http://localhost:1313/](http://localhost:1313/) to preview the site.
 
-
 ---
 
 ## Development Workflow
 
 1. **Clone the repositories:**
+
    ```sh
    git clone https://github.com/NYULibraries/dlts-open-square.git
    git clone https://github.com/NYULibraries/dlts-open-square-markdown-hugo.git
    cd dlts-open-square
    ```
 
-2. **Install HVM:**
-  Install HVM, configure its shell alias, and select the project's pinned Hugo version (see [Installation](#installation)).
+2. **Install HVM:** Install HVM, configure its shell alias, and select the project's pinned Hugo version (see [Installation](#installation)).
 
 3. **Start the server:**
+
    ```sh
    hugo server -e local
    ```
 
-4. **Edit content or theme:**
-   - Content: `content/`
-   - Theme: `themes/dlts-opensquare/`
+4. **Edit content or theme:** Content is in `content/`; theme files are in `themes/dlts-opensquare/`.
 
 5. **Build for stage:**
+
    ```sh
    hugo -e stage
    ```
@@ -233,9 +232,8 @@ hugo server -e local
 - **Content:**
   Add or edit Markdown files in `content/pages` to update site pages.
 
-
-
 ---
+
 ## Analytics & Tracking
 
 The site uses:
@@ -270,6 +268,7 @@ Both scripts are included in the HTML output for all book pages.
 ## Contributing
 
 Pull requests and issues are welcome! Please ensure your changes are tested locally before submitting.
+
 1. Clone repo locally and checkout `dev`
 
 1. Create a branch from dev for local development:
