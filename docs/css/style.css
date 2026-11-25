@@ -1433,11 +1433,11 @@ blockquote {
 .tags li:not(:last-child)::after {
   content: ",\00a0"; }
 
-.isnode.series.term main .series-content-hold {
+.series.term main .series-content-hold {
   max-width: 55rem;
   margin: 20px 0; }
 
-.isnode.series.term main .series-content {
+.series.term main .series-content {
   margin: 30px 0 50px; }
 
 .book-full-view .social {
